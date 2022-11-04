@@ -1,4 +1,4 @@
-import Logo from "../assets/LOGO.png";
+import Logo from "../assets/LOGO (1).png";
 import { HiOutlinePhone } from "react-icons/hi";
 import { SlSocialTwitter } from "react-icons/sl";
 import { FaFacebookF } from "react-icons/fa";

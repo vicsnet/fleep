@@ -1,8 +1,8 @@
 import React from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import Rectangle from "../assets/Rectangle 2 (1).png";
-import Rectangle2 from "../assets/Rectangle 3.png";
-import Rectangle3 from "../assets/Rectangle 4.png";
+import Rectangle2 from "../assets/Rectangle 3 (1).png";
+import Rectangle3 from "../assets/Rectangle 4 (2).png";
 import GroupImage from "../assets/Group 17382.png";
 import Event from "../assets/Group 17384.png";
 import Face from "../assets/Group 17384 (1).png";
@@ -10,6 +10,8 @@ import Algorithm from "../assets/Group 17384 (2).png";
 import vector from "../assets/Vector 1.png";
 import GroupMemories from "../assets/Group 17390.png";
 import AmazingMemories from "../assets/Rectangle 25.png";
+import FaceMe from "../assets/noun-face-recognition-1903278 1.png";
+import Algo from "../assets/noun-algorithm-1628816 1.png";
 
 const Memories = () => {
   return (
@@ -26,7 +28,7 @@ const Memories = () => {
             sensation about it. Go ahead, create!
           </p>
 
-          <button className="mt-[100px] bg-[#EE2339] hover:bg-transparent hover:text-[#EE2339] hover:border-[1px] hover:border-[#EE2339] text-[#FFFFFF] flex items-center gap-2 px-12 py-6 rounded-[35px]">
+          <button className="mt-[100px] bg-[#EE2339] hover:bg-transparent hover:text-[#EE2339] hover:border-[1px] hover:border-[#EE2339] text-[#FFFFFF] flex items-center gap-2 px-10 py-[16px] rounded-[35px]">
             Get Started
             <IoIosArrowForward
               size={20}
@@ -35,23 +37,28 @@ const Memories = () => {
           </button>
         </div>
         {/* images */}
+        {/* h-[380px] rounded-[20px] tablet:h-[300px] */}
         <div className="w-[70%] smDesk:w-[60%]">
           <img
             src={Rectangle}
             alt="memories"
-            className="h-[380px] rounded-[20px]  tablet:h-[300px]"
+            className="h-[380px] smDesktop:h-[330px] smDesk:h-[280px] tabletAir:h-[240px]  tablet:h-[220px] "
           />
-          <div className="grid grid-cols-1 grid-flow-col">
-            <img
-              src={Rectangle2}
-              alt="memories"
-              className="h-[270px] rounded-[20px] object-fill"
-            />
-            <img
-              src={Rectangle3}
-              alt="memories"
-              className="h-[270px] w-[415px] rounded-[20px] object-fill smDesktop:w-[300px] smDesk:w-[270px] tabletAir:w-[240px]  tablet:w-[200px]"
-            />
+          <div className="flex mt-[-60px] ">
+            <div className="border-[2px]">
+              <img
+                src={Rectangle2}
+                alt="memories"
+                className="  object-fill rounded-[20px] smDesktop: smDesk: tabletAir:  tablet: "
+              />
+            </div>
+            <div className="border-[2px]">
+              <img
+                src={Rectangle3}
+                alt="memories"
+                className="  object-fill smDesktop: smDesk: tabletAir:  tablet: "
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -76,7 +83,7 @@ const Memories = () => {
             We built ‘this’ for you. Your Event, Your theme, Your venue, Your
             vision, Your colors, and anything else you would like.
           </p>
-          <button className="mt-[90px] flex items-center text-[16px] font-bold leading-[19.2px] gap-[20px] text-[#EE2339] border-[1px] border-[#EE2339] px-12 py-6 rounded-[35px] hover:bg-[#EE2339] hover:text-[#FFFFFF] ">
+          <button className="mt-[90px] flex items-center text-[16px] font-bold leading-[19.2px] gap-[20px] text-[#EE2339] border-[1px] border-[#EE2339] px-10 py-[16px] rounded-[35px] hover:bg-[#EE2339] hover:text-[#FFFFFF] ">
             Learn more
             <IoIosArrowForward className="border-[1px] bg-[#FCD3D7] p-[2px] rounded-[50%] " />
           </button>
@@ -112,11 +119,18 @@ const Memories = () => {
                 </div>
               </div>
               <div className="w-[33%]">
-                <img
-                  src={Face}
-                  alt="Facial Recognition"
-                  className="w-[90px] mx-auto"
-                />
+                <div className="relative">
+                  <img
+                    src={Face}
+                    alt="Facial Recognition"
+                    className="w-[90px] mx-auto relative"
+                  />
+                  <img
+                    src={FaceMe}
+                    alt=""
+                    className="absolute mx-auto w-[30px] top-4 left-[46%] smDesktop:left-[44%] tabletAir:left-[42%]"
+                  />
+                </div>
 
                 <div className="mt-[58px]">
                   <h3 className="text-[24px] smDesk:text-[20px] tabletAir:text-[18px] tablet:text-[18px] leading-[28.8px] font-semibold text-center tracking-[-1%] text-[#1A093F]">
@@ -129,11 +143,18 @@ const Memories = () => {
                 </div>
               </div>
               <div className="w-[33%]">
-                <img
-                  src={Algorithm}
-                  alt="matching Algorithm"
-                  className="w-[90px] mx-auto"
-                />
+                <div className="relative">
+                  <img
+                    src={Algorithm}
+                    alt="matching Algorithm"
+                    className="w-[90px] mx-auto relative"
+                  />
+                  <img
+                    src={Algo}
+                    alt=""
+                    className="absolute mx-auto w-[30px] top-4 left-[46%] smDesktop:left-[44%] tabletAir:left-[42%]"
+                  />
+                </div>
 
                 <div className="mt-[58px]">
                   <h3 className="text-[24px] smDesk:text-[20px] tabletAir:text-[18px] tablet:text-[18px] leading-[28.8px] font-semibold text-center tracking-[-1%] text-[#1A093F]">
@@ -179,7 +200,7 @@ const Memories = () => {
 
         {/* uploads Counter */}
         <div
-          className="flex gap-[54px] h-[320px] items-center justify-end pr-[10%] mt-[-250px]  smDesk:h-[200px] tabletAir:h-[140px] smDesk:mt-[-110px] tabletAir:mt-[-120px] tablet-[-90px]"
+          className="flex gap-[54px] h-[320px] items-center justify-end pr-[12%] mt-[-250px]  smDesk:h-[200px] tabletAir:h-[140px] smDesk:mt-[-110px] tabletAir:mt-[-120px] tablet-[-90px]"
           style={{ background: "rgba(245, 245, 250, 1)" }}
         >
           <span>

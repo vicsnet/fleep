@@ -62,7 +62,7 @@ const ContactForm = () => {
           <br />
           <br />
           <br />
-          <button className="text-[16px] leading-[19.2px] tracking-[10%] font-bold w-[80%] text-center py-[17px] bg-[#000000] text-[#FFFFFF] rounded-[8px]">
+          <button className="text-[16px] leading-[19.2px] tracking-[10%] font-bold w-[80%] text-center py-[17px] bg-[#1A1941] text-[#FFFFFF] rounded-[8px]">
             Submit
           </button>
         </form>

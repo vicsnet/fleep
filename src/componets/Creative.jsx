@@ -19,22 +19,22 @@ const Creative = () => {
       </h2>
       {/*  */}
       <section className="mt-[100px] flex gap-[61px] w-[90%]">
-        <div className="w-[65%] flex gap-[10px] smDesktop:w-[68%] smDesk:w-[80%]">
+        <div className="w-[65%] flex gap-[10px] smDesktop:w-[68%] smDesk:w-[80%] tablet:w-[70%]">
           <img
             src={birthday}
             alt=""
-            className="h-[580px] smDesktop:h-[480px] smDesktop:w-[64%] object-fill tabletAir:h-[450px]"
+            className="h-[530px] smDesktop:h-[480px] smDesktop:h-[400px] smDesk:h-[340px] object-fill tabletAir:h-[330px] tablet:h-[260px]"
           />
           <div className="flex flex-col gap-[10px]">
             <img
               src={birthdaymemories}
               alt=""
-              className="h-[285px] w-[285px] object-fill rounded-[20px] smDesktop:h-[234.3px] tabletAir:h-[218px]"
+              className="h-[260px] w-[285px] object-fill rounded-[20px] smDesktop:h-[200px] smDesk:h-[160px] tabletAir:h-[150px] tablet:h-[120px] tablet:w-[150px]"
             />
             <img
               src={birthdaymemories2}
               alt=""
-              className="h-[285px] w-[285px] object-fill rounded-[20px] smDesktop:h-[234.3px] tabletAir:h-[220px]"
+              className="h-[260px] w-[285px] object-fill rounded-[20px] smDesktop:h-[190px] smDesk:h-[170px] tabletAir:h-[160px] tablet:h-[130px] tablet:w-[150px]"
             />
           </div>
         </div>
