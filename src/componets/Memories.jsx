@@ -1,8 +1,8 @@
 import React from "react";
 import { IoIosArrowForward } from "react-icons/io";
-import Rectangle from "../assets/Rectangle 2 (1).png";
-import Rectangle2 from "../assets/Rectangle 3 (1).png";
-import Rectangle3 from "../assets/Rectangle 4 (2).png";
+import Rectangle from "../assets/Rectangle2.png";
+import Rectangle2 from "../assets/Rectangle3.png";
+// import Rectangle3 from "../assets/Rectangle4.png";
 import GroupImage from "../assets/Group 17382.png";
 import Event from "../assets/Group 17384.png";
 import Face from "../assets/Group 17384 (1).png";
@@ -38,25 +38,28 @@ const Memories = () => {
         </div>
         {/* images */}
         {/* h-[380px] rounded-[20px] tablet:h-[300px] */}
-        <div className="w-[70%] smDesk:w-[60%]">
+        <div className="w-[68%] smDesk:w-[60%] m-1">
+        <div className="">
           <img
             src={Rectangle}
             alt="memories"
-            className="h-[380px] smDesktop:h-[330px] smDesk:h-[280px] tabletAir:h-[240px]  tablet:h-[220px] "
+            // className=" smDesktop:h-[330px] smDesk:h-[280px] tabletAir:h-[240px]  tablet:h-[220px] "
           />
-          <div className="flex mt-[-60px] ">
-            <div className="border-[2px]">
+        
+        </div>
+        <div className="flex mt-[10px] ">
+            <div className="border-[2px] w-[50%] mr-4">
               <img
                 src={Rectangle2}
                 alt="memories"
-                className="  object-fill rounded-[20px] smDesktop: smDesk: tabletAir:  tablet: "
+                className="object-none rounded-[20px] smDesktop: smDesk: tabletAir:  tablet: "
               />
             </div>
-            <div className="border-[2px]">
+            <div className="border-[2px] w-[50%]">
               <img
-                src={Rectangle3}
+                src={Rectangle2}
                 alt="memories"
-                className="  object-fill smDesktop: smDesk: tabletAir:  tablet: "
+                className="object-none rounded-[20px] smDesktop: smDesk: tabletAir:  tablet: "
               />
             </div>
           </div>
