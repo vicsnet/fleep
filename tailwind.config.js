@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     extend: {
       screens: {
+        lgDesktop: { max: "1280px" }, //large desktop
         smDesktop: { max: "1024px" }, // small desktop
         smDesk: { max: "917px" }, // small desktop
         tabletAir: { max: "820px" }, // small desktop

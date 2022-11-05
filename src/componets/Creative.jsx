@@ -62,7 +62,7 @@ const Creative = () => {
             <img
               src={wedding}
               alt="wedding events"
-              className="w-[392px] smDesktop:h-[300px]  object-cover rounded-[20px]"
+              className="w-[392px] smDesktop:h-[280px] smDesk:h-[260px] tabletAir:h-[220px]  object-cover rounded-[20px]"
             />
           </div>
           <div className="w-[40%]">
@@ -75,10 +75,10 @@ const Creative = () => {
             <img
               src={weddingParty}
               alt="wedding party"
-              className="w-[444px] mt-[82px]"
+              className="w-[444px] mt-[82px] smDesk:mt-[40px] "
             />
           </div>
-          <div className="w-[30%]">
+          <div className="w-[30%] ">
             <img src={weddingCake} alt="wedding Cake" className="w-[255px]" />
           </div>
         </div>
@@ -102,12 +102,12 @@ const Creative = () => {
             <img
               src={seminars}
               alt=" Seminars"
-              className="w-[50%] h-[320px] smDesktop:w-[55%] tablet:h-[260px] tabletAir:h-[280px] smDesktop:h-[300px] object-cover rounded-[20px] tabletAir:w-[53%]"
+              className="w-[50%] h-[320px] smDesktop:w-[55%] tablet:h-[260px] tablet:h-[200px] smDesktop:h-[270px] object-cover rounded-[20px] tabletAir:w-[53%] smDesk:h-[220px] tabletAir:h-[200px]"
             />
             <img
               src={seminarsPresent}
               alt="seminars Presentation"
-              className="w-[50%] h-[320px] tablet:h-[260px] smDesktop:w-[55%] tabletAir:h-[280px] tabletAir:w-[53%] smDesktop:h-[300px] rounded-[20px] object-cover mt-[-135px]"
+              className="w-[50%] h-[320px] tablet:h-[200px] smDesktop:w-[55%] tabletAir:h-[230px] tabletAir:w-[53%] rounded-[20px] object-cover mt-[-135px] smDesktop:h-[290px] smDesk:h-[260px]"
             />
           </div>
         </div>

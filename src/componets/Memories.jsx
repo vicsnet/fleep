@@ -71,7 +71,7 @@ const Memories = () => {
           <img
             src={GroupImage}
             alt="important memories"
-            className="ml-[-20px] smDesktop:h-[400px] object-fill tabletAir:h-[440px]"
+            className="ml-[-20px] w-[100%] smDesktop:h-[380px] object-scale-down tabletAir:h-[280px]"
           />
         </div>
         <div className="pt-[133px]">
@@ -81,11 +81,11 @@ const Memories = () => {
           <h2 className="text-[50px] smDesktop:text-[45px] smDesk:text-[40px] tabletAir:text-[36px] text-[#1A1941] leading-[60px] tracking-[-1%] font-extrabold ">
             What’s Your Occasion?
           </h2>
-          <p className="text-[16px] leading-6 tracking-[-1%] text-[#6F6681] w-[52%] smDesktop:w-[60%] font-medium mt-[7px] text-left ">
+          <p className="text-[16px] leading-6 tracking-[-1%] text-[#6F6681] w-[52%] smDesk:w-[70%] smDesktop:w-[60%] font-medium mt-[7px] text-left ">
             We built ‘this’ for you. Your Event, Your theme, Your venue, Your
             vision, Your colors, and anything else you would like.
           </p>
-          <button className="mt-[90px] flex items-center text-[16px] font-bold leading-[19.2px] gap-[20px] text-[#EE2339] border-[1px] border-[#EE2339] px-10 py-[16px] rounded-[35px] hover:bg-[#EE2339] hover:text-[#FFFFFF] ">
+          <button className="mt-[90px] smDesk:mt-[60px] tabletAir:mt-[40px] flex items-center text-[16px] font-bold leading-[19.2px] gap-[20px] text-[#EE2339] border-[1px] border-[#EE2339] px-10 py-[16px] rounded-[35px] hover:bg-[#EE2339] hover:text-[#FFFFFF] ">
             Learn more
             <IoIosArrowForward className="border-[1px] bg-[#FCD3D7] p-[2px] rounded-[50%] " />
           </button>
@@ -182,14 +182,14 @@ const Memories = () => {
             <img
               src={GroupMemories}
               alt="Amazing memories"
-              className="h-[600px] smDesktop:h-[550px] smDesk:h-[500px] object-fill tablet:h-[400px]"
+              className="w-[100%] h-[600px] smDesktop:h-[500px] smDesk:h-[440px] object-fill tabletAir:h-[400px] tablet:h-[380px]"
             />
           </div>
           <div className="w-[40%] smDesktop:w-[60%] tablet:w-[70%]">
             <h2 className="text-[50px] smDesktop:text-[40px] tabletAir:text-[30px] tablet:text-[28px] smDesk:text-[35px] leading-[60px] tracking-[-1%] text-[#1A1941] font-extrabold tabletAir:leading-[40px] ">
               Relive Every Moment of Each Event.
             </h2>
-            <p className="text-[#6F6681] text-[16px] tabletAir:text-[14px] font-normal leading-[30px] tracking-[-1%] mt-[20px] ">
+            <p className="text-[#6F6681] text-[16px] smDesktop:mt-[15px] smDesktop:leading-[28px] tabletAir:text-[14px] font-normal leading-[30px] tracking-[-1%] mt-[20px] ">
               We have envisioned how it is sometimes difficult to get your
               desired moments from an event you attended. True, we just want to
               only get to see the times we appear in events at times and this
@@ -202,27 +202,27 @@ const Memories = () => {
 
         {/* uploads Counter */}
         <div
-          className="flex gap-[54px] h-[320px] items-center justify-end pr-[12%] mt-[-250px]  smDesk:h-[200px] tabletAir:h-[140px] smDesk:mt-[-110px] tabletAir:mt-[-120px] tablet-[-90px]"
+          className="flex gap-[54px] h-[340px] items-center justify-end pr-[160px] lgDesktop:pr-[105px] smDesktop:pr-[100px]  mt-[-230px]  smDesk:h-[260px] tabletAir:h-[140px] smDesk:mt-[-110px] tabletAir:mt-[-120px] tablet-[-90px] smDesk:pr-[70px] tabletAir:pr-[40px] smDesk:gap-[40px]"
           style={{ background: "rgba(245, 245, 250, 1)" }}
         >
-          <span>
-            <p className="text-[50px]  smDesktop:text-[40px] tabletAir:leading-[60px] tabletAir:text-[32px] text-[#1A1941] font-medium leading-[75px] text-font ">
+          <span className="mt-[-180px] smDesk:mt-[-120px] tabletAir:mt-[-50px]">
+            <p className="text-[50px]  smDesktop:text-[40px] smDesk:text-[38px] tabletAir:leading-[60px] tabletAir:text-[32px] text-[#1A1941] font-medium leading-[75px] text-font ">
               45+
             </p>
             <p className="text-[16px] font-medium text-font leading-[24px]  tracking-[-1%] ">
               Events
             </p>
           </span>
-          <span>
-            <p className="text-[50px] smDesktop:text-[40px] tabletAir:leading-[60px] text-[#1A1941] tabletAir:text-[32px] font-medium leading-[75px] text-font ">
+          <span className="mt-[-180px] smDesk:mt-[-120px] tabletAir:mt-[-50px]">
+            <p className="text-[50px] smDesktop:text-[40px] smDesk:text-[38px] tabletAir:leading-[60px] text-[#1A1941] tabletAir:text-[32px] font-medium leading-[75px] text-font ">
               109K+
             </p>
             <p className="text-[16px] font-medium text-font leading-[24px] tracking-[-1%] ">
               Uploads & Downloads
             </p>
           </span>
-          <span>
-            <p className="text-[50px] smDesktop:text-[40px] tabletAir:leading-[60px] text-[#1A1941] tabletAir:text-[32px] font-medium leading-[75px] text-font ">
+          <span className="mt-[-180px] smDesk:mt-[-120px] tabletAir:mt-[-50px]">
+            <p className="text-[50px] smDesktop:text-[40px] smDesk:text-[38px] tabletAir:leading-[60px] text-[#1A1941] tabletAir:text-[32px] font-medium leading-[75px] text-font ">
               20k
             </p>
             <p className="text-[16px] font-medium text-font leading-[24px] tracking-[-1%] ">
@@ -245,7 +245,7 @@ const Memories = () => {
               <img
                 src={AmazingMemories}
                 alt="Amazing memories"
-                className="smDesktop:h-[500px] smDesktop:object-fill"
+                className="smDesktop:h-[500px] smDesktop:object-fill w-[100%] smDesk:h-[400px] tablet:h-[360px]"
               />
             </div>
             <div className="w-[40%]">
