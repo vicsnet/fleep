@@ -2,7 +2,7 @@ import React from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import Rectangle from "../assets/Rectangle2.png";
 import Rectangle2 from "../assets/Rectangle3.png";
-// import Rectangle3 from "../assets/Rectangle4.png";
+import Rectangle3 from "../assets/Rectangle4.png";
 import GroupImage from "../assets/Group 17382.png";
 import Event from "../assets/Group 17384.png";
 import Face from "../assets/Group 17384 (1).png";
@@ -20,15 +20,15 @@ const Memories = () => {
       <section className="w-[90%] mx-auto flex justify-between">
         {/* text */}
         <div className="w-[50%] smDesktop:w-[55%]">
-          <h2 className="text-[80px] smDesk:text-[60px]  tablet:text-[50px]  tablet:leading-[70px] smDesktop:text-[70px] font-extrabold leading-[90px] tracking-[-1%] text-[#333333] ">
+          <h2 className="text-[80px] smDesk:text-[60px]  smDesk:leading-[70px] tablet:text-[50px]  tablet:leading-[60px] smDesktop:text-[70px] smDesktop:leading-[80px] font-extrabold leading-[90px] tracking-[-1%] text-[#333333] ">
             Shared Memories Stay Forever
           </h2>
-          <p className="text-[#6F6681] text-[18px] leading-8 tracking-[-1%] w-[83%] mt-[30px] ">
+          <p className="text-[#6F6681] text-[18px]  tabletAir:text-[16px] tabletAir:leading-6 leading-8 tracking-[-1%] w-[83%] mt-[30px] ">
             One thing is for sure, sharing parts of moments has a “feel-good”
             sensation about it. Go ahead, create!
           </p>
 
-          <button className="mt-[100px] bg-[#EE2339] hover:bg-transparent hover:text-[#EE2339] hover:border-[1px] hover:border-[#EE2339] text-[#FFFFFF] flex items-center gap-2 px-10 py-[16px] rounded-[35px]">
+          <button className="mt-[100px] smDesktop:mt-[60px] bg-[#EE2339] hover:bg-transparent hover:text-[#EE2339] hover:border-[1px] hover:border-[#EE2339] text-[#FFFFFF] flex items-center gap-2 px-10 py-[16px] rounded-[35px]">
             Get Started
             <IoIosArrowForward
               size={20}
@@ -39,27 +39,26 @@ const Memories = () => {
         {/* images */}
         {/* h-[380px] rounded-[20px] tablet:h-[300px] */}
         <div className="w-[68%] smDesk:w-[60%] m-1">
-        <div className="">
-          <img
-            src={Rectangle}
-            alt="memories"
-            // className=" smDesktop:h-[330px] smDesk:h-[280px] tabletAir:h-[240px]  tablet:h-[220px] "
-          />
-        
-        </div>
-        <div className="flex mt-[10px] ">
-            <div className="border-[2px] w-[50%] mr-4">
+          <div className="">
+            <img
+              src={Rectangle}
+              alt="memories"
+              className=" h-[280px] w-[100%] object-cover rounded-[20px] smDesktop:h-[260px] smDesk:h-[220px] tabletAir:h-[220px]  tablet:h-[200px] "
+            />
+          </div>
+          <div className="flex mt-[20px] ">
+            <div className=" w-[35%] mr-4">
               <img
                 src={Rectangle2}
                 alt="memories"
-                className="object-none rounded-[20px] smDesktop: smDesk: tabletAir:  tablet: "
+                className="h-[270px]  object-cover rounded-[20px] smDesktop:h-[220px] smDesk:h-[200px] tabletAir:  tablet: "
               />
             </div>
-            <div className="border-[2px] w-[50%]">
+            <div className=" w-[65%]">
               <img
-                src={Rectangle2}
+                src={Rectangle3}
                 alt="memories"
-                className="object-none rounded-[20px] smDesktop: smDesk: tabletAir:  tablet: "
+                className=" h-[270px] w-[100%] object-cover rounded-[20px] smDesktop:h-[220px] smDesk:h-[200px] tabletAir:  tablet: "
               />
             </div>
           </div>
