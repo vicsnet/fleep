@@ -29,9 +29,9 @@ const Login = () => {
  
 
   return (
-    <main className="h-full">
-      <section className="flex h-full">
-        <div className="bg-[#19192E] max-h-full w-[50%] flex items-center justify-center ">
+    <main className="">
+      <section className="flex max-h-screen h-screen">
+        <div className="bg-[#19192E] max-h-screen w-[50%] flex items-center justify-center ">
           <img
             src={Logo}
             alt=""
@@ -39,7 +39,7 @@ const Login = () => {
           />
         </div>
         <div
-          className="w-[50%]  rounded-[20px] ml-[-20px] "
+          className="w-[50%]  rounded-[20px] ml-[-20px] max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
           style={{ background: "rgba(255, 255, 255, 1)" }}
         >
           <div className="w-[80%] mx-auto pt-[60px] pb-[117px]">
@@ -105,13 +105,13 @@ const Login = () => {
                 </div>
               </div>
 
-              <button className="font-bold text-[16px] text-ceneter w-[90%] leading-[19.2px]  py-[17.5px] bg-[#000000] rounded-[8px] text-[#FFFFFF] mt-[40px]">
+              <button className="font-bold text-[16px] text-ceneter w-[90%] leading-[19.2px]  py-[17.5px] bg-[#19192E] rounded-[8px] text-[#FFFFFF] mt-[40px]">
                 Log In
               </button>
             </form>
 
             <div className="mt-[20px] flex gap-1  justify-center ">
-              <Link to="">
+              <Link to="/forgotpassword">
                 <p className="text-[14px] leading-[16.8px] text-[#000000] font-normal">
                   Forgot password ?
                 </p>
@@ -121,7 +121,7 @@ const Login = () => {
               <p className="text-[14px] leading-[16.8px] text-[#8A8A8A] font-normal">
                 Dont have an account?
               </p>
-              <Link to="">
+              <Link to="/register">
                 <p
                   className="text-[14px] leading-[16.8px] font-semibold text-[#000000
 ]"

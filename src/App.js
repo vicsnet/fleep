@@ -9,6 +9,16 @@ import Registration from "./pages/Auth/Registration";
 import Login from "./pages/Auth/Login";
 import ForgotPwd from "./pages/Auth/ForgotPwd";
 import ResetPwd from "./pages/Auth/ResetPwd";
+import Sidebar from "./componets/Sidebar";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import Event from "./pages/Dashboard/Event";
+import History from "./pages/Dashboard/History";
+import Notification from "./pages/Dashboard/Notification";
+import Settings from "./pages/Dashboard/Settings";
+import Users from "./pages/Dashboard/Users";
+import Profile from "./pages/Dashboard/Profile";
+
+
 function App() {
   return (
     <div className="App">
@@ -22,8 +32,28 @@ function App() {
         <Route path="registration" element={ <Registration />} />
         <Route path="login" element={ <Login />} />
         <Route path="forgotpassword" element={ <ForgotPwd />} />
-        <Route path="resetpassword" element={ <ResetPwd />} />
+        <Route path="resetpassword" element={<ResetPwd />} />
+
       </Routes>
+      
+          {/* <Route path='/' element={<Dashboard />} /> */}
+      <Sidebar>
+
+      <Routes>
+          <Route path='dashboard' element={<Dashboard/>} />
+          
+          <Route path='event' element={<Event />} />
+          
+          <Route path='history' element={<History />} />
+          
+          <Route path='notification' element={<Notification />} />
+          
+          <Route path="settings" element={<Settings />} />
+          <Route path="users" element={<Users />} />
+          <Route path="profile" element={<Profile />} />
+
+      </Routes>
+      </Sidebar>
     </div>
   );
 }

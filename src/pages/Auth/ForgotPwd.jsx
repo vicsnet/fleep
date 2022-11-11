@@ -80,14 +80,14 @@ const ForgotPwd = () => {
                 />
               </div>
 
-              <button className="font-bold text-[16px] text-ceneter w-[90%] leading-[19.2px]  py-[17.5px] bg-[#000000] rounded-[8px] text-[#FFFFFF] mt-[40px]">
+              <button className="font-bold text-[16px] text-ceneter w-[90%] leading-[19.2px]  py-[17.5px] bg-[#19192E] rounded-[8px] text-[#FFFFFF] mt-[40px]">
                 Continue
               </button>
             </form>
           </div>
         </div>
-          </section>
-          <ResetVerification />
+      </section>
+      {/* <ResetVerification /> */}
     </main>
   );
 };

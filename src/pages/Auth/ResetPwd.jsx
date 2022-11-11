@@ -35,9 +35,9 @@ const ResetPwd = () => {
   };
 
   return (
-    <main className="h-full">
-      <section className="flex h-full">
-        <div className="bg-[#19192E] max-h-full w-[50%] flex items-center justify-center ">
+    <main className="">
+      <section className="flex h-screen">
+        <div className="bg-[#19192E] max-h-screen w-[50%] flex items-center justify-center ">
           <img
             src={Logo}
             alt=""
@@ -45,7 +45,7 @@ const ResetPwd = () => {
           />
         </div>
         <div
-          className="w-[50%]  rounded-[20px] ml-[-20px] "
+          className="w-[50%]  rounded-[20px] ml-[-20px] max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
           style={{ background: "rgba(255, 255, 255, 1)" }}
         >
           <div className="w-[80%] mx-auto pt-[60px] pb-[117px]">
@@ -141,11 +141,10 @@ const ResetPwd = () => {
                   </div>
                 </div>
               </div>
-              <button className="font-bold text-[16px] text-ceneter w-[90%] leading-[19.2px]  py-[17.5px] bg-[#000000] rounded-[8px] text-[#FFFFFF] mt-[40px]">
+              <button className="font-bold text-[16px] text-ceneter w-[90%] leading-[19.2px]  py-[17.5px] bg-[#19192E] rounded-[8px] text-[#FFFFFF] mt-[40px]">
                 Continue
               </button>
             </form>
-           
           </div>
         </div>
       </section>

@@ -34,9 +34,9 @@ const showVerifyPwd2 = () => {
     }
 
   return (
-    <main className="h-full">
-      <section className="flex h-full">
-        <div className="bg-[#19192E] max-h-full w-[50%] flex items-center justify-center ">
+    <main className="">
+      <section className="flex ">
+        <div className="bg-[#19192E] max-h-screen w-[50%] flex items-center justify-center ">
           <img
             src={Logo}
             alt=""
@@ -44,10 +44,10 @@ const showVerifyPwd2 = () => {
           />
         </div>
         <div
-          className="w-[50%]  rounded-[20px] ml-[-20px] "
+          className="w-[50%]  rounded-[20px] ml-[-20px] max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
           style={{ background: "rgba(255, 255, 255, 1)" }}
         >
-          <div className="w-[80%] mx-auto pt-[60px] pb-[117px]">
+          <div className="w-[80%] mx-auto pt-[60px] pb-[117px] ">
             <img src={mainLogo} alt="fleep logo" className="w-[126px]" />
             <div>
               <p className="mt-[56px] text-[14px] leading-[20%] tracking-[-1%] font-normal text-[#19192E] ">
@@ -190,7 +190,7 @@ const showVerifyPwd2 = () => {
               <p className="text-[14px] leading-[16.8px] text-[#8A8A8A] font-normal">
                 Already have an account?
               </p>
-              <Link to="">
+              <Link to="/login">
                 <p
                   className="text-[14px] leading-[16.8px] font-semibold text-[#000000
 ]"
