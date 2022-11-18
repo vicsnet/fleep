@@ -18,19 +18,20 @@ const History = () => {
 
       <div className=" mt-[50px] px-[42px] mb-[70px]">
         {/* total photos */}
-        <div className="flex  gap-[30px]">
-          <div className="bg-[#19192E] flex py-[37.24px] pl-[25.8px] gap-[23px] rounded-[10px] pr-[57px]">
+        <div className="flex  gap-[30px] smDesktop:flex-wrap smDesktop:justify-center">
+          <div className="bg-[#19192E] flex py-[37.24px] pl-[25.8px] gap-[23px] rounded-[10px] w-[30%] smDesktop:w-[40%] smDesk:w-[45%] tabletAir:w-[60%]">
             <div className="bg-[#FFFFFF] rounded-[13px] px-[12px] py-[14px]">
               <MdOutlinePermMedia
                 size={24}
                 className="text-[#1A1941] bg-[#FFFFFF]"
               />
             </div>
+
             <div className="text-[white]">
               <h3 className="text-[30px] font-bold leading-[36px] tracking-[2.14px] text-white ">
                 150
               </h3>
-              <p className="text-[#EEEEEE] opacity-[70%] text-[14px] font-[500] leading-[16.8px] pt-[4px] w-[190px] ">
+              <p className="text-[#EEEEEE] opacity-[70%] text-[14px] font-[500] leading-[16.8px] pt-[4px] ">
                 Total Photo spaces bought
               </p>
             </div>
@@ -39,7 +40,7 @@ const History = () => {
           {/*  */}
 
           <div
-            className=" flex py-[37.24px] pl-[25.8px] gap-[23px] rounded-[10px] pr-[57px]"
+            className=" flex py-[37.24px] pl-[25.8px] gap-[23px] rounded-[10px] w-[30%] smDesktop:w-[40%] smDesk:w-[45%] tabletAir:w-[60%]"
             style={{ background: "rgba(255, 255, 255, 1)" }}
           >
             <div className="bg-[#19192E] rounded-[13px] px-[12px] py-[14px]">
@@ -49,7 +50,7 @@ const History = () => {
               <h3 className="text-[30px] font-bold leading-[36px] tracking-[2.14px] text-[#191D23] ">
                 150
               </h3>
-              <p className="text-[#8E99AB] opacity-[70%] text-[14px] font-[500] leading-[16.8px] pt-[4px] w-[193px] ">
+              <p className="text-[#8E99AB] opacity-[70%] text-[14px] font-[500] leading-[16.8px] pt-[4px] ">
                 Photo spaces used
               </p>
             </div>
@@ -57,7 +58,7 @@ const History = () => {
 
           {/* photo spaces left */}
           <div
-            className=" flex py-[37.24px] pl-[25.8px] gap-[23px] rounded-[10px] pr-[14px]"
+            className=" flex py-[37.24px] pl-[25.8px] gap-[23px] rounded-[10px] w-[30%] smDesktop:w-[40%] smDesk:w-[48%] tabletAir:w-[60%]"
             style={{ background: "rgba(255, 255, 255, 1)" }}
           >
             <div className="bg-[#19192E] rounded-[13px] px-[12px] py-[14px]">
@@ -67,7 +68,7 @@ const History = () => {
               <h3 className="text-[30px] font-bold leading-[36px] tracking-[2.14px] text-[#191D23] ">
                 14
               </h3>
-              <p className="text-[#8E99AB] opacity-[70%] text-[14px] font-[500] leading-[16.8px] pt-[4px] w-[153px] ">
+              <p className="text-[#8E99AB] opacity-[70%] text-[14px] font-[500] leading-[16.8px] pt-[4px] ">
                 Photo spaces left
               </p>
             </div>
@@ -79,8 +80,8 @@ const History = () => {
       </div>
 
       {/* transaction */}
-      <section className="flex justify-between px-[45px]">
-        <section className="w-[52%]">
+      <section className="flex justify-between px-[45px]  smDesk:flex-col smDesk:justify-center">
+        <section className="w-[52%]  smDesk:w-[90%]">
           {/* search bar & filter */}
           <div className="flex items-center justify-between mt-[29px]">
             {/* search bar  */}
@@ -227,7 +228,7 @@ const History = () => {
           </section>
         </section>
 
-        <section className="w-[45%]">
+        <section className="w-[45%] smDesk:w-[90%]">
           {/* search bar & filter */}
           <div className="flex items-center justify-between mt-[29px]">
             {/* search bar  */}

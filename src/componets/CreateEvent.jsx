@@ -4,7 +4,7 @@ import { BsFillArrowRightCircleFill } from "react-icons/bs";
 const CreateEvent = () => {
   return (
     <div
-      className="rounded-[14px] pt-[38px] pl-[34px] relative h-[290px]"
+      className="rounded-[14px] pt-[38px] pl-[34px] relative h-[290px] smDesktop:h-[230px] smDesk:h-[300px] tablet:h-[270px]"
       style={{ background: "rgba(255, 255, 255, 1)" }}
     >
       <h2 className="text-[20px] leading-[24px] font-[500] text-[#191D23]">

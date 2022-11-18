@@ -16,7 +16,8 @@ const Event = () => {
       <section></section>
 
       {/* No Event */}
-      <section className="mt-[100px]">
+
+      {/* <section className="mt-[100px]">
         <MdOutlineEvent
           size={100}
           className="text-[#EE2339] mx-auto mb-[42px]"
@@ -32,11 +33,11 @@ const Event = () => {
         <button className=" mt-[50px] bg-[#1A1941] text-[#FFFFFF] py-[15px] px-[60px] mx-auto flex justify-center rounded-[8px] font-bold">
           Create Event
         </button>
-      </section>
+      </section> */}
 
       {/* when Event */}
-      <section className="px-[40px] flex justify-between">
-        <section className="w-[60%]">
+      <section className="px-[40px] flex justify-between mt-8 smDesk:flex-col-reverse ">
+        <section className="w-[60%] smDesktop:w-[70%] smDesk:w-[100%]">
           {/* search bar & filter */}
           <div className="flex items-center justify-between">
             {/* search bar  */}
@@ -186,7 +187,7 @@ const Event = () => {
             </div>
           </div>
         </section>
-        <div className="mt-[64px]">
+        <div className="mt-[64px] smDesktop:w-[28%] smDesktop:h-[260px] smDesk:w-[50%] smDesk:mb-[100px] smDesk:mx-auto">
           <CreateEvent />
         </div>
       </section>

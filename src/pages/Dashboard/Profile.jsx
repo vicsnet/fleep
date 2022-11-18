@@ -67,11 +67,11 @@ const Profile = () => {
 
         {/* personal Information */}
         <div className="mt-[40px] ml-[62px] pb-[90px]">
-          <h2 className="text-[20px] leading-[24px] font-semibold text-[#1A1941]">
+          <h2 className="text-[20px] leading-[24px] font-semibold text-[#1A1941] ">
             Personal Information
           </h2>
           <form>
-            <div className="flex gap-6 ">
+            <div className="flex gap-6 mt-[30px]">
               <div className="w-[40%]">
                 <label
                   htmlFor=""

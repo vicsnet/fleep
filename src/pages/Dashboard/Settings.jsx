@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SideNav from "../../componets/SideNav";
 import { FaLock } from "react-icons/fa";
 import { FiLock } from "react-icons/fi";
@@ -8,17 +8,28 @@ import {
 } from "react-icons/io";
 
 const Settings = () => {
+  const [show, setShow] = useState(false);
+
+  const openPwdDisplay = () => {
+    setShow(true);
+  };
+  const closePwdDisplay = () => {
+    setShow(false);
+  };
   return (
     <main className="max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full pb-[180px]">
       <SideNav title="Settings" />
 
-      <section className="mx-[42px] mt-[48px] flex gap-12">
+      <section className="mx-[42px] mt-[48px] flex gap-12 tabletAir:flex-col">
         <div
-          className="w-[30%] px-[42px] rounded-lg h-[300px]"
+          className=" tabletAir:w-[50%] smDesktop:w-[40%] w-[30%] px-[42px] rounded-lg h-[300px]"
           style={{ background: "rgba(255, 255, 255, 1)" }}
         >
-          <div className="pb-6 border-b-[1px]">
-            <button className="flex items-center gap-2 pt-10  ">
+          <div
+            className="pb-6 border-b-[1px] cursor-pointer "
+            onClick={openPwdDisplay}
+          >
+            <button className="flex items-center gap-2 pt-10 ">
               <FiLock size={20} className="text-[#1A1941]" />{" "}
               <p className="text-[16px] font-medium leading-[19.2px] text-[#1A1941] ">
                 Change Password
@@ -58,10 +69,18 @@ const Settings = () => {
         </div>
 
         <section
-          className="w-[50%] rounded-lg pt-[20px] pb-[58px]"
+          className={
+            !show
+              ? "hidden"
+              : " block  w-[50%] rounded-lg pt-[20px] pb-[58px] tabletAir:w-[70%] tabletAir:ml-[20%]"
+          }
           style={{ background: "rgba(255, 255, 255, 1)" }}
         >
-          <IoIosCloseCircleOutline size={24} className="ml-auto mr-[42px] mb-[20px]" />
+          <IoIosCloseCircleOutline
+            onClick={closePwdDisplay}
+            size={24}
+            className="ml-auto mr-[42px] mb-[20px]"
+          />
 
           <form className="w-[80%] mx-auto">
             <label
@@ -106,7 +125,6 @@ const Settings = () => {
             />
             <br />
             <br />
-          
             <button className="text-[16px] leading-[19.2px] tracking-[10%] font-bold w-[40%] text-center py-[17px] bg-[#1A1941] text-[#FFFFFF] rounded-[8px]">
               Save Changes
             </button>

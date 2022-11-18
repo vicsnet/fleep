@@ -36,7 +36,7 @@ const Users = () => {
           key={user.id}
           className="border-b-[1px] border-[#EDEDED] text-[#6A6A6A]"
         >
-          <td className="pl-[45px] text-[14px leading-[16.8px] font-[300] mt-[11px] py-auto">
+          <td className="pl-[45px] smDesk:pl-[30px] tabletAir:pl-[20px] text-[14px leading-[16.8px] font-[300] mt-[11px] py-auto">
             {user.id}
           </td>
           <td className="flex gap-[14px] mt-[11px] items-center ">
@@ -106,7 +106,9 @@ const Users = () => {
         <table className="w-[100%]  mt-[21px] table-fixed">
           <thead className="text-left text-[16px] font-[500] leading-[19.2px] bg-[#EEEEEE] h-[70px]">
             <tr className=" pl-[57px]">
-              <th className="pt-[12px] pb-[12px] w-[10%] pl-[45px]">S/N</th>
+              <th className="pt-[12px] pb-[12px] w-[10%] pl-[45px] smDesk:pl-[30px] tabletAir:pl-[20px]">
+                S/N
+              </th>
               <th className="pt-[12px] pb-[12px] w-[35%]">User's Name</th>
               <th className="pt-[12px] pb-[12px] w-[15%]">Total Photos</th>
               <th className="pt-[12px] pb-[12px]">Total Events Attended</th>

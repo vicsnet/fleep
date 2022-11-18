@@ -9,6 +9,7 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import { NavLink, Link } from "react-router-dom";
 import Logo from "../assets/LOGO (2).png";
 import mainLogo from "../assets/LOGO.png";
+import NewEvent from "../pages/Dashboard/Event/NewEvent";
 
 const Sidebar = ({ children, title }) => {
   const menuItem = [
@@ -151,6 +152,7 @@ const Sidebar = ({ children, title }) => {
       <section className="w-[100%] rounded-l-[40px]  pt-[42px] bg-[#FAFAFA] ">
         {children}
       </section>
+      {/* <NewEvent /> */}
     </main>
   );
 };

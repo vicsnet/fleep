@@ -3,9 +3,9 @@ import bum from "../assets/HBD to bunmi 20190716_003414.jpg";
 
 const EventMembers = () => {
   return (
-    <main className="mt-[24px] flex justify-between">
+    <main className="mt-[24px] flex justify-between smDesk:flex-col">
       <section
-        className="pl-[14px] rounded-[8px] w-[48%]"
+        className="pl-[14px] rounded-[8px] w-[48%] smDesk:w-[100%]"
         style={{ background: "rgba(255, 255, 255, 1)" }}
       >
         <h2 className="text-[#1A1941] text-[20px] font-semibold leading-[24px] pt-[19px]">
@@ -18,7 +18,7 @@ const EventMembers = () => {
           </p>
         </div> */}
 
-        <table className="w-[90%] mx-auto mt-[21px]">
+        <table className="w-[90%] mx-auto mt-[21px] ">
           <thead className="text-left text-[16px] font-[500] leading-[19.2px] bg-[#FAFAFA] ">
             <tr className=" pl-[57px] pr-[]">
               <th className="pt-[12px] pb-[12px] pl-[57px] w-[60%]">Users</th>
@@ -104,7 +104,7 @@ const EventMembers = () => {
       </section>
 
       <section
-        className="px-[14px] rounded-[8px]  w-[48%]"
+        className="px-[14px] rounded-[8px]  w-[48%] smDesk:w-[100%] smDesk:mt-[40px]"
         style={{ background: "rgba(255, 255, 255, 1)" }}
       >
         <h2 className="text-[#1A1941] text-[20px] font-semibold leading-[24px] pt-[19px]">
