@@ -21,7 +21,7 @@ const EventMembers = () => {
         <table className="w-[90%] mx-auto mt-[21px] ">
           <thead className="text-left text-[16px] font-[500] leading-[19.2px] bg-[#FAFAFA] ">
             <tr className=" pl-[57px] pr-[]">
-              <th className="pt-[12px] pb-[12px] pl-[57px] w-[60%]">Users</th>
+              <th className="pt-[12px] pb-[12px] pl-[46px] w-[60%]">Users</th>
               <th className="pt-[12px] pb-[12px] ">Photos</th>
               <th className="pt-[12px] pb-[12px] pr-[27px]">Events</th>
             </tr>
@@ -120,7 +120,7 @@ const EventMembers = () => {
         <table className="w-[90%] mx-auto mt-[21px]">
           <thead className="text-left text-[16px] font-[500] leading-[19.2px] bg-[#FAFAFA] ">
             <tr className=" ">
-              <th className="pt-[12px] pb-[12px] pl-[17px] w-[42%]">Events</th>
+              <th className="pt-[12px] pb-[12px] pl-[8px] w-[42%]">Events</th>
               <th className="pt-[12px] pb-[12px] w-[20%]">Photos</th>
               <th className="pt-[12px] pb-[12px] pr-[27px] w-[36%]">
                 Registered Users
@@ -129,7 +129,7 @@ const EventMembers = () => {
           </thead>
           <tbody>
             <tr className="border-b-[1px] border-[#EDEDED] text-[#6A6A6A]">
-              <td className="flex gap-[14px] mt-[11px] mb-[11px] items-center w-[100%]">
+              <td className="flex gap-[14px] pl-[8px] mt-[11px] mb-[11px] items-center w-[100%]">
                 <p className="text-[14px leading-[16.8px] font-[300]">
                   Henry’s Wedding
                 </p>
@@ -142,7 +142,7 @@ const EventMembers = () => {
               </td>
             </tr>
             <tr className="border-b-[1px] border-[#EDEDED] text-[#6A6A6A]">
-              <td className="flex gap-[14px] mt-[11px] mb-[11px] items-center w-[100%]">
+              <td className="flex gap-[14px] pl-[8px] mt-[11px] mb-[11px] items-center w-[100%]">
                 <p className="text-[14px leading-[16.8px] font-[300]">
                   Henry’s Wedding
                 </p>
@@ -155,7 +155,7 @@ const EventMembers = () => {
               </td>
             </tr>
             <tr className="border-b-[1px] border-[#EDEDED] text-[#6A6A6A]">
-              <td className="flex gap-[14px] mt-[11px] mb-[11px] items-center w-[100%]">
+              <td className="flex gap-[14px] pl-[8px] mt-[11px] mb-[11px] items-center w-[100%]">
                 <p className="text-[14px leading-[16.8px] font-[300]">
                   Henry’s Wedding
                 </p>

@@ -78,7 +78,7 @@ const Users = () => {
         <div className="flex items-center justify-between mt-[29px]">
           {/* search bar  */}
           <div className="bg-[#EFEFEF] flex items-center h-[49px] w-[30%] rounded-[8px]">
-            <BiSearch size={16} className="text-[#8A8A8A] w-[10%]" />
+            <BiSearch size={16} className="text-[#8A8A8A] w-[10%] pl-[8px]" />
             <input
               type="text"
               placeholder="Search"

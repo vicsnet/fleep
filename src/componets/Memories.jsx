@@ -20,15 +20,21 @@ const Memories = () => {
       <section className="w-[90%] mx-auto flex justify-between">
         {/* text */}
         <div className="w-[50%] smDesktop:w-[55%]">
-          <h2 className="text-[80px] smDesk:text-[60px]  smDesk:leading-[70px] tablet:text-[50px]  tablet:leading-[60px] smDesktop:text-[70px] smDesktop:leading-[80px] font-extrabold leading-[90px] tracking-[-1%] text-[#333333] ">
-            Shared Memories Stay Forever
+          <h2 className="text-[80px] smDesk:text-[60px]  smDesk:leading-[70px] tablet:text-[50px]  tablet:leading-[60px] smDesktop:text-[70px] smDesktop:leading-[80px]  font-black leading-[90px] tracking-[-1%] text-[#333333] ">
+            Shared
+          </h2>
+          <h2 className="text-[80px] smDesk:text-[60px]  smDesk:leading-[70px] tablet:text-[50px]  tablet:leading-[60px] smDesktop:text-[70px] smDesktop:leading-[80px] font-black leading-[90px] tracking-[-1%] text-[#333333] ">
+            Memories
+          </h2>
+          <h2 className="text-[80px] smDesk:text-[60px]  smDesk:leading-[70px] tablet:text-[50px]  tablet:leading-[60px] smDesktop:text-[70px] smDesktop:leading-[80px] font-black leading-[90px] tracking-[-1%] text-[#333333] ">
+            Stay Forever
           </h2>
           <p className="text-[#6F6681] text-[18px]  tabletAir:text-[16px] tabletAir:leading-6 leading-8 tracking-[-1%] w-[83%] mt-[30px] ">
             One thing is for sure, sharing parts of moments has a “feel-good”
             sensation about it. Go ahead, create!
           </p>
 
-          <button className="mt-[100px] smDesktop:mt-[60px] bg-[#EE2339] hover:bg-transparent hover:text-[#EE2339] hover:border-[1px] hover:border-[#EE2339] text-[#FFFFFF] flex items-center gap-2 px-10 py-[16px] rounded-[35px]">
+          <button className="mt-[100px] smDesktop:mt-[60px] bg-[#EE2339] hover:bg-transparent hover:text-[#EE2339] hover:border-[1px] hover:border-[#EE2339] text-[#FFFFFF] flex items-center gap-2 px-10 h-[70px] rounded-[35px]">
             Get Started
             <IoIosArrowForward
               size={20}
@@ -85,7 +91,7 @@ const Memories = () => {
             We built ‘this’ for you. Your Event, Your theme, Your venue, Your
             vision, Your colors, and anything else you would like.
           </p>
-          <button className="mt-[90px] smDesk:mt-[60px] tabletAir:mt-[40px] flex items-center text-[16px] font-bold leading-[19.2px] gap-[20px] text-[#EE2339] border-[1px] border-[#EE2339] px-10 py-[16px] rounded-[35px] hover:bg-[#EE2339] hover:text-[#FFFFFF] ">
+          <button className="mt-[90px] smDesk:mt-[60px] tabletAir:mt-[40px] flex items-center text-[16px] font-bold leading-[19.2px] gap-[20px] text-[#EE2339] border-[1px] border-[#EE2339] px-10 h-[70px] rounded-[35px] hover:bg-[#EE2339] hover:text-[#FFFFFF] ">
             Learn more
             <IoIosArrowForward className="border-[1px] bg-[#FCD3D7] p-[2px] rounded-[50%] " />
           </button>
@@ -96,7 +102,7 @@ const Memories = () => {
 
       <section className="w-[90%] mx-auto pb-[20px]">
         <div>
-          <h2 className="text-center pt-[104px] text-[50px] leading-[60px] tracking-[-1%] text-[#1A1941] font-extrabold ">
+          <h2 className="text-center pt-[104px] text-[50px] leading-[60px] tracking-[-1%] text-[#1A1941] font-extrabold mb-[83px]">
             Features
           </h2>
           <div className="relative">

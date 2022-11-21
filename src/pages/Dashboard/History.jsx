@@ -86,7 +86,7 @@ const History = () => {
           <div className="flex items-center justify-between mt-[29px]">
             {/* search bar  */}
             <div className="bg-[#EFEFEF] flex items-center h-[49px] w-[45%] rounded-[8px]">
-              <BiSearch size={16} className="text-[#8A8A8A] w-[10%]" />
+              <BiSearch size={16} className="text-[#8A8A8A] w-[10%] pl-[8px]" />
               <input
                 type="text"
                 placeholder="Search"
@@ -96,7 +96,7 @@ const History = () => {
 
             {/* filter */}
             <div className="flex items-center gap-[17px]">
-              <BsFilter size={16} className="text-[#201E1E]" />
+              <BsFilter size={16} className="text-[#201E1E] pl-[10px]" />
               <select
                 name="cars"
                 id="cars"
@@ -232,8 +232,8 @@ const History = () => {
           {/* search bar & filter */}
           <div className="flex items-center justify-between mt-[29px]">
             {/* search bar  */}
-            <div className="bg-[#EFEFEF] flex items-center h-[49px] w-[45%] rounded-[8px]">
-              <BiSearch size={16} className="text-[#8A8A8A] w-[10%]" />
+            <div className="bg-[#EFEFEF] flex items-center h-[49px] w-[50%] rounded-[8px]">
+              <BiSearch size={16} className="text-[#8A8A8A] w-[10%] pl-[8px]" />
               <input
                 type="text"
                 placeholder="Search"

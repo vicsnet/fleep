@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 
 const SideNav = ({title}) => {
   return (
-    <section className="flex justify-between pb-[42px] border-b-[1px] border-[#C6C6C6]">
-      <h2 className="text-[32px] font-semibold leading-[38.4px] text-[#1A1941] pl-[42px]">
+    <section className="flex justify-between pb-[39px] border-b-[1px] border-[#C6C6C6]">
+      <h2 className="text-[28px] font-semibold leading-[38.4px] text-[#1A1941] pl-[42px]">
         {title}
       </h2>
 

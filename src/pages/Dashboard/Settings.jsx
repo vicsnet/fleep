@@ -125,6 +125,7 @@ const Settings = () => {
             />
             <br />
             <br />
+            <br/>
             <button className="text-[16px] leading-[19.2px] tracking-[10%] font-bold w-[40%] text-center py-[17px] bg-[#1A1941] text-[#FFFFFF] rounded-[8px]">
               Save Changes
             </button>

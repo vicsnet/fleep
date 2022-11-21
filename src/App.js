@@ -17,6 +17,8 @@ import Notification from "./pages/Dashboard/Notification";
 import Settings from "./pages/Dashboard/Settings";
 import Users from "./pages/Dashboard/Users";
 import Profile from "./pages/Dashboard/Profile";
+import CreatedEvent from "./pages/Dashboard/Event/CreatedEvent";
+import ModalProvider from './store/ModalProvider'
 
 
 function App() {
@@ -29,31 +31,31 @@ function App() {
         <Route path="pricingPlan" element={<PricingPlan />} />
         <Route path="privacy" element={<Privacy />} />
         <Route path="terms" element={<Terms />} />
-        <Route path="registration" element={ <Registration />} />
-        <Route path="login" element={ <Login />} />
-        <Route path="forgotpassword" element={ <ForgotPwd />} />
+        <Route path="registration" element={<Registration />} />
+        <Route path="login" element={<Login />} />
+        <Route path="forgotpassword" element={<ForgotPwd />} />
         <Route path="resetpassword" element={<ResetPwd />} />
-
       </Routes>
-      
-          {/* <Route path='/' element={<Dashboard />} /> */}
-      <Sidebar>
 
-      <Routes>
-          <Route path='dashboard' element={<Dashboard/>} />
-          
-          <Route path='event' element={<Event />} />
-          
-          <Route path='history' element={<History />} />
-          
-          <Route path='notification' element={<Notification />} />
-          
-          <Route path="settings" element={<Settings />} />
-          <Route path="users" element={<Users />} />
-          <Route path="profile" element={<Profile />} />
+      {/* <Route path='/' element={<Dashboard />} /> */}
+      <ModalProvider>
+        <Sidebar>
+          <Routes>
+            <Route path="dashboard" element={<Dashboard />} />
 
-      </Routes>
-      </Sidebar>
+            <Route path="event" element={<Event />} />
+
+            <Route path="history" element={<History />} />
+
+            <Route path="notification" element={<Notification />} />
+
+            <Route path="settings" element={<Settings />} />
+            <Route path="users" element={<Users />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="created-event" element={<CreatedEvent />} />
+          </Routes>
+        </Sidebar>
+      </ModalProvider>
     </div>
   );
 }

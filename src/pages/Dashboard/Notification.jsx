@@ -23,7 +23,7 @@ const Notification = () => {
           </span>
 
           {/* friend Request */}
-          <section className="flex justify-between border-[1px] pt-[10px] pb-4 px-4 mt-[8px] rounded-lg shadow-lg">
+          <section className="flex justify-between border-[1px] pt-[10px] pb-4 px-4 mt-[8px] rounded-lg ">
             <div className="flex items-center ">
               <div className="border-[1px] border-[#201E1E] rounded-full w-[40px] h-[40px] bg-[#201E1E]">
                 <BsCalendarFill
@@ -52,7 +52,7 @@ const Notification = () => {
           </section>
 
           {/* purchase photo */}
-          <section className="flex justify-between border-[1px] pt-[10px] pb-4 px-4 mt-[8px] rounded-lg shadow-lg">
+          <section className="flex justify-between border-[1px] pt-[10px] pb-4 px-4 mt-[8px] rounded-lg ">
             <div className="flex items-center gap-4">
               <div className="border-[1px] border-[#201E1E] rounded-full w-[40px] h-[40px] bg-[#201E1E]">
                 <BsImage
@@ -84,7 +84,7 @@ const Notification = () => {
             </p>
           </span>
           {/* friend Request */}
-          <section className="flex justify-between border-[1px] pt-[10px] pb-4 px-4 mt-[8px] rounded-lg shadow-lg">
+          <section className="flex justify-between border-[1px] pt-[10px] pb-4 px-4 mt-[8px] rounded-lg ">
             <div className="flex items-center gap-4">
               <div className="border-[1px] border-[#201E1E] rounded-full w-[40px] h-[40px] bg-[#201E1E]">
                 <BsCalendarFill
@@ -104,7 +104,7 @@ const Notification = () => {
           </section>
 
           {/* used photo spaces */}
-          <section className="flex justify-between border-[1px] pt-[10px] pb-4 px-4 mt-[8px] rounded-lg shadow-lg">
+          <section className="flex justify-between border-[1px] pt-[10px] pb-4 px-4 mt-[8px] rounded-lg ">
             <div className="flex items-center gap-4">
               <div className="border-[1px] border-[#201E1E] rounded-full w-[40px] h-[40px] bg-[#201E1E]">
                 <BsImage
@@ -124,7 +124,7 @@ const Notification = () => {
           </section>
 
           {/* friend Request */}
-          <section className="flex justify-between border-[1px] pt-[10px] pb-4 px-4 mt-[8px] rounded-lg shadow-lg">
+          <section className="flex justify-between border-[1px] pt-[10px] pb-4 px-4 mt-[8px] rounded-lg ">
             <div className="flex items-center gap-4">
               <div className="border-[1px] border-[#201E1E] rounded-full w-[40px] h-[40px] bg-[#201E1E]">
                 <BsCalendarFill
@@ -144,7 +144,7 @@ const Notification = () => {
           </section>
 
           {/* used photo spaces */}
-          <section className="flex justify-between border-[1px] pt-[10px] pb-4 px-4 mt-[8px] rounded-lg shadow-lg">
+          <section className="flex justify-between border-[1px] pt-[10px] pb-4 px-4 mt-[8px] rounded-lg ">
             <div className="flex items-center gap-4">
               <div className="border-[1px] border-[#201E1E] rounded-full w-[40px] h-[40px] bg-[#201E1E]">
                 <BsImage

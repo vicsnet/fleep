@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { FaTh } from "react-icons/fa";
 import { MdSpaceDashboard } from "react-icons/md";
 import { AiOutlineCalendar, AiOutlineSetting } from "react-icons/ai";
@@ -10,8 +10,10 @@ import { NavLink, Link } from "react-router-dom";
 import Logo from "../assets/LOGO (2).png";
 import mainLogo from "../assets/LOGO.png";
 import NewEvent from "../pages/Dashboard/Event/NewEvent";
+import AddUser from "../pages/Dashboard/Event/AddUser";
 
-const Sidebar = ({ children, title }) => {
+
+const Sidebar = ({ children  }) => {
   const menuItem = [
     {
       path: "/dashboard",
@@ -49,6 +51,8 @@ const Sidebar = ({ children, title }) => {
     },
   ];
 
+  const [openAddUser, setOpenAddUser] = useState(false)
+  
   const iconNotActive = "text-[#8B8B8B]";
   const iconActive =
     "text-[#1A1941] bg-[#FFFFFF] px-[5px] py-[5px] rounded-[8px]";
@@ -56,13 +60,13 @@ const Sidebar = ({ children, title }) => {
   const nameActive = "text-[14px] leading-[18px] text-[#FFFFFF] font-bold";
   return (
     <main className="flex max-h-screen overflow-y-hidden  bg-[#19192E] ">
-      <section className="bg-[#19192E] w-[220px] max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
+      <section className="bg-[#19192E] w-[265px] max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
         <div className="w-[90%] mx-auto">
           <div className="border-b-[1px] border-[#464646]">
             <img
               src={Logo}
               alt=""
-              className="w-[86px] pt-[49px] pb-[34px] pl-[10px]"
+              className="w-[120px] pt-[49px] pb-[34px] pl-[10px]"
             />
           </div>
           <div className="mt-[45px] pl-[10px] border-b-[1px] border-[#4d3b3b]">
@@ -149,10 +153,14 @@ const Sidebar = ({ children, title }) => {
           </div>
         </div>
       </section>
-      <section className="w-[100%] rounded-l-[40px]  pt-[42px] bg-[#FAFAFA] ">
+      <section className="w-[100%] rounded-l-[30px]  pt-[42px] bg-[#FAFAFA] ">
         {children}
       </section>
       {/* <NewEvent /> */}
+
+      {/* Add user */}
+
+      <AddUser  />
     </main>
   );
 };
