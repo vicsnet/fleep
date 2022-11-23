@@ -18,7 +18,7 @@ const Profile = () => {
 
   return (
     <main className="max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full pb-[180px]">
-      <SideNav title="My Profile" />
+      <SideNav title="My Profile" display={"flex"} />
 
       <section
         className="mx-[42px] mt-[38px] pt-[46px] rounded-[8px]"

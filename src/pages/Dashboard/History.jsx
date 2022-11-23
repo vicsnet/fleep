@@ -12,7 +12,7 @@ import { IoImagesOutline } from "react-icons/io5";
 const History = () => {
   return (
     <main className="max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full pb-[180px]">
-      <SideNav title="History" />
+      <SideNav title="History" display={"flex"} />
 
       {/*  */}
 

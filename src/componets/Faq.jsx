@@ -13,7 +13,7 @@ const Faq = () => {
       </h2>
 
       {/*  */}
-      <section className="w-[80%] mx-auto">
+      <section className="w-[74%] mx-auto">
         <div className="">
           {faq.map(({title, details, id}) => (
            <Accordion title={title} details={details} />

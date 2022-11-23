@@ -5,7 +5,17 @@ import { FiUpload } from "react-icons/fi";
 import { useDropzone } from "react-dropzone";
 import EventQR from "./EventQR";
 
+import { useSelector, useDispatch } from "react-redux";
+import {
+  openEvent,
+  closeEvent,
+} from "../../../Redux/features/createEventSlice";
+
 const NewEvent = () => {
+  const open = useSelector((state) => state.crtEvent.open);
+
+  const dispatch = useDispatch();
+
   const [files, setFiles] = useState([]);
   const [waterMark, setWaterMark] = useState([]);
 
@@ -19,9 +29,8 @@ const NewEvent = () => {
           })
         )
       );
-      
-      },
-    //   onDrop: (acceptedFiles) => { 
+    },
+    //   onDrop: (acceptedFiles) => {
     //       setWaterMark(
     //         acceptedFiles.map((files) =>
     //           Object.assign(files, {
@@ -54,13 +63,15 @@ const NewEvent = () => {
       </div>
     </div>
   ));
+
+  if (open) return null;
   return (
     <section
       className="fixed top-0 max-h-screen h-screen w-[100%] overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
       style={{ background: "rgba(20, 24, 31, 0.25)" }}
     >
       <div
-        className="w-[70%] rounded-lg mt-[79px] ml-[10%]  pb-[60px]"
+        className="w-[70%] rounded-lg mt-[79px] mx-auto  pb-[60px] mb-[60px]"
         style={{ background: "rgba(255, 255, 255, 1)" }}
       >
         <div className="w-[90%] mx-auto">
@@ -68,7 +79,11 @@ const NewEvent = () => {
             <h2 className="text-[24px] font-bold leading-7 text-[#1A1941]">
               Create Event
             </h2>
-            <IoIosCloseCircleOutline size={24} className="text-[#7C7B7B]" />
+            <IoIosCloseCircleOutline
+              onClick={() => dispatch(closeEvent())}
+              size={24}
+              className="text-[#7C7B7B]"
+            />
           </div>
           <p className="text-[#959595] text-[14px] font-normal mt-4 ">
             Fill the form to create an event

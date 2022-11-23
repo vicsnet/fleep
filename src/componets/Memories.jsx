@@ -71,26 +71,27 @@ const Memories = () => {
         </div>
       </section>
 
-      {/* occassion */}
+      {/* what is your occassion */}
       <section className="flex w-[94%] mx-auto gap-[70px]">
-        <div className="w-[60%] pt-[98px] smDesktop:w-[70%] tabletAir:w-[80%]">
+        <div className="w-[60%] pt-[98px] smDesktop:w-[60%]">
           <img
             src={GroupImage}
             alt="important memories"
-            className="ml-[-20px] w-[100%] smDesktop:h-[380px] object-scale-down tabletAir:h-[280px]"
+            className="ml-[-20px] tabletAir:ml-[-10px] w-[100%] smDesktop:h-[380px] object-scale-down tabletAir:h-[280px]"
           />
         </div>
-        <div className="pt-[133px]">
+        <div className="pt-[133px] w-[50%] smDesktop:w-[70%]">
           <p className="text-[16px] leading-5 tracking-[-1%] text-[#6A6A6A] font-semibold ">
             USE CASES
           </p>
-          <h2 className="text-[50px] smDesktop:text-[45px] smDesk:text-[40px] tabletAir:text-[36px] text-[#1A1941] leading-[60px] tracking-[-1%] font-extrabold ">
+          <h2 className="text-[50px] smDesktop:text-[45px] smDesk:text-[40px] tabletAir:text-[36px]  tablet:text-[32px] text-[#1A1941] leading-[60px] tracking-[-1%] font-black w-[100%] ">
             What’s Your Occasion?
           </h2>
-          <p className="text-[16px] leading-6 tracking-[-1%] text-[#6F6681] w-[52%] smDesk:w-[70%] smDesktop:w-[60%] font-medium mt-[7px] text-left ">
+          <p className="text-[16px] leading-[30px] tracking-[-1%] text-[#6F6681] w-[358px] font-medium mt-[7px] text-left  tabletAir:w-[300px]">
             We built ‘this’ for you. Your Event, Your theme, Your venue, Your
             vision, Your colors, and anything else you would like.
           </p>
+          {/* w-[52%] smDesk:w-[70%] smDesktop:w-[60%] */}
           <button className="mt-[90px] smDesk:mt-[60px] tabletAir:mt-[40px] flex items-center text-[16px] font-bold leading-[19.2px] gap-[20px] text-[#EE2339] border-[1px] border-[#EE2339] px-10 h-[70px] rounded-[35px] hover:bg-[#EE2339] hover:text-[#FFFFFF] ">
             Learn more
             <IoIosArrowForward className="border-[1px] bg-[#FCD3D7] p-[2px] rounded-[50%] " />
@@ -102,24 +103,25 @@ const Memories = () => {
 
       <section className="w-[90%] mx-auto pb-[20px]">
         <div>
-          <h2 className="text-center pt-[104px] text-[50px] leading-[60px] tracking-[-1%] text-[#1A1941] font-extrabold mb-[83px]">
+          <h2 className="text-center pt-[104px] text-[50px] leading-[60px] tracking-[-1%] text-[#1A1941] font-black mb-[83px]">
             Features
           </h2>
           <div className="relative">
             <img
               src={vector}
               alt=""
-              className="absolute mx-auto w-[834px] ml-[178px] mt-[30px] smDesktop:ml-[100px] smDesktop:w-[718px]  smDesk:w-[600px] tabletAir:w-[550px] tablet:w-[480px]"
+              className="absolute mx-auto w-[68%] ml-[15%] mt-[30px]"
+              // w-[834] ml-[178px]  smDesktop:ml-[100px] smDesktop:w-[718px]  smDesk:w-[600px] tabletAir:w-[550px] tablet:w-[480px]
             />
             <div className="flex gap-[81px] relative">
               <div className="w-[33%]">
-                <img src={Event} alt="event" className="w-[90px] mx-auto" />
+                <img src={Event} alt="event" className="w-[110px] mx-auto" />
 
                 <div className="mt-[58px]">
                   <h3 className="text-[24px] smDesk:text-[20px] tablet:text-[18px] tabletAir:text-[18px] leading-[28.8px] font-semibold text-center tracking-[-1%] text-[#1A093F]">
                     Event & Barcode
                   </h3>
-                  <p className="text-center text-[#6F6681] text-[16px] leading-[30px] font-medium tracking-[-1%] ">
+                  <p className="text-center mt-[13px] text-[#6F6681] text-[16px] leading-[30px] font-medium tracking-[-1%] ">
                     Create an event, theme, watermark your events and so much
                     more then have a barcode generated that you can share with
                     everyone.
@@ -131,12 +133,12 @@ const Memories = () => {
                   <img
                     src={Face}
                     alt="Facial Recognition"
-                    className="w-[90px] mx-auto relative"
+                    className="w-[110px] mx-auto relative"
                   />
                   <img
                     src={FaceMe}
                     alt=""
-                    className="absolute mx-auto w-[30px] top-4 left-[46%] smDesktop:left-[44%] tabletAir:left-[42%]"
+                    className="absolute mx-auto w-[30px] top-6 left-[46%] smDesktop:left-[44%] tabletAir:left-[42%]"
                   />
                 </div>
 
@@ -144,7 +146,7 @@ const Memories = () => {
                   <h3 className="text-[24px] smDesk:text-[20px] tabletAir:text-[18px] tablet:text-[18px] leading-[28.8px] font-semibold text-center tracking-[-1%] text-[#1A093F]">
                     Facial Recognition(AI)
                   </h3>
-                  <p className="text-center text-[#6F6681] smDesk:text-[14px] text-[16px] leading-[30px] font-medium tracking-[-1%] ">
+                  <p className="text-center text-[#6F6681] mt-[13px] smDesk:text-[14px] text-[16px] leading-[30px] font-medium tracking-[-1%] ">
                     Harnessing the power of AI to match your selfie with
                     pictures you appear in an event created with 99.9% accuracy.
                   </p>
@@ -155,12 +157,12 @@ const Memories = () => {
                   <img
                     src={Algorithm}
                     alt="matching Algorithm"
-                    className="w-[90px] mx-auto relative"
+                    className="w-[110px] mx-auto relative"
                   />
                   <img
                     src={Algo}
                     alt=""
-                    className="absolute mx-auto w-[30px] top-4 left-[46%] smDesktop:left-[44%] tabletAir:left-[42%]"
+                    className="absolute mx-auto w-[30px] top-6 left-[46%] smDesktop:left-[44%] tabletAir:left-[42%]"
                   />
                 </div>
 
@@ -168,7 +170,7 @@ const Memories = () => {
                   <h3 className="text-[24px] smDesk:text-[20px] tabletAir:text-[18px] tablet:text-[18px] leading-[28.8px] font-semibold text-center tracking-[-1%] text-[#1A093F]">
                     Matching Algorithm
                   </h3>
-                  <p className="text-center text-[#6F6681] smDesk:text-[14px] text-[16px] leading-[30px] font-medium tracking-[-1%] ">
+                  <p className="text-center text-[#6F6681]  mt-[13px] smDesk:text-[14px] text-[16px] leading-[30px] font-medium tracking-[-1%] ">
                     Real-time separation and selection of pictures you only
                     appear in an event is done solely by our smart technology,
                     all you need to do is provide a selfie and download all your
@@ -188,11 +190,11 @@ const Memories = () => {
             <img
               src={GroupMemories}
               alt="Amazing memories"
-              className="w-[100%] h-[600px] smDesktop:h-[500px] smDesk:h-[440px] object-fill tabletAir:h-[400px] tablet:h-[380px]"
+              className=" h-[600px] smDesktop:h-[500px] smDesk:h-[440px] object-cover tabletAir:h-[400px] tablet:h-[380px]"
             />
           </div>
           <div className="w-[40%] smDesktop:w-[60%] tablet:w-[70%]">
-            <h2 className="text-[50px] smDesktop:text-[40px] tabletAir:text-[30px] tablet:text-[28px] smDesk:text-[35px] leading-[60px] tracking-[-1%] text-[#1A1941] font-extrabold tabletAir:leading-[40px] ">
+            <h2 className="text-[50px] lgDesktop:text-[45px] smDesktop:text-[40px] tabletAir:text-[30px] tablet:text-[28px] smDesk:text-[35px] leading-[60px] tracking-[-1%] text-[#1A1941] tabletAir:leading-[40px] font-black ">
               Relive Every Moment of Each Event.
             </h2>
             <p className="text-[#6F6681] text-[16px] smDesktop:mt-[15px] smDesktop:leading-[28px] tabletAir:text-[14px] font-normal leading-[30px] tracking-[-1%] mt-[20px] ">
@@ -205,36 +207,38 @@ const Memories = () => {
             </p>
           </div>
         </div>
-
         {/* uploads Counter */}
+        {/* pr-[160px] lgDesktop:pr-[105px] smDesktop:pr-[100px] */}
         <div
-          className="flex gap-[54px] h-[340px] items-center justify-end pr-[160px] lgDesktop:pr-[105px] smDesktop:pr-[100px]  mt-[-230px]  smDesk:h-[260px] tabletAir:h-[140px] smDesk:mt-[-110px] tabletAir:mt-[-120px] tablet-[-90px] smDesk:pr-[70px] tabletAir:pr-[40px] smDesk:gap-[40px]"
+          className="flex  h-[340px] items-center justify-end   mt-[-230px]  smDesk:h-[260px] tabletAir:h-[140px] smDesk:mt-[-110px] tabletAir:mt-[-120px] tablet-[-90px] "
           style={{ background: "rgba(245, 245, 250, 1)" }}
         >
-          <span className="mt-[-180px] smDesk:mt-[-120px] tabletAir:mt-[-50px]">
-            <p className="text-[50px]  smDesktop:text-[40px] smDesk:text-[38px] tabletAir:leading-[60px] tabletAir:text-[32px] text-[#1A1941] font-medium leading-[75px] text-font ">
-              45+
-            </p>
-            <p className="text-[16px] font-medium text-font leading-[24px]  tracking-[-1%] ">
-              Events
-            </p>
-          </span>
-          <span className="mt-[-180px] smDesk:mt-[-120px] tabletAir:mt-[-50px]">
-            <p className="text-[50px] smDesktop:text-[40px] smDesk:text-[38px] tabletAir:leading-[60px] text-[#1A1941] tabletAir:text-[32px] font-medium leading-[75px] text-font ">
-              109K+
-            </p>
-            <p className="text-[16px] font-medium text-font leading-[24px] tracking-[-1%] ">
-              Uploads & Downloads
-            </p>
-          </span>
-          <span className="mt-[-180px] smDesk:mt-[-120px] tabletAir:mt-[-50px]">
-            <p className="text-[50px] smDesktop:text-[40px] smDesk:text-[38px] tabletAir:leading-[60px] text-[#1A1941] tabletAir:text-[32px] font-medium leading-[75px] text-font ">
-              20k
-            </p>
-            <p className="text-[16px] font-medium text-font leading-[24px] tracking-[-1%] ">
-              Users
-            </p>
-          </span>
+          <div className="w-[47.2%]  lgDesktop:w-[45.2%] smDesktop:w-[52%] tabletAir:w-[51%] tablet:w-[53%] flex gap-[54px] smDesk:gap-[40px] ml-auto mt-[-180px] smDesktop:mt-[-140px] smDesk:mt-[-120px]  tabletAir:mt-[-40px] tablet:mt-[-10px]">
+            <span className="">
+              <p className="text-[50px]  smDesktop:text-[40px] smDesk:text-[38px] tabletAir:leading-[60px] tabletAir:text-[32px] text-[#1A1941] font-medium leading-[75px] text-font ">
+                45+
+              </p>
+              <p className="text-[16px] font-medium text-font leading-[24px]  tracking-[-1%] ">
+                Events
+              </p>
+            </span>
+            <span className="">
+              <p className="text-[50px] smDesktop:text-[40px] smDesk:text-[38px] tabletAir:leading-[60px] text-[#1A1941] tabletAir:text-[32px] font-medium leading-[75px] text-font ">
+                109K+
+              </p>
+              <p className="text-[16px] font-medium text-font leading-[24px] tracking-[-1%] ">
+                Uploads & Downloads
+              </p>
+            </span>
+            <span className="">
+              <p className="text-[50px] smDesktop:text-[40px] smDesk:text-[38px] tabletAir:leading-[60px] text-[#1A1941] tabletAir:text-[32px] font-medium leading-[75px] text-font ">
+                20k
+              </p>
+              <p className="text-[16px] font-medium text-font leading-[24px] tracking-[-1%] ">
+                Users
+              </p>
+            </span>
+          </div>
         </div>
       </section>
 
@@ -242,7 +246,7 @@ const Memories = () => {
 
       <section className="" style={{ background: "rgba(245, 245, 250, 1)" }}>
         <div className="w-[90%] mx-auto pb-[117px]">
-          <h2 className="text-[50px]  smDesktop:text-[42px] tablet:text-[40px] leading-[60px] tracking-[-1%] font-extrabold ">
+          <h2 className="text-[50px]  smDesktop:text-[42px] tablet:text-[40px] leading-[60px] tracking-[-1%] font-black ">
             How It Works
           </h2>
 
@@ -251,7 +255,7 @@ const Memories = () => {
               <img
                 src={AmazingMemories}
                 alt="Amazing memories"
-                className="smDesktop:h-[500px] smDesktop:object-fill w-[100%] smDesk:h-[400px] tablet:h-[360px]"
+                className="h-[500px] object-contain smDesktop:h-[500px] smDesktop:object-fill w-[100%] smDesk:h-[400px] tablet:h-[360px]"
               />
             </div>
             <div className="w-[40%]">
@@ -263,7 +267,7 @@ const Memories = () => {
                   1
                 </p>
                 <p
-                  className="text-[16px]smDesk:text-[14px] smDesk:leading-[26px] leading-[30px] font-medium w-[60%]
+                  className="text-[16px] smDesk:text-[14px] text-[#6F6681] smDesk:leading-[26px] leading-[30px] font-medium w-[60%]
                  "
                 >
                   Register as a user then create an event of your choice{" "}
@@ -277,7 +281,7 @@ const Memories = () => {
                   2
                 </p>
                 <p
-                  className="text-[16px] smDesk:text-[14px] smDesk:leading-[26px] leading-[30px] font-medium w-[60%]
+                  className="text-[16px] text-[#6F6681] smDesk:text-[14px] smDesk:leading-[26px] leading-[30px] font-medium w-[60%]
                  "
                 >
                   Upload all the pictures of the event and generate a barcode to
@@ -291,10 +295,7 @@ const Memories = () => {
                 >
                   3
                 </p>
-                <p
-                  className="text-[16px] smDesk:text-[14px] smDesk:leading-[26px] leading-[30px] font-medium w-[90%] smDesktop:w-[100%]
-                 "
-                >
+                <p className="text-[16px] smDesk:text-[14px] smDesk:leading-[26px] leading-[30px] font-medium w-[90%] smDesktop:w-[100%] text-[#6F6681]">
                   Attendees (other users) can go ahead to download the app with
                   the help of the event barcode from either Google Playstore or
                   iOS store, provide a selfie and then download the pictures

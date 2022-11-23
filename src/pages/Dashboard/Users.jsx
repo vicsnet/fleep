@@ -6,6 +6,8 @@ import { AiOutlineLeftSquare, AiFillLeftSquare } from "react-icons/ai";
 import { CgChevronLeftR } from "react-icons/cg";
 import bum from "../../assets/HBD to bunmi 20190716_003414.jpg";
 import ReactPaginate from "react-paginate";
+import {useDispatch} from "react-redux"
+import { openUsersEvent } from "../../Redux/features/usersEventSlice";
 // import usersCss from './users.css'
 
 const url = "https://jsonplaceholder.typicode.com/albums";
@@ -18,6 +20,7 @@ const Users = () => {
     const data = await resp.json();
     setUser(data);
   };
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getUser();
@@ -39,7 +42,10 @@ const Users = () => {
           <td className="pl-[45px] smDesk:pl-[30px] tabletAir:pl-[20px] text-[14px leading-[16.8px] font-[300] mt-[11px] py-auto">
             {user.id}
           </td>
-          <td className="flex gap-[14px] mt-[11px] items-center ">
+          <td
+            onClick={() => dispatch(openUsersEvent())}
+            className="flex gap-[14px] mt-[11px] items-center cursor-pointer "
+          >
             <img
               src={bum}
               alt=""
@@ -71,7 +77,7 @@ const Users = () => {
 
   return (
     <main className="max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full pb-[180px]">
-      <SideNav title="Users" />
+      <SideNav title="Users" display={"flex"} />
 
       <section className="px-[42px]">
         {/* search bar & filter */}

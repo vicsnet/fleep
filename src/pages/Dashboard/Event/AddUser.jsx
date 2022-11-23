@@ -1,20 +1,25 @@
 import React, { useContext } from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import ModalContext from "../../../store/modal-context";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  openAddUser,
+  closeAddUser,
+} from "../../../Redux/features/addUserSlice";
 
-const AddUser = ({ open, onClose }) => {
-  const modCtx = useContext(ModalContext);
+const AddUser = () => {
+  const open = useSelector((state) => state.crtAddUser.open);
 
-  if (!modCtx.openModal) return null;
+  const dispatch = useDispatch();
+
+  if (open) return null;
 
   return (
     <main
-      onClick={modCtx.setModal()}
       className="fixed top-0 max-h-screen h-screen w-[100%] overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
       style={{ background: "rgba(20, 24, 31, 0.25)" }}
     >
       <div
-        className="w-[70%] rounded-lg mt-[79px] ml-[10%]  pb-[60px]"
+        className="w-[70%] rounded-lg mt-[79px] mx-auto  pb-[60px] mb-[60px]"
         style={{ background: "rgba(255, 255, 255, 1)" }}
       >
         <div className="w-[90%] mx-auto">
@@ -24,9 +29,8 @@ const AddUser = ({ open, onClose }) => {
             </h2>
             <IoIosCloseCircleOutline
               size={24}
-              className="text-[#7C7B7B]"
-              // onClick={onClose}
-              // onClick={modCtx.setModal(false)}
+              className="text-[#7C7B7B] cursor-pointer"
+              onClick={() => dispatch(closeAddUser())}
             />
           </div>
           <p className="text-[#959595] text-[14px] font-normal mt-4 ">

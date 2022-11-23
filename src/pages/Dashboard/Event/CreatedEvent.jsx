@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect,  } from "react";
 import SideNav from "../../../componets/SideNav";
 import { HiOutlineCake } from "react-icons/hi";
 import { FaGlobeAfrica } from "react-icons/fa";
@@ -16,21 +16,29 @@ import { FiCopy, FiArrowRightCircle } from "react-icons/fi";
 import copy from "copy-to-clipboard";
 import QR from "../../../assets/Vector (17).png";
 import AddUser from "./AddUser";
-import ModalContext from "../../../store/modal-context";
+
+import { useDispatch } from 'react-redux'
+import { openEvent } from "../../../Redux/features/createEventSlice";
+import { openAddUser } from "../../../Redux/features/addUserSlice";
+
+
 
 const url = "https://jsonplaceholder.typicode.com/albums";
 
+
 const CreatedEvent = () => {
+const dispatch = useDispatch()
+
   const [images, setImage] = useState([]);
-  const modCtx = useContext(ModalContext);
+  
 
   const [show, setShow] = useState(8);
-  const [totalImage, setTotalImage] = useState(0);
+ 
   const getImage = async () => {
     const res = await fetch(url);
     const data = await res.json();
     setImage(data);
-    setTotalImage(data.show);
+  
   };
 
   useEffect(() => {
@@ -86,9 +94,12 @@ const CreatedEvent = () => {
           {/* event Code and edit */}
           <div className="">
             {/* edit button */}
-            <div className="flex items-center mb-3 justify-end">
-              <CiEdit size={20} className="text-[#7C7B7B]" />
-              <p className="text-[16px] ml-[10px]">Edit</p>
+            <div
+              className="flex items-center mb-3 justify-end"
+              onClick={() => dispatch(openEvent())}
+            >
+              <CiEdit size={20} className="text-[#7C7B7B] cursor-pointer" />
+              <p className="text-[16px] ml-[10px] cursor-pointer">Edit</p>
             </div>
 
             {/*  */}
@@ -113,8 +124,8 @@ const CreatedEvent = () => {
 
             <div className="">
               <button
-                // onClick={() => setOpenAddUser(true)}
-                onClick={() => modCtx.setModal()}
+                
+                onClick={() => dispatch(openAddUser()) }
                 className="text-[16px] flex items-center font-bold leading-5 border-[1px] border-[#1A1941] text-[#1A1941] h-12 px-8 rounded-lg ml-auto mt-[14px]"
               >
                 <AiOutlinePlus size={20} className="mr-2" /> Add Users
@@ -172,7 +183,7 @@ const CreatedEvent = () => {
         {/*  */}
 
         {/* uploads */}
-        <section className="pb-[100px] flex flex-wrap gap-4 relative justify-center">
+        <section className="pb-[100px] flex flex-wrap gap-4 relative">
           {images.slice(0, show).map((image) => (
             <div className="relative" key={image.id}>
               <img
@@ -189,7 +200,6 @@ const CreatedEvent = () => {
               />
             </div>
           ))}
-          {/* images.length >= 8 && show < totalImage */}
           {images.length >= show && (
             <div
               className="h-[250px] w-[250px] absolute right-2 bottom-[100px] rounded-lg"
@@ -203,10 +213,10 @@ const CreatedEvent = () => {
               </button>
             </div>
           )}
+         
         </section>
       </section>
 
-      {/* <AddUser open={openAddUser} onClose={() => setOpenAddUser(false)} /> */}
     </main>
   );
 };

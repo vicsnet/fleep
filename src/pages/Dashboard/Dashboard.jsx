@@ -11,11 +11,17 @@ import CreateEvent from "../../componets/CreateEvent";
 import vector from "../../assets/Group 201.png";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import NewEvent from "./Event/NewEvent";
+import { useDispatch } from 'react-redux' 
+import { openEvent } from "../../Redux/features/createEventSlice";
+
 
 const Dashboard = () => {
+
+  const dispatch = useDispatch();
+
   return (
     <main className="max-h-screen h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full pb-[180px]">
-      <SideNav title="Dashboard" />
+      <SideNav title="Dashboard" display={'hidden pb-[24px]'} padd={'pb-[38px]'} />
       <div className=" ">
         <section className="px-[42px] mt-[48px]">
           <div className="flex justify-between smDesk:flex-col">
@@ -112,7 +118,7 @@ const Dashboard = () => {
             <div className="w-[25%]  smDesktop:w-[20%] smDesk:w-[50%] mx-auto smDesk:mt-4 ">
               {/* <CreateEvent /> */}
 
-              <div
+              <div onClick={() => dispatch(openEvent())}
                 className="rounded-[14px] pt-[38px] pl-[34px] smDesktop:pl-[20px] smDesk:pl-[34px] relative h-[280px] lgDesktop:h-[266px] smDesktop:h-[190px] smDesk:h-[300px] tablet:h-[270px]"
                 style={{ background: "rgba(255, 255, 255, 1)" }}
               >

@@ -18,7 +18,7 @@ const Settings = () => {
   };
   return (
     <main className="max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full pb-[180px]">
-      <SideNav title="Settings" />
+      <SideNav title="Settings" display={"flex"} />
 
       <section className="mx-[42px] mt-[48px] flex gap-12 tabletAir:flex-col">
         <div
@@ -125,7 +125,7 @@ const Settings = () => {
             />
             <br />
             <br />
-            <br/>
+            <br />
             <button className="text-[16px] leading-[19.2px] tracking-[10%] font-bold w-[40%] text-center py-[17px] bg-[#1A1941] text-[#FFFFFF] rounded-[8px]">
               Save Changes
             </button>

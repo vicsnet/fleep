@@ -4,14 +4,14 @@ import { MdOutlineEvent } from "react-icons/md";
 import { BiSearch } from "react-icons/bi";
 import { TbUsers } from "react-icons/tb";
 import { CiImageOn } from "react-icons/ci";
-
 import eve from "../../assets/IMG-20190708-WA0002.jpg";
 import CreateEvent from "../../componets/CreateEvent";
+import { Link } from "react-router-dom";
 
 const Event = () => {
   return (
     <main className="max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full pb-[180px]">
-      <SideNav title="Event" />
+      <SideNav title="Event" display={"flex"} />
       {/* calendar */}
       <section></section>
 
@@ -74,9 +74,11 @@ const Event = () => {
                 boxShadow: "0px 0px 10px 0px rgba(132, 132, 132, 0.15)",
               }}
             >
-              <p className="flex justify-end text-[14px] leading-[16.8px] pt-[10px] pr-[16px] text-[#C6C6C6]">
-                View
-              </p>
+              <Link to="/created-event">
+                <p className="flex justify-end text-[14px] leading-[16.8px] pt-[10px] pr-[16px] text-[#C6C6C6]">
+                  View
+                </p>
+              </Link>
               <div className="flex justify-between items-center">
                 <div className="flex gap-[18px]">
                   <img

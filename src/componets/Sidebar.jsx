@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { FaTh } from "react-icons/fa";
 import { MdSpaceDashboard } from "react-icons/md";
 import { AiOutlineCalendar, AiOutlineSetting } from "react-icons/ai";
@@ -11,9 +11,9 @@ import Logo from "../assets/LOGO (2).png";
 import mainLogo from "../assets/LOGO.png";
 import NewEvent from "../pages/Dashboard/Event/NewEvent";
 import AddUser from "../pages/Dashboard/Event/AddUser";
+import UsersImage from "../pages/Dashboard/User/UsersImage";
 
-
-const Sidebar = ({ children  }) => {
+const Sidebar = ({ children }) => {
   const menuItem = [
     {
       path: "/dashboard",
@@ -51,8 +51,8 @@ const Sidebar = ({ children  }) => {
     },
   ];
 
-  const [openAddUser, setOpenAddUser] = useState(false)
-  
+  const [openAddUser, setOpenAddUser] = useState(false);
+
   const iconNotActive = "text-[#8B8B8B]";
   const iconActive =
     "text-[#1A1941] bg-[#FFFFFF] px-[5px] py-[5px] rounded-[8px]";
@@ -60,7 +60,7 @@ const Sidebar = ({ children  }) => {
   const nameActive = "text-[14px] leading-[18px] text-[#FFFFFF] font-bold";
   return (
     <main className="flex max-h-screen overflow-y-hidden  bg-[#19192E] ">
-      <section className="bg-[#19192E] w-[265px] max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
+      <section className="bg-[#19192E] w-[265px] max-h-screen overflow-y-scroll whitespace-nowrap hide scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
         <div className="w-[90%] mx-auto">
           <div className="border-b-[1px] border-[#464646]">
             <img
@@ -126,9 +126,14 @@ const Sidebar = ({ children  }) => {
           <div className="bg-white mt-[160px] pl-[20px] rounded mb-[82px] pb-[17px]">
             <img src={mainLogo} alt="" className="w-[116px] pt-[18px] " />
             <span className="pt-[16px] flex items-end justify-between pr-[19px]">
-              <p className=" w-[80%] text-[16px] font-bold leading-[20px]">
-                Upgrade to Get Photos Space!
-              </p>
+              <span>
+                <p className=" w-[80%] text-[16px] font-bold leading-[20px]">
+                  Upgrade to
+                </p>
+                <p className=" text-[16px] font-bold leading-[20px]">
+                  Get Photos Space!
+                </p>
+              </span>
               <FiArrowRightCircle size={20} className="text-[#EE2339]" />
             </span>
           </div>
@@ -156,11 +161,13 @@ const Sidebar = ({ children  }) => {
       <section className="w-[100%] rounded-l-[30px]  pt-[42px] bg-[#FAFAFA] ">
         {children}
       </section>
-      {/* <NewEvent /> */}
+      <NewEvent />
 
       {/* Add user */}
 
-      <AddUser  />
+      <AddUser />
+
+      <UsersImage />
     </main>
   );
 };

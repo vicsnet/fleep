@@ -5,7 +5,7 @@ import { BsCalendarFill, BsImage } from "react-icons/bs";
 const Notification = () => {
   return (
     <main className="max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full pb-[180px]">
-      <SideNav title="Notification" />
+      <SideNav title="Notification" display={"flex"} />
 
       <section
         className="mx-[42px] mt-[48px] px-[48px] rounded max-h-screen h-screen"

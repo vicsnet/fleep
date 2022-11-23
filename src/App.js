@@ -38,7 +38,7 @@ function App() {
       </Routes>
 
       {/* <Route path='/' element={<Dashboard />} /> */}
-      <ModalProvider>
+     
         <Sidebar>
           <Routes>
             <Route path="dashboard" element={<Dashboard />} />
@@ -55,7 +55,7 @@ function App() {
             <Route path="created-event" element={<CreatedEvent />} />
           </Routes>
         </Sidebar>
-      </ModalProvider>
+   
     </div>
   );
 }

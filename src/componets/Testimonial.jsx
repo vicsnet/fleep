@@ -40,7 +40,7 @@ const Testimonial = () => {
           <div className="flex gap-[24px]">
             <span
               onClick={goToNextSlide}
-              className="w-[44px] h-[44px] rounded-[4px] bg-[#1A1941] border-[1px] border-[#EAEAEA] flex items-center justify-center text-[#FFFFFF] cursor-pointer"
+              className={"w-[44px] h-[44px] rounded-[4px] bg-[#1A1941] border-[1px] border-[#EAEAEA] flex items-center justify-center text-[#FFFFFF] cursor-pointer" }
             >
               <IoIosArrowBack size={24} />
             </span>
