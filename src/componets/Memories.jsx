@@ -185,7 +185,7 @@ const Memories = () => {
 
       {/* RElive Every Movement */}
       <section className="">
-        <div className="w-[90%] flex pt-[100px] gap-[90px]">
+        <div className="w-[90%] flex pt-[100px] gap-[40px]">
           <div className="">
             <img
               src={GroupMemories}
@@ -205,6 +205,33 @@ const Memories = () => {
               intend to make the process easier for you and is this why w
               created “…..”
             </p>
+            {/* w-[47.2%]  lgDesktop:w-[45.2%] smDesktop:w-[52%] tabletAir:w-[51%] tablet:w-[53%] */}
+            {/* <div className=" lgDesktop:hidden flex gap-[54px] smDesk:gap-[40px] ml-auto mt-[120px] smDesktop:mt-[140px] smDesk:mt-[120px]  tabletAir:mt-[40px] tablet:mt-[10px]">
+              <span className="">
+                <p className="text-[50px]  smDesktop:text-[40px] smDesk:text-[38px] tabletAir:leading-[60px] tabletAir:text-[32px] text-[#1A1941] font-medium leading-[75px] text-font ">
+                  45+
+                </p>
+                <p className="text-[16px] font-medium text-font leading-[24px]  tracking-[-1%] ">
+                  Events
+                </p>
+              </span>
+              <span className="">
+                <p className="text-[50px] smDesktop:text-[40px] smDesk:text-[38px] tabletAir:leading-[60px] text-[#1A1941] tabletAir:text-[32px] font-medium leading-[75px] text-font ">
+                  109K+
+                </p>
+                <p className="text-[16px] font-medium text-font leading-[24px] tracking-[-1%] ">
+                  Uploads & Downloads
+                </p>
+              </span>
+              <span className="">
+                <p className="text-[50px] smDesktop:text-[40px] smDesk:text-[38px] tabletAir:leading-[60px] text-[#1A1941] tabletAir:text-[32px] font-medium leading-[75px] text-font ">
+                  20k
+                </p>
+                <p className="text-[16px] font-medium text-font leading-[24px] tracking-[-1%] ">
+                  Users
+                </p>
+              </span>
+            </div> */}
           </div>
         </div>
         {/* uploads Counter */}
@@ -213,7 +240,7 @@ const Memories = () => {
           className="flex  h-[340px] items-center justify-end   mt-[-230px]  smDesk:h-[260px] tabletAir:h-[140px] smDesk:mt-[-110px] tabletAir:mt-[-120px] tablet-[-90px] "
           style={{ background: "rgba(245, 245, 250, 1)" }}
         >
-          <div className="w-[47.2%]  lgDesktop:w-[45.2%] smDesktop:w-[52%] tabletAir:w-[51%] tablet:w-[53%] flex gap-[54px] smDesk:gap-[40px] ml-auto mt-[-180px] smDesktop:mt-[-140px] smDesk:mt-[-120px]  tabletAir:mt-[-40px] tablet:mt-[-10px]">
+          <div className="w-[51.5%]  lgDesktop:w-[48.5%] smDesktop:w-[54.5%] tablet:w-[57%] flex gap-[54px] smDesk:gap-[40px] ml-auto mt-[-180px] smDesktop:mt-[-140px] smDesk:mt-[-120px]  tabletAir:mt-[-40px] tablet:mt-[-10px]">
             <span className="">
               <p className="text-[50px]  smDesktop:text-[40px] smDesk:text-[38px] tabletAir:leading-[60px] tabletAir:text-[32px] text-[#1A1941] font-medium leading-[75px] text-font ">
                 45+

@@ -34,20 +34,28 @@ const Testimonial = () => {
     <section>
       <main className="w-[90%] mx-auto">
         <div className="flex justify-between items-end mt-[90px]">
-          <h2 className="text-[42px] leading-[52px] font-extrabold text-[#1A1941] w-[40%]  smDesktop:w-[50%] tabletAir:w-[60%]">
+          <h2 className="text-[42px] leading-[52px] font-black text-[#1A1941] w-[40%]  smDesktop:w-[50%] tabletAir:w-[60%]">
             What our loving users are saying about us
           </h2>
           <div className="flex gap-[24px]">
             <span
               onClick={goToNextSlide}
-              className={"w-[44px] h-[44px] rounded-[4px] bg-[#1A1941] border-[1px] border-[#EAEAEA] flex items-center justify-center text-[#FFFFFF] cursor-pointer" }
+              className={
+                datas.length <= 2
+                  ? "bg-white"
+                  : "w-[44px] h-[44px] rounded-[4px] bg-[#1A1941] border-[1px] border-[#EAEAEA] flex items-center justify-center text-[#FFFFFF] cursor-pointer"
+              }
             >
               <IoIosArrowBack size={24} />
             </span>
 
             <span
               onClick={goToPreviousSlide}
-              className="w-[44px] h-[44px] rounded-[4px] bg-[#1A1941] border-[1px] border-[#EAEAEA] flex items-center justify-center text-[#FFFFFF] cursor-pointer"
+              className={
+                datas.length === 2
+                  ? "bg-white"
+                  : "w-[44px] h-[44px] rounded-[4px] bg-[#1A1941] border-[1px] border-[#EAEAEA] flex items-center justify-center text-[#FFFFFF] cursor-pointer"
+              }
             >
               <IoIosArrowForward size={24} className="" />
             </span>
