@@ -13,7 +13,9 @@ const Event = () => {
     <main className="max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full pb-[180px]">
       <SideNav title="Event" display={"flex"} />
       {/* calendar */}
-      <section></section>
+      <section>
+        
+      </section>
 
       {/* No Event */}
 
