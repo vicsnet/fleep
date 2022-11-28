@@ -58,7 +58,7 @@ const dispatch = useDispatch()
 
   return (
     <main className="w-[100%] h-screen max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
-      <SideNav title="Event" />
+      <SideNav title="Event" display="flex" />
       <section className="mt-[32px] px-[42px]">
         {/*  */}
         <section className="flex justify-between">
@@ -124,8 +124,7 @@ const dispatch = useDispatch()
 
             <div className="">
               <button
-                
-                onClick={() => dispatch(openAddUser()) }
+                onClick={() => dispatch(openAddUser())}
                 className="text-[16px] flex items-center font-bold leading-5 border-[1px] border-[#1A1941] text-[#1A1941] h-12 px-8 rounded-lg ml-auto mt-[14px]"
               >
                 <AiOutlinePlus size={20} className="mr-2" /> Add Users
@@ -189,7 +188,7 @@ const dispatch = useDispatch()
               <img
                 src={bum}
                 alt=""
-                className="w-[250px] h-[250px] object-cover rounded-lg relative"
+                className={`w-[250px] h-[250px] lgDesktop:w-[220px] lgDesktop:h-[220px] smDesktop:w-[160px] smDesktop:h-[160px] smDesk:w-[142px] smDesk:h-[142px] tablet:w-[226px] tablet:h-[226px] object-cover rounded-lg relative tabletAir:w-[250px] tabletAir:h-[250px]`}
               />
 
               <input
@@ -202,21 +201,19 @@ const dispatch = useDispatch()
           ))}
           {images.length >= show && (
             <div
-              className="h-[250px] w-[250px] absolute right-2 bottom-[100px] rounded-lg"
+              className="h-[250px] w-[250px] lgDesktop:w-[220px] smDesktop:w-[160px] smDesktop:h-[160px] lgDesktop:h-[220px] smDesk:w-[142px] smDesk:h-[142px]  tabletAir:w-[250px] tabletAir:h-[250px] tablet:w-[226px] tablet:h-[226px]  lgDesktop:right-12 smDesktop:right-10 smDesk:right-2 absolute tabletAir:right-4 right-3 bottom-[100px] rounded-lg"
               style={{ background: "rgba(0, 0, 0, 0.4)" }}
             >
               <button
                 onClick={showAll}
-                className="text-[white] flex items-center text-[20px] leading-[24px] font-bold my-[50%] outline-none justify-center mx-[70px]"
+                className="text-[white] flex items-center text-[20px] leading-[24px] font-bold my-[50%] outline-none justify-center mx-[70px] lgDesktop:mx-[40px] smDesktop:mx-[20px] smDesk:mx-auto smDesk:my-[45%]"
               >
                 View all <FiArrowRightCircle className="ml-[18px]" />
               </button>
             </div>
           )}
-         
         </section>
       </section>
-
     </main>
   );
 };

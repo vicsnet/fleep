@@ -39,7 +39,7 @@ const UsersImage = () => {
             />
           </div>
 
-          <section className="mt-[30px] flex flex-wrap gap-[24px]">
+          <section className="mt-[30px] flex flex-wrap gap-[24px] justify-center">
             {/*  */}
             <div
               className="w-[183px] pl-[16px] pt-[16px] pb-[21px] rounded-lg"

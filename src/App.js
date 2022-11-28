@@ -1,10 +1,11 @@
+import React from 'react'
 import ContactUs from "./pages/ContactUs";
 import LandingPage from "./pages/LandingPage";
 import PricingPlan from "./pages/PricingPlan";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import UseCases from "./pages/UseCases";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route,BrowserRouter } from "react-router-dom";
 import Registration from "./pages/Auth/Registration";
 import Login from "./pages/Auth/Login";
 import ForgotPwd from "./pages/Auth/ForgotPwd";
@@ -35,12 +36,11 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="forgotpassword" element={<ForgotPwd />} />
         <Route path="resetpassword" element={<ResetPwd />} />
+        {/* <Route path='/' element={<Dashboard />} /> */}
       </Routes>
-
-      {/* <Route path='/' element={<Dashboard />} /> */}
-     
-        <Sidebar>
-          <Routes>
+        <React.Fragment>
+          <Sidebar>
+      <Routes>
             <Route path="dashboard" element={<Dashboard />} />
 
             <Route path="event" element={<Event />} />
@@ -53,9 +53,10 @@ function App() {
             <Route path="users" element={<Users />} />
             <Route path="profile" element={<Profile />} />
             <Route path="created-event" element={<CreatedEvent />} />
-          </Routes>
-        </Sidebar>
-   
+      </Routes>
+          </Sidebar>
+        </React.Fragment>
+
     </div>
   );
 }
