@@ -13,6 +13,12 @@ import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import NewEvent from "./Event/NewEvent";
 import { useDispatch } from "react-redux";
 import { openEvent } from "../../Redux/features/createEventSlice";
+import Vector from "../../assets/SVG/Vector.svg"
+import Vector1 from "../../assets/SVG/Vector1.svg"
+import Vector2 from "../../assets/SVG/Group.svg"
+import Vector3 from "../../assets/SVG/Group1.svg"
+
+
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -32,9 +38,14 @@ const Dashboard = () => {
               <div className="flex  gap-[30px]  smDesktop:gap-[12px]">
                 <div className="bg-[#19192E] flex py-[37.24px] pl-[25.8px] gap-[23px] rounded-[10px] w-[50%]">
                   <div className="bg-[#FFFFFF] rounded-[13px] h-[60px] w-[55px] flex items-center">
-                    <MdOutlinePermMedia
+                    {/* <MdOutlinePermMedia
                       size={24}
                       className="text-[#1A1941] bg-[#FFFFFF] mx-auto"
+                    /> */}
+                    <img
+                      src={Vector}
+                      alt=""
+                      className="w-[24px] h-[24px] mx-auto"
                     />
                   </div>
                   <div className="text-[white]">
@@ -53,9 +64,14 @@ const Dashboard = () => {
                   style={{ background: "rgba(255, 255, 255, 1)" }}
                 >
                   <div className="bg-[#19192E] rounded-[13px] h-[60px] w-[55px] flex items-center">
-                    <IoImagesOutline
+                    {/* <IoImagesOutline
                       size={24}
                       className=" text-[#FFFFFF] mx-auto"
+                    /> */}
+                    <img
+                      src={Vector1}
+                      alt=""
+                      className="w-[24px] h-[24px] mx-auto"
                     />
                   </div>
                   <div className="smDesk:w-[45%] tabletAir:w-[60px]  smDesktop:w-[38%]">
@@ -79,9 +95,14 @@ const Dashboard = () => {
                   style={{ background: "rgba(255, 255, 255, 1)" }}
                 >
                   <div className="bg-[#19192E] rounded-[13px] h-[60px] w-[55px] flex items-center">
-                    <IoMdCalendar
+                    {/* <IoMdCalendar
                       size={24}
                       className=" text-[#FFFFFF] mx-auto"
+                    /> */}
+                    <img
+                      src={Vector2}
+                      alt=""
+                      className="w-[24px] h-[24px] mx-auto"
                     />
                   </div>
                   <div className="">
@@ -100,9 +121,14 @@ const Dashboard = () => {
                   style={{ background: "rgba(255, 255, 255, 1)" }}
                 >
                   <div className="bg-[#19192E] rounded-[13px] h-[60px] w-[55px] flex items-center">
-                    <HiOutlineUserGroup
+                    {/* <HiOutlineUserGroup
                       size={24}
                       className=" text-[#FFFFFF] mx-auto"
+                    /> */}
+                    <img
+                      src={Vector3}
+                      alt=""
+                      className="w-[24px] h-[24px] mx-auto"
                     />
                   </div>
                   <div className="">

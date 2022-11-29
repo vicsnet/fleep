@@ -20,7 +20,7 @@ import AddUser from "./AddUser";
 import { useDispatch } from 'react-redux'
 import { openEvent } from "../../../Redux/features/createEventSlice";
 import { openAddUser } from "../../../Redux/features/addUserSlice";
-
+import EVeimage from "../../../assets/SVG/Vector5.svg";
 
 
 const url = "https://jsonplaceholder.typicode.com/albums";
@@ -176,7 +176,8 @@ const dispatch = useDispatch()
 
         {/* no upload yet */}
         <section className="mt-[100px] pb-[200px]">
-          <BsImages size={70} className="text-[#EE2339] mx-auto" />
+          {/* <BsImages size={70} className="text-[#EE2339] mx-auto" /> */}
+          <img src={EVeimage} alt="" className="h-[70px] w-[70px] mx-auto"/>
           <p className="text-[24px] font-normal leading-7 mt-5 text-[#6A6A6A] text-center">
             No photos uploaded
           </p>

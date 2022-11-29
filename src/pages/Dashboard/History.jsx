@@ -8,6 +8,9 @@ import { MdOutlinePermMedia } from "react-icons/md";
 import { IoMdImages } from "react-icons/io";
 
 import { IoImagesOutline } from "react-icons/io5";
+import Vector1 from "../../assets/SVG/Group2.svg";
+import Vector2 from "../../assets/SVG/Group3.svg";
+import Vector3 from "../../assets/SVG/Group4.svg";
 
 const History = () => {
   return (
@@ -21,10 +24,11 @@ const History = () => {
         <div className="flex  gap-[30px] smDesktop:flex-wrap smDesktop:justify-center">
           <div className="bg-[#19192E] flex py-[37.24px] pl-[25.8px] gap-[23px] rounded-[10px] w-[30%] smDesktop:w-[40%] smDesk:w-[45%] tabletAir:w-[60%]">
             <div className="bg-[#FFFFFF] rounded-[13px] px-[12px] py-[14px]">
-              <MdOutlinePermMedia
+              {/* <MdOutlinePermMedia
                 size={24}
                 className="text-[#1A1941] bg-[#FFFFFF]"
-              />
+              /> */}
+              <img src={Vector1} alt="" className="w-[24px] h-[24px] mx-auto" />
             </div>
 
             <div className="text-[white]">
@@ -44,7 +48,8 @@ const History = () => {
             style={{ background: "rgba(255, 255, 255, 1)" }}
           >
             <div className="bg-[#19192E] rounded-[13px] px-[12px] py-[14px]">
-              <IoMdImages size={24} className=" text-[#FFFFFF]" />
+              {/* <IoMdImages size={24} className=" text-[#FFFFFF]" /> */}
+              <img src={Vector2} alt="" className="w-[24px] h-[24px] mx-auto" />
             </div>
             <div className="">
               <h3 className="text-[30px] font-bold leading-[36px] tracking-[2.14px] text-[#191D23] ">
@@ -62,7 +67,8 @@ const History = () => {
             style={{ background: "rgba(255, 255, 255, 1)" }}
           >
             <div className="bg-[#19192E] rounded-[13px] px-[12px] py-[14px]">
-              <IoImagesOutline size={24} className=" text-[#FFFFFF]" />
+              {/* <IoImagesOutline size={24} className=" text-[#FFFFFF]" /> */}
+              <img src={Vector3} alt="" className="w-[24px] h-[24px] mx-auto" />
             </div>
             <div className="">
               <h3 className="text-[30px] font-bold leading-[36px] tracking-[2.14px] text-[#191D23] ">

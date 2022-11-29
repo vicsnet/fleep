@@ -8,8 +8,15 @@ import eve from "../../assets/IMG-20190708-WA0002.jpg";
 import CreateEvent from "../../componets/CreateEvent";
 import { Link } from "react-router-dom";
 import Calender from "../../componets/Calender";
+import EVeCal from "../../assets/SVG/Rectangle 2077.svg"
+import { useDispatch } from "react-redux";
+import { openEvent } from "../../Redux/features/createEventSlice";
+
 
 const Event = () => {
+
+  const dispatch = useDispatch()
+
   return (
     <main className="max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full pb-[180px]">
       <SideNav title="Event" display={"flex"} />
@@ -20,11 +27,16 @@ const Event = () => {
 
       {/* No Event */}
 
-      {/* <section className="mt-[100px]">
+      <section className="mt-[100px]">
         <MdOutlineEvent
           size={100}
           className="text-[#EE2339] mx-auto mb-[42px]"
         />
+        {/* <img
+          src={EVeCal}
+          alt=""
+          className="w-[100px] h-[100px] mx-auto mb-[42px]"
+        /> */}
 
         <p className="text-[20px] leading-[30px] font-semibold text-[#8B8B8B] text-center">
           No event listed.
@@ -33,10 +45,10 @@ const Event = () => {
           Create an event to see a list of events
         </p>
 
-        <button className=" mt-[50px] bg-[#1A1941] text-[#FFFFFF] py-[15px] px-[60px] mx-auto flex justify-center rounded-[8px] font-bold">
+        <button onClick={()=>dispatch(openEvent()) } className=" mt-[50px] bg-[#1A1941] text-[#FFFFFF] py-[15px] px-[60px] mx-auto flex justify-center rounded-[8px] font-bold">
           Create Event
         </button>
-      </section> */}
+      </section>
 
       {/* when Event */}
       <section className="px-[40px] flex justify-between mt-8 smDesk:flex-col-reverse ">

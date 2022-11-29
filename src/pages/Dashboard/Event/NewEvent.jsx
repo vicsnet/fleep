@@ -114,12 +114,25 @@ const NewEvent = () => {
                   Event Category
                 </label>
                 <br />
-                <input
+                {/* <input
                   type="text"
                   placeholder="Enter tittle of the event"
                   className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#E5E5E5] h-[50px] pl-[20px] w-[100%]"
                   style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
-                />
+                /> */}
+                <div className="w-[100%] h-[50px] bg-[#E5E5E5] rounded-lg">
+                  <select
+                    name="cars"
+                    id="cars"
+                    className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#E5E5E5]  h-[50px] pl-[20px] w-[98%] "
+                    style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
+                  >
+                    <option value="volvo">Select</option>
+                    <option value="saab">Saab</option>
+                    <option value="mercedes">Mercedes</option>
+                    <option value="audi">Audi</option>
+                  </select>
+                </div>
               </div>
             </div>
             <div className="flex gap-[24px] mt-6">
@@ -131,12 +144,19 @@ const NewEvent = () => {
                   Event Type
                 </label>
                 <br />
-                <input
-                  type="text"
-                  placeholder="Enter tittle of the event"
-                  className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#E5E5E5] h-[50px] pl-[20px] w-[100%]"
-                  style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
-                />
+                <div className="w-[100%] h-[50px] bg-[#E5E5E5] rounded-lg">
+                  <select
+                    name="cars"
+                    id="cars"
+                    className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#E5E5E5]  h-[50px] pl-[20px] w-[98%] "
+                    style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
+                  >
+                    <option value="volvo">Select</option>
+                    <option value="saab">Saab</option>
+                    <option value="mercedes">Mercedes</option>
+                    <option value="audi">Audi</option>
+                  </select>
+                </div>
               </div>
               <div className="w-[50%]">
                 <label
