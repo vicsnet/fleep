@@ -12,6 +12,7 @@ import mainLogo from "../assets/LOGO.png";
 import NewEvent from "../pages/Dashboard/Event/NewEvent";
 import AddUser from "../pages/Dashboard/Event/AddUser";
 import UsersImage from "../pages/Dashboard/User/UsersImage";
+import UploadImage from "./UploadImage";
 
 const Sidebar = ({ children }) => {
   const menuItem = [
@@ -124,6 +125,7 @@ const Sidebar = ({ children }) => {
 
           {/* upgrade plan */}
           <div className="bg-white mt-[160px] pl-[20px] rounded mb-[82px] pb-[17px]">
+            <Link to="/upgrade">
             <img src={mainLogo} alt="" className="w-[116px] pt-[18px] " />
             <span className="pt-[16px] flex items-end justify-between pr-[19px]">
               <span>
@@ -136,6 +138,7 @@ const Sidebar = ({ children }) => {
               </span>
               <FiArrowRightCircle size={20} className="text-[#EE2339]" />
             </span>
+            </Link>
           </div>
 
           <div className=" flex items-center gap-[22px] pl-[10px] pb-[51px]">
@@ -161,6 +164,8 @@ const Sidebar = ({ children }) => {
       <section className="w-[100%] rounded-l-[30px]  pt-[42px] bg-[#FAFAFA] ">
         {children}
       </section>
+      
+      {/* Add / EdIt Event */}
       <NewEvent />
 
       {/* Add user */}
@@ -168,6 +173,8 @@ const Sidebar = ({ children }) => {
       <AddUser />
 
       <UsersImage />
+
+      <UploadImage />
     </main>
   );
 };

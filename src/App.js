@@ -20,6 +20,7 @@ import Users from "./pages/Dashboard/Users";
 import Profile from "./pages/Dashboard/Profile";
 import CreatedEvent from "./pages/Dashboard/Event/CreatedEvent";
 import ModalProvider from './store/ModalProvider'
+import Upgrade from './componets/Upgrade';
 
 
 function App() {
@@ -36,11 +37,30 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="forgotpassword" element={<ForgotPwd />} />
         <Route path="resetpassword" element={<ResetPwd />} />
-        {/* <Route path='/' element={<Dashboard />} /> */}
+        <Route path="upgrade" element={<Upgrade />} />
+        {/* <Route
+          path="/"
+          element={
+            <Sidebar>
+              <Route path="dashboard" element={<Dashboard />} />
+
+              <Route path="event" element={<Event />} />
+
+              <Route path="history" element={<History />} />
+
+              <Route path="notification" element={<Notification />} />
+
+              <Route path="settings" element={<Settings />} />
+              <Route path="users" element={<Users />} />
+              <Route path="profile" element={<Profile />} />
+              <Route path="created-event" element={<CreatedEvent />} />
+            </Sidebar>
+          }
+        /> */}
       </Routes>
-        <React.Fragment>
-          <Sidebar>
-      <Routes>
+      <React.Fragment>
+        <Sidebar>
+          <Routes>
             <Route path="dashboard" element={<Dashboard />} />
 
             <Route path="event" element={<Event />} />
@@ -53,10 +73,9 @@ function App() {
             <Route path="users" element={<Users />} />
             <Route path="profile" element={<Profile />} />
             <Route path="created-event" element={<CreatedEvent />} />
-      </Routes>
-          </Sidebar>
-        </React.Fragment>
-
+          </Routes>
+        </Sidebar>
+      </React.Fragment>
     </div>
   );
 }

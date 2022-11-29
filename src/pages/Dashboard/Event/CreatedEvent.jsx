@@ -67,24 +67,24 @@ const dispatch = useDispatch()
             <img
               src={eve}
               alt=""
-              className="w-[150px] h-[150px] object-cover rounded-lg"
+              className="w-[150px] h-[150px] object-cover rounded-lg smDesk:w-[100px] smDesk:h-[100px]"
             />
             <div className="ml-[35px]">
-              <h3 className="text-[30px] font-semibold leading-9 text-[#1A1941] ">
+              <h3 className="text-[30px] font-semibold leading-9 text-[#1A1941] smDesk:text-[24px] ">
                 Henry’s Wedding
               </h3>
-              <p className="text-[#8A8A8A] text-[16px] font-normal leading-5 mt-2">
+              <p className="text-[#8A8A8A] text-[16px] font-normal leading-5 mt-2 smDesk:text-[14px]">
                 September 30th, 2022
               </p>
               <div className="flex items-center mt-[27.5px]">
                 <HiOutlineCake size={20} className="text-[#7C7B7B] " />
-                <p className="text-[16px] leading-5 font-normal ml-[10px]">
+                <p className="text-[16px] leading-5 font-normal ml-[10px] smDesk:text-[14px]">
                   Wedding Party
                 </p>
               </div>
               <div className="flex items-center mt-[17px]">
                 <FaGlobeAfrica size={20} className="text-[#7C7B7B] " />
-                <p className="text-[16px] leading-5 font-normal ml-[10px]">
+                <p className="text-[16px] leading-5 font-normal ml-[10px] smDesk:text-[14px]">
                   Lekki Lagos, Nigeria
                 </p>
               </div>
@@ -99,18 +99,24 @@ const dispatch = useDispatch()
               onClick={() => dispatch(openEvent())}
             >
               <CiEdit size={20} className="text-[#7C7B7B] cursor-pointer" />
-              <p className="text-[16px] ml-[10px] cursor-pointer">Edit</p>
+              <p className="text-[16px] ml-[10px] cursor-pointer smDesk:text-[14px]">
+                Edit
+              </p>
             </div>
 
             {/*  */}
             <div className="flex">
-              <img src={QR} alt="" className="w-[75px] h-[75px]" />
+              <img
+                src={QR}
+                alt=""
+                className="w-[75px] h-[75px] smDesk:w-[60px] smDesk:h-[60px]"
+              />
               <div className="flex flex-col ml-[20px]">
-                <h2 className="text-[16px] font-bold leading-5 text-[#8B8B8B]">
+                <h2 className="text-[16px] font-bold leading-5 text-[#8B8B8B] smDesk:text-[14px]">
                   Event Code:
                 </h2>
                 <div className="flex items-center">
-                  <p className="text-[16px] leading-5 font-normal text-[#19192E] ">
+                  <p className="text-[16px] leading-5 font-normal text-[#19192E] smDesk:text-[14px] ">
                     {text}
                   </p>
                   <FiCopy
@@ -125,13 +131,14 @@ const dispatch = useDispatch()
             <div className="">
               <button
                 onClick={() => dispatch(openAddUser())}
-                className="text-[16px] flex items-center font-bold leading-5 border-[1px] border-[#1A1941] text-[#1A1941] h-12 px-8 rounded-lg ml-auto mt-[14px]"
+                className="text-[16px] flex items-center font-bold leading-5 border-[1px] border-[#1A1941] text-[#1A1941] h-12 px-8 rounded-lg ml-auto mt-[14px] smDesk:text-[14px]"
               >
                 <AiOutlinePlus size={20} className="mr-2" /> Add Users
               </button>
             </div>
           </div>
         </section>
+
         {/*  */}
 
         <section className="">

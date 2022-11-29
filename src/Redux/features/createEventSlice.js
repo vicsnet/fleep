@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TbRuler2 } from "react-icons/tb";
+
 
 const createEventSlice = createSlice({
   name: "createEventSlice",
