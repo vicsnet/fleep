@@ -7,21 +7,17 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { IoLayers } from "react-icons/io5";
 import { BiUpload } from "react-icons/bi";
 import { BsImages } from "react-icons/bs";
-
 import eve from "../../../assets/IMG-20190708-WA0002.jpg";
 import bum from "../../../assets/HBD to bunmi 20190716_003414.jpg";
-
 import { FiCopy, FiArrowRightCircle } from "react-icons/fi";
-
 import copy from "copy-to-clipboard";
 import QR from "../../../assets/Vector (17).png";
 import AddUser from "./AddUser";
-
 import { useDispatch } from 'react-redux'
 import { openEvent } from "../../../Redux/features/createEventSlice";
 import { openAddUser } from "../../../Redux/features/addUserSlice";
 import EVeimage from "../../../assets/SVG/Vector5.svg";
-
+import { uploadOpenImage } from "../../../Redux/features/uploadDPSlice";
 
 const url = "https://jsonplaceholder.typicode.com/albums";
 
@@ -165,7 +161,10 @@ const dispatch = useDispatch()
                 </select>
               </div>
               <div className="">
-                <button className="text-[16px] flex items-center font-bold leading-5 border-[1px] bg-[#1A1941] text-white h-12 px-8 rounded-lg ml-[20px]">
+                <button
+                  onClick={() => dispatch(uploadOpenImage())}
+                  className="text-[16px] flex items-center font-bold leading-5 border-[1px] bg-[#1A1941] text-white h-12 px-8 rounded-lg ml-[20px]"
+                >
                   <BiUpload size={20} className="mr-2" /> Upload Images
                 </button>
               </div>
@@ -177,12 +176,15 @@ const dispatch = useDispatch()
         {/* no upload yet */}
         <section className="mt-[100px] pb-[200px]">
           {/* <BsImages size={70} className="text-[#EE2339] mx-auto" /> */}
-          <img src={EVeimage} alt="" className="h-[70px] w-[70px] mx-auto"/>
+          <img src={EVeimage} alt="" className="h-[70px] w-[70px] mx-auto" />
           <p className="text-[24px] font-normal leading-7 mt-5 text-[#6A6A6A] text-center">
             No photos uploaded
           </p>
           <div className="mt-[50px]">
-            <button className="text-[16px] flex items-center font-bold leading-5 border-[1px] bg-[#1A1941] text-white h-12 px-8 rounded-lg mx-auto">
+            <button
+              onClick={() => dispatch(uploadOpenImage())}
+              className="text-[16px] flex items-center font-bold leading-5 border-[1px] bg-[#1A1941] text-white h-12 px-8 rounded-lg mx-auto"
+            >
               <BiUpload size={20} className="mr-2" /> Upload Images
             </button>
           </div>

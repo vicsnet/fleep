@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { closeImage } from "../Redux/features/uploadDPSlice"; 
 
 
-const UploadImage = () => {
+const UploadDp = () => {
   const [files, setFiles] = useState([]);
   
     const open = useSelector((state) => state.uploadDp.open);
@@ -93,8 +93,8 @@ const UploadImage = () => {
               <button className="border-[#1A1941] border-[1px] rounded-lg h-[50px] mt-[50px] px-[55px] text-[#1A1941] tracking-[10%] text-[16px] leading-5 font-extrabold">
                 Cancel
               </button>
-              <button className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[40px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5 font-extrabold">
-                Create Event
+              <button className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[58px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5 font-extrabold">
+                Save
               </button>
             </div>
           </form>
@@ -105,4 +105,4 @@ const UploadImage = () => {
   );
 };
 
-export default UploadImage;
+export default UploadDp;

@@ -4,6 +4,7 @@ const uploadDPSlice = createSlice({
   name: "uploadDPSlice",
   initialState: {
     open: true,
+    imageOpen: true,
     error: "",
     loading: false,
   },
@@ -14,9 +15,16 @@ const uploadDPSlice = createSlice({
     closeImage: (state, action) => {
       state.open = !action.payload;
     },
+    uploadOpenImage: (state, action) => {
+      state.imageOpen = action.payload;
+    },
+    uploadCloseImage: (state, action) => {
+      state.imageOpen = !action.payload;
+    },
   },
 });
 
-export const { openImage, closeImage } = uploadDPSlice.actions;
+export const { openImage, closeImage, uploadOpenImage, uploadCloseImage } =
+  uploadDPSlice.actions;
 
 export default uploadDPSlice.reducer;

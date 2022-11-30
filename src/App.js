@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 import ContactUs from "./pages/ContactUs";
 import LandingPage from "./pages/LandingPage";
 import PricingPlan from "./pages/PricingPlan";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import UseCases from "./pages/UseCases";
-import { Routes, Route,BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Registration from "./pages/Auth/Registration";
 import Login from "./pages/Auth/Login";
 import ForgotPwd from "./pages/Auth/ForgotPwd";
@@ -19,9 +19,9 @@ import Settings from "./pages/Dashboard/Settings";
 import Users from "./pages/Dashboard/Users";
 import Profile from "./pages/Dashboard/Profile";
 import CreatedEvent from "./pages/Dashboard/Event/CreatedEvent";
-import ModalProvider from './store/ModalProvider'
-import Upgrade from './componets/Upgrade';
-
+import ModalProvider from "./store/ModalProvider";
+import Upgrade from "./componets/Upgrade";
+import Images from "./componets/Images";
 
 function App() {
   return (
@@ -73,6 +73,7 @@ function App() {
             <Route path="users" element={<Users />} />
             <Route path="profile" element={<Profile />} />
             <Route path="created-event" element={<CreatedEvent />} />
+            <Route path="images" element={<Images />} />
           </Routes>
         </Sidebar>
       </React.Fragment>
