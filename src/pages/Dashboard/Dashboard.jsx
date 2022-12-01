@@ -32,7 +32,7 @@ const Dashboard = () => {
       />
       <div className=" ">
         <section className="px-[42px] mt-[48px]">
-          <div className="flex justify-between smDesk:flex-col">
+          <div className="flex justify-between smDesk:flex-col ">
             <div className=" flex flex-col gap-[30px] w-[70%]  smDesktop:w-[78%] smDesk:w-[100%]">
               {/* total photos */}
               <div className="flex  gap-[30px]  smDesktop:gap-[12px]">
@@ -148,7 +148,7 @@ const Dashboard = () => {
 
               <div
                 onClick={() => dispatch(openEvent())}
-                className="rounded-[14px] pt-[38px] pl-[34px] smDesktop:pl-[20px] smDesk:pl-[34px] relative h-[300px] lgDesktop:h-[300px] smDesktop:h-[230px] smDesk:h-[300px] tabletAir:h-[278.4px] tablet:h-[258px] smDesktop:mt-[45px] smDesk:mt-[0px]"
+                className="w-[100%] rounded-[14px] pt-[38px] pl-[34px] smDesktop:pl-[20px] smDesk:pl-[34px] relative h-[300px] lgDesktop:h-[300px] smDesktop:h-[230px] smDesk:h-[300px] tabletAir:h-[278.4px] tablet:h-[258px] smDesktop:mt-[45px] smDesk:mt-[0px]"
                 style={{ background: "rgba(255, 255, 255, 1)" }}
               >
                 <div className="">

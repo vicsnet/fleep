@@ -73,7 +73,7 @@ function App() {
             <Route path="users" element={<Users />} />
             <Route path="profile" element={<Profile />} />
             <Route path="created-event" element={<CreatedEvent />} />
-            <Route path="images" element={<Images />} />
+            {/* <Route path="images" element={<Images />} /> */}
           </Routes>
         </Sidebar>
       </React.Fragment>

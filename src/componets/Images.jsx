@@ -1,21 +1,21 @@
-import { Upload, Spin } from "antd";
+// import { Upload, Spin } from "antd";
 
-import "antd/dist/reset.css";
+// import "antd/dist/reset.css";
 
-const Images = () => {
-  return (
-    <div>
-      <Upload.Dragger
-        multiple={true}
-        listType="picture"
-        showUploadList={{ showRemoveIcon: true }}
-        accept=".png,.jpeg,.jpg"
-        beforeUpload={(file) => {
-          return false;
-        }}
-        iconRender={() => {
-          return <Spin></Spin>;
-        }}
+// const Images = () => {
+//   return (
+//     <div>
+//       <Upload.Dragger
+//         multiple={true}
+//         listType="picture"
+//         showUploadList={{ showRemoveIcon: true }}
+//         accept=".png,.jpeg,.jpg"
+//         beforeUpload={(file) => {
+//           return false;
+//         }}
+//         iconRender={() => {
+//           return <Spin></Spin>;
+//         }}
         //   itemRender={(existingComp, file) => {
         //       return
 
@@ -23,23 +23,23 @@ const Images = () => {
 
         //       </p>
         //   }}
-        progress={{
-          strokeWidth: 3,
-          strokeColor: {
-            "0%": "#f0f",
-            "100%": "#ff0",
-          },
-          style: {
-            top: 12,
-          },
-        }}
-      >
-        Drag Files here OR
-        <br />
-        <p>Upload</p>
-      </Upload.Dragger>
-    </div>
-  );
-};
+//         progress={{
+//           strokeWidth: 3,
+//           strokeColor: {
+//             "0%": "#f0f",
+//             "100%": "#ff0",
+//           },
+//           style: {
+//             top: 12,
+//           },
+//         }}
+//       >
+//         Drag Files here OR
+//         <br />
+//         <p>Upload</p>
+//       </Upload.Dragger>
+//     </div>
+//   );
+// };
 
-export default Images;
+// export default Images;

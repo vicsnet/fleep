@@ -14,29 +14,45 @@ import AddUser from "../pages/Dashboard/Event/AddUser";
 import UsersImage from "../pages/Dashboard/User/UsersImage";
 import UploadDp from "./UploadDp";
 import UploadImages from "./UploadImages";
+import icon from "../assets/SVG/Union.svg";
+import icon2 from "../assets/SVG/UnionD.svg";
+import icon3 from "../assets/SVG/UnionE.svg";
+import icon4 from "../assets/SVG/UnionE2.svg";
+import icon5 from "../assets/SVG/Icon pack Variants.svg";
+import icon6 from "../assets/SVG/UnionU.svg";
+import icon7 from "../assets/SVG/UnionT.svg";
+import icon8 from "../assets/SVG/UnionTc.svg";
+import icon9 from "../assets/SVG/UnionSc.svg";
+import icon10 from "../assets/SVG/UnionSc2.svg";
+import icon11 from "../assets/SVG/GroupNc1.svg";
+import icon12 from "../assets/SVG/GroupNc.svg";
 
 const Sidebar = ({ children }) => {
   const menuItem = [
     {
       path: "/dashboard",
       name: "Dashboard",
-      icon: <MdSpaceDashboard />,
+      icon: <img src={icon2} alt="" className="w-[13px] h-[13px]" />,
+      image: <img src={icon} alt="" className="w-[13px] h-[13px]" />,
     },
     {
       path: "/event",
       name: "Event",
-      icon: <AiOutlineCalendar />,
+      icon: <img src={icon4} alt="" className="w-[13px] h-[13px]" />,
+      image: <img src={icon3} alt="" className="w-[13px] h-[13px]" />,
     },
     {
       path: "/users",
       name: "Users",
-      icon: <FiUsers />,
+      icon: <img src={icon6} alt="" className="w-[13px] h-[13px]" />,
+      image: <img src={icon5} alt="" className="w-[13px] h-[13px]" />,
     },
 
     {
       path: "/history",
       name: "History",
-      icon: <BiTimeFive />,
+      icon: <img src={icon8} alt="" className="w-[13px] h-[13px]" />,
+      image: <img src={icon7} alt="" className="w-[13px] h-[13px]" />,
     },
   ];
 
@@ -44,12 +60,14 @@ const Sidebar = ({ children }) => {
     {
       path: "/settings",
       name: "Settings",
-      icon: <AiOutlineSetting />,
+      icon: <img src={icon10} alt="" className="w-[13px] h-[13px]" />,
+      image: <img src={icon9} alt="" className="w-[13px] h-[13px]" />,
     },
     {
       path: "/notification",
       name: "Notification",
-      icon: <IoIosNotificationsOutline />,
+      icon: <img src={icon12} alt="" className="w-[13px] h-[13px]" />,
+      image: <img src={icon11} alt="" className="w-[13px] h-[13px]" />,
     },
   ];
 
@@ -57,7 +75,7 @@ const Sidebar = ({ children }) => {
 
   const iconNotActive = "text-[#8B8B8B]";
   const iconActive =
-    "text-[#1A1941] bg-[#FFFFFF] px-[5px] py-[5px] rounded-[8px]";
+    "text-[#1A1941] bg-[#FFFFFF] px-[5px] py-[5px] rounded-[4px]";
   const nameNotActive = "text-[14px] leading-[18px] text-[#8B8B8B] font-[500]";
   const nameActive = "text-[14px] leading-[18px] text-[#FFFFFF] font-bold";
   return (
@@ -84,7 +102,13 @@ const Sidebar = ({ children }) => {
                     isActive ? iconActive : iconNotActive
                   }
                 >
-                  {item.icon}
+                  {({ isActive }) =>
+                    isActive ? (
+                      <div className="">{item.icon}</div>
+                    ) : (
+                      <div className="">{item.image}</div>
+                    )
+                  }
                 </NavLink>
                 <NavLink
                   to={item.path}
@@ -110,7 +134,13 @@ const Sidebar = ({ children }) => {
                     isActive ? iconActive : iconNotActive
                   }
                 >
-                  {item.icon}
+                  {({ isActive }) =>
+                    isActive ? (
+                      <div className="">{item.icon}</div>
+                    ) : (
+                      <div className="">{item.image}</div>
+                    )
+                  }
                 </NavLink>
                 <NavLink
                   to={item.path}

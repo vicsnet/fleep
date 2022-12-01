@@ -1,4 +1,4 @@
-import React, { useState, useEffect,  } from "react";
+import React, { useState, useEffect } from "react";
 import SideNav from "../../../componets/SideNav";
 import { HiOutlineCake } from "react-icons/hi";
 import { FaGlobeAfrica } from "react-icons/fa";
@@ -12,8 +12,10 @@ import bum from "../../../assets/HBD to bunmi 20190716_003414.jpg";
 import { FiCopy, FiArrowRightCircle } from "react-icons/fi";
 import copy from "copy-to-clipboard";
 import QR from "../../../assets/Vector (17).png";
+import union from "../../../assets/SVG/Union (1).svg";
+import union2 from "../../../assets/SVG/Union (2).svg";
 import AddUser from "./AddUser";
-import { useDispatch } from 'react-redux'
+import { useDispatch } from "react-redux";
 import { openEvent } from "../../../Redux/features/createEventSlice";
 import { openAddUser } from "../../../Redux/features/addUserSlice";
 import EVeimage from "../../../assets/SVG/Vector5.svg";
@@ -21,20 +23,17 @@ import { uploadOpenImage } from "../../../Redux/features/uploadDPSlice";
 
 const url = "https://jsonplaceholder.typicode.com/albums";
 
-
 const CreatedEvent = () => {
-const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const [images, setImage] = useState([]);
-  
 
   const [show, setShow] = useState(8);
- 
+
   const getImage = async () => {
     const res = await fetch(url);
     const data = await res.json();
     setImage(data);
-  
   };
 
   useEffect(() => {
@@ -73,13 +72,13 @@ const dispatch = useDispatch()
                 September 30th, 2022
               </p>
               <div className="flex items-center mt-[27.5px]">
-                <HiOutlineCake size={20} className="text-[#7C7B7B] " />
+                <img src={union} alt="" className="w-[20px] h-[20px]" />
                 <p className="text-[16px] leading-5 font-normal ml-[10px] smDesk:text-[14px]">
                   Wedding Party
                 </p>
               </div>
               <div className="flex items-center mt-[17px]">
-                <FaGlobeAfrica size={20} className="text-[#7C7B7B] " />
+                <img src={union2} alt="" className="w-[20px] h-[20px]" />
                 <p className="text-[16px] leading-5 font-normal ml-[10px] smDesk:text-[14px]">
                   Lekki Lagos, Nigeria
                 </p>

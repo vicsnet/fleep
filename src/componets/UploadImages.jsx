@@ -2,14 +2,14 @@ import { useState } from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { FiUpload } from "react-icons/fi";
 import { useDropzone } from "react-dropzone";
-import "react-dropzone-uploader/dist/styles.css";
-import Dropzone from "react-dropzone-uploader";
+// import "react-dropzone-uploader/dist/styles.css";
+// import Dropzone from "react-dropzone-uploader";
 
 import { useSelector, useDispatch } from "react-redux";
 import { uploadCloseImage } from "../Redux/features/uploadDPSlice";
 import { Upload, Spin } from "antd";
 
-import "antd/dist/reset.css";
+// import "antd/dist/reset.css";
 
 
 const UploadImage = () => {
@@ -18,43 +18,6 @@ const UploadImage = () => {
   const open = useSelector((state) => state.uploadDp.imageOpen);
   const dispatch = useDispatch();
 
-  const { getRootProps, getInputProps } = useDropzone({
-    accept: "image/*",
-    onDrop: (acceptedFiles) => {
-      setFiles(
-        acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          })
-        )
-      );
-    },
-  });
-
-  const images = files.map((file) => (
-      <div key={file.path}>
-          <p className="">{file.path}</p>
-      {/* <div className="flex-row">
-        <img
-          src={file.preview}
-          alt="preiew"
-          className="w-[250px] h-[250px] cover flex flex-wrap"
-        />
-      </div> */}
-    </div>
-  ));
-     const getUploadParams = () => {
-    return { url: 'https://httpbin.org/post' }
-  }
-
-  const handleChangeStatus = ({ meta }, status) => {
-    console.log(status, meta)
-  }
-
-  const handleSubmit = (files, allFiles) => {
-    console.log(files.map(f => f.meta))
-    allFiles.forEach(f => f.remove())
-  }
 
   if (open) return null;
   return (
