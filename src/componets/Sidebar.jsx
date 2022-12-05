@@ -6,7 +6,7 @@ import { FiUsers, FiArrowRightCircle, FiLogOut } from "react-icons/fi";
 import { BiTimeFive } from "react-icons/bi";
 import { IoIosNotificationsOutline } from "react-icons/io";
 
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, Outlet } from "react-router-dom";
 import Logo from "../assets/LOGO (2).png";
 import mainLogo from "../assets/LOGO.png";
 import NewEvent from "../pages/Dashboard/Event/NewEvent";
@@ -193,7 +193,8 @@ const Sidebar = ({ children }) => {
         </div>
       </section>
       <section className="w-[100%] rounded-l-[30px]  pt-[42px] bg-[#FAFAFA] ">
-        {children}
+        <Outlet />
+
       </section>
 
       {/* Add / EdIt Event */}

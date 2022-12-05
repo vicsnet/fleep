@@ -38,6 +38,21 @@ function App() {
         <Route path="forgotpassword" element={<ForgotPwd />} />
         <Route path="resetpassword" element={<ResetPwd />} />
         <Route path="upgrade" element={<Upgrade />} />
+
+        <Route path="/" element={<Sidebar />}>
+          <Route path="dashboard" element={<Dashboard />} />
+
+          <Route path="event" element={<Event />} />
+
+          <Route path="history" element={<History />} />
+
+          <Route path="notification" element={<Notification />} />
+
+          <Route path="settings" element={<Settings />} />
+          <Route path="users" element={<Users />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="created-event" element={<CreatedEvent />} />
+        </Route>
         {/* <Route
           path="/"
           element={
@@ -59,23 +74,9 @@ function App() {
         /> */}
       </Routes>
       <React.Fragment>
-        <Sidebar>
-          <Routes>
-            <Route path="dashboard" element={<Dashboard />} />
-
-            <Route path="event" element={<Event />} />
-
-            <Route path="history" element={<History />} />
-
-            <Route path="notification" element={<Notification />} />
-
-            <Route path="settings" element={<Settings />} />
-            <Route path="users" element={<Users />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="created-event" element={<CreatedEvent />} />
-            {/* <Route path="images" element={<Images />} /> */}
-          </Routes>
-        </Sidebar>
+        {/* <Sidebar> */}
+        <Routes>{/* <Route path="images" element={<Images />} /> */}</Routes>
+        {/* </Sidebar> */}
       </React.Fragment>
     </div>
   );
