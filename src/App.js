@@ -51,33 +51,10 @@ function App() {
           <Route path="settings" element={<Settings />} />
           <Route path="users" element={<Users />} />
           <Route path="profile" element={<Profile />} />
-          <Route path="created-event" element={<CreatedEvent />} />
+          <Route path="event/created-event" element={<CreatedEvent />} />
         </Route>
-        {/* <Route
-          path="/"
-          element={
-            <Sidebar>
-              <Route path="dashboard" element={<Dashboard />} />
-
-              <Route path="event" element={<Event />} />
-
-              <Route path="history" element={<History />} />
-
-              <Route path="notification" element={<Notification />} />
-
-              <Route path="settings" element={<Settings />} />
-              <Route path="users" element={<Users />} />
-              <Route path="profile" element={<Profile />} />
-              <Route path="created-event" element={<CreatedEvent />} />
-            </Sidebar>
-          }
-        /> */}
       </Routes>
-      <React.Fragment>
-        {/* <Sidebar> */}
-        <Routes>{/* <Route path="images" element={<Images />} /> */}</Routes>
-        {/* </Sidebar> */}
-      </React.Fragment>
+      
     </div>
   );
 }

@@ -45,7 +45,7 @@ const Testimonial = () => {
             <span
               ref={navigationPrevRef}
               className={
-                " next w-[44px] h-[44px] rounded-[4px] bg-[#1A1941] border-[1px] border-[#EAEAEA] flex items-center justify-center text-[#FFFFFF] cursor-pointer"
+                " button-disabled w-[44px] h-[44px] rounded-[4px] bg-[#1A1941] border-[1px] border-[#EAEAEA] flex items-center justify-center text-[#FFFFFF] cursor-pointer"
               }
             >
               <IoIosArrowBack size={24} />
@@ -54,10 +54,7 @@ const Testimonial = () => {
             <span
               ref={navigationNextRef}
               className={
-                 navigationNextRef.loop = true
-                  ? "w-[44px] h-[44px] rounded-[4px] bg-[#1A1941] border-[1px] border-[#EAEAEA] flex items-center justify-center text-[#FFFFFF] cursor-pointer"
-                  :
-                  "w-[44px] h-[44px] rounded-[4px] bg-[green] border-[1px] border-[#EAEAEA] flex items-center justify-center text-[#FFFFFF] "
+                " swiper-button-disabled w-[44px] h-[44px] rounded-[4px] bg-[#1A1941] border-[1px] border-[#EAEAEA] flex items-center justify-center text-[#FFFFFF] "
               }
             >
               <IoIosArrowForward size={24} className="" />
@@ -86,8 +83,27 @@ const Testimonial = () => {
             navigation={{
               prevEl: navigationPrevRef.current,
               nextEl: navigationNextRef.current,
+              disabledClass: "swiper-button-disabled",
             }}
             modules={[Pagination, Navigation]}
+    //          breakpoints: {{
+    //   480: {
+    //     slidesPerView: 1,
+    //     spaceBetween: 20,
+    //   },
+    //   768: {
+    //     slidesPerView: 3,
+    //     spaceBetween: 20,
+    //   },
+    //   1024: {
+    //     slidesPerView: 4,
+    //     spaceBetween: 15,
+    //   },
+    //   2560: {
+    //     slidesPerView: 4,
+    //     spaceBetween: 15,
+    //   }}
+    // }
             className="mySwiper"
           >
             {datas.map((data) => (

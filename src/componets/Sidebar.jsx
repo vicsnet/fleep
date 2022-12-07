@@ -83,11 +83,13 @@ const Sidebar = ({ children }) => {
       <section className="bg-[#19192E] w-[265px] max-h-screen overflow-y-scroll whitespace-nowrap hide scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
         <div className="w-[90%] mx-auto">
           <div className="border-b-[1px] border-[#464646]">
+            <Link to="/dashboard">
             <img
               src={Logo}
               alt=""
               className="w-[120px] pt-[49px] pb-[34px] pl-[10px]"
             />
+            </Link>
           </div>
           <div className="mt-[45px] pl-[10px] border-b-[1px] border-[#4d3b3b]">
             {menuItem.map((item, index) => (

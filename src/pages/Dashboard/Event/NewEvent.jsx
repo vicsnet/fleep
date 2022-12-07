@@ -102,7 +102,7 @@ const NewEvent = () => {
                 <input
                   type="text"
                   placeholder="Enter tittle of the event"
-                  className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#E5E5E5] h-[50px] pl-[20px] w-[100%]"
+                  className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9] h-[50px] pl-[20px] w-[100%]"
                   style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
                 />
               </div>
@@ -120,11 +120,11 @@ const NewEvent = () => {
                   className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#E5E5E5] h-[50px] pl-[20px] w-[100%]"
                   style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
                 /> */}
-                <div className="w-[100%] h-[50px] bg-[#E5E5E5] rounded-lg">
+                <div className="w-[100%] h-[50px] bg-[#F9F9F9] rounded-lg">
                   <select
                     name="cars"
                     id="cars"
-                    className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#E5E5E5]  h-[50px] pl-[20px] w-[98%] "
+                    className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9]  h-[50px] pl-[20px] w-[98%] "
                     style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
                   >
                     <option value="volvo">Select</option>
@@ -144,11 +144,11 @@ const NewEvent = () => {
                   Event Type
                 </label>
                 <br />
-                <div className="w-[100%] h-[50px] bg-[#E5E5E5] rounded-lg">
+                <div className="w-[100%] h-[50px] bg-[#F9F9F9] rounded-lg">
                   <select
                     name="cars"
                     id="cars"
-                    className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#E5E5E5]  h-[50px] pl-[20px] w-[98%] "
+                    className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9]  h-[50px] pl-[20px] w-[98%] "
                     style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
                   >
                     <option value="volvo">Select</option>
@@ -166,7 +166,7 @@ const NewEvent = () => {
                   Date
                 </label>
                 <br />
-                <div className="flex items-center bg-[#E5E5E5] rounded-lg">
+                <div className="flex items-center bg-[#EDEDED] rounded-lg">
                   <div className="h-[50px]  w-[50px] flex items-center ">
                     <AiOutlineCalendar
                       size={16}
@@ -176,7 +176,7 @@ const NewEvent = () => {
                   <input
                     type="date"
                     placeholder="Enter tittle of the event"
-                    className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#E5E5E5] h-[50px] pl-[20px] w-[100%] pr-5"
+                    className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-r-lg bg-[#F9F9F9] h-[50px] pl-[20px] w-[100%] pr-5"
                     style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
                   />
                 </div>
@@ -194,7 +194,7 @@ const NewEvent = () => {
               <input
                 type="text"
                 placeholder="Enter the venue of the event"
-                className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#E5E5E5] h-[50px] pl-[20px] w-[100%]"
+                className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9] h-[50px] pl-[20px] w-[100%]"
                 style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
               />
             </div>

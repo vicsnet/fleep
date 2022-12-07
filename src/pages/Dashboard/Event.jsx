@@ -74,8 +74,8 @@ const Event = () => {
                 className="outline-none bg-transparent text-[#333333]"
               >
                 <option value="volvo">All</option>
-                <option value="saab">Saab</option>
-                <option value="mercedes">Mercedes</option>
+                <option value="saab">Delete</option>
+                {/* <option value="mercedes">Mercedes</option> */}
                 <option value="audi">Audi</option>
               </select>
             </div>
@@ -83,7 +83,7 @@ const Event = () => {
 
           {/* Event card */}
           <div className="mt-[14px]">
-            <Link to="/created-event">
+            <Link to="/event/created-event">
               <div
                 className="w-[100%] rounded-[16px] mb-[4px]"
                 style={{
@@ -91,11 +91,11 @@ const Event = () => {
                   boxShadow: "0px 0px 10px 0px rgba(132, 132, 132, 0.15)",
                 }}
               >
-                <Link to="/created-event">
+                {/* <Link to="event/created-event"> */}
                   <p className="flex justify-end text-[14px] leading-[16.8px] pt-[10px] pr-[16px] text-[#C6C6C6]">
                     View
                   </p>
-                </Link>
+                {/* </Link> */}
                 <div className="flex justify-between items-center">
                   <div className="flex gap-[18px]">
                     <img

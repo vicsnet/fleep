@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import SideNav from "../../componets/SideNav";
 import { BiSearch } from "react-icons/bi";
 import { BsFilter } from "react-icons/bs";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 import { AiOutlineLeftSquare, AiFillLeftSquare } from "react-icons/ai";
 import { CgChevronLeftR } from "react-icons/cg";
 import bum from "../../assets/HBD to bunmi 20190716_003414.jpg";
 import ReactPaginate from "react-paginate";
 import {useDispatch} from "react-redux"
 import { openUsersEvent } from "../../Redux/features/usersEventSlice";
+import UsersDelete from "./User/UsersDelete";
 // import usersCss from './users.css'
 
 const url = "https://jsonplaceholder.typicode.com/albums";
@@ -27,6 +29,77 @@ const Users = () => {
   }, []);
 
   const [pageNumber, setPageNumber] = useState(0);
+
+  const [openDel, setOpenDel] = useState(false);
+  const [delOption, setDelOption] = useState(false);
+
+  const showDelButton = () => {
+    setOpenDel(true);
+  };
+
+  const showDelOption = () => {
+    setDelOption(true);
+  };
+
+  const cancelDelOption = () => {
+    setDelOption(false);
+    setOpenDel(false);
+  };
+
+  // const DelButton = () => {
+  //   return (
+  //     <button
+  //       onClick={showDelOption}
+  //       className="text-[16px] font-normal text-[#000000] py-[14px] px-[22.5px] absolute mt-[8px] ml-[-20px] bg-[#FFFFFF]"
+  //       style={{ boxShadow: "0px 0px 10px 0px rgba(132, 132, 132, 0.15)" }}
+  //     >
+  //       Delete
+  //     </button>
+  //   );
+  // };
+
+  const DelOption = () => {
+    return (
+      <div
+        className="fixed top-0 w-[100%] h-[100%] max-h-[100%]"
+        style={{ background: "rgba(20, 24, 31, 0.25)" }}
+      >
+        <div
+          className="w-[30%] smDesktop:w-[40%] tabletAir:w-[50%] mx-auto pt-[31px] pb-[43px] rounded-lg mt-[140px] "
+          style={{ background: "rgba(255, 255, 255, 1)" }}
+        >
+          <div className="">
+            <div className="flex justify-end mb-[13px] ">
+              <IoIosCloseCircleOutline
+                size={24}
+                onClick={cancelDelOption}
+                className="text-[#7C7B7B] cursor-pointer mr-[28px] "
+              />
+            </div>
+            <p className="text-[24px] leading-8 font-bold text-[#1A1941] text-center ">
+              Are you sure you want to
+            </p>
+            <p className="text-[24px] leading-8 font-bold text-[#1A1941] text-center mt-2 ">
+              delete this user?
+            </p>
+          </div>
+          <div className="w-[80%] mx-auto flex justify-between">
+            <button className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[45px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5 font-extrabold">
+              Delete
+            </button>
+            <button
+              onClick={cancelDelOption}
+              className="border-[#1A1941] border-[1px] rounded-lg h-[50px] mt-[50px] px-[45px] text-[#1A1941] tracking-[10%] text-[16px] leading-5 font-extrabold"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+
 
   const usersPerPage = 10;
   const pagesVisited = pageNumber * usersPerPage;
@@ -62,9 +135,17 @@ const Users = () => {
           <td className=" text-[14px] leading-[16.8px] font-[300] mt-[11px] py-auto">
             1961
           </td>
-          <td className=" text-[24px] leading-[16.8px] font-[700] mt-[11px] py-auto text-[#7C7B7B]">
-            ...
-          </td>
+          {!openDel ? (
+            <td
+              onClick={showDelButton}
+              className=" text-[24px] leading-[16.8px] font-[700] mt-[11px] py-auto text-[#7C7B7B] cursor-pointer"
+            >
+              ...
+            </td>
+          ) : (
+              <UsersDelete />
+          )}
+         
         </tr>
       );
     });
@@ -123,33 +204,6 @@ const Users = () => {
           </thead>
           <tbody>
             {displayUsers}
-            {/* {user.map((user) => (
-              <tr key={user.id} className="border-b-[1px] border-[#EDEDED] text-[#6A6A6A]">
-                <td className="w-[20%] text-[14px leading-[16.8px] font-[300] mt-[11px] py-auto">
-                  1
-                </td>
-                <td className="flex gap-[14px] mt-[11px] items-center ">
-                  <img
-                    src={bum}
-                    alt=""
-                    className="w-[30px] h-[30px] object-cover mb-[14px]"
-                  />
-                  <p className="text-[14px leading-[16.8px] font-[300]">
-                    Tejiri Tabor
-                  </p>
-                </td>
-
-                <td className="w-[20%] text-[14px leading-[16.8px] font-[300] mt-[11px] py-auto">
-                  56
-                </td>
-                <td className="w-[20%] text-[14px leading-[16.8px] font-[300] mt-[11px] py-auto">
-                  1961
-                </td>
-                <td className="w-[20%] text-[14px leading-[16.8px] font-[300] mt-[11px] py-auto">
-                  ...
-                </td>
-              </tr>
-            ))} */}
           </tbody>
         </table>
         <ReactPaginate
@@ -170,6 +224,7 @@ const Users = () => {
           renderOnZeroPageCount={null}
         />
       </section>
+      {delOption && <DelOption />}
     </main>
   );
 };
