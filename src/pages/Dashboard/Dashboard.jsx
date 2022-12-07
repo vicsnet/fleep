@@ -13,12 +13,10 @@ import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import NewEvent from "./Event/NewEvent";
 import { useDispatch } from "react-redux";
 import { openEvent } from "../../Redux/features/createEventSlice";
-import Vector from "../../assets/SVG/Vector.svg"
-import Vector1 from "../../assets/SVG/Vector1.svg"
-import Vector2 from "../../assets/SVG/Group.svg"
-import Vector3 from "../../assets/SVG/Group1.svg"
-
-
+import Vector from "../../assets/SVG/Vector.svg";
+import Vector1 from "../../assets/SVG/Vector1.svg";
+import Vector2 from "../../assets/SVG/Group.svg";
+import Vector3 from "../../assets/SVG/Group1.svg";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -161,7 +159,7 @@ const Dashboard = () => {
                   <img
                     src={vector}
                     alt=""
-                    className="w-[264px] relative mt-[26.3px] bigDestop:mt-[20px] lgDesktop:mt-[42px] smDesk:mt-[0px]"
+                    className="w-[264px] relative mt-[26.3px] bigDesktop:mt-[20px] lgDesktop:mt-[42px] smDesk:mt-[0px]"
                   />
                   <BsFillArrowRightCircleFill
                     size={24}
