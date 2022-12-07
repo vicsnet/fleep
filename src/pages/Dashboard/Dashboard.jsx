@@ -159,7 +159,7 @@ const Dashboard = () => {
                   <img
                     src={vector}
                     alt=""
-                    className="w-[264px] relative mt-[26.3px] bigDesktop:mt-[20px] lgDesktop:mt-[42px] smDesk:mt-[0px]"
+                    className="w-[264px] relative mt-[26.3px] bigDesktop:mt-[0px] lgDesktop:mt-[42px] smDesk:mt-[0px]"
                   />
                   <BsFillArrowRightCircleFill
                     size={24}
