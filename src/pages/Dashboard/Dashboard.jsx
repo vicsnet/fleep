@@ -146,7 +146,7 @@ const Dashboard = () => {
 
               <div
                 onClick={() => dispatch(openEvent())}
-                className="w-[100%] rounded-[14px] bigDesktop:pt-[10px] pt-[38px] pl-[34px] smDesktop:pl-[20px] smDesk:pl-[34px] relative h-[300px] lgDesktop:h-[300px] smDesktop:h-[230px] smDesk:h-[300px] tabletAir:h-[278.4px] tablet:h-[258px] smDesktop:mt-[45px] smDesk:mt-[0px]"
+                className="w-[100%] rounded-[14px] bigDesktop:pt-[10px] semiBigDesktop:pt-[38px] pl-[34px] smDesktop:pl-[20px] smDesk:pl-[34px] relative h-[300px] lgDesktop:h-[300px] smDesktop:h-[230px] smDesk:h-[300px] tabletAir:h-[278.4px] tablet:h-[258px] smDesktop:mt-[45px] smDesk:mt-[0px]"
                 style={{ background: "rgba(255, 255, 255, 1)" }}
               >
                 <div className="">
