@@ -58,10 +58,10 @@ body {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
-.mySwiper {
+.swiper {
   margin-left: auto;
   margin-right: auto;
-  position: initial;
+  position: initial !important;
   overflow: hidden;
   list-style: none;
   padding: 0;
@@ -77,7 +77,7 @@ body {
   margin-top: 55px;
 }
 .mySwiper .swiper-pagination-bullet {
-  width: 30px;
+  width: 24px;
   height: 4px;
   border-radius: 0;
 }
@@ -94,27 +94,34 @@ body {
 }
 
 .mySwiper .swiper-button-next {
-  top: 8.4rem;
+  top: 5rem;
   width: 44px;
   height: 44px;
   background-color: #1a1941;
-  right: -10px;
-  border-radius: 8px;
+  right: -2px;
+  border-radius: 4px;
 }
 .mySwiper .swiper-button-next::after {
   font-size: 20px;
   color: white;
 }
 .mySwiper .swiper-button-prev {
-  top: 8.4rem;
-  right: 64px;
+  top: 5rem;
+  right: 68px;
   width: 44px;
   height: 44px;
   background-color: #1a1941;
-  border-radius: 8px;
+  border-radius: 4px;
   left: auto;
 }
 .mySwiper .swiper-button-prev::after {
   font-size: 20px;
   color: white;
+}
+
+
+
+.swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled {
+background: rgba(217, 217, 217, 1);
+opacity: initial !important;
 }
