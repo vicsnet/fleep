@@ -58,38 +58,63 @@ body {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
-.slick-slider {
-  margin-top: 70px;
+.mySwiper {
+  margin-left: auto;
+  margin-right: auto;
+  position: initial;
+  overflow: hidden;
+  list-style: none;
+  padding: 0;
+  z-index: 1;
 }
 
-
-.slick-slide {
- /* margin-right: 10px; */
-  /* margin: 0 20px; */
-  border: 1px #eaeaea;
-  border-radius: 8px;
-  box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.06);
-  margin-bottom: 40px;
-}
-.slick-arrow.slick-disabled {
-  display: none !important;
-}
 .mySwiper .swiper-pagination {
-    position: relative;
-    text-align: center;
-    transition: .3s opacity;
-    transform: translate3d(0,0,0);
-    z-index: 10;
-    margin-top: 55px;
+  position: relative;
+  text-align: center;
+  transition: 0.3s opacity;
+  transform: translate3d(0, 0, 0);
+  z-index: 10;
+  margin-top: 55px;
 }
 .mySwiper .swiper-pagination-bullet {
-    width: 30px;
-    height: 4px;
-    border-radius: 0;
-    
-    
+  width: 30px;
+  height: 4px;
+  border-radius: 0;
 }
 .mySwiper .swiper-pagination-bullet-active {
-    background: #1A1941;
+  background: #1a1941;
 }
 
+.mySwiper .swiper-initialized {
+  position: initial;
+}
+
+.mySwiper .swiper-wrapper {
+  position: initial;
+}
+
+.mySwiper .swiper-button-next {
+  top: 8.4rem;
+  width: 44px;
+  height: 44px;
+  background-color: #1a1941;
+  right: -10px;
+  border-radius: 8px;
+}
+.mySwiper .swiper-button-next::after {
+  font-size: 20px;
+  color: white;
+}
+.mySwiper .swiper-button-prev {
+  top: 8.4rem;
+  right: 64px;
+  width: 44px;
+  height: 44px;
+  background-color: #1a1941;
+  border-radius: 8px;
+  left: auto;
+}
+.mySwiper .swiper-button-prev::after {
+  font-size: 20px;
+  color: white;
+}

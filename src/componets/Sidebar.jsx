@@ -26,6 +26,7 @@ import icon9 from "../assets/SVG/UnionSc.svg";
 import icon10 from "../assets/SVG/UnionSc2.svg";
 import icon11 from "../assets/SVG/GroupNc1.svg";
 import icon12 from "../assets/SVG/GroupNc.svg";
+import UsersDeleteOption from "../pages/Dashboard/User/UsersDeleteOption";
 
 const Sidebar = ({ children }) => {
   const menuItem = [
@@ -84,11 +85,11 @@ const Sidebar = ({ children }) => {
         <div className="w-[90%] mx-auto">
           <div className="border-b-[1px] border-[#464646]">
             <Link to="/dashboard">
-            <img
-              src={Logo}
-              alt=""
-              className="w-[120px] pt-[49px] pb-[34px] pl-[10px]"
-            />
+              <img
+                src={Logo}
+                alt=""
+                className="w-[120px] pt-[49px] pb-[34px] pl-[10px]"
+              />
             </Link>
           </div>
           <div className="mt-[45px] pl-[10px] border-b-[1px] border-[#4d3b3b]">
@@ -196,7 +197,6 @@ const Sidebar = ({ children }) => {
       </section>
       <section className="w-[100%] rounded-l-[30px]  pt-[42px] bg-[#FAFAFA] ">
         <Outlet />
-
       </section>
 
       {/* Add / EdIt Event */}
@@ -210,6 +210,7 @@ const Sidebar = ({ children }) => {
 
       <UploadDp />
       <UploadImages />
+      {/* <UsersDeleteOption /> */}
     </main>
   );
 };

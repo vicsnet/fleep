@@ -14,6 +14,7 @@ import { Upload, Spin } from "antd";
 
 const UploadImage = () => {
   const [files, setFiles] = useState([]);
+  const [showImage, setShowImage] = useState([])
 
   const open = useSelector((state) => state.uploadDp.imageOpen);
   const dispatch = useDispatch();
@@ -44,17 +45,16 @@ const UploadImage = () => {
           <form className="mt-[40px]">
             <div className=" mt-[32px]">
               <div className="w-[80%] mx-auto">
-                <div
-                  className="mt-[15px]  flex justify-center items-center">
-                  
-
+                <div className="mt-[15px]  flex justify-center items-center">
                   <div className="cursor-pointer w-[100%]">
-                    <Upload.Dragger 
+                    <Upload.Dragger
                       multiple={true}
                       listType="picture"
                       showUploadList={{ showRemoveIcon: true }}
                       accept=".png,.jpeg,.jpg"
                       beforeUpload={(file) => {
+                        console.log(file.File);
+
                         return false;
                       }}
                       iconRender={() => {
@@ -71,7 +71,7 @@ const UploadImage = () => {
                         },
                       }}
                     >
-                      <FiUpload size={20} className="text-[#EE2339] mx-auto" />
+                      <FiUpload size={20} className="text-[#d3afb4] mx-auto" />
                       <p className="text-[16px] font-normal leading-5 text-center text-[#8B8B8B] mt-[12px]">
                         Drag and drop files or click upload
                       </p>
@@ -80,13 +80,11 @@ const UploadImage = () => {
 
                   {/* <>{images}</> */}
                 </div>
-
-                
               </div>
             </div>
 
             {/* button */}
-            <div className="w-[60%] mx-auto flex justify-between">
+            <div className="w-[60%] lgDesktop:w-[80%] smDesktop:w-[80%] mx-auto flex justify-between">
               <button className="border-[#1A1941] border-[1px] rounded-lg h-[50px] mt-[50px] px-[55px] text-[#1A1941] tracking-[10%] text-[16px] leading-5 font-extrabold">
                 Cancel
               </button>

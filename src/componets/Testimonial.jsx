@@ -10,6 +10,7 @@ import Slider from "react-slick";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/swiper.min.css";
+import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
@@ -18,9 +19,8 @@ import { Pagination, Navigation } from "swiper";
 const url = "https://jsonplaceholder.typicode.com/users";
 
 const Testimonial = () => {
-
-   const navigationPrevRef = useRef(null);
-   const navigationNextRef = useRef(null);
+  const navigationPrevRef = useRef(null);
+  const navigationNextRef = useRef(null);
 
   const [datas, setDatas] = useState([]);
 
@@ -36,12 +36,12 @@ const Testimonial = () => {
 
   return (
     <section>
-      <main className="w-[90%] mx-auto ">
+      <main className="w-[90%] mx-auto relative">
         <div className="flex justify-between items-end mt-[90px]">
           <h2 className="text-[42px] leading-[52px] font-black text-[#1A1941] w-[40%]  smDesktop:w-[50%] tabletAir:w-[60%]">
             What our loving users are saying about us
           </h2>
-          <div className="flex gap-[24px]">
+          {/* <div className="flex gap-[24px]">
             <span
               ref={navigationPrevRef}
               className={
@@ -53,22 +53,18 @@ const Testimonial = () => {
 
             <span
               ref={navigationNextRef}
-              className={
+              className={ 
                 " swiper-button-disabled w-[44px] h-[44px] rounded-[4px] bg-[#1A1941] border-[1px] border-[#EAEAEA] flex items-center justify-center text-[#FFFFFF] "
               }
             >
               <IoIosArrowForward size={24} className="" />
             </span>
-          </div>
+          </div> */}
         </div>
 
         {/*  */}
 
-        <div
-          id="slider"
-          // overflow-x-scroll scroll-smooth scrollbar-hide
-          className="mt-[70px]"
-        >
+        <div className="mt-[70px]">
           <Swiper
             slidesPerView={2}
             spaceBetween={30}
@@ -78,33 +74,14 @@ const Testimonial = () => {
             pagination={{
               clickable: true,
             }}
-            // navigation={true}
-
-            navigation={{
-              prevEl: navigationPrevRef.current,
-              nextEl: navigationNextRef.current,
-              disabledClass: "swiper-button-disabled",
-            }}
+            navigation={true}
+            // navigation={{
+            //   prevEl: navigationPrevRef.current,
+            //   nextEl: navigationNextRef.current,
+            //   disabledClass: "swiper-button-disabled",
+            // }}
             modules={[Pagination, Navigation]}
-    //          breakpoints: {{
-    //   480: {
-    //     slidesPerView: 1,
-    //     spaceBetween: 20,
-    //   },
-    //   768: {
-    //     slidesPerView: 3,
-    //     spaceBetween: 20,
-    //   },
-    //   1024: {
-    //     slidesPerView: 4,
-    //     spaceBetween: 15,
-    //   },
-    //   2560: {
-    //     slidesPerView: 4,
-    //     spaceBetween: 15,
-    //   }}
-    // }
-            className="mySwiper"
+            className="mySwiper initial"
           >
             {datas.map((data) => (
               <SwiperSlide
@@ -127,7 +104,7 @@ const Testimonial = () => {
                     </p>
                   </span>
                 </div>
-                <p className="text-[16px] leading-[30px] tracking-[-1%] text-[#333333] font-normal mt-[28px] w-[474px]  ">
+                <p className="text-[16px] leading-[30px] tracking-[-1%] text-[#333333] font-normal mt-[28px]  ">
                   “I have always wondered what happens to the pictures I do not
                   collect or I never got to see in weddings I have attended, I
                   think this is a great approach and I really love the
