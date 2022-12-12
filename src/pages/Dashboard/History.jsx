@@ -102,7 +102,7 @@ const History = () => {
 
             {/* filter */}
             <div className="flex items-center gap-[17px]">
-              <BsFilter size={16} className="text-[#201E1E] pl-[10px]" />
+              <BsFilter size={16} className="text-[#201E1E]" />
               <select
                 name="cars"
                 id="cars"

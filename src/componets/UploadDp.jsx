@@ -89,7 +89,7 @@ const UploadDp = () => {
             </div>
 
             {/* button */}
-            <div className="w-[80%] mx-auto flex justify-between">
+            <div className="w-[80%] mx-auto flex gap-[30px]">
               <button className="border-[#1A1941] border-[1px] rounded-lg h-[50px] mt-[50px] px-[55px] text-[#1A1941] tracking-[10%] text-[16px] leading-5 font-extrabold">
                 Cancel
               </button>
