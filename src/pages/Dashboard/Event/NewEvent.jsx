@@ -17,7 +17,14 @@ const NewEvent = () => {
   const dispatch = useDispatch();
 
   const [files, setFiles] = useState([]);
+  const [showMonetize, setShowMonetize] = useState("");
   const [waterMark, setWaterMark] = useState([]);
+
+  const handleMonetizeChange = (e) => {
+    const getValue = e.target.value;
+    // console.log(getValue)
+    setShowMonetize(getValue);
+  };
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
@@ -82,7 +89,7 @@ const NewEvent = () => {
             <IoIosCloseCircleOutline
               onClick={() => dispatch(closeEvent())}
               size={24}
-              className="text-[#7C7B7B]"
+              className="text-[#7C7B7B] cursor-pointer"
             />
           </div>
           <p className="text-[#959595] text-[14px] font-normal mt-4 ">
@@ -114,17 +121,11 @@ const NewEvent = () => {
                   Event Category
                 </label>
                 <br />
-                {/* <input
-                  type="text"
-                  placeholder="Enter tittle of the event"
-                  className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#E5E5E5] h-[50px] pl-[20px] w-[100%]"
-                  style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
-                /> */}
                 <div className="w-[100%] h-[50px] bg-[#F9F9F9] rounded-lg">
                   <select
                     name="cars"
                     id="cars"
-                    className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9]  h-[50px] pl-[20px] w-[98%] "
+                    className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9]  h-[50px] pl-[20px] w-[100%] "
                     style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
                   >
                     <option value="volvo">Select</option>
@@ -148,7 +149,7 @@ const NewEvent = () => {
                   <select
                     name="cars"
                     id="cars"
-                    className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9]  h-[50px] pl-[20px] w-[98%] "
+                    className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9]  h-[50px] pl-[20px] w-[100%] "
                     style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
                   >
                     <option value="volvo">Select</option>
@@ -182,21 +183,62 @@ const NewEvent = () => {
                 </div>
               </div>
             </div>
-
-            <div className="w-[50%] mt-6">
-              <label
-                htmlFor=""
-                className="text-[14px] leading-5 text-[#333333] font-normal"
-              >
-                Venue
-              </label>
-              <br />
-              <input
-                type="text"
-                placeholder="Enter the venue of the event"
-                className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9] h-[50px] pl-[20px] w-[100%]"
-                style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
-              />
+            <div className="w-[100%] flex gap-[26px] mt-6 flex-wrap">
+              <div className="w-[48%] smDesktop:w-[48%] smDesk:w-[47.7%] tabletAir:w-[47%] tablet:w-[47.4%]">
+                <label
+                  htmlFor=""
+                  className="text-[14px] leading-5 text-[#333333] font-normal"
+                >
+                  Monetize Photos
+                </label>
+                <br />
+                <div className="w-[100%] h-[50px] bg-[#F9F9F9] rounded-lg">
+                  <select
+                    name="cars"
+                    id="cars"
+                    className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9]  h-[50px] pl-[20px] w-[100%]"
+                    style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
+                    onChange={(e) => handleMonetizeChange(e)}
+                  >
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                  </select>
+                </div>
+              </div>
+              {showMonetize === "yes" && (
+                <div className="w-[48%] smDesktop:w-[47.7%] tablet:w-[47%]">
+                  <label
+                    htmlFor=""
+                    className="text-[14px] leading-5 text-[#333333] font-normal"
+                  >
+                    Price
+                  </label>
+                  <br />
+                  <div className="flex items-center bg-[#EDEDED] rounded-lg">
+                    <input
+                      type="text"
+                      placeholder="Enter Monetize Price"
+                      className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9] h-[50px] pl-[20px] w-[100%] pr-5"
+                      style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
+                    />
+                  </div>
+                </div>
+              )}
+              <div className="w-[48%] smDesktop:w-[47.7%] tablet:w-[47%]">
+                <label
+                  htmlFor=""
+                  className="text-[14px] leading-5 text-[#333333] font-normal"
+                >
+                  Venue
+                </label>
+                <br />
+                <input
+                  type="text"
+                  placeholder="Enter the venue of the event"
+                  className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9] h-[50px] pl-[20px] w-[100%]"
+                  style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
+                />
+              </div>
             </div>
 
             {/*  input file*/}

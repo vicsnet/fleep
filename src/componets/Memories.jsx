@@ -7,11 +7,13 @@ import GroupImage from "../assets/Group 17382.png";
 import Event from "../assets/Group 17384.png";
 import Face from "../assets/Group 17384 (1).png";
 import Algorithm from "../assets/Group 17384 (2).png";
-import vector from "../assets/Vector 1.png";
+import vector from "../assets/Frame 427319283.png";
 import GroupMemories from "../assets/Group 17390.png";
 import AmazingMemories from "../assets/Rectangle 25.png";
 import FaceMe from "../assets/noun-face-recognition-1903278 1.png";
 import Algo from "../assets/noun-algorithm-1628816 1.png";
+import money from "../assets/monetize.png";
+import moneySquare from "../assets/monetizeSquare.png";
 
 const Memories = () => {
   return (
@@ -110,11 +112,11 @@ const Memories = () => {
             <img
               src={vector}
               alt=""
-              className="absolute mx-auto w-[68%] ml-[15%] mt-[30px]"
+              className="absolute mx-auto w-[75%] ml-[11.5%] mt-[-8px] smDesktop:hidden"
               // w-[834] ml-[178px]  smDesktop:ml-[100px] smDesktop:w-[718px]  smDesk:w-[600px] tabletAir:w-[550px] tablet:w-[480px]
             />
-            <div className="flex gap-[81px] relative">
-              <div className="w-[33%]">
+            <div className="flex gap-[81px] relative smDesktop:flex-wrap">
+              <div className="w-[25%] smDesktop:w-[40%]">
                 <img src={Event} alt="event" className="w-[110px] mx-auto" />
 
                 <div className="mt-[58px]">
@@ -128,7 +130,7 @@ const Memories = () => {
                   </p>
                 </div>
               </div>
-              <div className="w-[33%]">
+              <div className="w-[25%] smDesktop:w-[40%]">
                 <div className="relative">
                   <img
                     src={Face}
@@ -138,7 +140,7 @@ const Memories = () => {
                   <img
                     src={FaceMe}
                     alt=""
-                    className="absolute mx-auto w-[34px] top-5 left-[45%] smDesktop:left-[44%] tabletAir:left-[42%]"
+                    className="absolute mx-auto w-[34px] top-5 left-[43%] smDesktop:left-[46%] smDesk:left-[45%] tabletAir:left-[44%]"
                   />
                 </div>
 
@@ -152,7 +154,7 @@ const Memories = () => {
                   </p>
                 </div>
               </div>
-              <div className="w-[33%]">
+              <div className="w-[25%] smDesktop:w-[40%]">
                 <div className="relative">
                   <img
                     src={Algorithm}
@@ -162,7 +164,7 @@ const Memories = () => {
                   <img
                     src={Algo}
                     alt=""
-                    className="absolute mx-auto w-[30px] top-6 left-[46%] smDesktop:left-[44%] tabletAir:left-[42%]"
+                    className="absolute mx-auto w-[30px] top-6 left-[43%] smDesktop:left-[46%] smDesk:left-[45.2%] tabletAir:left-[45%]"
                   />
                 </div>
 
@@ -175,6 +177,32 @@ const Memories = () => {
                     appear in an event is done solely by our smart technology,
                     all you need to do is provide a selfie and download all your
                     pictures afterwards.
+                  </p>
+                </div>
+              </div>
+
+              <div className="w-[25%] smDesktop:w-[40%]">
+                <div className="relative">
+                  <img
+                    src={moneySquare}
+                    alt="monetize"
+                    className="w-[110px] mx-auto relative"
+                  />
+                  <img
+                    src={money}
+                    alt="monetize"
+                    className="absolute mx-auto w-[26px] top-7 left-[44.3%] smDesktop:left-[46.2%] smDesk:left-[45.8%] tabletAir:left-[45.6%]"
+                  />
+                </div>
+
+                <div className="mt-[58px]">
+                  <h3 className="text-[24px] smDesk:text-[20px] tabletAir:text-[18px] tablet:text-[18px] leading-[28.8px] font-semibold text-center tracking-[-1%] text-[#1A093F]">
+                    Monetize Photos
+                  </h3>
+                  <p className="text-center text-[#6F6681]  mt-[13px] smDesk:text-[14px] text-[16px] leading-[30px] font-medium tracking-[-1%] ">
+                    Easily monetize your photos, assign a desired amount to any
+                    and or all of your photos and start selling right away.
+                    Hassle free!.
                   </p>
                 </div>
               </div>
