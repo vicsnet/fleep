@@ -3,6 +3,7 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { FiUpload } from "react-icons/fi";
 import { useDropzone } from "react-dropzone";
+import info from '../../../assets/Union (1).png'
 import EventQR from "./EventQR";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -187,11 +188,12 @@ const NewEvent = () => {
               <div className="w-[48%] smDesktop:w-[48%] smDesk:w-[47.7%] tabletAir:w-[47%] tablet:w-[47.4%]">
                 <label
                   htmlFor=""
-                  className="text-[14px] leading-5 text-[#333333] font-normal"
+                  className="text-[14px] leading-5 text-[#333333] font-normal flex justify-between items-center mb-[4px]"
                 >
                   Monetize Photos
+                <img src={info} alt="info" className="w-[14px] h-[14px]" />
                 </label>
-                <br />
+                {/* <br /> */}
                 <div className="w-[100%] h-[50px] bg-[#F9F9F9] rounded-lg">
                   <select
                     name="cars"
