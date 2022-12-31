@@ -6,6 +6,9 @@ import {
   IoIosNotificationsOutline,
   IoIosCloseCircleOutline,
 } from "react-icons/io";
+import SavedAcc from "../../componets/wallet/SavedAcc";
+import acc1 from "../../assets/Building_04.png";
+import acc from "../../assets/Building_05.png";
 
 const Settings = () => {
   const [show, setShow] = useState(false);
@@ -13,6 +16,7 @@ const Settings = () => {
   const openPwdDisplay = () => {
     setShow(true);
   };
+  const [openBankAcct, setOpenBankAcct] = useState(false);
   const closePwdDisplay = () => {
     setShow(false);
   };
@@ -30,9 +34,29 @@ const Settings = () => {
             onClick={openPwdDisplay}
           >
             <button className="flex items-center gap-2 pt-10 ">
-              <FiLock size={20} className="text-[#1A1941]" />{" "}
+              <FiLock
+                size={20}
+                className={`text-[#8A8A8A] ${show && "text-[#1A1941]"}`}
+              />{" "}
               <p className="text-[16px] font-medium leading-[19.2px] text-[#1A1941] ">
                 Change Password
+              </p>
+            </button>
+          </div>
+
+          <div
+            className="pb-6 border-b-[1px] cursor-pointer "
+            onClick={() => setOpenBankAcct(!openBankAcct)}
+          >
+            <button className="flex items-center gap-2 pt-10 ">
+              {!openBankAcct ? (
+                <img src={acc} alt="" className="w-[20px] h-[20px]" />
+              ) : (
+                <img src={acc1} alt="" className="w-[20px] h-[20px]" />
+              )}
+              {/* <FiLock size={20} className="text-[#1A1941]" /> */}
+              <p className="text-[16px] font-medium leading-[19.2px] text-[#1A1941] ">
+                Saved Bank Account
               </p>
             </button>
           </div>
@@ -67,6 +91,67 @@ const Settings = () => {
             </label>
           </div>
         </div>
+
+        <section
+          className={
+            !openBankAcct
+              ? "hidden"
+              : " block  w-[50%] rounded-lg pt-[20px] pb-[58px] tabletAir:w-[70%] tabletAir:ml-[20%]"
+          }
+          style={{ background: "rgba(255, 255, 255, 1)" }}
+        >
+         
+
+          {/* <form className="w-[80%] mx-auto">
+            <label
+              htmlFor=""
+              className="text-[16px] leading-[19.2px] font-normal text-[#333333] mb-[4px]"
+            >
+              Enter Old Password
+            </label>
+            <br />
+            <input
+              type="password"
+              placeholder="Enter old password"
+              className="w-[100%] h-[40px] rounded-[8px] pl-[20px] outline-none border-[1px] border-[#E5E5E5] bg-[#F9F9F9] text-[14px] leading-[16.8px] font-light text-[#999999]"
+            />{" "}
+            <br />
+            <br />
+            <label
+              htmlFor=""
+              className="text-[16px] leading-[19.2px] font-normal text-[#333333] mb-[4px]"
+            >
+              Enter New Password
+            </label>
+            <br />
+            <input
+              type="password"
+              placeholder="Enter New Password"
+              className="w-[100%] h-[40px] rounded-[8px] pl-[20px] outline-none border-[1px] border-[#E5E5E5] bg-[#F9F9F9] text-[14px] leading-[16.8px] font-light text-[#999999]"
+            />
+            <br />
+            <br />
+            <label
+              htmlFor=""
+              className="text-[16px] leading-[19.2px] font-normal text-[#333333] mb-[4px]"
+            >
+              Verify New Password
+            </label>
+            <br />
+            <input
+              type="password"
+              placeholder="Re-type new password"
+              className="w-[100%] h-[40px] rounded-[8px] pl-[20px] outline-none border-[1px] border-[#E5E5E5] bg-[#F9F9F9] text-[14px] leading-[16.8px] font-light text-[#999999]"
+            />
+            <br />
+            <br />
+            <br />
+            <button className="text-[16px] leading-[19.2px] tracking-[10%] font-bold w-[40%] text-center py-[17px] bg-[#1A1941] text-[#FFFFFF] rounded-[8px]">
+              Save Changes
+            </button>
+          </form> */}
+          <SavedAcc />
+        </section>
 
         <section
           className={

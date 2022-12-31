@@ -22,6 +22,7 @@ import CreatedEvent from "./pages/Dashboard/Event/CreatedEvent";
 import ModalProvider from "./store/ModalProvider";
 import Upgrade from "./componets/Upgrade";
 import Images from "./componets/Images";
+import WalletPage from "./pages/wallet/WalletPage";
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
           <Route path="users" element={<Users />} />
           <Route path="profile" element={<Profile />} />
           <Route path="event/created-event" element={<CreatedEvent />} />
+          <Route path="wallet" element={<WalletPage />} />
         </Route>
       </Routes>
       

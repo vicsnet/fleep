@@ -125,3 +125,10 @@ body {
 background: rgba(217, 217, 217, 1);
 opacity: initial !important;
 }
+
+.with:hover{
+  background: rgba(161, 158, 249, 1);
+  opacity: 20%;
+  color: #181818;
+  
+}

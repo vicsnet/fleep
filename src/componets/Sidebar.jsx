@@ -26,7 +26,11 @@ import icon9 from "../assets/SVG/UnionSc.svg";
 import icon10 from "../assets/SVG/UnionSc2.svg";
 import icon11 from "../assets/SVG/GroupNc1.svg";
 import icon12 from "../assets/SVG/GroupNc.svg";
+import wallet from "../assets/wallet.png";
+import wallet2 from "../assets/wallet2.png";
 import UsersDeleteOption from "../pages/Dashboard/User/UsersDeleteOption";
+import WithDrawToBank from "./wallet/WithDrawToBank";
+import WithDrawSuccesfull from "./wallet/WithdrawSuccesfull";
 
 const Sidebar = ({ children }) => {
   const menuItem = [
@@ -41,6 +45,12 @@ const Sidebar = ({ children }) => {
       name: "Event",
       icon: <img src={icon4} alt="" className="w-[13px] h-[13px]" />,
       image: <img src={icon3} alt="" className="w-[13px] h-[13px]" />,
+    },
+    {
+      path: "/wallet",
+      name: "Wallet",
+      icon: <img src={wallet2} alt="" className="w-[13px] h-[13px]" />,
+      image: <img src={wallet} alt="" className="w-[13px] h-[13px]" />,
     },
     {
       path: "/users",
@@ -211,6 +221,11 @@ const Sidebar = ({ children }) => {
       <UploadDp />
       <UploadImages />
       {/* <UsersDeleteOption /> */}
+
+      {/* withdraw to bank */}
+      <WithDrawToBank />
+      
+      {/* <WithDrawSuccesfull/> */}
     </main>
   );
 };
