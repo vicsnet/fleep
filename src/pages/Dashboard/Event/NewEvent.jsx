@@ -3,7 +3,7 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { FiUpload } from "react-icons/fi";
 import { useDropzone } from "react-dropzone";
-import info from '../../../assets/Union (1).png'
+import info from "../../../assets/Union (1).png";
 import EventQR from "./EventQR";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -11,7 +11,7 @@ import {
   openEvent,
   closeEvent,
 } from "../../../Redux/features/createEventSlice";
-
+import Arrow from "../../../assets/SVG/Arrow.svg";
 const NewEvent = () => {
   const open = useSelector((state) => state.crtEvent.open);
 
@@ -20,6 +20,7 @@ const NewEvent = () => {
   const [files, setFiles] = useState([]);
   const [showMonetize, setShowMonetize] = useState("");
   const [waterMark, setWaterMark] = useState([]);
+  const [monetizehover, setMonetizeHover] = useState(false);
 
   const handleMonetizeChange = (e) => {
     const getValue = e.target.value;
@@ -130,9 +131,9 @@ const NewEvent = () => {
                     style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
                   >
                     <option value="volvo">Select</option>
-                    <option value="saab">Saab</option>
-                    <option value="mercedes">Mercedes</option>
-                    <option value="audi">Audi</option>
+                    <option value="saab">Private</option>
+                    <option value="mercedes">Public</option>
+                    <option value="audi">Private & Public</option>
                   </select>
                 </div>
               </div>
@@ -153,13 +154,14 @@ const NewEvent = () => {
                     className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9]  h-[50px] pl-[20px] w-[100%] "
                     style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
                   >
-                    <option value="volvo">Select</option>
-                    <option value="saab">Saab</option>
-                    <option value="mercedes">Mercedes</option>
-                    <option value="audi">Audi</option>
+                    <option value="">Select</option>
+                    <option value="private">Private</option>
+                    <option value="public">Public</option>
+                    <option value="private & public">Private & Public</option>
                   </select>
                 </div>
               </div>
+
               <div className="w-[50%]">
                 <label
                   htmlFor=""
@@ -184,14 +186,35 @@ const NewEvent = () => {
                 </div>
               </div>
             </div>
-            <div className="w-[100%] flex gap-[26px] mt-6 flex-wrap">
+            <div className="w-[100%] flex gap-[26px] mt-6 flex-wrap relative shadow-lg">
+              {monetizehover && (
+                <div
+                  onMouseOver={() => setMonetizeHover(false)}
+                  className="w-[200px] bg-white py-[6px] rounded-[2px] absolute right-[52%] top-[-46px]"
+                >
+                  <p className="text-[10px] font-normal leading-[14.5px] w-[90%] mx-auto ">
+                    If wish to monetize your photos Select the "Yes" option then
+                    input the desired amount.
+                  </p>
+                  <img
+                    src={Arrow}
+                    alt=""
+                    className="absolute bottom-[-6px] right-2 width-[20px]"
+                  />
+                </div>
+              )}
               <div className="w-[48%] smDesktop:w-[48%] smDesk:w-[47.7%] tabletAir:w-[47%] tablet:w-[47.4%]">
                 <label
                   htmlFor=""
                   className="text-[14px] leading-5 text-[#333333] font-normal flex justify-between items-center mb-[4px]"
                 >
                   Monetize Photos
-                <img src={info} alt="info" className="w-[14px] h-[14px]" />
+                  <img
+                    src={info}
+                    alt="info"
+                    onMouseOver={() => setMonetizeHover(true)}
+                    className="w-[14px] h-[14px]"
+                  />
                 </label>
                 {/* <br /> */}
                 <div className="w-[100%] h-[50px] bg-[#F9F9F9] rounded-lg">
