@@ -5,7 +5,27 @@ import { FaRegEyeSlash } from "react-icons/fa";
 import { AiOutlineEye } from "react-icons/ai";
 
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signUpUser } from "../../Redux/features/authentication/registrationSlice";
+import SuccessModal from "./SuccessModal";
+
 const Registration = () => {
+  const status = useSelector((state) => state.user.status);
+  // useState
+  const [person, setPerson] = useState({
+    fullName: "",
+    email: "",
+    phoneNo: "",
+    password: "",
+    status: false,
+  });
+
+  const handleDetailsChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setPerson({ ...person, [name]: value });
+  };
+
   const [pwdText, setPwdText] = useState("password");
   const [verifyPwdText, setVerifyPwdText] = useState("password");
 
@@ -21,17 +41,34 @@ const Registration = () => {
 
   const changeText = () => {
     setPwdText("text");
-};
-const changeText2 = () => {
-  setPwdText("password");
-};
+  };
+  const changeText2 = () => {
+    setPwdText("password");
+  };
 
-const showVerifyPwd = () => {
-    setVerifyPwdText("text");      
-}
-const showVerifyPwd2 = () => {    
+  const showVerifyPwd = () => {
+    setVerifyPwdText("text");
+  };
+  const showVerifyPwd2 = () => {
     setVerifyPwdText("password");
-    }
+  };
+
+  const dispatch = useDispatch();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(person.fullName, person.email, person.phoneNo, person.password);
+
+    dispatch(
+      signUpUser({
+        full_name: person.fullName,
+        email: person.email,
+        phone: person.phoneNo,
+        password: person.password,
+        // status:person.status
+
+      })
+    );
+  };
 
   return (
     <main className="">
@@ -68,6 +105,10 @@ const showVerifyPwd2 = () => {
                 <br />
                 <input
                   type="text"
+                  id="fullName"
+                  name="fullName"
+                  value={person.fullName}
+                  onChange={handleDetailsChange}
                   placeholder="Enter full name"
                   className="h-[40px] w-[90%] outline-none rounded-[8px] pl-[20px] text-[14px] leading-[16.8px] font-light text-[#999999]"
                   style={{
@@ -86,6 +127,10 @@ const showVerifyPwd2 = () => {
                 <br />
                 <input
                   type="email"
+                  id="email"
+                  name="email"
+                  value={person.email}
+                  onChange={handleDetailsChange}
                   placeholder="Enter email"
                   className="h-[40px] w-[90%] outline-none rounded-[8px] pl-[20px] text-[14px] leading-[16.8px] font-light text-[#999999]"
                   style={{
@@ -104,6 +149,9 @@ const showVerifyPwd2 = () => {
                 <br />
                 <input
                   type="text"
+                  name="phoneNo"
+                  value={person.phoneNo}
+                  onChange={handleDetailsChange}
                   placeholder="Enter phone number"
                   className="h-[40px] w-[90%] outline-none rounded-[8px] pl-[20px] text-[14px] leading-[16.8px] font-light text-[#999999]"
                   style={{
@@ -129,6 +177,9 @@ const showVerifyPwd2 = () => {
                 >
                   <input
                     type={pwdText}
+                    name="password"
+                    value={person.password}
+                    onChange={handleDetailsChange}
                     placeholder="Enter password"
                     className="h-[40px]  w-[95%] outline-none  pl-[20px] text-[14px] leading-[16.8px] font-light text-[#999999]"
                   />
@@ -164,6 +215,9 @@ const showVerifyPwd2 = () => {
                 >
                   <input
                     type={verifyPwdText}
+                    name="password"
+                    value={person.password}
+                    onChange={handleDetailsChange}
                     placeholder="Re-type password"
                     className="h-[40px]  w-[95%] outline-none  pl-[20px] text-[14px] leading-[16.8px] font-light text-[#999999]"
                   />
@@ -182,7 +236,10 @@ const showVerifyPwd2 = () => {
                   </div>
                 </div>
               </div>
-              <button className="font-bold text-[16px] text-ceneter w-[90%] leading-[19.2px]  py-[17.5px] bg-[#EE2339] rounded-[8px] text-[#FFFFFF] mt-[40px]">
+              <button
+                onClick={handleSubmit}
+                className="font-bold text-[16px] text-ceneter w-[90%] leading-[19.2px]  py-[17.5px] bg-[#EE2339] rounded-[8px] text-[#FFFFFF] mt-[40px]"
+              >
                 Sign Up
               </button>
             </form>
@@ -202,6 +259,7 @@ const showVerifyPwd2 = () => {
           </div>
         </div>
       </section>
+      {person.status === true && <SuccessModal />}
     </main>
   );
 };
