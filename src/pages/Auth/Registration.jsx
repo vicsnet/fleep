@@ -6,18 +6,23 @@ import { AiOutlineEye } from "react-icons/ai";
 
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signUpUser } from "../../Redux/features/authentication/registrationSlice";
+import {
+  signUpUser,
+  // setStatus,
+} from "../../Redux/features/authentication/registrationSlice";
 import SuccessModal from "./SuccessModal";
 
 const Registration = () => {
-  const status = useSelector((state) => state.user.status);
+  const [status, setStatus]= useState(false)
+
+  // const status = useSelector((state) => state.user.status);
   // useState
   const [person, setPerson] = useState({
     fullName: "",
     email: "",
     phoneNo: "",
     password: "",
-    status: false,
+    // status: false,
   });
 
   const handleDetailsChange = (e) => {
@@ -54,19 +59,20 @@ const Registration = () => {
   };
 
   const dispatch = useDispatch();
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(person.fullName, person.email, person.phoneNo, person.password);
 
-    dispatch(
+   dispatch(
       signUpUser({
         full_name: person.fullName,
         email: person.email,
         phone: person.phoneNo,
         password: person.password,
-        // status:person.status
+      }),
 
-      })
+        await setStatus(true)
+      
     );
   };
 
@@ -256,10 +262,11 @@ const Registration = () => {
                 </p>
               </Link>
             </div>
+            
           </div>
         </div>
       </section>
-      {person.status === true && <SuccessModal />}
+      {status === true && <SuccessModal />}
     </main>
   );
 };

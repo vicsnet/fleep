@@ -11,15 +11,24 @@ const initialState = {
   token: "",
   loading: false,
   error: "",
-  status: false,
+status: false,
 };
 
 export const signUpUser = createAsyncThunk(
   "auth/register",
-  async ({ data }, { rejectWithValue }) => {
+  async (data, { rejectWithValue}) => {
     try {
       const response = await api.registration(data);
-      return response.data;
+        console.log(response.data);
+        const resp = response.data.status
+        let status = initialState.status 
+        status = resp
+        console.log(status)
+    
+    //   console.log(response.data.status);
+      // status = true
+        return response.data;
+        
     } catch (error) {
       console.log(error);
       return isRejectedWithValue(error.response.data);
@@ -50,7 +59,11 @@ const registrationSlice = createSlice({
   name: "user",
 
   initialState,
-  reducers: {},
+  reducers: {
+      setStatus: (state, action) => {
+          state.status  = true
+    }
+  },
   extraReducers: {
     [signUpUser.pending]: (state, action) => {
       state.loading = true;
@@ -68,5 +81,7 @@ const registrationSlice = createSlice({
     },
   },
 });
+
+export const {setStatus} = registrationSlice.actions
 
 export default registrationSlice.reducer;
