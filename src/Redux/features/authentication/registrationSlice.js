@@ -1,37 +1,46 @@
-import {
-  createSlice,
-  createAsyncThunk,
-  isRejectedWithValue,
-} from "@reduxjs/toolkit";
-import * as api from "../../Api/api";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+// import * as api from "../../Api/api";
+import authService from "./authService";
+
+const user = JSON.parse(localStorage.getItem("user"));
 
 const initialState = {
-  msg: "",
-  user: "",
+  user: user ? user : null,
+  //   user: null,
+  message: "",
   token: "",
   loading: false,
-  error: "",
-status: false,
+  error: false,
+  status: false,
+  success: false,
 };
 
 export const signUpUser = createAsyncThunk(
   "auth/register",
-  async (data, { rejectWithValue}) => {
+  async (data, thunkApi) => {
     try {
-      const response = await api.registration(data);
-        console.log(response.data);
-        const resp = response.data.status
-        let status = initialState.status 
-        status = resp
-        console.log(status)
-    
-    //   console.log(response.data.status);
+      return await authService.register(data);
+      //   const response = await api.registration(data);
+      //   console.log(response.data);
+      //   const resp = response.data.status;
+      //   let status = initialState.status;
+      //   status = resp;
+      //   console.log(status);
+
+      //   console.log(response.data.status);
       // status = true
-        return response.data;
-        
+      //   return response.data;
     } catch (error) {
-      console.log(error);
-      return isRejectedWithValue(error.response.data);
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkApi.rejectWithValue(message);
+
+      //   console.log(error);
+      //   return isRejectedWithValue(error.response.data);
     }
   }
 );
@@ -56,32 +65,38 @@ export const signUpUser = createAsyncThunk(
 // });
 
 const registrationSlice = createSlice({
-  name: "user",
-
+  name: "auth",
   initialState,
   reducers: {
-      setStatus: (state, action) => {
-          state.status  = true
-    }
-  },
-  extraReducers: {
-    [signUpUser.pending]: (state, action) => {
-      state.loading = true;
-    },
-    [signUpUser.fulfilled]: (state, { payload: { error, msg } }) => {
+  
+    reset: (state) => {
       state.loading = false;
-      if (error) {
-        state.error = error;
-      } else {
-        state.msg = msg;
-      }
+      state.success = false;
+      state.error = false;
+      state.message = "";
     },
-    [signUpUser.rejected]: (state, action) => {
-      state.loading = true;
-    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(signUpUser.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(signUpUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = true;
+        state.user = action.payload;
+      })
+      .addCase(signUpUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = true;
+          state.message = action.payload;
+          state.user = null
+      });
+
+    // 
   },
 });
 
-export const {setStatus} = registrationSlice.actions
+export const { setStatus, reset } = registrationSlice.actions;
 
 export default registrationSlice.reducer;

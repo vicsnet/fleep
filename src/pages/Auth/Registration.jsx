@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../../assets/Frame 427319276.png";
 import mainLogo from "../../assets/LOGO.png";
 import { FaRegEyeSlash } from "react-icons/fa";
@@ -6,11 +6,15 @@ import { AiOutlineEye } from "react-icons/ai";
 
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import {useNavigate} from 'react-router-dom'
 import {
   signUpUser,
+  reset,
   // setStatus,
 } from "../../Redux/features/authentication/registrationSlice";
 import SuccessModal from "./SuccessModal";
+
+import Spinner from '../../componets/Spinner'
 
 const Registration = () => {
   const [status, setStatus]= useState(false)
@@ -59,7 +63,9 @@ const Registration = () => {
   };
 
   const dispatch = useDispatch();
-  const handleSubmit = async (e) => {
+
+  const  {user, loading, error, message, success} =useSelector((state)=> state.user)
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log(person.fullName, person.email, person.phoneNo, person.password);
 
@@ -71,10 +77,23 @@ const Registration = () => {
         password: person.password,
       }),
 
-        await setStatus(true)
+        // await setStatus(true)
       
     );
   };
+  useEffect(() => {
+    if (error) {
+      alert.error(message)
+    }
+    // if (success || user) {
+      
+    // }
+    dispatch(reset())
+  }, [user, error, success, message, dispatch])
+  
+  if (loading) {
+    return <Spinner/>
+  }
 
   return (
     <main className="">
