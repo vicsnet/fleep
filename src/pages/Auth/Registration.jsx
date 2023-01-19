@@ -4,29 +4,27 @@ import mainLogo from "../../assets/LOGO.png";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { AiOutlineEye } from "react-icons/ai";
 
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
 import {
   signUpUser,
   reset,
-  // setStatus,
 } from "../../Redux/features/authentication/registrationSlice";
+
 import SuccessModal from "./SuccessModal";
 
-import Spinner from '../../componets/Spinner'
+import Spinner from "../../componets/Spinner";
 
 const Registration = () => {
-  const [status, setStatus]= useState(false)
-
-  // const status = useSelector((state) => state.user.status);
-  // useState
   const [person, setPerson] = useState({
     fullName: "",
     email: "",
     phoneNo: "",
     password: "",
-    // status: false,
+    pasword2: "",
   });
 
   const handleDetailsChange = (e) => {
@@ -62,37 +60,47 @@ const Registration = () => {
     setVerifyPwdText("password");
   };
 
+  const { fullName, email, phoneNo, password, password2 } = person;
+
   const dispatch = useDispatch();
 
-  const  {user, loading, error, message, success} =useSelector((state)=> state.user)
+  const { user, loading, error, message, success, status } = useSelector(
+    (state) => state.user
+  );
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(person.fullName, person.email, person.phoneNo, person.password);
-
-   dispatch(
-      signUpUser({
-        full_name: person.fullName,
-        email: person.email,
-        phone: person.phoneNo,
-        password: person.password,
-      }),
-
-        // await setStatus(true)
-      
-    );
+    if (fullName)
+      if (password !== password2) {
+        toast.error("passwords do not match");
+      } else {
+        // console.log(person.fullName, person.email, person.phoneNo, person.password);
+        const person = {
+          full_name: fullName,
+          email: email,
+          phone: phoneNo,
+          password: password,
+        };
+        dispatch(signUpUser(person));
+      }
   };
+
   useEffect(() => {
     if (error) {
-      alert.error(message)
+      toast.error(message);
     }
-    // if (success || user) {
-      
-    // }
-    dispatch(reset())
-  }, [user, error, success, message, dispatch])
-  
+    if (success) {
+      toast.success(message);
+    } 
+    if (message === 'Verified') {
+      Navigate('/login')
+    }
+    
+    dispatch(reset());
+  }, [user, error, success, message, dispatch, status]);
+
   if (loading) {
-    return <Spinner/>
+    return <Spinner />;
   }
 
   return (
@@ -240,8 +248,8 @@ const Registration = () => {
                 >
                   <input
                     type={verifyPwdText}
-                    name="password"
-                    value={person.password}
+                    name="password2"
+                    value={person.password2}
                     onChange={handleDetailsChange}
                     placeholder="Re-type password"
                     className="h-[40px]  w-[95%] outline-none  pl-[20px] text-[14px] leading-[16.8px] font-light text-[#999999]"
@@ -273,15 +281,11 @@ const Registration = () => {
                 Already have an account?
               </p>
               <Link to="/login">
-                <p
-                  className="text-[14px] leading-[16.8px] font-semibold text-[#000000
-]"
-                >
+                <p className="text-[14px] leading-[16.8px] font-semibold text-[#000000]">
                   Log In
                 </p>
               </Link>
             </div>
-            
           </div>
         </div>
       </section>

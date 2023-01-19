@@ -23,6 +23,8 @@ import ModalProvider from "./store/ModalProvider";
 import Upgrade from "./componets/Upgrade";
 import Images from "./componets/Images";
 import WalletPage from "./pages/wallet/WalletPage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -56,7 +58,7 @@ function App() {
           <Route path="wallet" element={<WalletPage />} />
         </Route>
       </Routes>
-      
+      <ToastContainer />
     </div>
   );
 }

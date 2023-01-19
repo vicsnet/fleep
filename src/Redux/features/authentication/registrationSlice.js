@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+// import { message } from "antd";
 // import * as api from "../../Api/api";
 import authService from "./authService";
 
@@ -6,13 +7,13 @@ const user = JSON.parse(localStorage.getItem("user"));
 
 const initialState = {
   user: user ? user : null,
-  //   user: null,
   message: "",
   token: "",
   loading: false,
   error: false,
   status: false,
   success: false,
+  //   status: false,
 };
 
 export const signUpUser = createAsyncThunk(
@@ -20,16 +21,8 @@ export const signUpUser = createAsyncThunk(
   async (data, thunkApi) => {
     try {
       return await authService.register(data);
-      //   const response = await api.registration(data);
-      //   console.log(response.data);
-      //   const resp = response.data.status;
-      //   let status = initialState.status;
-      //   status = resp;
-      //   console.log(status);
-
-      //   console.log(response.data.status);
-      // status = true
-      //   return response.data;
+      //   return res
+      // return await authService.register(data);
     } catch (error) {
       const message =
         (error.response &&
@@ -68,7 +61,6 @@ const registrationSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-  
     reset: (state) => {
       state.loading = false;
       state.success = false;
@@ -84,16 +76,19 @@ const registrationSlice = createSlice({
       .addCase(signUpUser.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
+        state.status = action.payload.status;
         state.user = action.payload;
+          state.message = action.payload.message;
+          state.token = action.payload.token
       })
       .addCase(signUpUser.rejected, (state, action) => {
         state.loading = false;
         state.error = true;
-          state.message = action.payload;
-          state.user = null
+        state.message = action.payload;
+        state.user = null;
       });
 
-    // 
+    //
   },
 });
 
