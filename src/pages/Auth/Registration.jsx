@@ -20,7 +20,7 @@ import Spinner from "../../componets/Spinner";
 
 const Registration = () => {
   const { email: emailParam, id } = useParams();
-  console.log(id, emailParam);
+  // console.log(id, emailParam);
 
   let modalVisible = false;
 
@@ -101,7 +101,7 @@ const Registration = () => {
     if (success) {
       toast.success(message);
     }
-    if (message === "Verified") {
+    if (modalVisible) {
       Navigate("/login");
     }
 
@@ -298,7 +298,7 @@ const Registration = () => {
           </div>
         </div>
       </section>
-      {modalVisible && <SuccessModal />}
+      {status === true && <SuccessModal />}
     </main>
   );
 };
