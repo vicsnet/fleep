@@ -6,7 +6,7 @@ import { AiOutlineEye } from "react-icons/ai";
 
 import { Link, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import {
@@ -19,6 +19,15 @@ import SuccessModal from "./SuccessModal";
 import Spinner from "../../componets/Spinner";
 
 const Registration = () => {
+  const { email: emailParam, id } = useParams();
+  console.log(id, emailParam);
+
+  let modalVisible = false;
+
+  if (emailParam !== undefined && id !== undefined) {
+    modalVisible = true
+  }
+
   const [person, setPerson] = useState({
     fullName: "",
     email: "",
@@ -91,11 +100,11 @@ const Registration = () => {
     }
     if (success) {
       toast.success(message);
-    } 
-    if (message === 'Verified') {
-      Navigate('/login')
     }
-    
+    if (message === "Verified") {
+      Navigate("/login");
+    }
+
     dispatch(reset());
   }, [user, error, success, message, dispatch, status]);
 
@@ -289,7 +298,7 @@ const Registration = () => {
           </div>
         </div>
       </section>
-      {status === true && <SuccessModal />}
+      {modalVisible && <SuccessModal />}
     </main>
   );
 };

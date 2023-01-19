@@ -37,6 +37,7 @@ function App() {
         <Route path="privacy" element={<Privacy />} />
         <Route path="terms" element={<Terms />} />
         <Route path="registration" element={<Registration />} />
+        <Route path="user/confirm_otp/:email/:id" element={<Registration  />} />
         <Route path="login" element={<Login />} />
         <Route path="forgotpassword" element={<ForgotPwd />} />
         <Route path="resetpassword" element={<ResetPwd />} />
