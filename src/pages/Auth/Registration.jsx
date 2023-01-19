@@ -28,6 +28,8 @@ const Registration = () => {
     modalVisible = true
   }
 
+  const navigate = useNavigate()
+
   const [person, setPerson] = useState({
     fullName: "",
     email: "",
@@ -102,7 +104,7 @@ const Registration = () => {
       toast.success(message);
     }
     if (modalVisible) {
-      Navigate("/login");
+      navigate("/login");
     }
 
     dispatch(reset());
