@@ -51,11 +51,11 @@ const navigate = useNavigate()
   };
    const handleSubmit = (e) => {
      e.preventDefault();
-     const userData = {
+     const data = {
        email,
        password
      }
-         dispatch(login(userData));
+         dispatch(login(data));
        
    };
 
