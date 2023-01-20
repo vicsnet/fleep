@@ -53,7 +53,8 @@ const navigate = useNavigate()
      e.preventDefault();
      const data = {
        email,
-       password
+       password,
+       client_secret: "YHo2CbtOTIS59oBYlx33uHBcJUiwok1h4XxGHYau",
      }
          dispatch(login(data));
        
