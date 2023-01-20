@@ -159,7 +159,10 @@ const navigate = useNavigate()
                 </div>
               </div>
 
-              <button className="font-bold text-[16px] text-ceneter w-[90%] leading-[19.2px]  py-[17.5px] bg-[#19192E] rounded-[8px] text-[#FFFFFF] mt-[40px]">
+              <button
+                onClick={handleSubmit}
+                className="font-bold text-[16px] text-ceneter w-[90%] leading-[19.2px]  py-[17.5px] bg-[#19192E] rounded-[8px] text-[#FFFFFF] mt-[40px]"
+              >
                 Log In
               </button>
             </form>
