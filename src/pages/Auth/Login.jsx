@@ -3,11 +3,34 @@ import Logo from "../../assets/Frame 427319276.png";
 import mainLogo from "../../assets/LOGO.png";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { AiOutlineEye } from "react-icons/ai";
-
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; 
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { login, reset } from "../../Redux/features/authentication/registrationSlice";
+import { toast } from "react-toastify";
 
 
 const Login = () => {
+
+
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+
+  })
+  const {email, password} = formData
+
+  const dispatch = useDispatch();
+
+   const { user, loading, error, message, success, status } = useSelector(
+     (state) => state.user
+   );
+
+  const handleChange = (e) => {
+    const name = e.target.name
+    const value = e.target.value
+    setFormData({...formData, [name]: value})
+  }
   const [pwdText, setPwdText] = useState("password");
 
 
@@ -25,8 +48,32 @@ const Login = () => {
   const changeText2 = () => {
     setPwdText("password");
   };
+   const handleSubmit = (e) => {
+     e.preventDefault();
+     const userData = {
+       email,
+       password
+     }
+         dispatch(login(userData));
+       
+   };
 
- 
+ useEffect(() => {
+   if (error) {
+     toast.error(message);
+   }
+   if (success) {
+     toast.success(message);
+     navigate("/dashboard");
+   }
+   
+
+   dispatch(reset());
+ }, [user, error, success, message, dispatch, status]);
+
+ if (loading) {
+   return <Spinner />;
+ }
 
   return (
     <main className="">
@@ -60,6 +107,9 @@ const Login = () => {
                 <br />
                 <input
                   type="email"
+                  name="email"
+                  value={email}
+                  onChange={handleChange}
                   placeholder="Enter email"
                   className="h-[40px] w-[90%] outline-none rounded-[8px] pl-[20px] text-[14px] leading-[16.8px] font-light text-[#999999]"
                   style={{
@@ -86,6 +136,9 @@ const Login = () => {
                 >
                   <input
                     type={pwdText}
+                    name="password"
+                    value={password}
+                    onChange={handleChange}
                     placeholder="Enter password"
                     className="h-[40px]  w-[95%] outline-none  pl-[20px] text-[14px] leading-[16.8px] font-light text-[#999999]"
                   />

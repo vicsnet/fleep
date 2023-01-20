@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-// import { message } from "antd";
+
 // import * as api from "../../Api/api";
 import authService from "./authService";
 
@@ -13,7 +13,6 @@ const initialState = {
   error: false,
   status: false,
   success: false,
-  //   status: false,
 };
 
 export const signUpUser = createAsyncThunk(
@@ -21,8 +20,6 @@ export const signUpUser = createAsyncThunk(
   async (data, thunkApi) => {
     try {
       return await authService.register(data);
-      //   return res
-      // return await authService.register(data);
     } catch (error) {
       const message =
         (error.response &&
@@ -31,31 +28,33 @@ export const signUpUser = createAsyncThunk(
         error.message ||
         error.toString();
       return thunkApi.rejectWithValue(message);
-
-      //   console.log(error);
-      //   return isRejectedWithValue(error.response.data);
+    }
+  }
+);
+// lo0gin user
+export const login = createAsyncThunk(
+  "auth/login",
+  async (data, thunkApi) => {
+    try {
+      return await authService.login(data);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkApi.rejectWithValue(message);
     }
   }
 );
 
-// export const signUpUser = createAsyncThunk("signupuser", async (data) => {
-//   const res = await fetch(
-//     "http://fleep.webhostingfree.io/public/api/user/register",
-//     {
-//       method: "post",
 
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(data),
-//     }
-//     );
-//     const vince = await res.json()
-//     return vince.status
-//     // console.log(vince.status)
-//     return await res.json();
 
-// });
+//logout
+export const logout = createAsyncThunk("auth/logout", async () => {
+  await authService.logout();
+});
 
 const registrationSlice = createSlice({
   name: "auth",
@@ -78,16 +77,39 @@ const registrationSlice = createSlice({
         state.success = true;
         state.status = action.payload.status;
         state.user = action.payload;
-          state.message = action.payload.message;
-          state.token = action.payload.token
+        state.message = action.payload.message;
+        state.token = action.payload.token;
       })
       .addCase(signUpUser.rejected, (state, action) => {
         state.loading = false;
         state.error = true;
         state.message = action.payload;
         state.user = null;
-      });
+      })
 
+      //login
+      .addCase(login.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = true;
+        state.status = action.payload.status;
+        state.user = action.payload;
+        state.message = action.payload.message;
+        state.token = action.payload.token;
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.loading = false;
+        state.error = true;
+        state.message = action.payload;
+        state.user = null;
+      })
+
+      //logout
+      .addCase(logout.fulfilled, (state) => {
+        state.user = null;
+      });
     //
   },
 });
