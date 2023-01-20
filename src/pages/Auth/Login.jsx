@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../../assets/Frame 427319276.png";
 import mainLogo from "../../assets/LOGO.png";
 import { FaRegEyeSlash } from "react-icons/fa";
@@ -21,7 +21,7 @@ const Login = () => {
   const {email, password} = formData
 
   const dispatch = useDispatch();
-
+const navigate = useNavigate()
    const { user, loading, error, message, success, status } = useSelector(
      (state) => state.user
    );
