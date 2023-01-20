@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login, reset } from "../../Redux/features/authentication/registrationSlice";
 import { toast } from "react-toastify";
+import Spinner from "../../componets/Spinner";
 
 
 const Login = () => {
