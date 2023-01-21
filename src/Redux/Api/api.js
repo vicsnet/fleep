@@ -9,4 +9,6 @@ const API = axios.create({
   },
 });
 
+
+
 export const registration = async (data) => await API.post("/user/register", data);

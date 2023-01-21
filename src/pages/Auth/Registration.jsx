@@ -83,7 +83,7 @@ const Registration = () => {
   };
   useEffect(() => {
     if (error) {
-      alert.error(message)
+      alert(message)
     }
     // if (success || user) {
       

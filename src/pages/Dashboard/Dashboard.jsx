@@ -154,7 +154,7 @@ const Dashboard = () => {
                     Create Event
                   </h2>
                   <p className="text-[#86898D] text-[12px] font-[500] leading-[18px] tracking-[0.3px] mt-[5px]">
-                    Lest’s Start.
+                    Lets Start.
                   </p>
                   <img
                     src={vector}
