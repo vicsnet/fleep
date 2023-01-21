@@ -6,9 +6,10 @@ import authService from "./authService";
 const user = JSON.parse(localStorage.getItem("user"));
 
 const initialState = {
-  user: user ? user : null,
+  // user: user ? user : null,
+  user: "",
   message: "",
-  token: "",
+  token: token ? token: null,
   loading: false,
   error: false,
   status: false,
@@ -78,7 +79,7 @@ const registrationSlice = createSlice({
         state.status = action.payload.status;
         state.user = action.payload;
         state.message = action.payload.message;
-        state.token = action.payload.token;
+        // state.token = action.payload.token;
       })
       .addCase(signUpUser.rejected, (state, action) => {
         state.loading = false;
@@ -95,7 +96,7 @@ const registrationSlice = createSlice({
         state.loading = false;
         state.success = true;
         state.status = action.payload.status;
-        state.user = action.payload;
+        // state.user = action.payload;
         state.message = action.payload.message;
         state.token = action.payload.token;
       })
