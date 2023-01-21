@@ -9,12 +9,12 @@ import registrationReducer from "../features/authentication/registrationSlice";
 
 export const store = configureStore({
   reducer: {
+    user: registrationReducer,
     crtEvent: createEventReducer,
     crtAddUser: AddUserReducer,
     crtUsrsEvent: UsersEventReducer,
     uploadDp: uploadDPReducer,
     users: usersReducer,
     wallet: walletReducer,
-    user: registrationReducer,
   },
 });

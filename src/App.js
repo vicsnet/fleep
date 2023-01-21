@@ -23,6 +23,8 @@ import ModalProvider from "./store/ModalProvider";
 import Upgrade from "./componets/Upgrade";
 import Images from "./componets/Images";
 import WalletPage from "./pages/wallet/WalletPage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -35,6 +37,7 @@ function App() {
         <Route path="privacy" element={<Privacy />} />
         <Route path="terms" element={<Terms />} />
         <Route path="registration" element={<Registration />} />
+        <Route path="user/confirm_otp/:email/:id" element={<Registration  />} />
         <Route path="login" element={<Login />} />
         <Route path="forgotpassword" element={<ForgotPwd />} />
         <Route path="resetpassword" element={<ResetPwd />} />
@@ -56,7 +59,7 @@ function App() {
           <Route path="wallet" element={<WalletPage />} />
         </Route>
       </Routes>
-      
+      <ToastContainer />
     </div>
   );
 }
