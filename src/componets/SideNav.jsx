@@ -3,9 +3,13 @@ import bum from "../assets/HBD to bunmi 20190716_003414.jpg";
 import { GoPrimitiveDot } from "react-icons/go";
 import { Link, useNavigate } from "react-router-dom";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
+import { useSelector } from "react-redux";
 
 const SideNav = ({ title, display, padd }) => {
   const back = useNavigate();
+  const { user, token, userName } = useSelector((state) => state.user);
+  console.log(userName);
+
   return (
     <section className="flex justify-between border-b-[1px] border-[#C6C6C6]">
       <div className={`${padd}`}>

@@ -25,6 +25,7 @@ import Images from "./componets/Images";
 import WalletPage from "./pages/wallet/WalletPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PrivateRoute from "./utils/PrivateRoute";
 
 function App() {
   return (
@@ -42,7 +43,9 @@ function App() {
         <Route path="forgotpassword" element={<ForgotPwd />} />
         <Route path="resetpassword" element={<ResetPwd />} />
         <Route path="upgrade" element={<Upgrade />} />
+        <Route path="/" element={<PrivateRoute />}>
 
+        
         <Route path="/" element={<Sidebar />}>
           <Route path="dashboard" element={<Dashboard />} />
 
@@ -57,6 +60,8 @@ function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="event/created-event" element={<CreatedEvent />} />
           <Route path="wallet" element={<WalletPage />} />
+          </Route>
+        {/* </PrivateRoute> */}
         </Route>
       </Routes>
       <ToastContainer />

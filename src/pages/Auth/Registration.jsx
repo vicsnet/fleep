@@ -25,10 +25,10 @@ const Registration = () => {
   let modalVisible = false;
 
   if (emailParam !== undefined && id !== undefined) {
-    modalVisible = true
+    modalVisible = true;
   }
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [person, setPerson] = useState({
     fullName: "",
@@ -110,12 +110,9 @@ const Registration = () => {
     dispatch(reset());
   }, [user, error, success, message, dispatch, status]);
 
-  if (loading) {
-    return <Spinner />;
-  }
-
   return (
     <main className="">
+      {loading && <Spinner />}
       <section className="flex ">
         <div className="bg-[#19192E] max-h-screen w-[50%] flex items-center justify-center ">
           <img

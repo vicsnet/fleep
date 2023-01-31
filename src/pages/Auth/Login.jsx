@@ -3,45 +3,41 @@ import Logo from "../../assets/Frame 427319276.png";
 import mainLogo from "../../assets/LOGO.png";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { AiOutlineEye } from "react-icons/ai";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { login, reset } from "../../Redux/features/authentication/registrationSlice";
+import {
+  login,
+  reset,
+} from "../../Redux/features/authentication/registrationSlice";
 import { toast } from "react-toastify";
 import Spinner from "../../componets/Spinner";
 
-
 const Login = () => {
-
-
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-
-  })
-  const {email, password} = formData
+    email: "",
+    password: "",
+  });
+  const { email, password } = formData;
 
   const dispatch = useDispatch();
-const navigate = useNavigate()
-   const { user, loading, error, message, success, status } = useSelector(
-     (state) => state.user
-   );
+  const navigate = useNavigate();
+  const { user, loading, error, message, success, status } = useSelector(
+    (state) => state.user
+  );
 
   const handleChange = (e) => {
-    const name = e.target.name
-    const value = e.target.value
-    setFormData({...formData, [name]: value})
-  }
+    const name = e.target.name;
+    const value = e.target.value;
+    setFormData({ ...formData, [name]: value });
+  };
   const [pwdText, setPwdText] = useState("password");
 
-
   const [eye, setEye] = useState(false);
-  
 
   const onEye = () => {
     setEye(!eye);
   };
- 
 
   const changeText = () => {
     setPwdText("text");
@@ -49,36 +45,31 @@ const navigate = useNavigate()
   const changeText2 = () => {
     setPwdText("password");
   };
-   const handleSubmit = (e) => {
-     e.preventDefault();
-     const data = {
-       email,
-       password,
-       client_secret: "YHo2CbtOTIS59oBYlx33uHBcJUiwok1h4XxGHYau",
-     }
-         dispatch(login(data));
-       
-   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      email,
+      password,
+      client_secret: "YHo2CbtOTIS59oBYlx33uHBcJUiwok1h4XxGHYau",
+    };
+    dispatch(login(data));
+  };
 
- useEffect(() => {
-   if (error) {
-     toast.error(message);
-   }
-   if (success) {
-     toast.success(message);
-     navigate("/dashboard");
-   }
-   
+  useEffect(() => {
+    if (error) {
+      toast.error(message);
+    }
+    if (success) {
+      toast.success(message);
+      navigate("/dashboard");
+    }
 
-   dispatch(reset());
- }, [user, error, success, message, dispatch, status]);
-
- if (loading) {
-   return <Spinner />;
- }
+    dispatch(reset());
+  }, [user, error, success, message, dispatch, status]);
 
   return (
     <main className="">
+      {loading && <Spinner />}
       <section className="flex max-h-screen h-screen">
         <div className="bg-[#19192E] max-h-screen w-[50%] flex items-center justify-center ">
           <img
@@ -179,7 +170,7 @@ const navigate = useNavigate()
               <p className="text-[14px] leading-[16.8px] text-[#8A8A8A] font-normal">
                 Dont have an account?
               </p>
-              <Link to="/register">
+              <Link to="/registration">
                 <p
                   className="text-[14px] leading-[16.8px] font-semibold text-[#000000
 ]"
