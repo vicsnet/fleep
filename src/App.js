@@ -26,10 +26,14 @@ import WalletPage from "./pages/wallet/WalletPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from "./utils/PrivateRoute";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query"
 
 function App() {
+  const client = new QueryClient();
   return (
-    <div className="App">
+    <div className="App max-w-[3200px]">
+      <QueryClientProvider client={client}>
+
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="useCases" element={<UseCases />} />
@@ -38,33 +42,32 @@ function App() {
         <Route path="privacy" element={<Privacy />} />
         <Route path="terms" element={<Terms />} />
         <Route path="registration" element={<Registration />} />
-        <Route path="user/confirm_otp/:email/:id" element={<Registration  />} />
+        <Route path="user/confirm_otp/:email/:id" element={<Registration />} />
         <Route path="login" element={<Login />} />
         <Route path="forgotpassword" element={<ForgotPwd />} />
         <Route path="resetpassword" element={<ResetPwd />} />
         <Route path="upgrade" element={<Upgrade />} />
         <Route path="/" element={<PrivateRoute />}>
+          <Route path="/" element={<Sidebar />}>
+            <Route path="dashboard" element={<Dashboard />} />
 
-        
-        <Route path="/" element={<Sidebar />}>
-          <Route path="dashboard" element={<Dashboard />} />
+            <Route path="event" element={<Event />} />
 
-          <Route path="event" element={<Event />} />
+            <Route path="history" element={<History />} />
 
-          <Route path="history" element={<History />} />
+            <Route path="notification" element={<Notification />} />
 
-          <Route path="notification" element={<Notification />} />
-
-          <Route path="settings" element={<Settings />} />
-          <Route path="users" element={<Users />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="event/created-event" element={<CreatedEvent />} />
-          <Route path="wallet" element={<WalletPage />} />
+            <Route path="settings" element={<Settings />} />
+            <Route path="users" element={<Users />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="event/created-event" element={<CreatedEvent />} />
+            <Route path="wallet" element={<WalletPage />} />
           </Route>
-        {/* </PrivateRoute> */}
+          {/* </PrivateRoute> */}
         </Route>
       </Routes>
       <ToastContainer />
+      </QueryClientProvider>
     </div>
   );
 }

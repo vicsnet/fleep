@@ -1,8 +1,11 @@
 import axios from "axios";
+import { baseURL } from "../../Api/api";
 
-const API_URL = "http://fleep.webhostingfree.io/public/api/user/register";
+// const baseURL = "http://fleep.webhostingfree.io/public/api";
 
-const API_LOGIN = "http://fleep.webhostingfree.io/public/api/user/login";
+const API_URL = `${baseURL}/user/register`;
+
+const API_LOGIN = `${baseURL}/user/login`;
 
 
 // REgister User

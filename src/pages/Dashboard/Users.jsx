@@ -179,10 +179,10 @@ const Users = () => {
               id="cars"
               className="outline-none bg-transparent text-[#333333]"
             >
-              <option value="volvo">Filter By</option>
-              <option value="saab">Saab</option>
-              <option value="mercedes">Mercedes</option>
-              <option value="audi">Audi</option>
+              <option value="filter">Filter By</option>
+              <option value="recent">All</option>
+              <option value="recent">Recent</option>
+              <option value="older">Older</option>
             </select>
           </div>
         </div>

@@ -31,7 +31,7 @@ const UploadImage = () => {
         style={{ background: "rgba(255, 255, 255, 1)" }}
       >
         <div className="w-[90%] mx-auto">
-          <div className="pt-[54px] flex gap-[8rem] justify-end">
+          <div className="pt-[54px] flex gap-[12rem] smDesktop:gap-[8rem] justify-end">
             <h2 className="text-[24px] font-bold leading-7 text-[#1A1941]">
               Upload Images
             </h2>
@@ -46,7 +46,7 @@ const UploadImage = () => {
             <div className=" mt-[32px]">
               <div className="w-[80%] mx-auto">
                 <div className="mt-[15px]  flex justify-center items-center">
-                  <div className="cursor-pointer w-[100%]">
+                  <div className="cursor-pointer w-[100%] h-[150px]">
                     <Upload.Dragger
                       multiple={true}
                       listType="picture"
@@ -84,7 +84,7 @@ const UploadImage = () => {
             </div>
 
             {/* button */}
-            <div className="w-[60%] lgDesktop:w-[80%] smDesktop:w-[80%] mx-auto flex justify-between">
+            <div className="w-[60%] lgDesktop:w-[60%] smDesktop:w-[80%] ml-[62px] lgDesktop:ml-[60px] smDesktop:mx-auto flex justify-between">
               <button className="border-[#1A1941] border-[1px] rounded-lg h-[50px] mt-[50px] px-[55px] text-[#1A1941] tracking-[10%] text-[16px] leading-5 font-extrabold">
                 Cancel
               </button>

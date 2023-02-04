@@ -64,7 +64,7 @@ const User = ({ id, }) => {
 
     return (
       <>
-        <tr key={id} className="border-b-[1px] border-[#EDEDED] text-[#6A6A6A]">
+        <tr key={id} className="relative border-b-[1px] border-[#EDEDED] text-[#6A6A6A]">
           <td className="pl-[45px] smDesk:pl-[30px] tabletAir:pl-[20px] text-[14px leading-[16.8px] font-[300] mt-[11px] py-auto">
             {id}
           </td>
@@ -94,9 +94,10 @@ const User = ({ id, }) => {
             className=" text-[24px] leading-[16.8px] font-[700] mt-[11px] py-auto text-[#7C7B7B] cursor-pointer"
           >
             ...
+        {openDel && <UsersDelete />}
           </td>
         </tr>
-        {openDel && <UsersDelete />}
+
       </>
     );
 };

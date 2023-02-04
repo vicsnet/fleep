@@ -186,7 +186,7 @@ const NewEvent = () => {
                 </div>
               </div>
             </div>
-            <div className="w-[100%] flex gap-[26px] mt-6 flex-wrap relative shadow-lg">
+            <div className="w-[100%] flex gap-[26px] mt-6 flex-wrap relative">
               {monetizehover && (
                 <div
                   onMouseOver={() => setMonetizeHover(false)}

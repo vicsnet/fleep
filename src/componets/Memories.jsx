@@ -19,7 +19,7 @@ const Memories = () => {
   return (
     <main className="mt-[116px]">
       {/* memories */}
-      <section className="w-[90%] mx-auto flex justify-between">
+      <section className="w-[90%]  mx-auto flex justify-between">
         {/* text */}
         <div className="w-[50%] smDesktop:w-[55%]">
           <h2 className="text-[80px] smDesk:text-[60px]  smDesk:leading-[70px] tablet:text-[50px]  tablet:leading-[60px] smDesktop:text-[70px] smDesktop:leading-[80px]  font-black leading-[90px] tracking-[-1%] text-[#333333] ">

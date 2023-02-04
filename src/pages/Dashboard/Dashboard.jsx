@@ -17,7 +17,7 @@ import Vector from "../../assets/SVG/Vector.svg";
 import Vector1 from "../../assets/SVG/Vector1.svg";
 import Vector2 from "../../assets/SVG/Group.svg";
 import Vector3 from "../../assets/SVG/Group1.svg";
-
+import {} from '@tanstack/react-query'
 const Dashboard = () => {
   const dispatch = useDispatch();
 

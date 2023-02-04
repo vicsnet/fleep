@@ -53,7 +53,7 @@ const Event = () => {
 
       {/* when Event */}
       <section className="px-[40px] flex justify-between mt-8 smDesk:flex-col-reverse ">
-        <section className="w-[60%] smDesktop:w-[70%] smDesk:w-[100%]">
+        <section className="w-[65%] smDesktop:w-[70%] smDesk:w-[100%]">
           {/* search bar & filter */}
           <div className="flex items-center justify-between">
             {/* search bar  */}
@@ -73,10 +73,11 @@ const Event = () => {
                 id="cars"
                 className="outline-none bg-transparent text-[#333333]"
               >
-                <option value="volvo">All</option>
-                <option value="saab">Delete</option>
+                <option value="filter">Filter</option>
+                <option value="recent">Recent</option>
                 {/* <option value="mercedes">Mercedes</option> */}
-                <option value="audi">Audi</option>
+                <option value="older">Older</option>
+                <option value="all">All</option>
               </select>
             </div>
           </div>
