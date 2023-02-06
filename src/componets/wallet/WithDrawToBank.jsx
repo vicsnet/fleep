@@ -62,6 +62,8 @@ const WithDrawToBank = () => {
                 <p className="text-[14px] leading-[20.58px] ">Select</p>
                 <BiChevronDown className="text-[#C6C6C6] text-[20px]" />
               </div>
+              <div className="">
+
               <ul
                 className={`w-[154px] flex flex-col justify-center  rounded-[4px] mt-[-4px] z-[1] cursor-pointer bg-[#FFFFFF] ${
                   openAcct ? "max-h-[166px] absolute" : "max-h-0 hidden"
@@ -89,6 +91,7 @@ const WithDrawToBank = () => {
                   <p className="text-[#181818]">New Account</p>
                 </li>
               </ul>
+              </div>
             </div>
             <div className="mt-[24px]">
               <label className="font-[400] text-[16px] leading-5 text-[#333333] ">

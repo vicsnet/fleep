@@ -188,27 +188,28 @@ const Users = () => {
         </div>
 
         {/* users */}
-        <table className="w-[100%]  mt-[21px] table-fixed">
-          <thead className="text-left text-[16px] font-[500] leading-[19.2px] bg-[#EEEEEE] h-[70px]">
-            <tr className=" pl-[57px]">
-              <th className="pt-[12px] pb-[12px] w-[10%] pl-[45px] smDesk:pl-[30px] tabletAir:pl-[20px]">
+        <table className="w-[100%]  mt-[21px] table-fixed rounded-t-lg bg-white rounded-t-[20px]">
+          <thead className="text-left text-[16px] font-[500] leading-[19.2px] bg-[#EEEEEE] rounded-t-[20px] h-[70px]">
+            <tr className=" pl-[57px] rounded-t-[20px]">
+              <th className="pt-[12px] pb-[12px] w-[10%] pl-[45px] smDesk:pl-[30px] tabletAir:pl-[20px] rounded-tl-[14px]">
                 S/N
               </th>
               <th className="pt-[12px] pb-[12px] w-[35%]">User's Name</th>
               <th className="pt-[12px] pb-[12px] w-[15%]">Total Photos</th>
               <th className="pt-[12px] pb-[12px]">Total Events Attended</th>
-              <th className="pt-[12px] pb-[12px] pr-[27px] w-[15%]">Action</th>
+              <th className="pt-[12px] pb-[12px] pr-[27px] w-[15%] rounded-tr-[14px]">
+                Action
+              </th>
             </tr>
           </thead>
           <tbody>
             {/* {displayUsers} */}
 
-            { user.slice(pagesVisited, pagesVisited + usersPerPage).map(({id}) => (
-
-              <User key={id} id={id}/>
-            ))
-            }
-
+            {user
+              .slice(pagesVisited, pagesVisited + usersPerPage)
+              .map(({ id }) => (
+                <User key={id} id={id} />
+              ))}
           </tbody>
         </table>
         <ReactPaginate

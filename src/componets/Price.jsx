@@ -16,7 +16,7 @@ const Price = () => {
               <p className="text-[20px] leading-[24px] font-normal text-[#8B8B8B] smDesk:text-[18px]">
                 More Space
               </p>
-              <p className="text-[40px] leading-[48px] font-extrabold text-[#1A1941] mt-[20px]">
+              <p className="text-[40px] leading-[48px] font-[1000] text-[#1A1941] mt-[20px]">
                 N50,000
               </p>
               <p className="text-[24px] text-[#8B8B8B] font-normal leading-[28.8px] mt-[10px] smDesk:text-[22px]">
@@ -40,7 +40,7 @@ const Price = () => {
               <p className="text-[20px] leading-[24px] font-normal text-[#8B8B8B] smDesk:text-[18px]">
                 Eliteplus
               </p>
-              <p className="text-[40px] leading-[48px] font-extrabold text-[#1A1941] mt-[20px]">
+              <p className="text-[40px] leading-[48px] font-[1000] text-[#1A1941] mt-[20px]">
                 N100,000
               </p>
               <p className="text-[24px] text-[#8B8B8B] font-normal leading-[28.8px] mt-[10px] smDesk:text-[22px]">
@@ -64,7 +64,7 @@ const Price = () => {
               <p className="text-[20px] leading-[24px] font-normal text-[#8B8B8B] smDesk:text-[18px]">
                 DoubleDelux
               </p>
-              <p className="text-[40px] leading-[48px] font-extrabold text-[#1A1941] mt-[20px]">
+              <p className="text-[40px] leading-[48px] font-[1000] text-[#1A1941] mt-[20px]">
                 N165,000
               </p>
               <p className="text-[24px] text-[#8B8B8B] font-normal leading-[28.8px] mt-[10px] smDesk:text-[22px]">

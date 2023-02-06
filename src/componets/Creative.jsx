@@ -39,10 +39,10 @@ const Creative = () => {
           </div>
         </div>
         <div className="w-[30%] smDesktop:w-[40%] mt-[6%]">
-          <h2 className="text-[50px] smDesktop:text-[44px] smDesk:text-[42px] font-extrabold leading-[60px] tracking-[-1%] text-[#1A1941] tabletAir:text-[40px] tabletAir:text-[30px] tabletAir:leading-[50px]">
+          <h2 className="text-[50px] smDesktop:text-[44px] smDesk:text-[42px] font-extrabold leading-[60px] tracking-[-1%] text-[#1A1941] tabletAir:text-[40px] tablet:text-[30px] tabletAir:leading-[50px]">
             Birthdays to not Forget
           </h2>
-          <p className="text-[#6F6681] text-[16px] leading-[30px] tracking-[-1%] tabletAir:text-[15px]">
+          <p className="text-[#6F6681] text-[16px] leading-[30px] tracking-[-1%] tabletAir:text-[15px] mt-[24px]">
             Documenting the milestones and sharing them with people that really
             matter and you care about, This is the highlight of your special
             day.
@@ -88,10 +88,10 @@ const Creative = () => {
       <section className="w-[90%] mx-auto">
         <div className="mt-[235px] w-[90%] smDesktop:w-[94%] smDesk:w-[96%] tabletAir:w-[99%] ml-auto flex gap-[63px]">
           <div className="w-[30%] smDesktop:w-[34%]">
-            <h3 className="text-[50px] font-extrabold leading-[60px] tracking-[-1%] text-[#1A1941] smDesktop:text-[46px] tabletAir:text-[40px] tablet:text-[38px] text-[#1A1941] smDesk:text-[44px]">
+            <h3 className="text-[50px] font-extrabold leading-[60px] tracking-[-1%] text-[#1A1941] smDesktop:text-[46px] tabletAir:text-[40px] tablet:text-[38px]  smDesk:text-[44px]">
               Seminars can be fun too
             </h3>
-            <p className="text-[16px] tabletAir:text-[14px] text-[#6F6681] leading-[30px] tracking-[-1%] font-medium ">
+            <p className="text-[16px] tabletAir:text-[14px] text-[#6F6681] leading-[30px] tracking-[-1%] font-medium mt-[24px] ">
               Hey, we know these things can be sometimes pretty serious but you
               can break the ice with a shared “Picture time”. Preserve that epic
               handshake moment with that multi-millionaire guest speaker that

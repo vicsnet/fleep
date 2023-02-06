@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { AiOutlineCalendar } from "react-icons/ai";
-import { FiUpload } from "react-icons/fi";
+import { FiUpload, FiPlus } from "react-icons/fi";
+import { BiChevronDown } from "react-icons/bi";
 import { useDropzone } from "react-dropzone";
 import info from "../../../assets/Union (1).png";
 import EventQR from "./EventQR";
@@ -12,6 +13,7 @@ import {
   closeEvent,
 } from "../../../Redux/features/createEventSlice";
 import Arrow from "../../../assets/SVG/Arrow.svg";
+import DownArrow from "../../../assets/Arrow.png";
 const NewEvent = () => {
   const open = useSelector((state) => state.crtEvent.open);
 
@@ -21,6 +23,12 @@ const NewEvent = () => {
   const [showMonetize, setShowMonetize] = useState("");
   const [waterMark, setWaterMark] = useState([]);
   const [monetizehover, setMonetizeHover] = useState(false);
+
+  const [openEvent, setOpenEvent] = useState(false);
+
+  const [privateHover, setPrivateHover] = useState(false);
+  const [generalHover, setGeneralHover] = useState(false);
+  const [bothHover, setBothHover] = useState(false);
 
   const handleMonetizeChange = (e) => {
     const getValue = e.target.value;
@@ -147,19 +155,98 @@ const NewEvent = () => {
                   Event Type
                 </label>
                 <br />
-                <div className="w-[100%] h-[50px] bg-[#F9F9F9] rounded-lg">
-                  <select
-                    name="cars"
-                    id="cars"
-                    className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9]  h-[50px] pl-[20px] w-[100%] "
-                    style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
-                  >
-                    <option value="">Select</option>
-                    <option value="private">Private</option>
-                    <option value="public">Public</option>
-                    <option value="private & public">Private & Public</option>
-                  </select>
+                <div
+                  onClick={() => setOpenEvent(!openEvent)}
+                  className="flex items-center justify-between w-[100%] border-[1px] border-[#E5E5E5] pl-[20px] h-[50px] rounded-lg bg-[#F9F9F9] "
+                >
+                  <p className="text-[14px] leading-[20.58px] ">Select</p>
+                  <BiChevronDown className="text-[grey] text-[20px]" />
                 </div>
+                <div OnClick={()=>setOpenEvent(false)}  className="">
+                  <ul
+                    className={`w-[306px] flex flex-col justify-center  rounded-[4px] mt-[-4px] z-[1] cursor-pointer bg-[#FFFFFF] ${
+                      openEvent ? "max-h-[166px] absolute" : "max-h-0 hidden"
+                    }`}
+                    style={{
+                      boxShadow: "0px 0px 10px 0px rgba(132, 132, 132, 0.15)",
+                    }}
+                  >
+                    <li className="font-[400] text-[16px] leading-[20px] mt-[8px]  h-[48px] pt-[4px] relative">
+                      <p
+                        onMouseEnter={() => setPrivateHover(true)}
+                        onMouseLeave={() => setPrivateHover(false)}
+                        className="text-[#181818] pl-[34.5px] with"
+                      >
+                        Private
+                      </p>
+                      <div
+                        className={` ${privateHover ? "absolute" : " hidden"}`}
+                      >
+                        <img
+                          src={DownArrow}
+                          alt=""
+                          className="ml-[35.5px] mb-[-1px]"
+                        />
+                        <div className="w-[200px] bg-white shadow-lg rounded-sm ml-[34.5px] ">
+                          <p className="w-[90%] mx-auto py-[6px] text-[10px] font-normal leading-4">
+                            Only pictures the event attenders appear in will be
+                            shown to them for download.
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li className="font-[400] text-[16px] leading-[20px] mt-[8px]  h-[48px] pt-[4px] relative">
+                      <p
+                        onMouseEnter={() => setGeneralHover(true)}
+                        onMouseLeave={() => setGeneralHover(false)}
+                        className="text-[#181818] pl-[34.5px] with"
+                      >
+                        General
+                      </p>
+                      <div
+                        className={` ${generalHover ? "absolute" : " hidden"}`}
+                      >
+                        <img
+                          src={DownArrow}
+                          alt=""
+                          className="ml-[35.5px] mb-[-1px]"
+                        />
+                        <div className="w-[200px] bg-white shadow-lg rounded-sm ml-[34.5px] ">
+                          <p className="w-[90%] mx-auto py-[6px] text-[10px] font-normal leading-4">
+                            All pictures taken at the event is available for
+                            download.
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li className="font-[400] text-[16px] leading-[20px] mt-[8px]  h-[48px] pt-[4px] relative">
+                      <p
+                        onMouseEnter={() => setBothHover(true)}
+                        onMouseLeave={() => setBothHover(false)}
+                        className="text-[#181818] pl-[34.5px] with"
+                      >
+                        Both
+                      </p>
+                      <div className={` ${bothHover ? "absolute" : " hidden"}`}>
+                        <img
+                          src={DownArrow}
+                          alt=""
+                          className="ml-[35.5px] mb-[-1px]"
+                        />
+                        <div className="w-[200px] bg-white shadow-lg rounded-sm ml-[34.5px] ">
+                          <p className="w-[90%] mx-auto py-[6px] text-[10px] font-normal leading-4">
+                            Your Event attenders are giving the option to pick
+                            their preference.
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+
+                  
+                  </ul>
+                </div>
+
+             
               </div>
 
               <div className="w-[50%]">
@@ -189,7 +276,7 @@ const NewEvent = () => {
             <div className="w-[100%] flex gap-[26px] mt-6 flex-wrap relative">
               {monetizehover && (
                 <div
-                  onMouseOver={() => setMonetizeHover(false)}
+                  
                   className="w-[200px] bg-white py-[6px] rounded-[2px] absolute right-[52%] top-[-46px]"
                 >
                   <p className="text-[10px] font-normal leading-[14.5px] w-[90%] mx-auto ">
@@ -212,7 +299,8 @@ const NewEvent = () => {
                   <img
                     src={info}
                     alt="info"
-                    onMouseOver={() => setMonetizeHover(true)}
+                    onMouseEnter={() => setMonetizeHover(true)}
+                    onMouseLeave={() => setMonetizeHover(true)}
                     className="w-[14px] h-[14px]"
                   />
                 </label>

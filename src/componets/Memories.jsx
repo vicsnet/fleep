@@ -164,7 +164,7 @@ const Memories = () => {
                   <img
                     src={Algo}
                     alt=""
-                    className="absolute mx-auto w-[30px] top-6 left-[43%] smDesktop:left-[46%] smDesk:left-[45.2%] tabletAir:left-[45%]"
+                    className="absolute mx-auto w-[30px] top-6 left-[44%] smDesktop:left-[46%] smDesk:left-[45.2%] tabletAir:left-[45%]"
                   />
                 </div>
 
@@ -191,7 +191,7 @@ const Memories = () => {
                   <img
                     src={money}
                     alt="monetize"
-                    className="absolute mx-auto w-[26px] top-7 left-[44.3%] smDesktop:left-[46.2%] smDesk:left-[45.8%] tabletAir:left-[45.6%]"
+                    className="absolute mx-auto w-[26px] top-7 left-[44.6%] smDesktop:left-[46.2%] smDesk:left-[45.8%] tabletAir:left-[45.6%]"
                   />
                 </div>
 

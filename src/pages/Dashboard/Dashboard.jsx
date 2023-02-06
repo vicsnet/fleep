@@ -11,16 +11,33 @@ import CreateEvent from "../../componets/CreateEvent";
 import vector from "../../assets/Group 201.png";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import NewEvent from "./Event/NewEvent";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openEvent } from "../../Redux/features/createEventSlice";
 import Vector from "../../assets/SVG/Vector.svg";
 import Vector1 from "../../assets/SVG/Vector1.svg";
 import Vector2 from "../../assets/SVG/Group.svg";
 import Vector3 from "../../assets/SVG/Group1.svg";
-import {} from '@tanstack/react-query'
-const Dashboard = () => {
-  const dispatch = useDispatch();
+import {useQuery} from '@tanstack/react-query'
+import Axios from "axios";
+import { baseURL } from "../../Redux/Api/api";
 
+const Dashboard = () => {
+
+  const { token } = useSelector((state) => state.user);
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const {data} = useQuery(["profile"], () => {
+    Axios.get(`${baseURL}/api/user`, config).then((res) => res.data);
+  });
+  const dispatch = useDispatch();
+ 
+  console.log(data);
   return (
     <main className="max-h-screen h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full pb-[180px]">
       <SideNav

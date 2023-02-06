@@ -152,14 +152,14 @@ const AddUser = () => {
             </h3>
             <table className="w-[100%]  mt-[20px]  table-fixed">
               <thead className="text-left text-[16px] font-[500] leading-[19.2px] bg-[#EEEEEE] h-[70px] ">
-                <tr className=" pl-[57px]">
-                  <th className="pt-[12px] pb-[12px] w-[10%] pl-[15px] ">
+                <tr className=" pl-[57px] ">
+                  <th className="pt-[12px] pb-[12px] w-[10%] pl-[15px] rounded-tl-[14px]">
                     S/N
                   </th>
                   <th className="pt-[12px] pb-[12px] ">User's Name</th>
                   <th className="pt-[12px] pb-[12px]">Email</th>
 
-                  <th className="pt-[12px] pb-[12px] pr-[27px] w-[15%]">
+                  <th className="pt-[12px] pb-[12px] pr-[27px] w-[15%] rounded-tr-[14px]">
                     Action
                   </th>
                 </tr>
