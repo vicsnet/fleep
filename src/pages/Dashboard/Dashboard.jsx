@@ -17,12 +17,11 @@ import Vector from "../../assets/SVG/Vector.svg";
 import Vector1 from "../../assets/SVG/Vector1.svg";
 import Vector2 from "../../assets/SVG/Group.svg";
 import Vector3 from "../../assets/SVG/Group1.svg";
-import {useQuery} from '@tanstack/react-query'
+import { useQuery } from "@tanstack/react-query";
 import Axios from "axios";
 import { baseURL } from "../../Redux/Api/api";
 
 const Dashboard = () => {
-
   const { token } = useSelector((state) => state.user);
 
   const config = {
@@ -32,12 +31,16 @@ const Dashboard = () => {
     },
   };
 
-  const {data} = useQuery(["profile"], () => {
-    Axios.get(`${baseURL}/api/user`, config).then((res) => res.data);
-  });
+  const getData = () => {
+    return Axios.get(`${baseURL}/user/profile`, config).then((res) => res.data);
+  };
+
+  const { data } = useQuery(["profile"], getData);
+
   const dispatch = useDispatch();
- 
+
   console.log(data);
+
   return (
     <main className="max-h-screen h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full pb-[180px]">
       <SideNav
@@ -158,7 +161,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <div className="w-[25%]  smDesktop:w-[20%] smDesk:w-[50%] mx-auto smDesk:mt-4 ">
+            <div className="w-[25%]  smDesktop:w-[20%] smDesk:w-[50%] smDesk:mt-4 ">
               {/* <CreateEvent /> */}
 
               <div
@@ -176,7 +179,7 @@ const Dashboard = () => {
                   <img
                     src={vector}
                     alt=""
-                    className="w-[264px] relative mt-[26.3px]  lgDesktop:mt-[42px] smDesk:mt-[0px]"
+                    className="w-[248px] relative mt-[12px] bSemismall:mt-[26.3px]  lgDesktop:mt-[42px] smDesk:mt-[0px]"
                   />
                   <BsFillArrowRightCircleFill
                     size={24}

@@ -268,7 +268,7 @@ const Memories = () => {
           className="flex  h-[340px] items-center justify-end   mt-[-230px]  smDesk:h-[260px] tabletAir:h-[140px] smDesk:mt-[-110px] tabletAir:mt-[-120px] tablet-[-90px] "
           style={{ background: "rgba(245, 245, 250, 1)" }}
         >
-          <div className="w-[51.5%]  lgDesktop:w-[48.5%] smDesktop:w-[54.5%] tablet:w-[57%] flex gap-[54px] smDesk:gap-[40px] ml-auto mt-[-180px] smDesktop:mt-[-140px] smDesk:mt-[-120px]  tabletAir:mt-[-40px] tablet:mt-[-10px]">
+          <div className="w-[53.8%] bSemismall:w-[51.3%]  lgDesktop:w-[48.5%] smDesktop:w-[54.5%] tablet:w-[57%] flex gap-[54px] smDesk:gap-[40px] ml-auto mt-[-180px] smDesktop:mt-[-140px] smDesk:mt-[-120px]  tabletAir:mt-[-40px] tablet:mt-[-10px]">
             <span className="">
               <p className="text-[50px]  smDesktop:text-[40px] smDesk:text-[38px] tabletAir:leading-[60px] tabletAir:text-[32px] text-[#1A1941] font-medium leading-[75px] text-font ">
                 45+
@@ -306,14 +306,14 @@ const Memories = () => {
           </h2>
 
           <div className="mt-[100px] flex gap-[64px]">
-            <div className="w-[60%]">
+            <div className="w-[48%] bSemismall:w-[60%]">
               <img
                 src={AmazingMemories}
                 alt="Amazing memories"
                 className="h-[500px] object-contain smDesktop:h-[500px] smDesktop:object-fill w-[100%] smDesk:h-[400px] tablet:h-[360px]"
               />
             </div>
-            <div className="w-[40%]">
+            <div className="w-[52%] bSemismall:w-[40%]">
               <span className="flex  gap-[40px]">
                 <p
                   className="text-[70px] font-black italic text-[#14181F] leading-[84px] w-[41px] mt-[-6px]"

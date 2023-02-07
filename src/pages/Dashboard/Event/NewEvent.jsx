@@ -162,7 +162,7 @@ const NewEvent = () => {
                   <p className="text-[14px] leading-[20.58px] ">Select</p>
                   <BiChevronDown className="text-[grey] text-[20px]" />
                 </div>
-                <div OnClick={()=>setOpenEvent(false)}  className="">
+                <div OnClick={() => setOpenEvent(false)} className="">
                   <ul
                     className={`w-[306px] flex flex-col justify-center  rounded-[4px] mt-[-4px] z-[1] cursor-pointer bg-[#FFFFFF] ${
                       openEvent ? "max-h-[166px] absolute" : "max-h-0 hidden"
@@ -180,7 +180,9 @@ const NewEvent = () => {
                         Private
                       </p>
                       <div
-                        className={` ${privateHover ? "absolute" : " hidden"}`}
+                        className={` ${
+                          privateHover ? "z-[1] absolute" : " hidden"
+                        }`}
                       >
                         <img
                           src={DownArrow}
@@ -204,7 +206,9 @@ const NewEvent = () => {
                         General
                       </p>
                       <div
-                        className={` ${generalHover ? "absolute" : " hidden"}`}
+                        className={` ${
+                          generalHover ? "z-[1] absolute" : " hidden"
+                        }`}
                       >
                         <img
                           src={DownArrow}
@@ -227,7 +231,11 @@ const NewEvent = () => {
                       >
                         Both
                       </p>
-                      <div className={` ${bothHover ? "absolute" : " hidden"}`}>
+                      <div
+                        className={` ${
+                          bothHover ? "z-[1] absolute" : " hidden"
+                        }`}
+                      >
                         <img
                           src={DownArrow}
                           alt=""
@@ -241,12 +249,8 @@ const NewEvent = () => {
                         </div>
                       </div>
                     </li>
-
-                  
                   </ul>
                 </div>
-
-             
               </div>
 
               <div className="w-[50%]">
@@ -275,10 +279,7 @@ const NewEvent = () => {
             </div>
             <div className="w-[100%] flex gap-[26px] mt-6 flex-wrap relative">
               {monetizehover && (
-                <div
-                  
-                  className="w-[200px] bg-white py-[6px] rounded-[2px] absolute right-[52%] top-[-46px]"
-                >
+                <div className="w-[200px] bg-white py-[6px] rounded-[2px] absolute right-[52%] top-[-46px]">
                   <p className="text-[10px] font-normal leading-[14.5px] w-[90%] mx-auto ">
                     If wish to monetize your photos Select the "Yes" option then
                     input the desired amount.
@@ -300,7 +301,7 @@ const NewEvent = () => {
                     src={info}
                     alt="info"
                     onMouseEnter={() => setMonetizeHover(true)}
-                    onMouseLeave={() => setMonetizeHover(true)}
+                    onMouseLeave={() => setMonetizeHover(false)}
                     className="w-[14px] h-[14px]"
                   />
                 </label>

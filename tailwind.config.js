@@ -8,7 +8,10 @@ module.exports = {
     extend: {
       screens: {
         bigDesktop: { max: "3200px" }, //Big desktop
-        semiBigDesktop:{max: '1920px'},
+        semiBigDesktop: { max: "1920px" },
+        bSemiBig: { max: "1440px" }, //1440
+        bSemismall: { max: "1366px" }, //1440
+
         lgDesktop: { max: "1280px" }, //large desktop
         smDesktop: { max: "1024px" }, // small desktop
         smDesk: { max: "917px" }, // small desktop

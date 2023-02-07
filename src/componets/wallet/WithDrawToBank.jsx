@@ -28,6 +28,8 @@ const WithDrawToBank = () => {
               className="text-[#7C7B7B] cursor-pointer"
             />
           </div>
+          <div className="w-[80%] mx-auto">
+
           <div className="">
             <h2 className="text-[24px] font-bold leading-[28.8px] text-[#1A1941]">
               Withhdraw to bank
@@ -46,7 +48,7 @@ const WithDrawToBank = () => {
               <input
                 type="text"
                 placeholder="Enter amount to withdraw"
-                className="text-[14px] text-[#999999] leading-4  font-light h-[50px] pl-[20px] border-[1px] border-[#E5E5E5] bg-[#F9F9F9] rounded-lg outline-[#E5E5E5] w-[90%]"
+                className="text-[14px] text-[#999999] leading-4  font-light h-[50px] pl-[20px] border-[1px] border-[#E5E5E5] bg-[#F9F9F9] rounded-lg outline-[#E5E5E5] w-[100%]"
               />
             </div>
 
@@ -57,7 +59,7 @@ const WithDrawToBank = () => {
               <br />
               <div
                 onClick={() => setOpenAcct(!openAcct)}
-                className="flex items-center justify-between w-[90%] border-[1px] border-[#E5E5E5] px-[20px] h-[50px] rounded-lg bg-[#F9F9F9] "
+                className="flex items-center justify-between w-[100%] border-[1px] border-[#E5E5E5] px-[20px] h-[50px] rounded-lg bg-[#F9F9F9] "
               >
                 <p className="text-[14px] leading-[20.58px] ">Select</p>
                 <BiChevronDown className="text-[#C6C6C6] text-[20px]" />
@@ -101,7 +103,7 @@ const WithDrawToBank = () => {
               <input
                 type="text"
                 placeholder="Account number"
-                className="text-[14px] text-[#999999] leading-4  font-light h-[50px] pl-[20px] border-[1px] border-[#E5E5E5] bg-[#F9F9F9] rounded-lg outline-[#E5E5E5] w-[90%]"
+                className="text-[14px] text-[#999999] leading-4  font-light h-[50px] pl-[20px] border-[1px] border-[#E5E5E5] bg-[#F9F9F9] rounded-lg outline-[#E5E5E5] w-[100%]"
               />
             </div>
             <div className="mt-[24px]">
@@ -112,7 +114,7 @@ const WithDrawToBank = () => {
               <input
                 type="text"
                 placeholder="Account name"
-                className="text-[14px] text-[#999999] leading-4  font-light h-[50px] pl-[20px] border-[1px] border-[#E5E5E5] bg-[#F9F9F9] rounded-lg outline-[#E5E5E5] w-[90%]"
+                className="text-[14px] text-[#999999] leading-4  font-light h-[50px] pl-[20px] border-[1px] border-[#E5E5E5] bg-[#F9F9F9] rounded-lg outline-[#E5E5E5] w-[100%]"
               />
             </div>
             <div className="mt-[40px] flex justify-between w-[90%]">
@@ -124,6 +126,7 @@ const WithDrawToBank = () => {
               </button>
             </div>
           </form>
+          </div>
         </section>
       </section>
     </main>

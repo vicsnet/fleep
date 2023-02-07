@@ -9,7 +9,7 @@ const dispatch = useDispatch()
 
   return (
     <div
-      className="rounded-[14px] pt-[38px] pl-[34px] relative h-[290px] smDesktop:h-[230px] smDesk:h-[300px] tablet:h-[270px] cursor-pointer "
+      className="rounded-[14px] pt-[38px] pl-[34px] relative h-[328px] bSemismall:h-[308px] lgDesktop:h-[293px] smDesktop:h-[228px] smDesk:h-[300px] tabletAir:h-[276px] tablet:h-[260px] cursor-pointer "
       onClick={()=> dispatch(openEvent())}
       style={{ background: "rgba(255, 255, 255, 1)" }}
     >
@@ -19,7 +19,7 @@ const dispatch = useDispatch()
       <p className="text-[#86898D] text-[12px] font-[500] leading-[18px] tracking-[0.3px] mt-[5px]">
         Lest’s Start.
       </p>
-      <img src={vector} alt="" className="w-[254px] relative" />
+      <img src={vector} alt="" className="w-[340px]  bSemismall:w-[274px] lgDesktop:w-[260px] relative "  sizes=""/>
       <BsFillArrowRightCircleFill
         size={24}
         className="text-[#E00018] absolute bottom-[44px]"

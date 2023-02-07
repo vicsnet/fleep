@@ -15,9 +15,16 @@ const Settings = () => {
 
   const openPwdDisplay = () => {
     setShow(true);
+    setOpenBankAcct(false);
   };
   const [openBankAcct, setOpenBankAcct] = useState(false);
+
   const closePwdDisplay = () => {
+    setShow(false);
+  };
+
+  const openCloseAcct = () => {
+    setOpenBankAcct(!openBankAcct);
     setShow(false);
   };
   return (
@@ -38,7 +45,11 @@ const Settings = () => {
                 size={20}
                 className={`text-[#8A8A8A] ${show && "text-[#1A1941]"}`}
               />{" "}
-              <p className="text-[16px] font-medium leading-[19.2px] text-[#1A1941] ">
+              <p
+                className={`text-[16px] font-medium leading-[19.2px] text-[#8A8A8A] ${
+                  show && " text-[#1A1941]"
+                }  `}
+              >
                 Change Password
               </p>
             </button>
@@ -46,7 +57,7 @@ const Settings = () => {
 
           <div
             className="pb-6 border-b-[1px] cursor-pointer "
-            onClick={() => setOpenBankAcct(!openBankAcct)}
+            onClick={openCloseAcct}
           >
             <button className="flex items-center gap-2 pt-10 ">
               {!openBankAcct ? (
@@ -55,7 +66,11 @@ const Settings = () => {
                 <img src={acc1} alt="" className="w-[20px] h-[20px]" />
               )}
               {/* <FiLock size={20} className="text-[#1A1941]" /> */}
-              <p className="text-[16px] font-medium leading-[19.2px] text-[#1A1941] ">
+              <p
+                className={`text-[16px] font-medium leading-[19.2px] text-[#8A8A8A] ${
+                  openBankAcct && " text-[#1A1941]"
+                } `}
+              >
                 Saved Bank Account
               </p>
             </button>
@@ -86,7 +101,7 @@ const Settings = () => {
                 id="default-toggle"
                 className="sr-only peer"
               />
-              <div className="w-[50px] h-[24px] bg-gray-100 peer-focus:outline-none peer-hover:w-[70px] peer-hover:h-8 peer-hover:after:h-7 peer-hover:after:w-7 peer-hover:bg-blue-300   rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] peer-checked:after:left-[8px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all after:duration-500 dark:border-gray-600 peer-checked:bg-[#1A1941]"></div>
+              <div className="w-[50px] h-[24px] bg-gray-100 peer-focus:outline-none  rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] peer-checked:after:left-[8px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all after:duration-500 dark:border-gray-600 peer-checked:bg-[#1A1941]"></div>
               {/* */}
             </label>
           </div>
@@ -100,8 +115,6 @@ const Settings = () => {
           }
           style={{ background: "rgba(255, 255, 255, 1)" }}
         >
-         
-
           {/* <form className="w-[80%] mx-auto">
             <label
               htmlFor=""

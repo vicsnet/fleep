@@ -5,6 +5,7 @@
 
 body {
   font-family: "Lato", sans-serif;
+  /* max-width: 2400px; */
 }
 .text-font {
   font-family: "Poppins", sans-serif;
@@ -131,4 +132,15 @@ opacity: initial !important;
   opacity: 65%;
   color: #181818;
   
+}
+.ant-upload{
+  width: 341px !important;
+  height: 218px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+.ant-upload-list-item{
+  width: 341px !important;
+   margin-left: auto;
+  margin-right: auto;
 }

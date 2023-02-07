@@ -31,7 +31,7 @@ import {QueryClient, QueryClientProvider} from "@tanstack/react-query"
 function App() {
   const client = new QueryClient();
   return (
-    <div className="App max-w-[3200px]">
+    <div className="App">
       <QueryClientProvider client={client}>
 
       <Routes>

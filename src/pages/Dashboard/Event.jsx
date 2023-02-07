@@ -212,7 +212,7 @@ const Event = () => {
             </div>
           </div>
         </section>
-        <div className="mt-[64px] smDesktop:w-[28%] smDesktop:h-[260px] smDesk:w-[50%] smDesk:mb-[100px] smDesk:mx-auto">
+        <div className="mt-[64px] w-[29%]  smDesktop:w-[28%] smDesktop:h-[260px] smDesk:w-[50%] smDesk:mb-[100px] smDesk:mx-auto">
           <CreateEvent />
         </div>
       </section>
