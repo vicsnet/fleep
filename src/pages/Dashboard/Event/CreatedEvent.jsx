@@ -197,7 +197,7 @@ const CreatedEvent = () => {
               <img
                 src={bum}
                 alt=""
-                className={`w-[250px] h-[250px] lgDesktop:w-[220px] lgDesktop:h-[220px] smDesktop:w-[160px] smDesktop:h-[160px] smDesk:w-[142px] smDesk:h-[142px] tablet:w-[226px] tablet:h-[226px] object-cover rounded-lg relative tabletAir:w-[250px] tabletAir:h-[250px]`}
+                className={`w-[290px] h-[290px] bSemiBig:w-[270px] bSemiBig:h-[270px] bSemismall:w-[250px] bSemismall:h-[250px] lgDesktop:w-[220px] lgDesktop:h-[220px] smDesktop:w-[160px] smDesktop:h-[160px] smDesk:w-[142px] smDesk:h-[142px] tablet:w-[226px] tablet:h-[226px] object-cover rounded-lg relative tabletAir:w-[250px] tabletAir:h-[250px]`}
               />
 
               <input
@@ -210,7 +210,7 @@ const CreatedEvent = () => {
           ))}
           {images.length >= show && (
             <div
-              className="h-[250px] w-[250px] lgDesktop:w-[220px] smDesktop:w-[160px] smDesktop:h-[160px] lgDesktop:h-[220px] smDesk:w-[142px] smDesk:h-[142px]  tabletAir:w-[250px] tabletAir:h-[250px] tablet:w-[226px] tablet:h-[226px]  lgDesktop:right-12 smDesktop:right-10 smDesk:right-2 absolute tabletAir:right-4 right-3 bottom-[100px] rounded-lg"
+              className="w-[290px] h-[290px] right-5 bSemiBig:w-[270px] bSemiBig:h-[270px] bSemiBig:right-1 bSemismall:right-3 bSemismall:h-[250px] bSemismall:w-[250px] lgDesktop:w-[220px] smDesktop:w-[160px] smDesktop:h-[160px] lgDesktop:h-[220px] smDesk:w-[142px] smDesk:h-[142px]  tabletAir:w-[250px] tabletAir:h-[250px] tablet:w-[226px] tablet:h-[226px]  lgDesktop:right-12 smDesktop:right-10 smDesk:right-2 absolute tabletAir:right-4  bottom-[100px] rounded-lg"
               style={{ background: "rgba(0, 0, 0, 0.4)" }}
             >
               <button

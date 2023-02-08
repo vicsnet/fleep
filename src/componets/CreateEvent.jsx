@@ -9,7 +9,7 @@ const dispatch = useDispatch()
 
   return (
     <div
-      className="rounded-[14px] pt-[38px] pl-[34px] relative h-[328px] bSemismall:h-[308px] lgDesktop:h-[293px] smDesktop:h-[228px] smDesk:h-[300px] tabletAir:h-[276px] tablet:h-[260px] cursor-pointer "
+      className="rounded-[14px] pt-[38px] pl-[34px] relative h-[350px] bSemiBig:h-[328px] bSemismall:h-[308px] lgDesktop:h-[293px] smDesktop:h-[228px] smDesk:h-[300px] tabletAir:h-[276px] tablet:h-[260px] cursor-pointer "
       onClick={()=> dispatch(openEvent())}
       style={{ background: "rgba(255, 255, 255, 1)" }}
     >

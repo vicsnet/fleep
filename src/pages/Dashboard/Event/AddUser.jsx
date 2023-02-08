@@ -29,13 +29,18 @@ const AddUser = () => {
 
   const DelButton = () => {
     return (
+      <div 
+        // onClick={() => setOpenDel(false)}
+        className="absolute">
       <button
         onClick={showDelOption}
-        className="text-[16px] font-normal text-[#000000] py-[14px] px-[22.5px] absolute mt-[8px] ml-[-20px] bg-[#FFFFFF]"
+        className="text-[16px] font-normal text-[#000000] py-[14px] px-[22.5px] mt-[8px] ml-[-20px] bg-[#FFFFFF]"
         style={{ boxShadow: "0px 0px 10px 0px rgba(132, 132, 132, 0.15)" }}
       >
         Delete
       </button>
+
+      </div>
     );
   };
 

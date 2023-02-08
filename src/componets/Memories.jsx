@@ -140,7 +140,7 @@ const Memories = () => {
                   <img
                     src={FaceMe}
                     alt=""
-                    className="absolute mx-auto w-[34px] top-5 left-[43%] smDesktop:left-[46%] smDesk:left-[45%] tabletAir:left-[44%]"
+                    className="absolute mx-auto w-[34px] top-[8px] left-[44.3%] bSemiBig:left-[43.8%] bSemismall:left-[43%] smDesktop:left-[46%] smDesk:left-[45%] tabletAir:left-[44%]"
                   />
                 </div>
 
@@ -164,7 +164,7 @@ const Memories = () => {
                   <img
                     src={Algo}
                     alt=""
-                    className="absolute mx-auto w-[30px] top-6 left-[44%] smDesktop:left-[46%] smDesk:left-[45.2%] tabletAir:left-[45%]"
+                    className="absolute mx-auto w-[30px] top-6 left-[44.8%] bSemiBig:left-[44.6%] bSemismall:left-[44%] smDesktop:left-[46%] smDesk:left-[45.2%] tabletAir:left-[45%]"
                   />
                 </div>
 
@@ -191,7 +191,7 @@ const Memories = () => {
                   <img
                     src={money}
                     alt="monetize"
-                    className="absolute mx-auto w-[26px] top-7 left-[44.6%] smDesktop:left-[46.2%] smDesk:left-[45.8%] tabletAir:left-[45.6%]"
+                    className="absolute mx-auto w-[26px] top-7 left-[45.2%] bSemiBig:left-[44.8%] bSemismall:left-[44.6%] smDesktop:left-[46.2%] smDesk:left-[45.8%] tabletAir:left-[45.6%]"
                   />
                 </div>
 
@@ -306,14 +306,14 @@ const Memories = () => {
           </h2>
 
           <div className="mt-[100px] flex gap-[64px]">
-            <div className="w-[48%] bSemismall:w-[60%]">
+            <div className="w-[48%] bSemismall:w-[52%]">
               <img
                 src={AmazingMemories}
                 alt="Amazing memories"
                 className="h-[500px] object-contain smDesktop:h-[500px] smDesktop:object-fill w-[100%] smDesk:h-[400px] tablet:h-[360px]"
               />
             </div>
-            <div className="w-[52%] bSemismall:w-[40%]">
+            <div className="w-[52%] bSemismall:w-[48%]">
               <span className="flex  gap-[40px]">
                 <p
                   className="text-[70px] font-black italic text-[#14181F] leading-[84px] w-[41px] mt-[-6px]"
