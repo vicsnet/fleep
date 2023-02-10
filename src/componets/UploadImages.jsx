@@ -13,6 +13,7 @@ import { Upload, Spin } from "antd";
 
 
 const UploadImage = () => {
+  
   const [files, setFiles] = useState([]);
   const [showImage, setShowImage] = useState([])
 
@@ -27,7 +28,7 @@ const UploadImage = () => {
       style={{ background: "rgba(20, 24, 31, 0.25)" }}
     >
       <div
-        className="w-[50%] smDesktop:w-[50%] smDesk:w-[55%] tabletAir:w-[60%] tablet:w-[65%] rounded-lg mt-[170px] mx-auto  pb-[60px] mb-[60px]"
+        className="w-[45%] smDesktop:w-[45%] smDesk:w-[55%] tabletAir:w-[60%] tablet:w-[65%] rounded-lg mt-[170px] mx-auto  pb-[60px] mb-[60px]"
         style={{ background: "rgba(255, 255, 255, 1)" }}
       >
         <div className="w-[90%] mx-auto">

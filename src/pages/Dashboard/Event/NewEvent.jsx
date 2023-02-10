@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { FiUpload, FiPlus } from "react-icons/fi";
@@ -6,6 +6,7 @@ import { BiChevronDown } from "react-icons/bi";
 import { useDropzone } from "react-dropzone";
 import info from "../../../assets/Union (1).png";
 import EventQR from "./EventQR";
+import axios from "axios";
 
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -14,21 +15,58 @@ import {
 } from "../../../Redux/features/createEventSlice";
 import Arrow from "../../../assets/SVG/Arrow.svg";
 import DownArrow from "../../../assets/Arrow.png";
+import { baseURL } from "../../../Redux/Api/api";
+import { useMutation } from "@tanstack/react-query";
+
 const NewEvent = () => {
   const open = useSelector((state) => state.crtEvent.open);
 
   const dispatch = useDispatch();
 
-  const [files, setFiles] = useState([]);
-  const [showMonetize, setShowMonetize] = useState("");
-  const [waterMark, setWaterMark] = useState([]);
-  const [monetizehover, setMonetizeHover] = useState(false);
+  const API_URL = `${baseURL}/user/event/create`;
+const { token } = useSelector((state) => state.user);
+const config = {
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: ` ${token}`,
+  },
+  };
+  const registerEvent = async (formData) => {
+    const response = await axios.post(API_URL, config, formData);
 
+    return response.formData;
+  };
+  const { mutate, isLoading, isError } = useMutation(registerEvent, {
+    onSuccess: (successData) => {
+      console.log(successData);
+    },
+  });
+
+ 
+  // image Upload
+  const [files, setFiles] = useState([]);
+  const [selectedImage, setSelectedImage] = useState([]);
+
+  const [eventTitle, setEventTitle] = useState("");
+  const [eCategory, setECategory] = useState("");
+  // const [eType, setEType] = useState("");
+  const [date, setDate] = useState("");
+  const [price, setPrice] = useState("");
+  const [venue, setVenue] = useState("");
+
+  const [showMonetize, setShowMonetize] = useState("");
+  // const [waterMark, setWaterMark] = useState([]);
+
+  const [selected, setSelected] = useState(null);
+
+  // To open the click Event
   const [openEvent, setOpenEvent] = useState(false);
 
+  // To show the hover
   const [privateHover, setPrivateHover] = useState(false);
   const [generalHover, setGeneralHover] = useState(false);
   const [bothHover, setBothHover] = useState(false);
+  const [monetizehover, setMonetizeHover] = useState(false);
 
   const handleMonetizeChange = (e) => {
     const getValue = e.target.value;
@@ -47,28 +85,8 @@ const NewEvent = () => {
         )
       );
     },
-    //   onDrop: (acceptedFiles) => {
-    //       setWaterMark(
-    //         acceptedFiles.map((files) =>
-    //           Object.assign(files, {
-    //             preview: URL.createObjectURL(files),
-    //           })
-    //         )
-    //       );
-    //   }
   });
 
-  const images = waterMark.map((file) => (
-    <div key={file.name}>
-      <div>
-        <img
-          src={file.preview}
-          alt="preiew"
-          className="w-[250px] h-[250px] cover"
-        />
-      </div>
-    </div>
-  ));
   const imagesf = files.map((file) => (
     <div key={file.name}>
       <div>
@@ -81,7 +99,73 @@ const NewEvent = () => {
     </div>
   ));
 
+  const fileInputRef = useRef(null);
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+
+    const selectedFiles = e.dataTransfer.files;
+    const selectedFilesArray = Array.from(selectedFiles);
+
+    setSelectedImage((previousImage) =>
+      previousImage.concat(selectedFilesArray)
+    );
+  };
+  const handleChange = (e) => {
+    const selectedFiles = e.target.files;
+    const selectedFilesArray = Array.from(selectedFiles);
+    setSelectedImage((previousImage) =>
+      previousImage.concat(selectedFilesArray)
+    );
+  };
+  const uploadImage = (e) => {
+    e.preventDefault();
+    document.getElementById("selectFile").click();
+  };
+
+  const [people, setPeople] = useState([]);
+
+  // To submit the form
+  const formSubmit = (e) => {
+    e.preventDefault();
+    const person = {
+      title: eventTitle,
+      monetize: 1,
+      amount: price,
+      date: date,
+      venue: venue,
+      category_id: 1,
+      type_id: 1,
+      cover_photo:selectedImage,
+      watermark: files,
+    };
+    //  mutate({
+    //    title: "vince",
+    //    monetize: 1,
+    //    amount: "price",
+    //    date: "date",
+    //    venue: "venue",
+    //    category_id: 1,
+    //    type_id: 1,
+    //    cover_photo: "selectedImage",
+    //    watermark: "files",
+    //  });
+    setPeople(person);
+    console.log(people);
+  };
+
   if (open) return null;
+   if (isLoading) {
+     return "Loading...";
+   }
+
+   if (isError) {
+     return <>something went wrong</>;
+   }
   return (
     <section
       className="fixed top-0 max-h-screen h-screen w-[100%] overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
@@ -118,6 +202,8 @@ const NewEvent = () => {
                 <br />
                 <input
                   type="text"
+                  value={eventTitle}
+                  onChange={(e) => setEventTitle(e.target.value)}
                   placeholder="Enter tittle of the event"
                   className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9] h-[50px] pl-[20px] w-[100%]"
                   style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
@@ -133,15 +219,16 @@ const NewEvent = () => {
                 <br />
                 <div className="w-[100%] h-[50px] bg-[#F9F9F9] rounded-lg">
                   <select
-                    name="cars"
-                    id="cars"
+                    name=""
+                    id=""
                     className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9]  h-[50px] pl-[20px] w-[100%] "
                     style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
+                    onChange={(e) => setECategory(e.target.value)}
                   >
-                    <option value="volvo">Select</option>
-                    <option value="saab">Private</option>
-                    <option value="mercedes">Public</option>
-                    <option value="audi">Private & Public</option>
+                    <option value="">Select</option>
+                    <option value={"private"}>Private</option>
+                    <option value={"public"}>Public</option>
+                    <option value={"both"}>Private & Public</option>
                   </select>
                 </div>
               </div>
@@ -159,11 +246,14 @@ const NewEvent = () => {
                   onClick={() => setOpenEvent(!openEvent)}
                   className="flex items-center justify-between w-[100%] border-[1px] border-[#E5E5E5] pl-[20px] h-[50px] rounded-lg bg-[#F9F9F9] "
                 >
-                  <p className="text-[14px] leading-[20.58px] ">Select</p>
+                  <p className="text-[14px] leading-[20.58px] ">
+                    {selected == null ? " select" : selected}
+                  </p>
                   <BiChevronDown className="text-[grey] text-[20px]" />
                 </div>
-                <div OnClick={() => setOpenEvent(false)} className="">
+                <div onClick={() => setOpenEvent(false)} className="w-[100%]">
                   <ul
+                    onClick={() => setOpenEvent(false)}
                     className={`w-[306px] flex flex-col justify-center  rounded-[4px] mt-[-4px] z-[1] cursor-pointer bg-[#FFFFFF] ${
                       openEvent ? "max-h-[166px] absolute" : "max-h-0 hidden"
                     }`}
@@ -171,11 +261,17 @@ const NewEvent = () => {
                       boxShadow: "0px 0px 10px 0px rgba(132, 132, 132, 0.15)",
                     }}
                   >
-                    <li className="font-[400] text-[16px] leading-[20px] mt-[8px]  h-[48px] pt-[4px] relative">
+                    <li
+                      className="font-[400] text-[16px] leading-[20px] mt-[8px]  h-[48px] pt-[4px] relative "
+                      onClick={() => {
+                        setSelected("Private");
+                        setOpenEvent(false);
+                      }}
+                    >
                       <p
                         onMouseEnter={() => setPrivateHover(true)}
                         onMouseLeave={() => setPrivateHover(false)}
-                        className="text-[#181818] pl-[34.5px] with"
+                        className="text-[#181818] pl-[34.5px] with hover:py-[8px] hover:text-[black]"
                       >
                         Private
                       </p>
@@ -197,11 +293,17 @@ const NewEvent = () => {
                         </div>
                       </div>
                     </li>
-                    <li className="font-[400] text-[16px] leading-[20px] mt-[8px]  h-[48px] pt-[4px] relative">
+                    <li
+                      className="font-[400] text-[16px] leading-[20px] mt-[8px]  h-[48px] pt-[4px] relative"
+                      onClick={() => {
+                        setSelected("General");
+                        setOpenEvent(false);
+                      }}
+                    >
                       <p
                         onMouseEnter={() => setGeneralHover(true)}
                         onMouseLeave={() => setGeneralHover(false)}
-                        className="text-[#181818] pl-[34.5px] with"
+                        className="text-[#181818] pl-[34.5px] with hover:py-[8px] hover:text-[black]"
                       >
                         General
                       </p>
@@ -223,11 +325,17 @@ const NewEvent = () => {
                         </div>
                       </div>
                     </li>
-                    <li className="font-[400] text-[16px] leading-[20px] mt-[8px]  h-[48px] pt-[4px] relative">
+                    <li
+                      className="font-[400] text-[16px] leading-[20px] mt-[8px]  h-[48px] pt-[4px] relative"
+                      onClick={() => {
+                        setSelected("Both");
+                        setOpenEvent(false);
+                      }}
+                    >
                       <p
                         onMouseEnter={() => setBothHover(true)}
                         onMouseLeave={() => setBothHover(false)}
-                        className="text-[#181818] pl-[34.5px] with"
+                        className="text-[#181818] pl-[34.5px] with hover:py-[8px] hover:text-[black]"
                       >
                         Both
                       </p>
@@ -270,6 +378,8 @@ const NewEvent = () => {
                   </div>
                   <input
                     type="date"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
                     placeholder="Enter tittle of the event"
                     className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-r-lg bg-[#F9F9F9] h-[50px] pl-[20px] w-[100%] pr-5"
                     style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
@@ -314,8 +424,8 @@ const NewEvent = () => {
                     style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
                     onChange={(e) => handleMonetizeChange(e)}
                   >
-                    <option value="no">No</option>
-                    <option value="yes">Yes</option>
+                    <option value={"no"}>No</option>
+                    <option value={"yes"}>Yes</option>
                   </select>
                 </div>
               </div>
@@ -331,6 +441,8 @@ const NewEvent = () => {
                   <div className="flex items-center bg-[#EDEDED] rounded-lg">
                     <input
                       type="text"
+                      value={price}
+                      onChange={(e) => setPrice(e.target.value)}
                       placeholder="Enter Monetize Price"
                       className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9] h-[50px] pl-[20px] w-[100%] pr-5"
                       style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
@@ -348,6 +460,8 @@ const NewEvent = () => {
                 <br />
                 <input
                   type="text"
+                  value={venue}
+                  onChange={(e) => setVenue(e.target.value)}
                   placeholder="Enter the venue of the event"
                   className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9] h-[50px] pl-[20px] w-[100%]"
                   style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
@@ -394,26 +508,55 @@ const NewEvent = () => {
                   Event Custom Cover Photo
                 </label>
                 <br />
-                <div
-                  className="mt-[15px] h-[280px] rounded-lg border-dashed border-[1px] flex justify-center items-center"
-                  {...getRootProps()}
-                >
-                  <input {...getInputProps()} />
 
-                  <div className="cursor-pointer">
-                    <FiUpload size={20} className="text-[#EE2339] mx-auto" />
-                    <p className="text-[16px] font-normal leading-5 text-center text-[#8B8B8B] mt-[12px]">
-                      Drag and drop files or click upload
-                    </p>
-
-                    <>{images}</>
-                  </div>
+                <div className="mt-[15px]">
+                  <input
+                    type="file"
+                    id="selectFile"
+                    ref={fileInputRef}
+                    name="image"
+                    multiple
+                    draggable
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    onChange={handleChange}
+                  />
+                  {selectedImage.length === 0 ? (
+                    <div
+                      className=" mt-[15px] h-[280px] border-[1px] border-dashed border-[#E0E0E0] rounded-lg w-[100%] mx-auto pt-[105px] pb-[105px] "
+                      onDragOver={handleDragOver}
+                      onDrop={handleDrop}
+                      onClick={uploadImage}
+                    >
+                      <div className="cursor-pointer">
+                        <FiUpload
+                          size={20}
+                          className="text-[#EE2339] mx-auto"
+                        />
+                        <p className="text-[16px] font-normal leading-5 text-center text-[#8B8B8B] mt-[12px]">
+                          Drag and drop files or click upload
+                        </p>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="w-[100%] h-[280px] mx-auto rounded-lg border-[1px] border-dashed border-[#E0E0E0] py-[12px]">
+                      <img
+                        src={URL.createObjectURL(
+                          selectedImage[selectedImage.length - 1]
+                        )}
+                        alt=""
+                        className="w-[250px] h-[250px] cover mx-auto"
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
-
             {/* button */}
-            <button className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[40px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5">
+            <button
+              onClick={formSubmit}
+              className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[40px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5"
+            >
               Create Event
             </button>
           </form>

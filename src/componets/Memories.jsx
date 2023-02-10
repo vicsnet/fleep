@@ -140,7 +140,7 @@ const Memories = () => {
                   <img
                     src={FaceMe}
                     alt=""
-                    className="absolute mx-auto w-[34px] top-[8px] left-[44.3%] bSemiBig:left-[43.8%] bSemismall:left-[43%] smDesktop:left-[46%] smDesk:left-[45%] tabletAir:left-[44%]"
+                    className="absolute mx-auto w-[34px] top-[1.316rem] left-[44.3%] bSemiBig:left-[43.8%] bSemismall:left-[43%] smDesktop:left-[46%] smDesk:left-[45%] tabletAir:left-[44%]"
                   />
                 </div>
 

@@ -4,15 +4,14 @@ import bum from "../../assets/HBD to bunmi 20190716_003414.jpg";
 import { GoPrimitiveDot } from "react-icons/go";
 import { BiUpload } from "react-icons/bi";
 import { openImage } from "../../Redux/features/uploadDPSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { useQuery } from "@tanstack/react-query";
-import { baseURL } from "../../Redux/Api/api";
-import Axios from "axios";
-import GetProfile from "../profile/hooks/profile";
+import { useDispatch } from "react-redux";
+import ProfileUseFetch from "../profile/hooks/profileUseFetch";
 
 const Profile = () => {
-  const { me } = GetProfile();
-  console.log(me);
+  const { data, isLoading } = ProfileUseFetch();
+  console.log(data);
+  // const { me } = GetProfile();
+  // console.log(me);
   // const [file, setFile] = useState("");
 
   // const handleChange = (e) => {
@@ -23,28 +22,8 @@ const Profile = () => {
   // const uploadFile = () => {
   //   document.getElementById("selectFile").click();
   // };
-
-  /*
-  fetching profile from database
-  */
-
-  const { token } = useSelector((state) => state.user);
-
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  };
-
-  const getData = () => {
-    return Axios.get(`${baseURL}/user/profile`, config).then((res) => res.data);
-  };
-
-  const { data } = useQuery(["profile"], getData);
- 
-
   const dispatch = useDispatch();
+   
 
   return (
     <main className="max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full pb-[180px]">
@@ -110,13 +89,14 @@ const Profile = () => {
                   Full Name
                 </label>
                 <br />
+                {(isLoading) ? "Loading..." :
+                
                 <input
                   type="text"
-                  // type={profile.full_name}
-                  // value={data.data.full_name}
-                  placeholder="Enter full name"
+                  placeholder={data.data.full_name}
                   className="w-[100%] h-[40px] rounded-[8px] pl-[20px] outline-none border-[1px] border-[#E5E5E5] bg-[#F9F9F9] text-[14px] leading-[16.8px] font-light text-[#999999]"
                 />
+              }
               </div>
 
               <div className="w-[40%]">
@@ -127,12 +107,13 @@ const Profile = () => {
                   Email
                 </label>
                 <br />
-                <input
-                  type="email"
-                  // value={data.data.email}
-                  placeholder="Enter Email"
-                  className="w-[100%] h-[40px] rounded-[8px] pl-[20px] outline-none border-[1px] border-[#E5E5E5] bg-[#F9F9F9] text-[14px] leading-[16.8px] font-light text-[#999999]"
-                />
+                {(isLoading) ? "Loading..." :
+                  <input
+                    type="email"
+                    placeholder={data.data.email}
+                    className="w-[100%] h-[40px] rounded-[8px] pl-[20px] outline-none border-[1px] border-[#E5E5E5] bg-[#F9F9F9] text-[14px] leading-[16.8px] font-light text-[#999999]"
+                  />
+                }
               </div>
             </div>
             <div className="mt-[24px] w-[40%]">
@@ -143,12 +124,12 @@ const Profile = () => {
                 Phone Number
               </label>
               <br />
-              <input
-                type="text"
-                // value={data.data.phone}
-                placeholder="Enter phone number"
-                className="w-[100%] h-[40px] rounded-[8px] pl-[20px] outline-none border-[1px] border-[#E5E5E5] bg-[#F9F9F9] text-[14px] leading-[16.8px] font-light text-[#999999]"
-              />
+              {(isLoading) ? "Loading..." :
+                <input
+                  type="text"
+                  placeholder={data.data.phone}
+                  className="w-[100%] h-[40px] rounded-[8px] pl-[20px] outline-none border-[1px] border-[#E5E5E5] bg-[#F9F9F9] text-[14px] leading-[16.8px] font-light text-[#999999]"
+                />}
             </div>
           </form>
         </div>

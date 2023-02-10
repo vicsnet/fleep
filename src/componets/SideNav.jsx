@@ -4,11 +4,12 @@ import { GoPrimitiveDot } from "react-icons/go";
 import { Link, useNavigate } from "react-router-dom";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { useSelector } from "react-redux";
+import ProfileUseFetch from "../pages/profile/hooks/profileUseFetch";
 
 const SideNav = ({ title, display, padd }) => {
   const back = useNavigate();
-  const { user, token, userName } = useSelector((state) => state.user);
-  console.log(userName);
+
+  const { data, isLoading } = ProfileUseFetch();
 
   return (
     <section className="flex justify-between border-b-[1px] border-[#C6C6C6]">
@@ -30,9 +31,14 @@ const SideNav = ({ title, display, padd }) => {
 
       <Link to="/profile">
         <div className="flex items-center gap-[16px] pr-[42px]">
-          <h2 className="text-[16px] font-bold leading-[19.2px]">
-            Teejay Teko
-          </h2>
+          {isLoading ? (
+            "Loading.."
+          ) : (
+            <h2 className="text-[16px] font-bold leading-[19.2px]">
+              {data.data.full_name}
+            </h2>
+          )}
+
           <div className="relative">
             <img
               src={bum}
