@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { FiCopy } from "react-icons/fi";
-
 import copy from "copy-to-clipboard";
 import QR from "../../../assets/Vector (17).png";
-const EventQR = () => {
+
+
+
+const EventQR = ({ onClose, showQr }) => {
+
+
   const [copyText, setCopyText] = useState("");
   const text = "123456GT";
 
@@ -18,7 +22,7 @@ const EventQR = () => {
     alert(`You have copied "${text}"`);
     alert(`You have copied "${copyText}"`);
   };
-
+  if (!showQr) return null;
   return (
     <section
       className="w-[100%] h-screen max-h-screen fixed top-0 overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full "
@@ -33,7 +37,11 @@ const EventQR = () => {
             <h2 className="text-[28px] leading-8 font-bold text-[#1A1941]">
               Event Created Successfully
             </h2>
-            <IoIosCloseCircleOutline size={20} className="text-[#7C7B7B]" />
+            <IoIosCloseCircleOutline
+              onClick={onClose}
+              size={20}
+              className="text-[#7C7B7B]"
+            />
           </div>
           <img
             src={QR}
@@ -55,7 +63,10 @@ const EventQR = () => {
             />
           </div>
           <div className="w-[100%] flex justify-center">
-            <button className="text-[16px] font-bold leading-5 bg-[#1A1941] text-white h-12 px-12 rounded-lg mx-auto mt-12">
+            <button
+              onClick={onClose}
+              className="text-[16px] font-bold leading-5 bg-[#1A1941] text-white h-12 px-12 rounded-lg mx-auto mt-12"
+            >
               Close
             </button>
           </div>

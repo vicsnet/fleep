@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { FiUpload, FiPlus } from "react-icons/fi";
@@ -6,7 +6,8 @@ import { BiChevronDown } from "react-icons/bi";
 import { useDropzone } from "react-dropzone";
 import info from "../../../assets/Union (1).png";
 import EventQR from "./EventQR";
-import axios from "axios";
+import ClipLoader from "react-spinners/ClipLoader";
+import useFetchCreatePost from "./eventhooks/useFetchCreatePost";
 
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -15,34 +16,14 @@ import {
 } from "../../../Redux/features/createEventSlice";
 import Arrow from "../../../assets/SVG/Arrow.svg";
 import DownArrow from "../../../assets/Arrow.png";
-import { baseURL } from "../../../Redux/Api/api";
-import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 const NewEvent = () => {
   const open = useSelector((state) => state.crtEvent.open);
 
   const dispatch = useDispatch();
 
-  const API_URL = `${baseURL}/user/event/create`;
-const { token } = useSelector((state) => state.user);
-const config = {
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: ` ${token}`,
-  },
-  };
-  const registerEvent = async (formData) => {
-    const response = await axios.post(API_URL, config, formData);
-
-    return response.formData;
-  };
-  const { mutate, isLoading, isError } = useMutation(registerEvent, {
-    onSuccess: (successData) => {
-      console.log(successData);
-    },
-  });
-
- 
+  const [showEventQR, setShowEventQR] = useState(false);
   // image Upload
   const [files, setFiles] = useState([]);
   const [selectedImage, setSelectedImage] = useState([]);
@@ -51,11 +32,10 @@ const config = {
   const [eCategory, setECategory] = useState("");
   // const [eType, setEType] = useState("");
   const [date, setDate] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState(0);
   const [venue, setVenue] = useState("");
 
-  const [showMonetize, setShowMonetize] = useState("");
-  // const [waterMark, setWaterMark] = useState([]);
+  const [showMonetize, setShowMonetize] = useState(0);
 
   const [selected, setSelected] = useState(null);
 
@@ -67,6 +47,10 @@ const config = {
   const [generalHover, setGeneralHover] = useState(false);
   const [bothHover, setBothHover] = useState(false);
   const [monetizehover, setMonetizeHover] = useState(false);
+  const [type, setType] = useState(0);
+
+  // Error message
+  const [message, setMessage] = useState("");
 
   const handleMonetizeChange = (e) => {
     const getValue = e.target.value;
@@ -127,45 +111,61 @@ const config = {
     document.getElementById("selectFile").click();
   };
 
-  const [people, setPeople] = useState([]);
-
+  //
+  const { mutate, isLoading, isError, isSuccess } = useFetchCreatePost();
   // To submit the form
   const formSubmit = (e) => {
     e.preventDefault();
-    const person = {
-      title: eventTitle,
-      monetize: 1,
-      amount: price,
-      date: date,
-      venue: venue,
-      category_id: 1,
-      type_id: 1,
-      cover_photo:selectedImage,
-      watermark: files,
-    };
-    //  mutate({
-    //    title: "vince",
-    //    monetize: 1,
-    //    amount: "price",
-    //    date: "date",
-    //    venue: "venue",
-    //    category_id: 1,
-    //    type_id: 1,
-    //    cover_photo: "selectedImage",
-    //    watermark: "files",
-    //  });
-    setPeople(person);
-    console.log(people);
+    if (
+      eventTitle === "" ||
+      eCategory === 0 ||
+      venue === "" ||
+      files === [] ||
+      selectedImage === [] ||
+      type === "" ||
+      date === ""
+    ) {
+      setMessage("All Field Required");
+    } else if (showMonetize === 1 && price === 0) {
+      setMessage("Price can not be empty");
+    } else {
+      const person = {
+        status: 1,
+        title: eventTitle,
+        monetize: showMonetize,
+        amount: price,
+        date: date,
+        venue: venue,
+        category_id: eCategory,
+        type_id: type,
+        cover_photo: selectedImage.files,
+        watermark: files.files,
+      };
+      mutate(person);
+    }
   };
 
-  if (open) return null;
-   if (isLoading) {
-     return "Loading...";
-   }
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
 
-   if (isError) {
-     return <>something went wrong</>;
-   }
+    if (isSuccess) {
+      setShowEventQR(true);
+      setEventTitle("");
+      setShowMonetize("");
+      setPrice(0);
+      setDate("");
+      setVenue("");
+      setShowMonetize(0);
+      setType(0);
+      setSelectedImage([]);
+      setFiles([]);
+    }
+  }, [isSuccess, isError, message]);
+
+  if (open) return null;
+
   return (
     <section
       className="fixed top-0 max-h-screen h-screen w-[100%] overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
@@ -225,10 +225,10 @@ const config = {
                     style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
                     onChange={(e) => setECategory(e.target.value)}
                   >
-                    <option value="">Select</option>
-                    <option value={"private"}>Private</option>
-                    <option value={"public"}>Public</option>
-                    <option value={"both"}>Private & Public</option>
+                    <option value={0}>Select</option>
+                    <option value={1}>Private</option>
+                    <option value={2}>Public</option>
+                    <option value={3}>Private & Public</option>
                   </select>
                 </div>
               </div>
@@ -265,6 +265,7 @@ const config = {
                       className="font-[400] text-[16px] leading-[20px] mt-[8px]  h-[48px] pt-[4px] relative "
                       onClick={() => {
                         setSelected("Private");
+                        setType(0);
                         setOpenEvent(false);
                       }}
                     >
@@ -297,6 +298,7 @@ const config = {
                       className="font-[400] text-[16px] leading-[20px] mt-[8px]  h-[48px] pt-[4px] relative"
                       onClick={() => {
                         setSelected("General");
+                        setType(1);
                         setOpenEvent(false);
                       }}
                     >
@@ -329,6 +331,7 @@ const config = {
                       className="font-[400] text-[16px] leading-[20px] mt-[8px]  h-[48px] pt-[4px] relative"
                       onClick={() => {
                         setSelected("Both");
+                        setType(2);
                         setOpenEvent(false);
                       }}
                     >
@@ -418,18 +421,17 @@ const config = {
                 {/* <br /> */}
                 <div className="w-[100%] h-[50px] bg-[#F9F9F9] rounded-lg">
                   <select
-                    name="cars"
-                    id="cars"
+                    name="monetize"
                     className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9]  h-[50px] pl-[20px] w-[100%]"
                     style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
                     onChange={(e) => handleMonetizeChange(e)}
                   >
-                    <option value={"no"}>No</option>
-                    <option value={"yes"}>Yes</option>
+                    <option value={0}>No</option>
+                    <option value={1}>Yes</option>
                   </select>
                 </div>
               </div>
-              {showMonetize === "yes" && (
+              {showMonetize === 1 && (
                 <div className="w-[48%] smDesktop:w-[47.7%] tablet:w-[47%]">
                   <label
                     htmlFor=""
@@ -440,7 +442,7 @@ const config = {
                   <br />
                   <div className="flex items-center bg-[#EDEDED] rounded-lg">
                     <input
-                      type="text"
+                      type="number"
                       value={price}
                       onChange={(e) => setPrice(e.target.value)}
                       placeholder="Enter Monetize Price"
@@ -557,12 +559,18 @@ const config = {
               onClick={formSubmit}
               className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[40px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5"
             >
-              Create Event
+              {isLoading ? <ClipLoader color="#FFFFFF" /> : "Create Event "}
             </button>
           </form>
         </div>
       </div>
-      {/* <EventQR /> */}
+      <EventQR
+        showQr={showEventQR}
+        onClose={() => {
+          setShowEventQR(false);
+          dispatch(closeEvent());
+        }}
+      />
     </section>
   );
 };

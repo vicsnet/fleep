@@ -5,8 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import Axios from "axios";
 
 const ProfileUseFetch = () => {
-  //   const [loading, setLoading] = useState(false);
-  //   const [error, setError] = useState(null);
+
 
   const { token } = useSelector((state) => state.user);
 

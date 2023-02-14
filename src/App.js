@@ -60,7 +60,7 @@ function App() {
             <Route path="settings" element={<Settings />} />
             <Route path="users" element={<Users />} />
             <Route path="profile" element={<Profile />} />
-            <Route path="event/created-event" element={<CreatedEvent />} />
+            <Route path="event/created-event/:id" element={<CreatedEvent />} />
             <Route path="wallet" element={<WalletPage />} />
           </Route>
           {/* </PrivateRoute> */}
