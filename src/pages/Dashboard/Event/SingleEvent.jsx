@@ -4,11 +4,11 @@ import { TbUsers } from "react-icons/tb";
 import { CiImageOn } from "react-icons/ci";
 
 
-const SingleEvent = ({ index, title, coverphoto, date, images }) => {
+const SingleEvent = ({ index, title, coverphoto, date, images, singleId }) => {
 
     const { id } = useParams();
   return (
-    <Link key={index} to={`/event/created-event/${id}`}>
+    <Link key={index} to={`/event/created-event/${singleId}`}>
       <div
         className="w-[100%] rounded-[16px] mb-[4px]"
         style={{

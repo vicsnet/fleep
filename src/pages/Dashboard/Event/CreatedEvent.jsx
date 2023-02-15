@@ -20,10 +20,28 @@ import { openEvent } from "../../../Redux/features/createEventSlice";
 import { openAddUser } from "../../../Redux/features/addUserSlice";
 import EVeimage from "../../../assets/SVG/Vector5.svg";
 import { uploadOpenImage } from "../../../Redux/features/uploadDPSlice";
+import useFetchSingleEvent from "./eventhooks/useFetchSingleEvent";
+import { useParams } from "react-router-dom";
 
 const url = "https://jsonplaceholder.typicode.com/albums";
 
 const CreatedEvent = () => {
+
+  const {id} = useParams();
+  const {data, isLoading, isError} = useFetchSingleEvent(id);
+
+  const [me, setMe] = useState("")
+
+  if(isLoading){
+    console.log("Loading...")
+  }
+
+  console.log(data)
+  console.log(data?.data?.title)
+  if(isError){
+    console.log("error")
+  }
+
   const dispatch = useDispatch();
 
   const [images, setImage] = useState([]);
@@ -51,6 +69,8 @@ const CreatedEvent = () => {
     alert(`You have copied "${text}"`);
   };
 
+ 
+
   return (
     <main className="w-[100%] h-screen max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
       <SideNav title="Event" display="flex" />
@@ -66,10 +86,10 @@ const CreatedEvent = () => {
             />
             <div className="ml-[35px]">
               <h3 className="text-[30px] font-semibold leading-9 text-[#1A1941] smDesk:text-[24px] ">
-                Henry’s Wedding
+                {data?.data?.title}
               </h3>
               <p className="text-[#8A8A8A] text-[16px] font-normal leading-5 mt-2 smDesk:text-[14px]">
-                September 30th, 2022
+                {data?.data?.date}
               </p>
               <div className="flex items-center mt-[27.5px]">
                 <img src={union} alt="" className="w-[20px] h-[20px]" />
@@ -80,7 +100,7 @@ const CreatedEvent = () => {
               <div className="flex items-center mt-[17px]">
                 <img src={union2} alt="" className="w-[20px] h-[20px]" />
                 <p className="text-[16px] leading-5 font-normal ml-[10px] smDesk:text-[14px]">
-                  Lekki Lagos, Nigeria
+                  {data?.data?.venue}
                 </p>
               </div>
             </div>
@@ -102,7 +122,7 @@ const CreatedEvent = () => {
             {/*  */}
             <div className="flex">
               <img
-                src={QR}
+                src={data?.data?.qr}
                 alt=""
                 className="w-[75px] h-[75px] smDesk:w-[60px] smDesk:h-[60px]"
               />

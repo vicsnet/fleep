@@ -8,18 +8,37 @@ import { useDropzone } from "react-dropzone";
 import { useSelector, useDispatch } from "react-redux";
 import { uploadCloseImage } from "../Redux/features/uploadDPSlice";
 import { Upload, Spin } from "antd";
+import { useParams } from "react-router-dom";
+import useUploadEventImages from "../pages/Dashboard/Event/eventhooks/useUploadEventImages";
 
 // import "antd/dist/reset.css";
 
 
 const UploadImage = () => {
+
+  const {id} = useParams();
   
-  const [files, setFiles] = useState([]);
-  const [showImage, setShowImage] = useState([])
+  const [fileList, setFileList] = useState([]);
+
+  console.log(fileList);
 
   const open = useSelector((state) => state.uploadDp.imageOpen);
   const dispatch = useDispatch();
 
+
+const {mutate, isLoading, isError, isSuccess} = useUploadEventImages(id);
+
+const handleSubmit =(e)=>{
+  e.preventDefault();
+  const upload = [FileList.File];
+  
+  mutate({images
+    :upload[upload]})
+}
+
+const onChange = ({ fileList: newFileList }) => {
+  setFileList(newFileList);
+};
 
   if (open) return null;
   return (
@@ -56,6 +75,8 @@ const UploadImage = () => {
                       listType="picture"
                       showUploadList={{ showRemoveIcon: true }}
                       accept=".png,.jpeg,.jpg"
+                      fileList={fileList}
+                      onChange={onChange}
                       beforeUpload={(file) => {
                         console.log(file.File);
 
@@ -92,7 +113,7 @@ const UploadImage = () => {
               <button className="border-[#1A1941] border-[1px] rounded-lg h-[50px] mt-[50px] px-[55px] text-[#1A1941] tracking-[10%] text-[16px] leading-5 font-extrabold">
                 Cancel
               </button>
-              <button className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[58px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5 font-extrabold">
+              <button onClick={handleSubmit} className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[58px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5 font-extrabold">
                 Save
               </button>
             </div>

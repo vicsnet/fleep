@@ -5,8 +5,8 @@ import { baseURL } from "../../../../Redux/Api/api";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-const useFetchEvent = (id) => {
-  const API_URL = `${baseURL}/user/event/list`;
+const useFetchSingleEvent = (id) => {
+  
 
   const SINGLE_URL =`${baseURL}/event/view/${id}`;
 // const {id} = useParams();
@@ -19,18 +19,15 @@ const useFetchEvent = (id) => {
     },
   };
 
-  const getData = () => {
-    return axios.get(API_URL, config).then((res) => res.data);
-  };
+
 
   const getSingleEvent = () =>{
     return axios.get(SINGLE_URL, config).then((res)=> res.data);
   }
 
-  const { data, isLoading, isError } = useQuery(["Event"], getData);
 
-  const {SingleData, Loading, Error} = useQuery(["SINGLE_EVENT"], getSingleEvent)
+  const {data, isLoading, isError} = useQuery(["SINGLE_EVENT"], getSingleEvent)
 
-  return { data, isLoading, isError, SingleData, Loading, Error };
+  return {  isLoading, isError, data,  };
 };
-export default useFetchEvent;
+export default useFetchSingleEvent;
