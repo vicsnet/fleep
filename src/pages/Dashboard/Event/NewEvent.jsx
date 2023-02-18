@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useState, useRef, useEffect } from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { AiOutlineCalendar } from "react-icons/ai";
@@ -17,6 +19,9 @@ import {
 import Arrow from "../../../assets/SVG/Arrow.svg";
 import DownArrow from "../../../assets/Arrow.png";
 import { toast } from "react-toastify";
+import useComponentVisible from "../../../hooks/useComponentVisible";
+import useFetchListTypes from "./eventhooks/useFecthListTypes";
+import useFetchListCategorieType from "./eventhooks/useFetchListCategorieType";
 
 const NewEvent = () => {
   const open = useSelector((state) => state.crtEvent.open);
@@ -40,10 +45,11 @@ const NewEvent = () => {
   const [selected, setSelected] = useState(null);
 
   // To open the click Event
-  const [openEvent, setOpenEvent] = useState(false);
+  
+  const {ref,isComponentVisible:openEvent, setIsComponentVisible:setOpenEvent} = useComponentVisible(false);
 
   // To show the hover
-  const [privateHover, setPrivateHover] = useState(false);
+  const [privateHover, setPrivateHover] = useState(-1);
   const [generalHover, setGeneralHover] = useState(false);
   const [bothHover, setBothHover] = useState(false);
   const [monetizehover, setMonetizeHover] = useState(false);
@@ -83,6 +89,23 @@ const NewEvent = () => {
     </div>
   ));
 
+  // fetching Event Types
+  const {typesdata, typesLoading, typesError} = useFetchListTypes();
+
+  console.log(`Event types ${typesdata}`);
+
+  // Event Category
+
+    const {categoryData, categoryLoading, categoryError} = useFetchListCategorieType();
+    console.log(categoryData)
+
+
+  const eventType = [
+    { id: 1, type: "private", details: "private hover" },
+    { id: 2, type: "General", details: "private hover" },
+    { id: 3, type: "Both", details: "both hover" },
+  ];
+
   const fileInputRef = useRef(null);
 
   const handleDragOver = (e) => {
@@ -110,6 +133,7 @@ const NewEvent = () => {
     e.preventDefault();
     document.getElementById("selectFile").click();
   };
+  console.log(files);
 
   //
   const { mutate, isLoading, isError, isSuccess } = useFetchCreatePost();
@@ -117,16 +141,16 @@ const NewEvent = () => {
   const formSubmit = (e) => {
     e.preventDefault();
     if (
-      eventTitle === "" ||
-      eCategory === 0 ||
-      venue === "" ||
-      files === [] ||
-      selectedImage === [] ||
-      type === "" ||
-      date === ""
+      eventTitle == "" ||
+      eCategory == 0 ||
+      venue == "" ||
+      files == [] ||
+      selectedImage == [] ||
+      type == "" ||
+      date == ""
     ) {
       setMessage("All Field Required");
-    } else if (showMonetize === 1 && price === 0) {
+    } else if (showMonetize == 1 && price == 0) {
       setMessage("Price can not be empty");
     } else {
       const person = {
@@ -138,8 +162,8 @@ const NewEvent = () => {
         venue: venue,
         category_id: eCategory,
         type_id: type,
-        cover_photo: selectedImage.files,
-        watermark: files.files,
+        cover_photo: selectedImage.File,
+        watermark: files.File,
       };
       mutate(person);
     }
@@ -167,15 +191,16 @@ const NewEvent = () => {
   if (open) return null;
 
   return (
-    <section
+    <section 
       className="fixed top-0 max-h-screen h-screen w-[100%] overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
       style={{ background: "rgba(20, 24, 31, 0.25)" }}
     >
       <div
+      
         className="w-[70%] rounded-lg mt-[79px] mx-auto  pb-[60px] mb-[60px]"
         style={{ background: "rgba(255, 255, 255, 1)" }}
       >
-        <div className="w-[90%] mx-auto">
+        <div   className="w-[90%] mx-auto ">
           <div className="pt-[54px] flex justify-between">
             <h2 className="text-[24px] font-bold leading-7 text-[#1A1941]">
               Create Event
@@ -190,8 +215,9 @@ const NewEvent = () => {
             Fill the form to create an event
           </p>
 
-          <form className="mt-[40px]">
-            <div className="flex gap-[24px]">
+          <form ref={ref} className="mt-[40px]">
+<div ref={ref} className="">
+            <div ref={ref} className="flex gap-[24px]">
               <div className="w-[50%]">
                 <label
                   htmlFor=""
@@ -261,40 +287,44 @@ const NewEvent = () => {
                       boxShadow: "0px 0px 10px 0px rgba(132, 132, 132, 0.15)",
                     }}
                   >
-                    <li
-                      className="font-[400] text-[16px] leading-[20px] mt-[8px]  h-[48px] pt-[4px] relative "
-                      onClick={() => {
-                        setSelected("Private");
-                        setType(0);
-                        setOpenEvent(false);
-                      }}
-                    >
-                      <p
-                        onMouseEnter={() => setPrivateHover(true)}
-                        onMouseLeave={() => setPrivateHover(false)}
-                        className="text-[#181818] pl-[34.5px] with hover:py-[8px] hover:text-[black]"
+                    {eventType.map((event, i) => 
+                    (
+                      <li
+                        key={i}
+                        className="font-[400] text-[16px] leading-[20px] mt-[8px]  h-[48px] pt-[4px] relative "
+                        onClick={() => {
+                          setSelected(event.type);
+                          setType(event.id);
+                          setOpenEvent(false);
+                        }}
                       >
-                        Private
-                      </p>
-                      <div
-                        className={` ${
-                          privateHover ? "z-[1] absolute" : " hidden"
-                        }`}
-                      >
-                        <img
-                          src={DownArrow}
-                          alt=""
-                          className="ml-[35.5px] mb-[-1px]"
-                        />
-                        <div className="w-[200px] bg-white shadow-lg rounded-sm ml-[34.5px] ">
-                          <p className="w-[90%] mx-auto py-[6px] text-[10px] font-normal leading-4">
-                            Only pictures the event attenders appear in will be
-                            shown to them for download.
-                          </p>
+                        <p
+                          onMouseEnter={() => setPrivateHover(event.id)}
+                          onMouseLeave={() => setPrivateHover(false)}
+                          className="text-[#181818] pl-[34.5px] with hover:py-[8px] hover:text-[black]"
+                        >
+                          {event.type}
+                        </p>
+                        <div
+                          className={` ${
+                            privateHover === event.id ? "z-[1] absolute" : " hidden"
+                          }`}
+                        >
+                          <img
+                            src={DownArrow}
+                            alt=""
+                            className="ml-[35.5px] mb-[-1px]"
+                          />
+                          <div className="w-[200px] bg-white shadow-lg rounded-sm ml-[34.5px] ">
+                            <p className="w-[90%] mx-auto py-[6px] text-[10px] font-normal leading-4">
+                              {event.details}
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    </li>
-                    <li
+                      </li>
+                    ))}
+
+                    {/* <li
                       className="font-[400] text-[16px] leading-[20px] mt-[8px]  h-[48px] pt-[4px] relative"
                       onClick={() => {
                         setSelected("General");
@@ -359,7 +389,7 @@ const NewEvent = () => {
                           </p>
                         </div>
                       </div>
-                    </li>
+                    </li> */}
                   </ul>
                 </div>
               </div>
@@ -390,7 +420,7 @@ const NewEvent = () => {
                 </div>
               </div>
             </div>
-            <div className="w-[100%] flex gap-[26px] mt-6 flex-wrap relative">
+            <div ref={ref} className="w-[100%] flex gap-[26px] mt-6 flex-wrap relative">
               {monetizehover && (
                 <div className="w-[200px] bg-white py-[6px] rounded-[2px] absolute right-[52%] top-[-46px]">
                   <p className="text-[10px] font-normal leading-[14.5px] w-[90%] mx-auto ">
@@ -431,7 +461,7 @@ const NewEvent = () => {
                   </select>
                 </div>
               </div>
-              {showMonetize === 1 && (
+              {showMonetize == 1 && (
                 <div className="w-[48%] smDesktop:w-[47.7%] tablet:w-[47%]">
                   <label
                     htmlFor=""
@@ -472,7 +502,7 @@ const NewEvent = () => {
             </div>
 
             {/*  input file*/}
-            <div className="flex gap-[24px] mt-6">
+            <div ref={ref} className="flex gap-[24px] mt-6">
               <div className="w-[50%]">
                 <label
                   htmlFor=""
@@ -482,6 +512,7 @@ const NewEvent = () => {
                 </label>
                 <br />
                 <div
+                ref={ref}
                   className="mt-[15px] h-[280px] rounded-lg border-dashed border-[1px] flex justify-center items-center"
                   {...getRootProps()}
                 >
@@ -541,7 +572,7 @@ const NewEvent = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="w-[100%] h-[280px] mx-auto rounded-lg border-[1px] border-dashed border-[#E0E0E0] py-[12px]">
+                    <div ref={ref} className="w-[100%] h-[280px] mx-auto rounded-lg border-[1px] border-dashed border-[#E0E0E0] py-[12px]">
                       <img
                         src={URL.createObjectURL(
                           selectedImage[selectedImage.length - 1]
@@ -561,6 +592,7 @@ const NewEvent = () => {
             >
               {isLoading ? <ClipLoader color="#FFFFFF" /> : "Create Event "}
             </button>
+</div>
           </form>
         </div>
       </div>

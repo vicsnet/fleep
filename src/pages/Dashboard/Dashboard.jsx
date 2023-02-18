@@ -17,29 +17,16 @@ import Vector from "../../assets/SVG/Vector.svg";
 import Vector1 from "../../assets/SVG/Vector1.svg";
 import Vector2 from "../../assets/SVG/Group.svg";
 import Vector3 from "../../assets/SVG/Group1.svg";
-import { useQuery } from "@tanstack/react-query";
-import Axios from "axios";
-import { baseURL } from "../../Redux/Api/api";
+import ProfileUseFetch from "../profile/hooks/profileUseFetch";
+
+
 
 const Dashboard = () => {
-  const { token } = useSelector((state) => state.user);
-
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  };
-
-  const getData = () => {
-    return Axios.get(`${baseURL}/user/profile`, config).then((res) => res.data);
-  };
-
-  const { data } = useQuery(["profile"], getData);
+  const {data, isLoading, isError} =ProfileUseFetch();
+  
 
   const dispatch = useDispatch();
 
-  console.log(data);
 
   return (
     <main className="max-h-screen h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full pb-[180px]">
@@ -68,7 +55,8 @@ const Dashboard = () => {
                   </div>
                   <div className="text-[white]">
                     <h3 className="text-[30px] font-bold leading-[36px] tracking-[2.14px] text-white ">
-                      150
+                      {/* 150  */}
+                      {data?.data?.eventsimagescount}
                     </h3>
                     <p className="text-[#EEEEEE] opacity-[70%] text-[14px] font-[500] leading-[16.8px] pt-[4px]">
                       Total Photo
@@ -94,7 +82,8 @@ const Dashboard = () => {
                   </div>
                   <div className="smDesk:w-[45%] tabletAir:w-[60px]  smDesktop:w-[38%]">
                     <h3 className="text-[30px]  font-bold leading-[36px] tracking-[2.14px] text-[#191D23] ">
-                      14
+                      {/* 14   */}
+                      {data?.data?.free_space}
                     </h3>
                     <p className="text-[#8E99AB] opacity-[70%] tabletAir:text-[12px] text-[14px] font-[500] leading-[16.8px] pt-[4px] ">
                       Photo spaces left
@@ -125,7 +114,8 @@ const Dashboard = () => {
                   </div>
                   <div className="">
                     <h3 className="text-[30px] font-bold leading-[36px] tracking-[2.14px] text-[#191D23] ">
-                      45
+                      {/* 45 */}
+                      {data?.data?.eventscount}
                     </h3>
                     <p className="text-[#8E99AB] opacity-[70%] text-[14px] font-[500] leading-[16.8px] pt-[4px] ">
                       Total Events

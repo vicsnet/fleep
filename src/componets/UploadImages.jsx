@@ -1,3 +1,5 @@
+/** @format */
+
 import { useState } from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { FiUpload } from "react-icons/fi";
@@ -10,35 +12,42 @@ import { uploadCloseImage } from "../Redux/features/uploadDPSlice";
 import { Upload, Spin } from "antd";
 import { useParams } from "react-router-dom";
 import useUploadEventImages from "../pages/Dashboard/Event/eventhooks/useUploadEventImages";
+import { UPLOAD_TYPES } from "../pages/Dashboard/Event/eventhooks/types";
 
 // import "antd/dist/reset.css";
 
-
 const UploadImage = () => {
+  const { id } = useParams();
 
-  const {id} = useParams();
-  
   const [fileList, setFileList] = useState([]);
-
-  console.log(fileList);
+  const { IMAGE_UPLOAD } = UPLOAD_TYPES;
 
   const open = useSelector((state) => state.uploadDp.imageOpen);
   const dispatch = useDispatch();
 
+  const { mutate, isLoading, isError, isSuccess } = useUploadEventImages(id);
 
-const {mutate, isLoading, isError, isSuccess} = useUploadEventImages(id);
+  console.log(fileList);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const uploadArr = [];
+    fileList.forEach((file) => {
+      console.log(typeof file.thumbUrl);
+      console.log(file.originFileObj)
+      uploadArr.push(file.originFileObj);
+    });
+    
+// return 
+    mutate({ images:uploadArr });
+  };
 
-const handleSubmit =(e)=>{
-  e.preventDefault();
-  const upload = [FileList.File];
-  
-  mutate({images
-    :upload[upload]})
-}
+  //
 
-const onChange = ({ fileList: newFileList }) => {
-  setFileList(newFileList);
-};
+  //
+
+  const onChange = ({ fileList: newFileList }) => {
+    setFileList(newFileList);
+  };
 
   if (open) return null;
   return (
@@ -51,7 +60,6 @@ const onChange = ({ fileList: newFileList }) => {
         style={{ background: "rgba(255, 255, 255, 1)" }}
       >
         <div className="w-[90%] mx-auto">
-          
           <div className="pt-[54px] flex justify-center">
             <h2 className="text-[24px] font-bold leading-7 text-[#1A1941]">
               Upload Images
@@ -76,6 +84,7 @@ const onChange = ({ fileList: newFileList }) => {
                       showUploadList={{ showRemoveIcon: true }}
                       accept=".png,.jpeg,.jpg"
                       fileList={fileList}
+                      // fileList={(e)=>e.target.val}
                       onChange={onChange}
                       beforeUpload={(file) => {
                         console.log(file.File);
@@ -113,7 +122,10 @@ const onChange = ({ fileList: newFileList }) => {
               <button className="border-[#1A1941] border-[1px] rounded-lg h-[50px] mt-[50px] px-[55px] text-[#1A1941] tracking-[10%] text-[16px] leading-5 font-extrabold">
                 Cancel
               </button>
-              <button onClick={handleSubmit} className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[58px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5 font-extrabold">
+              <button
+                onClick={handleSubmit}
+                className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[58px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5 font-extrabold"
+              >
                 Save
               </button>
             </div>
