@@ -18,19 +18,21 @@ const useFetchCreatePost = () => {
     },
   };
 
-  const registerNewEvent = ({ person }) => {
+  const registerNewEvent = (data) => {
     const formdata = new FormData();
-    formdata.append("status", person.status);
-    formdata.append("title", person.title);
-    formdata.append("monetize", person.monetize);
-    formdata.append("amount", person.status);
-    formdata.append("date", person.date);
-    formdata.append("venue", person.venue);
-    formdata.append("category_id", person.category_id);
-    formdata.append("type_id", person.type_id);
-    formdata.append("cover_photo", person.cover_photo);
-    formdata.append("watermark", person.watermark);
-    return axios.post(API_URL, formdata, config);
+    formdata.append("status", data.status);
+    formdata.append("title", data.title);
+    formdata.append("monetize", data.monetize);
+    formdata.append("amount", data.amount);
+    formdata.append("date", data.date);
+    formdata.append("venue", data.venue);
+    formdata.append("category_id", data.category_id);
+    formdata.append("type_id", data.type_id);
+    formdata.append("cover_photo", data.cover_photo);
+    formdata.append("watermark", data.watermark);
+    console.log(data)
+
+    return axios.post(API_URL, data, config);
   };
 
   return useMutation(registerNewEvent);

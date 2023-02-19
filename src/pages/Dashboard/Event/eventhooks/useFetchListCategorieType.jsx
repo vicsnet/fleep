@@ -25,7 +25,7 @@ const useFetchListCategorieType = () => {
   }
 
 
-  const {data, isLoading, isError} = useQuery(["Event_Type"], getEventCategory);
+  const {data, isLoading, isError} = useQuery(["Event_Category"], getEventCategory);
 
   let categoryData = data;
   let categoryLoading = isLoading;

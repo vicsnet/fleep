@@ -32,8 +32,6 @@ const UploadImage = () => {
     e.preventDefault();
     const uploadArr = [];
     fileList.forEach((file) => {
-      console.log(typeof file.thumbUrl);
-      console.log(file.originFileObj)
       uploadArr.push(file.originFileObj);
     });
     

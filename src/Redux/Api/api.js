@@ -11,4 +11,7 @@
 
 // export const registration = async (data) => await API.post("/user/register", data);
 
-export const baseURL = "http://fleep.webhostingfree.io/public/api";
+// export const baseURL = "http://fleep.webhostingfree.io/public/api";
+
+export const baseURL = "https://fleep.sanchy.com.ng/public/api";
+

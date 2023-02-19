@@ -10,7 +10,6 @@ import info from "../../../assets/Union (1).png";
 import EventQR from "./EventQR";
 import ClipLoader from "react-spinners/ClipLoader";
 import useFetchCreatePost from "./eventhooks/useFetchCreatePost";
-
 import { useSelector, useDispatch } from "react-redux";
 import {
   openEvent,
@@ -22,6 +21,8 @@ import { toast } from "react-toastify";
 import useComponentVisible from "../../../hooks/useComponentVisible";
 import useFetchListTypes from "./eventhooks/useFecthListTypes";
 import useFetchListCategorieType from "./eventhooks/useFetchListCategorieType";
+import useComponentCat from "../../../hooks/useComponentCat";
+import useComponentMonetize from "../../../hooks/useComponentMonetize";
 
 const NewEvent = () => {
   const open = useSelector((state) => state.crtEvent.open);
@@ -43,15 +44,22 @@ const NewEvent = () => {
   const [showMonetize, setShowMonetize] = useState(0);
 
   const [selected, setSelected] = useState(null);
+  const [selectedCat, setSelectedCat] = useState(null);
+  const [selectedMonetize, setSelectedMonetize] = useState("No")
+  
 
   // To open the click Event
   
   const {ref,isComponentVisible:openEvent, setIsComponentVisible:setOpenEvent} = useComponentVisible(false);
 
+  const {setRef, componentCategory:openCategory, setComponentCategory:setOpenCategory} = useComponentCat(false);
+
+  const {setRefme,openMonetize:openMonetize, setOpenMonetize:setOpenMonetize} = useComponentMonetize(false);
+
+  console.log(openEvent);
   // To show the hover
   const [privateHover, setPrivateHover] = useState(-1);
-  const [generalHover, setGeneralHover] = useState(false);
-  const [bothHover, setBothHover] = useState(false);
+
   const [monetizehover, setMonetizeHover] = useState(false);
   const [type, setType] = useState(0);
 
@@ -60,7 +68,6 @@ const NewEvent = () => {
 
   const handleMonetizeChange = (e) => {
     const getValue = e.target.value;
-    // console.log(getValue)
     setShowMonetize(getValue);
   };
 
@@ -90,21 +97,14 @@ const NewEvent = () => {
   ));
 
   // fetching Event Types
-  const {typesdata, typesLoading, typesError} = useFetchListTypes();
+  const {typesData, typesLoading, typesError} = useFetchListTypes();
 
-  console.log(`Event types ${typesdata}`);
+
 
   // Event Category
 
     const {categoryData, categoryLoading, categoryError} = useFetchListCategorieType();
-    console.log(categoryData)
-
-
-  const eventType = [
-    { id: 1, type: "private", details: "private hover" },
-    { id: 2, type: "General", details: "private hover" },
-    { id: 3, type: "Both", details: "both hover" },
-  ];
+  
 
   const fileInputRef = useRef(null);
 
@@ -162,9 +162,11 @@ const NewEvent = () => {
         venue: venue,
         category_id: eCategory,
         type_id: type,
-        cover_photo: selectedImage.File,
-        watermark: files.File,
+        cover_photo: selectedImage[0],
+        watermark: files[0],
       };
+      console.log(person);
+      // return person;
       mutate(person);
     }
   };
@@ -215,9 +217,17 @@ const NewEvent = () => {
             Fill the form to create an event
           </p>
 
-          <form ref={ref} className="mt-[40px]">
-<div ref={ref} className="">
-            <div ref={ref} className="flex gap-[24px]">
+          <form 
+          // ref={ref}
+          
+           className="mt-[40px]">
+          <div 
+          setRef={setRef}
+          // ref={ref} 
+          className="">
+            <div 
+            // ref={ref} 
+            className="flex gap-[24px]">
               <div className="w-[50%]">
                 <label
                   htmlFor=""
@@ -235,7 +245,10 @@ const NewEvent = () => {
                   style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
                 />
               </div>
-              <div className="w-[50%]">
+
+              <div 
+              ref={setRef}
+              className="w-[50%]">
                 <label
                   htmlFor=""
                   className="text-[14px] leading-5 text-[#333333] font-normal"
@@ -243,24 +256,59 @@ const NewEvent = () => {
                   Event Category
                 </label>
                 <br />
-                <div className="w-[100%] h-[50px] bg-[#F9F9F9] rounded-lg">
-                  <select
-                    name=""
-                    id=""
-                    className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9]  h-[50px] pl-[20px] w-[100%] "
-                    style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
-                    onChange={(e) => setECategory(e.target.value)}
+                <div
+                  onClick={() => setOpenCategory(!openCategory)}
+                  className="flex items-center justify-between w-[100%] border-[1px] border-[#E5E5E5] pl-[20px] h-[50px] rounded-lg bg-[#F9F9F9] cursor-pointer"
+                >
+                  <p className="text-[14px] leading-[20.58px] ">
+                    {selectedCat == null ? " select" : selectedCat}
+                  </p>
+                  <BiChevronDown className="text-[grey] text-[20px]" />
+                </div>
+                <div onClick={() => setOpenCategory(false)} className="w-[100%]">
+                  <ul
+                    onClick={() => setOpenCategory(false)}
+                    className={`w-[306px] smDesk:w-[180px] flex flex-col justify-center  rounded-[4px] mt-[-4px] z-[1] cursor-pointer bg-[#FFFFFF] ${
+                      openCategory ? "max-h-[166px] absolute" : "max-h-0 hidden"
+                    }`}
+                    style={{
+                      boxShadow: "0px 0px 10px 0px rgba(132, 132, 132, 0.15)",
+                    }}
                   >
-                    <option value={0}>Select</option>
-                    <option value={1}>Private</option>
-                    <option value={2}>Public</option>
-                    <option value={3}>Private & Public</option>
-                  </select>
+                    {categoryData?.data?.map((event, i) => 
+                    (
+                      <li
+                        key={i}
+                        className="font-[400] text-[16px] leading-[20px] mt-[8px]  h-[48px] pt-[4px] relative "
+                        onClick={() => {
+                          setSelectedCat(event?.name);
+                          setECategory(event?.id);
+                          setOpenCategory(false);
+                        }}
+                      >
+                        <p
+                        onClick={() => setOpenCategory(false)}
+                          onMouseEnter={() => setPrivateHover(event?.id)}
+                          onMouseLeave={() => setPrivateHover(false)}
+                          className="text-[#181818] pl-[34.5px] with hover:py-[8px] hover:text-[black]"
+                        >
+                          {event?.name}
+                        </p>
+                      </li>
+                    ))}
+
+            
+                  </ul>
                 </div>
               </div>
+              
             </div>
-            <div className="flex gap-[24px] mt-6">
-              <div className="w-[50%]">
+            <div
+            ref={ref} 
+             className="flex gap-[24px] mt-6">
+              <div 
+              
+              className="w-[50%]">
                 <label
                   htmlFor=""
                   className="text-[14px] leading-5 text-[#333333] font-normal"
@@ -280,116 +328,52 @@ const NewEvent = () => {
                 <div onClick={() => setOpenEvent(false)} className="w-[100%]">
                   <ul
                     onClick={() => setOpenEvent(false)}
-                    className={`w-[306px] flex flex-col justify-center  rounded-[4px] mt-[-4px] z-[1] cursor-pointer bg-[#FFFFFF] ${
+                    className={`w-[306px] smDesk:w-[180px] flex flex-col justify-center  rounded-[4px] mt-[-4px] z-[1] cursor-pointer bg-[#FFFFFF] ${
                       openEvent ? "max-h-[166px] absolute" : "max-h-0 hidden"
                     }`}
                     style={{
                       boxShadow: "0px 0px 10px 0px rgba(132, 132, 132, 0.15)",
                     }}
                   >
-                    {eventType.map((event, i) => 
+                    {typesData?.data?.map((event, i) => 
                     (
                       <li
                         key={i}
                         className="font-[400] text-[16px] leading-[20px] mt-[8px]  h-[48px] pt-[4px] relative "
                         onClick={() => {
-                          setSelected(event.type);
-                          setType(event.id);
                           setOpenEvent(false);
+                          setSelected(event?.name);
+                          setType(event?.id);
                         }}
                       >
                         <p
-                          onMouseEnter={() => setPrivateHover(event.id)}
+                          onMouseEnter={() => setPrivateHover(event?.id)}
                           onMouseLeave={() => setPrivateHover(false)}
                           className="text-[#181818] pl-[34.5px] with hover:py-[8px] hover:text-[black]"
                         >
-                          {event.type}
+                          {event?.name}
                         </p>
+                       
                         <div
-                          className={` ${
-                            privateHover === event.id ? "z-[1] absolute" : " hidden"
-                          }`}
+                         className={` ${
+                          privateHover === event?.id ? "z-[1] absolute" : " hidden"
+                        }`}
                         >
                           <img
                             src={DownArrow}
                             alt=""
                             className="ml-[35.5px] mb-[-1px]"
                           />
-                          <div className="w-[200px] bg-white shadow-lg rounded-sm ml-[34.5px] ">
+                          <div className="w-[100px] bg-white shadow-lg rounded-sm ml-[34.5px] ">
                             <p className="w-[90%] mx-auto py-[6px] text-[10px] font-normal leading-4">
-                              {event.details}
+                              {event?.comment}
                             </p>
                           </div>
                         </div>
                       </li>
                     ))}
 
-                    {/* <li
-                      className="font-[400] text-[16px] leading-[20px] mt-[8px]  h-[48px] pt-[4px] relative"
-                      onClick={() => {
-                        setSelected("General");
-                        setType(1);
-                        setOpenEvent(false);
-                      }}
-                    >
-                      <p
-                        onMouseEnter={() => setGeneralHover(true)}
-                        onMouseLeave={() => setGeneralHover(false)}
-                        className="text-[#181818] pl-[34.5px] with hover:py-[8px] hover:text-[black]"
-                      >
-                        General
-                      </p>
-                      <div
-                        className={` ${
-                          generalHover ? "z-[1] absolute" : " hidden"
-                        }`}
-                      >
-                        <img
-                          src={DownArrow}
-                          alt=""
-                          className="ml-[35.5px] mb-[-1px]"
-                        />
-                        <div className="w-[200px] bg-white shadow-lg rounded-sm ml-[34.5px] ">
-                          <p className="w-[90%] mx-auto py-[6px] text-[10px] font-normal leading-4">
-                            All pictures taken at the event is available for
-                            download.
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-                    <li
-                      className="font-[400] text-[16px] leading-[20px] mt-[8px]  h-[48px] pt-[4px] relative"
-                      onClick={() => {
-                        setSelected("Both");
-                        setType(2);
-                        setOpenEvent(false);
-                      }}
-                    >
-                      <p
-                        onMouseEnter={() => setBothHover(true)}
-                        onMouseLeave={() => setBothHover(false)}
-                        className="text-[#181818] pl-[34.5px] with hover:py-[8px] hover:text-[black]"
-                      >
-                        Both
-                      </p>
-                      <div
-                        className={` ${
-                          bothHover ? "z-[1] absolute" : " hidden"
-                        }`}
-                      >
-                        <img
-                          src={DownArrow}
-                          alt=""
-                          className="ml-[35.5px] mb-[-1px]"
-                        />
-                        <div className="w-[200px] bg-white shadow-lg rounded-sm ml-[34.5px] ">
-                          <p className="w-[90%] mx-auto py-[6px] text-[10px] font-normal leading-4">
-                            Your Event attenders are giving the option to pick
-                            their preference.
-                          </p>
-                        </div>
-                      </div>
-                    </li> */}
+            
                   </ul>
                 </div>
               </div>
@@ -420,7 +404,9 @@ const NewEvent = () => {
                 </div>
               </div>
             </div>
-            <div ref={ref} className="w-[100%] flex gap-[26px] mt-6 flex-wrap relative">
+            <div 
+            // ref={ref} 
+            className="w-[100%] flex gap-[26px] mt-6 flex-wrap relative">
               {monetizehover && (
                 <div className="w-[200px] bg-white py-[6px] rounded-[2px] absolute right-[52%] top-[-46px]">
                   <p className="text-[10px] font-normal leading-[14.5px] w-[90%] mx-auto ">
@@ -449,20 +435,73 @@ const NewEvent = () => {
                   />
                 </label>
                 {/* <br /> */}
-                <div className="w-[100%] h-[50px] bg-[#F9F9F9] rounded-lg">
-                  <select
-                    name="monetize"
-                    className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9]  h-[50px] pl-[20px] w-[100%]"
-                    style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
-                    onChange={(e) => handleMonetizeChange(e)}
+                <div 
+                onClick={() => setOpenMonetize(!openMonetize)}
+              ref={setRefme}
+              >
+               
+                <div
+                  onClick={() => setOpenMonetize(!openMonetize)}
+                  className="flex items-center justify-between w-[100%] border-[1px] border-[#E5E5E5] pl-[20px] h-[50px] rounded-lg bg-[#F9F9F9] cursor-pointer"
+                >
+                  <p className="text-[14px] leading-[20.58px] ">
+                    {selectedMonetize == "No" ? "No" : selectedMonetize}
+                  </p>
+                  <BiChevronDown className="text-[grey] text-[20px]" />
+                </div>
+                <div onClick={() => setOpenMonetize(false)} className="w-[100%]">
+                  <ul
+                    onClick={() => setOpenMonetize(false)}
+                    className={`w-[306px] smDesk:w-[180px] flex flex-col justify-center  rounded-[4px] mt-[-4px] z-[1] cursor-pointer bg-[#FFFFFF] ${
+                      openMonetize ? "max-h-[166px] absolute" : "max-h-0 hidden"
+                    }`}
+                    style={{
+                      boxShadow: "0px 0px 10px 0px rgba(132, 132, 132, 0.15)",
+                    }}
                   >
-                    <option value={0}>No</option>
-                    <option value={1}>Yes</option>
-                  </select>
+                      <li
+                  
+                        className="font-[400] text-[16px] leading-[20px] mt-[8px]  h-[48px] pt-[4px] relative "
+                        onClick={() => {
+                          setSelectedMonetize("No")
+                          setShowMonetize(0)
+                          setOpenMonetize(false);
+                        }}
+                      >
+                        <p
+                        onClick={() => setOpenMonetize(false)}
+                          className="text-[#181818] pl-[34.5px] with hover:py-[8px] hover:text-[black]"
+                        >
+                          No
+                        </p>
+                      </li>
+                      <li
+                  
+                  className="font-[400] text-[16px] leading-[20px] mt-[8px]  h-[48px] pt-[4px] relative "
+                  onClick={() => {
+                    setShowMonetize(1)
+                    setSelectedMonetize("Yes")
+                    setSelectedCat();
+                    setECategory();
+                    setOpenCategory(false);
+                  }}
+                >
+                  <p
+                  onClick={() => setOpenCategory(false)}
+                    className="text-[#181818] pl-[34.5px] with hover:py-[8px] hover:text-[black]"
+                  >
+                    Yes
+                  </p>
+                </li>
+            
+
+            
+                  </ul>
                 </div>
               </div>
+              </div>
               {showMonetize == 1 && (
-                <div className="w-[48%] smDesktop:w-[47.7%] tablet:w-[47%]">
+                <div className="w-[49%] smDesktop:w-[47.7%] tablet:w-[47%]">
                   <label
                     htmlFor=""
                     className="text-[14px] leading-5 text-[#333333] font-normal"
@@ -482,7 +521,7 @@ const NewEvent = () => {
                   </div>
                 </div>
               )}
-              <div className="w-[48%] smDesktop:w-[47.7%] tablet:w-[47%]">
+              <div className="w-[49%] smDesktop:w-[47.7%] tablet:w-[47%]">
                 <label
                   htmlFor=""
                   className="text-[14px] leading-5 text-[#333333] font-normal"
@@ -502,7 +541,9 @@ const NewEvent = () => {
             </div>
 
             {/*  input file*/}
-            <div ref={ref} className="flex gap-[24px] mt-6">
+            <div 
+            // ref={ref}
+             className="flex gap-[24px] mt-6">
               <div className="w-[50%]">
                 <label
                   htmlFor=""
@@ -572,7 +613,9 @@ const NewEvent = () => {
                       </div>
                     </div>
                   ) : (
-                    <div ref={ref} className="w-[100%] h-[280px] mx-auto rounded-lg border-[1px] border-dashed border-[#E0E0E0] py-[12px]">
+                    <div 
+                    // ref={ref}
+                     className="w-[100%] h-[280px] mx-auto rounded-lg border-[1px] border-dashed border-[#E0E0E0] py-[12px]">
                       <img
                         src={URL.createObjectURL(
                           selectedImage[selectedImage.length - 1]
