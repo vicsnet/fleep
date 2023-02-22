@@ -4,15 +4,14 @@ import { useState } from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { FiUpload } from "react-icons/fi";
 import { useDropzone } from "react-dropzone";
-// import "react-dropzone-uploader/dist/styles.css";
-// import Dropzone from "react-dropzone-uploader";
-
 import { useSelector, useDispatch } from "react-redux";
 import { uploadCloseImage } from "../Redux/features/uploadDPSlice";
 import { Upload, Spin } from "antd";
 import { useParams } from "react-router-dom";
 import useUploadEventImages from "../pages/Dashboard/Event/eventhooks/useUploadEventImages";
-import { UPLOAD_TYPES } from "../pages/Dashboard/Event/eventhooks/types";
+import ClipLoader from "react-spinners/ClipLoader";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 // import "antd/dist/reset.css";
 
@@ -20,14 +19,13 @@ const UploadImage = () => {
   const { id } = useParams();
 
   const [fileList, setFileList] = useState([]);
-  const { IMAGE_UPLOAD } = UPLOAD_TYPES;
 
   const open = useSelector((state) => state.uploadDp.imageOpen);
   const dispatch = useDispatch();
 
   const { mutate, isLoading, isError, isSuccess } = useUploadEventImages(id);
 
-  console.log(fileList);
+  // console.log(fileList);
   const handleSubmit = (e) => {
     e.preventDefault();
     const uploadArr = [];
@@ -39,14 +37,26 @@ const UploadImage = () => {
     mutate({ images:uploadArr });
   };
 
-  //
 
-  //
 
   const onChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
   };
 
+
+  useEffect(()=>{
+    if(isSuccess){
+      toast.success("Uploads Successfully");
+      setFileList([]);
+      dispatch(uploadCloseImage());
+    }
+    if(isError){
+      toast.error("Error Occured Durring Upload");
+    }
+
+  },[isSuccess, isError]) 
+
+  
   if (open) return null;
   return (
     <section
@@ -123,8 +133,8 @@ const UploadImage = () => {
               <button
                 onClick={handleSubmit}
                 className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[58px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5 font-extrabold"
-              >
-                Save
+              >{isLoading ?<ClipLoader color="#FFFFFF" /> : " Save"}
+               
               </button>
             </div>
           </form>

@@ -23,8 +23,14 @@ import useFetchListTypes from "./eventhooks/useFecthListTypes";
 import useFetchListCategorieType from "./eventhooks/useFetchListCategorieType";
 import useComponentCat from "../../../hooks/useComponentCat";
 import useComponentMonetize from "../../../hooks/useComponentMonetize";
+import { useParams } from "react-router-dom";
+import useEditEvent from "./eventhooks/useEditEvent";
+import useFetchSingleEvent from "./eventhooks/useFetchSingleEvent";
+
 
 const NewEvent = () => {
+
+  const {id} = useParams();
   const open = useSelector((state) => state.crtEvent.open);
 
   const dispatch = useDispatch();
@@ -34,7 +40,7 @@ const NewEvent = () => {
   const [files, setFiles] = useState([]);
   const [selectedImage, setSelectedImage] = useState([]);
 
-  const [eventTitle, setEventTitle] = useState("");
+  const [eventTitle, setEventTitle] =  useState("") ;
   const [eCategory, setECategory] = useState("");
   // const [eType, setEType] = useState("");
   const [date, setDate] = useState("");
@@ -136,23 +142,45 @@ const NewEvent = () => {
   console.log(files);
 
   //
-  const { mutate, isLoading, isError, isSuccess } = useFetchCreatePost();
+  const { mutate:registerNewEvent, isLoading, isError, isSuccess } = useFetchCreatePost();
+
+  const{mutate:EditEvent} = useEditEvent(id);
+
+  const {data} = useFetchSingleEvent(id);
   // To submit the form
   const formSubmit = (e) => {
     e.preventDefault();
-    if (
-      eventTitle == "" ||
-      eCategory == 0 ||
-      venue == "" ||
-      files == [] ||
-      selectedImage == [] ||
-      type == "" ||
-      date == ""
-    ) {
-      setMessage("All Field Required");
-    } else if (showMonetize == 1 && price == 0) {
-      setMessage("Price can not be empty");
-    } else {
+    if(!id){
+      if (
+        eventTitle == "" ||
+        eCategory == 0 ||
+        venue == "" ||
+        files == [] ||
+        selectedImage == [] ||
+        type == "" ||
+        date == ""
+      ) {
+        setMessage("All Field Required");
+      } else if (showMonetize == 1 && price == 0) {
+        setMessage("Price can not be empty");
+      } else {
+        const person = {
+          status: 1,
+          title: eventTitle,
+          monetize: showMonetize,
+          amount: price,
+          date: date,
+          venue: venue,
+          category_id: eCategory,
+          type_id: type,
+          cover_photo: selectedImage[0],
+          watermark: files[0],
+        };
+        registerNewEvent(person);
+        // EditEvent(person);
+      }
+    }
+    else{
       const person = {
         status: 1,
         title: eventTitle,
@@ -162,20 +190,19 @@ const NewEvent = () => {
         venue: venue,
         category_id: eCategory,
         type_id: type,
-        cover_photo: selectedImage[0],
-        watermark: files[0],
+      
       };
-      console.log(person);
-      // return person;
-      mutate(person);
+      EditEvent(person);
     }
   };
 
+  
+  
   useEffect(() => {
     if (isError) {
       toast.error(message);
     }
-
+    
     if (isSuccess) {
       setShowEventQR(true);
       setEventTitle("");
@@ -188,7 +215,23 @@ const NewEvent = () => {
       setSelectedImage([]);
       setFiles([]);
     }
+
   }, [isSuccess, isError, message]);
+
+useEffect(()=>{
+  if(id){
+    setEventTitle(data?.data?.title);
+    setShowMonetize(data?.data?.monetize);
+    setDate(data?.data?.date);
+    setPrice(data?.data?.amount);
+    setVenue(data?.data?.venue);
+    // setType(data?.data?.type_id ==0? "No" : "Yes");
+  }
+
+}, [id]);
+
+    
+
 
   if (open) return null;
 
@@ -205,7 +248,10 @@ const NewEvent = () => {
         <div   className="w-[90%] mx-auto ">
           <div className="pt-[54px] flex justify-between">
             <h2 className="text-[24px] font-bold leading-7 text-[#1A1941]">
-              Create Event
+              {
+                id ? "Edit Event" :
+                "Create Event"
+              }
             </h2>
             <IoIosCloseCircleOutline
               onClick={() => dispatch(closeEvent())}
@@ -214,7 +260,7 @@ const NewEvent = () => {
             />
           </div>
           <p className="text-[#959595] text-[14px] font-normal mt-4 ">
-            Fill the form to create an event
+            {id ? "You can make edits to the form" :'Fill the form to create an event'}
           </p>
 
           <form 
@@ -238,9 +284,11 @@ const NewEvent = () => {
                 <br />
                 <input
                   type="text"
-                  value={eventTitle}
+                  // value={eventTitle}
+                    value={eventTitle}
+                  
                   onChange={(e) => setEventTitle(e.target.value)}
-                  placeholder="Enter tittle of the event"
+                  placeholder={"Enter tittle of the event"}
                   className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9] h-[50px] pl-[20px] w-[100%]"
                   style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
                 />
@@ -395,9 +443,8 @@ const NewEvent = () => {
                   </div>
                   <input
                     type="date"
-                    value={date}
+                    value={ date }
                     onChange={(e) => setDate(e.target.value)}
-                    placeholder="Enter tittle of the event"
                     className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-r-lg bg-[#F9F9F9] h-[50px] pl-[20px] w-[100%] pr-5"
                     style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
                   />
@@ -533,7 +580,7 @@ const NewEvent = () => {
                   type="text"
                   value={venue}
                   onChange={(e) => setVenue(e.target.value)}
-                  placeholder="Enter the venue of the event"
+                  placeholder={!id?"Enter the venue of the event": data?.data?.venue}
                   className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9] h-[50px] pl-[20px] w-[100%]"
                   style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
                 />
@@ -629,12 +676,25 @@ const NewEvent = () => {
               </div>
             </div>
             {/* button */}
+
+            {
+              id ?
+              <button
+              onClick={formSubmit}
+              className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[40px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5"
+            >
+              
+              {typesLoading ? <ClipLoader color="#FFFFFF" /> : "Save Changes"}
+            </button> :
+
             <button
               onClick={formSubmit}
               className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[40px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5"
             >
+              
               {isLoading ? <ClipLoader color="#FFFFFF" /> : "Create Event "}
             </button>
+            }
 </div>
           </form>
         </div>

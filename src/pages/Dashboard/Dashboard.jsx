@@ -18,11 +18,13 @@ import Vector1 from "../../assets/SVG/Vector1.svg";
 import Vector2 from "../../assets/SVG/Group.svg";
 import Vector3 from "../../assets/SVG/Group1.svg";
 import ProfileUseFetch from "../profile/hooks/profileUseFetch";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 
 
 const Dashboard = () => {
-  const {data, isLoading, isError} =ProfileUseFetch();
+  const {data, isLoading, isFetching, isError} = ProfileUseFetch();
   
 
   const dispatch = useDispatch();
@@ -54,10 +56,16 @@ const Dashboard = () => {
                     />
                   </div>
                   <div className="text-[white]">
+                    {isLoading || isFetching ? <p className="">
+                          <Skeleton/> 
+                          </p>
+                          : (
                     <h3 className="text-[30px] font-bold leading-[36px] tracking-[2.14px] text-white ">
                       {/* 150  */}
                       {data?.data?.eventsimagescount}
                     </h3>
+                          )
+}
                     <p className="text-[#EEEEEE] opacity-[70%] text-[14px] font-[500] leading-[16.8px] pt-[4px]">
                       Total Photo
                     </p>
@@ -70,10 +78,6 @@ const Dashboard = () => {
                   style={{ background: "rgba(255, 255, 255, 1)" }}
                 >
                   <div className="bg-[#19192E] rounded-[13px] h-[60px] w-[55px] flex items-center">
-                    {/* <IoImagesOutline
-                      size={24}
-                      className=" text-[#FFFFFF] mx-auto"
-                    /> */}
                     <img
                       src={Vector1}
                       alt=""
@@ -81,10 +85,18 @@ const Dashboard = () => {
                     />
                   </div>
                   <div className="smDesk:w-[45%] tabletAir:w-[60px]  smDesktop:w-[38%]">
+                  {
+                       isLoading || isFetching ? <p className="">
+                          <Skeleton/> 
+                          </p>
+                          :
+                        
                     <h3 className="text-[30px]  font-bold leading-[36px] tracking-[2.14px] text-[#191D23] ">
-                      {/* 14   */}
+                      
                       {data?.data?.free_space}
+                      
                     </h3>
+                        }
                     <p className="text-[#8E99AB] opacity-[70%] tabletAir:text-[12px] text-[14px] font-[500] leading-[16.8px] pt-[4px] ">
                       Photo spaces left
                     </p>
@@ -113,10 +125,16 @@ const Dashboard = () => {
                     />
                   </div>
                   <div className="">
+                  {
+                        isLoading || isFetching ? <p className="">
+                          <Skeleton/> 
+                          </p>
+                          :
                     <h3 className="text-[30px] font-bold leading-[36px] tracking-[2.14px] text-[#191D23] ">
                       {/* 45 */}
                       {data?.data?.eventscount}
                     </h3>
+                    }
                     <p className="text-[#8E99AB] opacity-[70%] text-[14px] font-[500] leading-[16.8px] pt-[4px] ">
                       Total Events
                     </p>
@@ -129,10 +147,7 @@ const Dashboard = () => {
                   style={{ background: "rgba(255, 255, 255, 1)" }}
                 >
                   <div className="bg-[#19192E] rounded-[13px] h-[60px] w-[55px] flex items-center">
-                    {/* <HiOutlineUserGroup
-                      size={24}
-                      className=" text-[#FFFFFF] mx-auto"
-                    /> */}
+                    
                     <img
                       src={Vector3}
                       alt=""
@@ -140,9 +155,15 @@ const Dashboard = () => {
                     />
                   </div>
                   <div className="">
+                  {
+                       isLoading || isFetching ? <p className="">
+                          <Skeleton/> 
+                          </p>
+                          :
                     <h3 className="text-[30px] font-bold leading-[36px] tracking-[2.14px] text-[#191D23] ">
                       150
                     </h3>
+}
                     <p className="text-[#8E99AB] opacity-[70%] text-[14px] font-[500] leading-[16.8px] pt-[4px]">
                       Total Users
                     </p>

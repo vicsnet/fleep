@@ -26,12 +26,18 @@ import WalletPage from "./pages/wallet/WalletPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from "./utils/PrivateRoute";
-import {QueryClient, QueryClientProvider} from "@tanstack/react-query"
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import { SkeletonTheme } from 'react-loading-skeleton'
 
 function App() {
   const client = new QueryClient();
   return (
+    
+    
+    
+    
     <div className="App">
+      <SkeletonTheme baseColor="" highlightColor="#191D23">
       <QueryClientProvider client={client}>
 
       <Routes>
@@ -68,6 +74,7 @@ function App() {
       </Routes>
       <ToastContainer />
       </QueryClientProvider>
+    </SkeletonTheme>
     </div>
   );
 }

@@ -7,11 +7,9 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { IoLayers } from "react-icons/io5";
 import { BiUpload } from "react-icons/bi";
 import { BsImages } from "react-icons/bs";
-import eve from "../../../assets/IMG-20190708-WA0002.jpg";
 import bum from "../../../assets/HBD to bunmi 20190716_003414.jpg";
 import { FiCopy, FiArrowRightCircle } from "react-icons/fi";
 import copy from "copy-to-clipboard";
-import QR from "../../../assets/Vector (17).png";
 import union from "../../../assets/SVG/Union (1).svg";
 import union2 from "../../../assets/SVG/Union (2).svg";
 import AddUser from "./AddUser";
@@ -22,6 +20,8 @@ import EVeimage from "../../../assets/SVG/Vector5.svg";
 import { uploadOpenImage } from "../../../Redux/features/uploadDPSlice";
 import useFetchSingleEvent from "./eventhooks/useFetchSingleEvent";
 import { useParams } from "react-router-dom";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const url = "https://jsonplaceholder.typicode.com/albums";
 
@@ -30,14 +30,11 @@ const CreatedEvent = () => {
   const {id} = useParams();
   const {data, isLoading, isError} = useFetchSingleEvent(id);
 
-  const [me, setMe] = useState("")
+  // const [me, setMe] = useState("")
 
-  if(isLoading){
-    console.log("Loading...")
-  }
 
-  console.log(data)
-  console.log(data?.data?.title)
+
+  console.log(data);
   if(isError){
     console.log("error")
   }
@@ -62,7 +59,7 @@ const CreatedEvent = () => {
     setShow((prevValue) => prevValue + 8);
   };
 
-  const text = "123456GT";
+  const text = data?.data?.copy;
 
   const copyToClipboard = () => {
     copy(text);
@@ -80,7 +77,7 @@ const CreatedEvent = () => {
           {/* event details */}
           <div className="flex">
             <img
-              src={eve}
+              src={data?.data?.coverphoto}
               alt=""
               className="w-[150px] h-[150px] object-cover rounded-lg smDesk:w-[100px] smDesk:h-[100px]"
             />
@@ -88,21 +85,50 @@ const CreatedEvent = () => {
               <h3 className="text-[30px] font-semibold leading-9 text-[#1A1941] smDesk:text-[24px] ">
                 {data?.data?.title}
               </h3>
+              {isLoading &&
+                       <p className="">
+                       <Skeleton/> 
+                       </p>
+
+              }
+                       
               <p className="text-[#8A8A8A] text-[16px] font-normal leading-5 mt-2 smDesk:text-[14px]">
-                {data?.data?.date}
+                
+                            {data?.data?.date}
               </p>
+              {isLoading &&
+                       <p className="">
+                       <Skeleton/> 
+                       </p>
+
+              }
+                  
+             
+              <div className="">
+              {/* {isLoading ?
+                       <p className="">
+                       <Skeleton/> 
+                       </p> : */}
               <div className="flex items-center mt-[27.5px]">
                 <img src={union} alt="" className="w-[20px] h-[20px]" />
                 <p className="text-[16px] leading-5 font-normal ml-[10px] smDesk:text-[14px]">
                   Wedding Party
                 </p>
               </div>
+{/* } */}
+
+              </div>
+              {isLoading ?
+                       <p className="">
+                       <Skeleton/> 
+                       </p> :
               <div className="flex items-center mt-[17px]">
                 <img src={union2} alt="" className="w-[20px] h-[20px]" />
                 <p className="text-[16px] leading-5 font-normal ml-[10px] smDesk:text-[14px]">
                   {data?.data?.venue}
                 </p>
               </div>
+              }
             </div>
           </div>
 
@@ -121,18 +147,26 @@ const CreatedEvent = () => {
 
             {/*  */}
             <div className="flex">
+            {isLoading ?
+                       <p className="">
+                       <Skeleton/> 
+                       </p> :null}
+                       
               <img
                 src={data?.data?.qr}
                 alt=""
                 className="w-[75px] h-[75px] smDesk:w-[60px] smDesk:h-[60px]"
               />
+          
+
               <div className="flex flex-col ml-[20px]">
                 <h2 className="text-[16px] font-bold leading-5 text-[#8B8B8B] smDesk:text-[14px]">
                   Event Code:
                 </h2>
+                  {isLoading ? <Skeleton/> : 
                 <div className="flex items-center">
                   <p className="text-[16px] leading-5 font-normal text-[#19192E] smDesk:text-[14px] ">
-                    {text}
+                    {data?.data?.code}
                   </p>
                   <FiCopy
                     size={16}
@@ -140,6 +174,7 @@ const CreatedEvent = () => {
                     onClick={copyToClipboard}
                   />
                 </div>
+                  } 
               </div>
             </div>
 

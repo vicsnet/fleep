@@ -13,6 +13,8 @@ import { useDispatch } from "react-redux";
 import { openEvent } from "../../Redux/features/createEventSlice";
 import useFetchEvent from "./Event/eventhooks/useFetchEvent";
 import SingleEvent from "./Event/SingleEvent";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const Event = () => {
   const dispatch = useDispatch();
@@ -26,6 +28,12 @@ const Event = () => {
   // console.log(data[0]);
   console.log(data);
 
+  // if(isLoading){
+  //   <p className="">
+  //     <Skeleton/>
+  //   </p>
+  // }
+
   return (
     <main className="max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full pb-[180px]">
       <SideNav title="Event" display={"flex"} />
@@ -35,7 +43,9 @@ const Event = () => {
       </section>
 
       {/* No Event */}
-
+      
+      {
+        data == 0 ?
       <section className="mt-[100px]">
         {/* <MdOutlineEvent
           size={100}
@@ -61,8 +71,9 @@ const Event = () => {
           Create Event
         </button>
       </section>
+      :
 
-      {/* when Event */}
+      // {/* when Event */}
       <section className="px-[40px] flex justify-between mt-8 smDesk:flex-col-reverse ">
         <section className="w-[65%] smDesktop:w-[70%] smDesk:w-[100%]">
           {/* search bar & filter */}
@@ -95,7 +106,17 @@ const Event = () => {
           <div className="mt-[14px]">
             {data?.data?.map((data) => {
               const { id, title, coverphoto, date, imagescount } = data;
-              return <SingleEvent index={id} singleId={id} title={title} coverphoto={coverphoto} date={date} images={imagescount} />;
+              return(
+                <div className="">
+                  { isLoading &&
+                  
+                  <Skeleton/>
+                  }
+                 <SingleEvent isLoading={isLoading} index={id} singleId={id} title={title} coverphoto={coverphoto} date={date} images={imagescount} />
+                 
+                </div>
+               )
+
             })}
 
 
@@ -107,6 +128,9 @@ const Event = () => {
           <CreateEvent />
         </div>
       </section>
+      }
+
+
     </main>
   );
 };
