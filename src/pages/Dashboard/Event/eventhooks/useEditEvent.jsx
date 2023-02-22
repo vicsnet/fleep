@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import { useMutation,useQueryClient } from "@tanstack/react-query";
+import { isError, useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { baseURL } from "../../../../Redux/Api/api";
 import { useSelector } from "react-redux";
@@ -39,9 +39,10 @@ const EditEvent =  (data) =>{
 
 }
 
+// const {isLoading} = useMutation();
 
-let Loading;
-let Error;
+// let Loading = isLoading;
+// let Error;
 return useMutation( EditEvent);
 };
 export default useEditEvent;

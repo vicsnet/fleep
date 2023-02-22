@@ -144,7 +144,7 @@ const NewEvent = () => {
   //
   const { mutate:registerNewEvent, isLoading, isError, isSuccess } = useFetchCreatePost();
 
-  const{mutate:EditEvent} = useEditEvent(id);
+  const{mutate:EditEvent, isError:error, isLoading:loading, isSuccess:success} = useEditEvent(id);
 
   const {data} = useFetchSingleEvent(id);
   // To submit the form
@@ -225,10 +225,16 @@ useEffect(()=>{
     setDate(data?.data?.date);
     setPrice(data?.data?.amount);
     setVenue(data?.data?.venue);
-    // setType(data?.data?.type_id ==0? "No" : "Yes");
+    setType(data?.data?.type_id );
   }
-
-}, [id]);
+if(error){
+  toast.error("error Occur");
+}
+if(success){
+  toast.success("Event updated")
+  dispatch(CloseEvent())
+}
+}, []);
 
     
 
@@ -288,7 +294,7 @@ useEffect(()=>{
                     value={eventTitle}
                   
                   onChange={(e) => setEventTitle(e.target.value)}
-                  placeholder={"Enter tittle of the event"}
+                  placeholder={!id ? "Enter tittle of the event" : data?.data?.title}
                   className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9] h-[50px] pl-[20px] w-[100%]"
                   style={{ border: "1px solid rgba(229, 229, 229, 1)" }}
                 />
@@ -601,10 +607,12 @@ useEffect(()=>{
                 <br />
                 <div
                 ref={ref}
-                  className="mt-[15px] h-[280px] rounded-lg border-dashed border-[1px] flex justify-center items-center"
+                  className={`mt-[15px] h-[280px] rounded-lg border-dashed border-[1px] flex justify-center items-center`}
                   {...getRootProps()}
-                >
-                  <input {...getInputProps()} />
+                >{
+                  id ? null :
+                  <input {...getInputProps()}  />
+                }
                   {imagesf.length === 0 ? (
                     <div className="cursor-pointer">
                       <FiUpload size={20} className="text-[#EE2339] mx-auto" />
@@ -616,7 +624,10 @@ useEffect(()=>{
                       </p>
                     </div>
                   ) : (
-                    <>{imagesf}</>
+
+                      <>{imagesf}</>
+                    
+                  
                   )}
                 </div>
               </div>
@@ -645,9 +656,9 @@ useEffect(()=>{
                   {selectedImage.length === 0 ? (
                     <div
                       className=" mt-[15px] h-[280px] border-[1px] border-dashed border-[#E0E0E0] rounded-lg w-[100%] mx-auto pt-[105px] pb-[105px] "
-                      onDragOver={handleDragOver}
-                      onDrop={handleDrop}
-                      onClick={uploadImage}
+                      onDragOver={id ? null : handleDragOver}
+                      onDrop={id ? null : handleDrop}
+                      onClick={id ? null : uploadImage}
                     >
                       <div className="cursor-pointer">
                         <FiUpload
@@ -664,9 +675,9 @@ useEffect(()=>{
                     // ref={ref}
                      className="w-[100%] h-[280px] mx-auto rounded-lg border-[1px] border-dashed border-[#E0E0E0] py-[12px]">
                       <img
-                        src={URL.createObjectURL(
+                        src={!id ? URL.createObjectURL(
                           selectedImage[selectedImage.length - 1]
-                        )}
+                        ) : data.data.cover_photo}
                         alt=""
                         className="w-[250px] h-[250px] cover mx-auto"
                       />
@@ -684,7 +695,7 @@ useEffect(()=>{
               className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[40px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5"
             >
               
-              {typesLoading ? <ClipLoader color="#FFFFFF" /> : "Save Changes"}
+              {loading ? <ClipLoader color="#FFFFFF" /> : "Save Changes"}
             </button> :
 
             <button
