@@ -45,10 +45,6 @@ const Dashboard = () => {
               <div className="flex  gap-[30px]  smDesktop:gap-[12px]">
                 <div className="bg-[#19192E] flex py-[37.24px] pl-[25.8px] gap-[23px] rounded-[10px] w-[50%]">
                   <div className="bg-[#FFFFFF] rounded-[13px] h-[60px] w-[55px] flex items-center">
-                    {/* <MdOutlinePermMedia
-                      size={24}
-                      className="text-[#1A1941] bg-[#FFFFFF] mx-auto"
-                    /> */}
                     <img
                       src={Vector}
                       alt=""
@@ -56,7 +52,7 @@ const Dashboard = () => {
                     />
                   </div>
                   <div className="text-[white]">
-                    {isLoading || isFetching ? <p className="">
+                    {isLoading ? <p className="">
                           <Skeleton/> 
                           </p>
                           : (
@@ -86,7 +82,7 @@ const Dashboard = () => {
                   </div>
                   <div className="smDesk:w-[45%] tabletAir:w-[60px]  smDesktop:w-[38%]">
                   {
-                       isLoading || isFetching ? <p className="">
+                       isLoading ? <p className="">
                           <Skeleton/> 
                           </p>
                           :
@@ -114,10 +110,6 @@ const Dashboard = () => {
                   style={{ background: "rgba(255, 255, 255, 1)" }}
                 >
                   <div className="bg-[#19192E] rounded-[13px] h-[60px] w-[55px] flex items-center">
-                    {/* <IoMdCalendar
-                      size={24}
-                      className=" text-[#FFFFFF] mx-auto"
-                    /> */}
                     <img
                       src={Vector2}
                       alt=""
@@ -126,7 +118,7 @@ const Dashboard = () => {
                   </div>
                   <div className="">
                   {
-                        isLoading || isFetching ? <p className="">
+                        isLoading ? <p className="">
                           <Skeleton/> 
                           </p>
                           :
@@ -156,7 +148,7 @@ const Dashboard = () => {
                   </div>
                   <div className="">
                   {
-                       isLoading || isFetching ? <p className="">
+                       isLoading ? <p className="">
                           <Skeleton/> 
                           </p>
                           :

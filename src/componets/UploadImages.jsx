@@ -23,7 +23,7 @@ const UploadImage = () => {
   const open = useSelector((state) => state.uploadDp.imageOpen);
   const dispatch = useDispatch();
 
-  const { mutate, isLoading, isError, isSuccess } = useUploadEventImages(id);
+  const { mutate, isLoading, isError, isSuccess, error } = useUploadEventImages(id);
 
   // console.log(fileList);
   const handleSubmit = (e) => {
@@ -51,7 +51,7 @@ const UploadImage = () => {
       dispatch(uploadCloseImage());
     }
     if(isError){
-      toast.error("Error Occured Durring Upload");
+      toast.error(error.response.data.message);
     }
 
   },[isSuccess, isError]) 

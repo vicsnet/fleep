@@ -62,7 +62,7 @@ const NewEvent = () => {
 
   const {setRefme,openMonetize:openMonetize, setOpenMonetize:setOpenMonetize} = useComponentMonetize(false);
 
-  console.log(openEvent);
+ 
   // To show the hover
   const [privateHover, setPrivateHover] = useState(-1);
 
@@ -139,12 +139,12 @@ const NewEvent = () => {
     e.preventDefault();
     document.getElementById("selectFile").click();
   };
-  console.log(files);
+
 
   //
-  const { mutate:registerNewEvent, isLoading, isError, isSuccess } = useFetchCreatePost();
+  const { mutate:registerNewEvent, isLoading, isError, error, message:messageDe, isSuccess } = useFetchCreatePost();
 
-  const{mutate:EditEvent, isError:error, isLoading:loading, isSuccess:success} = useEditEvent(id);
+  const{mutate:EditEvent, isError:errordet, isLoading:loading, isSuccess:success} = useEditEvent(id);
 
   const {data} = useFetchSingleEvent(id);
   // To submit the form
@@ -200,11 +200,13 @@ const NewEvent = () => {
   
   useEffect(() => {
     if (isError) {
-      toast.error(message);
+        toast.error(error.response.data.message);
+      
     }
     
     if (isSuccess) {
       setShowEventQR(true);
+      // toast.success(messageDe);
       setEventTitle("");
       setShowMonetize("");
       setPrice(0);
@@ -216,7 +218,7 @@ const NewEvent = () => {
       setFiles([]);
     }
 
-  }, [isSuccess, isError, message]);
+  }, [isSuccess, isError]);
 
 useEffect(()=>{
   if(id){
@@ -227,14 +229,21 @@ useEffect(()=>{
     setVenue(data?.data?.venue);
     setType(data?.data?.type_id );
   }
-if(error){
-  toast.error("error Occur");
+if(errordet){
+  toast.error(error.response.data.message);
 }
 if(success){
-  toast.success("Event updated")
-  dispatch(CloseEvent())
+  toast.success("Event Updated")
+  dispatch(closeEvent())
+  setEventTitle("");
+  setShowMonetize("");
+  setPrice(0);
+  setDate("");
+  setVenue("");
+  setShowMonetize(0);
+  setType(0);
 }
-}, []);
+}, [data?.data?.title, data?.data?.monetize, data?.data?.date,data?.data?.amount,data?.data?.venue,data?.data?.type_id, dispatch, id , errordet, success ]);
 
     
 
@@ -672,6 +681,9 @@ if(success){
                     </div>
                   ) : (
                     <div 
+                    onDragOver={id ? null : handleDragOver}
+                    onDrop={id ? null : handleDrop}
+                    onClick={id ? null : uploadImage}
                     // ref={ref}
                      className="w-[100%] h-[280px] mx-auto rounded-lg border-[1px] border-dashed border-[#E0E0E0] py-[12px]">
                       <img
