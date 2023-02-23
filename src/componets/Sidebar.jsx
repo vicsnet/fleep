@@ -6,7 +6,7 @@ import { FiUsers, FiArrowRightCircle, FiLogOut } from "react-icons/fi";
 import { BiTimeFive } from "react-icons/bi";
 import { IoIosNotificationsOutline } from "react-icons/io";
 
-import { NavLink, Link, Outlet } from "react-router-dom";
+import { NavLink, Link, Outlet, Navigate } from "react-router-dom";
 import Logo from "../assets/LOGO (2).png";
 import mainLogo from "../assets/LOGO.png";
 import NewEvent from "../pages/Dashboard/Event/NewEvent";
@@ -31,8 +31,15 @@ import wallet2 from "../assets/wallet2.png";
 import UsersDeleteOption from "../pages/Dashboard/User/UsersDeleteOption";
 import WithDrawToBank from "./wallet/WithDrawToBank";
 import WithDrawSuccesfull from "./wallet/WithdrawSuccesfull";
+import {useDispatch, useSelector} from "react-redux"
+import { logout } from "../Redux/features/authentication/registrationSlice";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = ({ children }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const {success} = useSelector((state) =>state.user);
   const menuItem = [
     {
       path: "/dashboard",
@@ -89,6 +96,12 @@ const Sidebar = ({ children }) => {
     "text-[#1A1941] bg-[#FFFFFF] px-[5px] py-[5px] rounded-[4px]";
   const nameNotActive = "text-[14px] leading-[18px] text-[#8B8B8B] font-[500]";
   const nameActive = "text-[14px] leading-[18px] text-[#FFFFFF] font-bold";
+
+  useEffect(()=>{
+    if(success){
+      Navigate("/login")
+    }
+  })
   return (
     <main className="flex max-h-screen overflow-y-hidden  bg-[#19192E] ">
       <section className="bg-[#19192E] w-[265px] max-h-screen overflow-y-scroll whitespace-nowrap hide scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
@@ -195,7 +208,8 @@ const Sidebar = ({ children }) => {
               <FiLogOut size={12} />
             </NavLink>
             <NavLink
-              to="/log"
+            to="/login"
+              onClick={()=>dispatch(logout())}
               className={({ isActive }) =>
                 isActive ? nameActive : nameNotActive
               }

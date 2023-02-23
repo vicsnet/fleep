@@ -39,7 +39,10 @@ const SideNav = ({ title, display, padd }) => {
       <Link to="/profile">
         <div className="flex items-center gap-[16px] pr-[42px]">
           <div className="">
+            {
+              isLoading &&
                  <Skeleton /> 
+            }
                <h2 className="text-[16px] font-bold leading-[19.2px]">
                 {data?.data?.full_name}
               </h2>

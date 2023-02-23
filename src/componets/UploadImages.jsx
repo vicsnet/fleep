@@ -119,8 +119,6 @@ const UploadImage = () => {
                       </p>
                     </Upload.Dragger>
                   </div>
-
-                  {/* <>{images}</> */}
                 </div>
               </div>
             </div>
