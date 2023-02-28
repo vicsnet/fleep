@@ -5,7 +5,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { baseURL } from "../../../../Redux/Api/api";
 import { useSelector } from "react-redux";
-import { message } from "antd";
+
 
 const useFetchCreatePost = (id) => {
   const API_URL = `${baseURL}/user/event/create`;
@@ -41,6 +41,6 @@ const useFetchCreatePost = (id) => {
   };
 
 
-return useMutation(registerNewEvent, message);
+return useMutation(registerNewEvent);
 };
 export default useFetchCreatePost;

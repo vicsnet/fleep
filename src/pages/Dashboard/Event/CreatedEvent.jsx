@@ -22,50 +22,28 @@ import useFetchSingleEvent from "./eventhooks/useFetchSingleEvent";
 import { useParams } from "react-router-dom";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import EventImages from "./EventImages";
+import useGetImages from './eventhooks/useGetImages';
 
-const url = "https://jsonplaceholder.typicode.com/albums";
 
 const CreatedEvent = () => {
 
   const {id} = useParams();
   const {data, isLoading, isError} = useFetchSingleEvent(id);
 
-  // const [me, setMe] = useState("")
+  const {data:images} = useGetImages(id); 
 
+    const dispatch = useDispatch();
 
-
-  console.log(data);
-  if(isError){
-    console.log("error")
-  }
-
-  const dispatch = useDispatch();
-
-  const [images, setImage] = useState([]);
-
-  const [show, setShow] = useState(8);
-
-  const getImage = async () => {
-    const res = await fetch(url);
-    const data = await res.json();
-    setImage(data);
-  };
-
-  useEffect(() => {
-    getImage();
-  }, []);
-
-  const showAll = () => {
-    setShow((prevValue) => prevValue + 8);
-  };
-
-  const text = data?.data?.copy;
-
-  const copyToClipboard = () => {
-    copy(text);
-    alert(`You have copied "${text}"`);
-  };
-
+    
+    const text = data?.data?.copy;
+    
+    const copyToClipboard = () => {
+      copy(text);
+      alert(`You have copied "${text}"`);
+    };
+    
+   
  
 
   return (
@@ -227,9 +205,11 @@ const CreatedEvent = () => {
           {/*  */}
         </section>
 
-        {/* no upload yet */}
+      {  
+      images?.data?.length == 0 ?
+      // no upload yet  
         <section className="mt-[100px] pb-[200px]">
-          {/* <BsImages size={70} className="text-[#EE2339] mx-auto" /> */}
+
           <img src={EVeimage} alt="" className="h-[70px] w-[70px] mx-auto" />
           <p className="text-[24px] font-normal leading-7 mt-5 text-[#6A6A6A] text-center">
             No photos uploaded
@@ -243,40 +223,14 @@ const CreatedEvent = () => {
             </button>
           </div>
         </section>
-        {/*  */}
-
-        {/* uploads */}
-        <section className="pb-[100px] flex flex-wrap gap-4 relative">
-          {images.slice(0, show).map((image) => (
-            <div className="relative" key={image.id}>
-              <img
-                src={bum}
-                alt=""
-                className={`w-[290px] h-[290px] bSemiBig:w-[270px] bSemiBig:h-[270px] bSemismall:w-[250px] bSemismall:h-[250px] lgDesktop:w-[220px] lgDesktop:h-[220px] smDesktop:w-[160px] smDesktop:h-[160px] smDesk:w-[142px] smDesk:h-[142px] tablet:w-[226px] tablet:h-[226px] object-cover rounded-lg relative tabletAir:w-[250px] tabletAir:h-[250px]`}
-              />
-
-              <input
-                id="green-checkbox"
-                type="checkbox"
-                value=""
-                class="w-6 h-6 accent-[#1A1941]  rounded border-[#6A6A6A] border-[0px] absolute top-[16px] right-[16px]"
-              />
-            </div>
-          ))}
-          {images.length >= show && (
-            <div
-              className="w-[290px] h-[290px] right-5 bSemiBig:w-[270px] bSemiBig:h-[270px] bSemiBig:right-1 bSemismall:right-3 bSemismall:h-[250px] bSemismall:w-[250px] lgDesktop:w-[220px] smDesktop:w-[160px] smDesktop:h-[160px] lgDesktop:h-[220px] smDesk:w-[142px] smDesk:h-[142px]  tabletAir:w-[250px] tabletAir:h-[250px] tablet:w-[226px] tablet:h-[226px]  lgDesktop:right-12 smDesktop:right-10 smDesk:right-2 absolute tabletAir:right-4  bottom-[100px] rounded-lg"
-              style={{ background: "rgba(0, 0, 0, 0.4)" }}
-            >
-              <button
-                onClick={showAll}
-                className="text-[white] flex items-center text-[20px] leading-[24px] font-bold my-[50%] outline-none justify-center mx-[70px] lgDesktop:mx-[40px] smDesktop:mx-[20px] smDesk:mx-auto smDesk:my-[45%]"
-              >
-                View all <FiArrowRightCircle className="ml-[18px]" />
-              </button>
-            </div>
-          )}
-        </section>
+        
+        :
+        // uploads 
+       
+        
+          <EventImages />
+          }
+        
       </section>
     </main>
   );

@@ -6,6 +6,8 @@ import {
   closeAddUser,
 } from "../../../Redux/features/addUserSlice";
 
+import useAddUser from "../User/userhooks/useAddUser";
+
 const AddUser = () => {
   const open = useSelector((state) => state.crtAddUser.open);
 
@@ -13,6 +15,8 @@ const AddUser = () => {
 
   const [openDel, setOpenDel] = useState(false);
   const [delOption, setDelOption] = useState(false);
+
+  const {} =useAddUser()
 
   const showDelButton = () => {
     setOpenDel(true);
@@ -125,7 +129,7 @@ const AddUser = () => {
                   type="text"
                   placeholder="Enter the name of the user"
                   className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9] h-[50px] pl-[20px] w-[100%]"
-                  style={{ border: "1px solid #E5E5E5" }}
+  try                style={{ border: "1px solid #E5E5E5" }}
                 />
               </div>
               <div className="w-[50%]">

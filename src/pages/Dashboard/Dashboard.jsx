@@ -153,7 +153,7 @@ const Dashboard = () => {
                           </p>
                           :
                     <h3 className="text-[30px] font-bold leading-[36px] tracking-[2.14px] text-[#191D23] ">
-                      150
+                      {data?.data?.all_participants}
                     </h3>
 }
                     <p className="text-[#8E99AB] opacity-[70%] text-[14px] font-[500] leading-[16.8px] pt-[4px]">
