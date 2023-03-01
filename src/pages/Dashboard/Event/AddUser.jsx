@@ -1,6 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import ClipLoader from "react-spinners/ClipLoader";
 import {
   openAddUser,
   closeAddUser,
@@ -9,14 +12,36 @@ import {
 import useAddUser from "../User/userhooks/useAddUser";
 
 const AddUser = () => {
+  const {id}  = useParams()
   const open = useSelector((state) => state.crtAddUser.open);
 
   const dispatch = useDispatch();
 
+  
   const [openDel, setOpenDel] = useState(false);
   const [delOption, setDelOption] = useState(false);
 
-  const {} =useAddUser()
+  const [userDetail, setUserDetail] = useState({
+    full_name:"",
+    email:""
+  })
+  const {mutate, isLoading,isSuccess, success, isError, error} =useAddUser(id);
+
+  const handleChange = (e)=>{
+    e.preventDefault();
+    const name = e.target.name;
+    const value = e.target.value;
+    setUserDetail({...userDetail, [name]:value});
+
+  }
+
+  const handleSubmit =(e)=>{
+    e.preventDefault();
+   
+    const user = {...userDetail};
+    mutate(user);
+
+  }
 
   const showDelButton = () => {
     setOpenDel(true);
@@ -89,6 +114,20 @@ const AddUser = () => {
     );
   };
 
+  useEffect(() => {
+   if(isError){
+    toast.error(error.response.data.message)
+   }
+
+   if(isSuccess){
+    toast.success("User Added Succesfully")
+    setUserDetail({
+      full_name:"",
+      email:""
+    })
+   }
+  }, [isError, isSuccess])
+  
   if (open) return null;
 
   return (
@@ -127,9 +166,11 @@ const AddUser = () => {
                 <br />
                 <input
                   type="text"
+                  name="full_name"
+                  value={userDetail.full_name}
+                  onChange={handleChange}
                   placeholder="Enter the name of the user"
-                  className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9] h-[50px] pl-[20px] w-[100%]"
-  try                style={{ border: "1px solid #E5E5E5" }}
+                  className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9] h-[50px] pl-[20px] w-[100%]"   style={{ border: "1px solid #E5E5E5" }}
                 />
               </div>
               <div className="w-[50%]">
@@ -142,6 +183,9 @@ const AddUser = () => {
                 <br />
                 <input
                   type="text"
+                  name="email"
+                  value={userDetail.email}
+                  onChange={handleChange}
                   placeholder="Enter the email of the user"
                   className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9] h-[50px] pl-[20px] w-[100%]"
                   style={{ border: "1px solid #E5E5E5" }}
@@ -150,8 +194,9 @@ const AddUser = () => {
             </div>
 
             {/* button */}
-            <button className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[80px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5">
-              Add User
+            <button onClick={handleSubmit} className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[80px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5">
+            {isLoading ? <ClipLoader color="#FFFFFF" /> :
+             " Add User"}
             </button>
           </form>
           {/* if there is user */}

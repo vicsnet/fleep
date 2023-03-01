@@ -1,7 +1,13 @@
 import React from "react";
 import bum from "../assets/HBD to bunmi 20190716_003414.jpg";
+import PersonalUser from "../pages/Dashboard/PersonalUser";
+import User from "../pages/Dashboard/User/User";
+import useFetchParticipant from "../pages/Dashboard/User/userhooks/useFetchParticipant";
 
 const EventMembers = () => {
+
+  const {data, isLoading} = useFetchParticipant()
+
   return (
     <main className="mt-[24px] flex justify-between smDesk:flex-col">
       <section
@@ -11,12 +17,13 @@ const EventMembers = () => {
         <h2 className="text-[#1A1941] text-[20px] font-semibold leading-[24px] pt-[19px]">
           Latest Members
         </h2>
-
-        {/* <div className="flex flex-col justify-center">
-          <p className="text-[20px] font-bold leading-[24px] text-[#8B8B8B] py-[97px] px-[169px]">
+{ data?.data === 0 ?
+         <div className="flex flex-col justify-center">
+          <p className="text-[20px] font-bold leading-[24px] text-[#8B8B8B] py-[97px] px-[169px] lgDesktop:px-[140px] smDesktop:px-[80px] smDesk:px-[220px] tablet:px-[150px] tabletAir:px-[0px]">
             No new members
           </p>
-        </div> */}
+        </div>
+          : 
 
         <table className="w-[90%] mx-auto mt-[21px] ">
           <thead className="text-left text-[16px] font-[500] leading-[19.2px] bg-[#FAFAFA] ">
@@ -27,7 +34,14 @@ const EventMembers = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b-[1px] border-[#EDEDED] text-[#6A6A6A]">
+            {data?.data?.slice(0,5).map((data, id) =>(
+
+              <PersonalUser key={id} fname={data?.full_name} tphoto={data?.eventsimagescount} eventAttended={data?.eventscount} im={data?.data?.profile_photo}/>
+            ))
+
+            }
+
+            {/* <tr className="border-b-[1px] border-[#EDEDED] text-[#6A6A6A]">
               <td className="flex gap-[14px] mt-[11px] items-center ">
                 <img
                   src={bum}
@@ -98,9 +112,12 @@ const EventMembers = () => {
               <td className="w-[20%] text-[14px leading-[16.8px] font-[300] mt-[11px] py-auto">
                 1961
               </td>
-            </tr>
+            </tr> */}
           </tbody>
         </table>
+} 
+
+
       </section>
 
       <section

@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { baseURL } from "../../../../Redux/Api/api";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+
 
 const useFetchEvent = (id) => {
   const API_URL = `${baseURL}/user/event/list`;

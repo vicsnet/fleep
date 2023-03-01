@@ -36,7 +36,7 @@ const Profile = () => {
         <div className="">
           <div className="relative w-[150px] mx-auto">
             <img
-              src={bum}
+              src={data?.data?.profile_photo}
               alt=""
               className="w-[150px] h-[150px] rounded-[50%] object-cover relative mx-auto"
             />

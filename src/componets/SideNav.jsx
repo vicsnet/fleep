@@ -51,7 +51,7 @@ const SideNav = ({ title, display, padd }) => {
 
           <div className="relative">
             <img
-              src={bum}
+              src={data?.data?.profile_photo}
               alt=""
               className="w-[40px] h-[40px] rounded-[50%] object-cover relative"
             />

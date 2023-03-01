@@ -46,7 +46,7 @@ const UploadImage = () => {
 
   useEffect(()=>{
     if(isSuccess){
-      toast.success("Uploads Successfully");
+      toast.success("Uploads Successful");
       setFileList([]);
       dispatch(uploadCloseImage());
     }
@@ -125,7 +125,8 @@ const UploadImage = () => {
 
             {/* button */}
             <div className="w-[341px] mx-auto smDesktop:mx-auto flex justify-between">
-              <button className="border-[#1A1941] border-[1px] rounded-lg h-[50px] mt-[50px] px-[55px] text-[#1A1941] tracking-[10%] text-[16px] leading-5 font-extrabold">
+              <button onClick={()=>dispatch(uploadCloseImage())}
+              className="border-[#1A1941] border-[1px] rounded-lg h-[50px] mt-[50px] px-[55px] text-[#1A1941] tracking-[10%] text-[16px] leading-5 font-extrabold">
                 Cancel
               </button>
               <button

@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { FiUpload } from "react-icons/fi";
 import { useDropzone } from "react-dropzone";
 import { useSelector, useDispatch } from 'react-redux'
 import { closeImage } from "../Redux/features/uploadDPSlice"; 
+import useProfilePost from "../pages/profile/hooks/useProfilePost";
+import { toast } from "react-toastify";
+import ClipLoader from "react-spinners/ClipLoader";
+
 
 
 const UploadDp = () => {
@@ -11,6 +15,7 @@ const UploadDp = () => {
   
     const open = useSelector((state) => state.uploadDp.open);
     const dispatch = useDispatch()
+    const {mutate, isLoading, isError, error, isSuccess} = useProfilePost();
     
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -39,7 +44,23 @@ const UploadDp = () => {
       </div>
     </div>
   ));
-
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    const imUpload = files[0]
+    mutate({image:imUpload});
+  }
+  useEffect(() => {
+    if(isError){
+      toast.error(error.response.data.message);
+    }
+    if(isSuccess){
+      toast.success("Image Upload Successful");
+      setFiles([]);
+      dispatch(closeImage());
+    }
+  }, [isError, isSuccess])
+  
+console.log(files);
     if(open) return null
   return (
     <section
@@ -77,9 +98,6 @@ const UploadDp = () => {
                       <p className="text-[16px] font-normal leading-5 text-center text-[#8B8B8B] mt-[12px]">
                         Drag and drop files or click upload
                       </p>
-                      {/* <p className="text-[13px] font-normal leading-5 text-center text-[#8A8A8A] mt-[6px]">
-                        250X250 px
-                      </p> */}
                     </div>
                   ) : (
                     <>{images}</>
@@ -89,12 +107,12 @@ const UploadDp = () => {
             </div>
 
             {/* button */}
-            <div className="w-[80%] mx-auto flex gap-[30px]">
+            <div onClick={()=>dispatch(closeImage())} className="w-[80%] mx-auto flex gap-[30px]">
               <button className="border-[#1A1941] border-[1px] rounded-lg h-[50px] mt-[50px] px-[55px] text-[#1A1941] tracking-[10%] text-[16px] leading-5 font-extrabold">
                 Cancel
               </button>
-              <button className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[58px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5 font-extrabold">
-                Save
+              <button onClick={handleSubmit} className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[58px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5 font-extrabold">
+              {isLoading ?<ClipLoader color="#FFFFFF" /> :" Save"}
               </button>
             </div>
           </form>
