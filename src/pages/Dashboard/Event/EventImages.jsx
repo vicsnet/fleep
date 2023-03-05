@@ -8,23 +8,42 @@ const EventImages = () => {
   const {id} = useParams()
     const {data, isLoading} = useGetImages(id); 
 
-    // console.log(data)
+    console.log(data)
+
     const [show, setShow] = useState(8);
+    const [selectImage, setSelectImage] = useState([]);
     const showAll = () => {
       setShow((prevValue) => prevValue + data?.data?.length);
     };
 
+     const handleChange = (e,index ) =>{
+      const {name, checked} = e.target;
+     
+
+      const checkedValue = data?.data?.map((data) => data?.thumbnail_url
+      === name && { ...data, isChecked:checked }
+      )
+      setSelectImage(checkedValue)
+      console.log(checkedValue)
+    }
+    // console.log(selectImage);
+
   return (
     <section className="mt-[80px] pb-[100px] flex flex-wrap gap-4 relative">
-      {data?.data?.slice(0, show).map((images, index)=>(
+      
+      {data?.data?.slice(0, show)?.map((images, index)=>(
 
         <div key={index} className="relative">
-
-        <EventSingleImages imag={images.thumbnail_url} i={index}/>
+        <EventSingleImages id={index} imag={images?.thumbnail_url} i={index}  ima={images?.thumbnail_url} 
+        checkm={images.isChecked}
+        val={images.thumbnail_url}
+        change={handleChange}
+         />
 
         </div>
       )
       )}
+
       {data?.data?.length >= show && (
             <div
               className="w-[290px] h-[290px] right-5 bSemiBig:w-[270px] bSemiBig:h-[270px] bSemiBig:right-1 bSemismall:right-3 bSemismall:h-[250px] bSemismall:w-[250px] lgDesktop:w-[220px] smDesktop:w-[160px] smDesktop:h-[160px] lgDesktop:h-[220px] smDesk:w-[142px] smDesk:h-[142px]  tabletAir:w-[250px] tabletAir:h-[250px] tablet:w-[226px] tablet:h-[226px]  lgDesktop:right-12 smDesktop:right-10 smDesk:right-2 absolute tabletAir:right-4  bottom-[100px] rounded-lg"

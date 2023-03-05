@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useEffect, useState } from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,43 +10,42 @@ import {
   openAddUser,
   closeAddUser,
 } from "../../../Redux/features/addUserSlice";
-
 import useAddUser from "../User/userhooks/useAddUser";
+import SingleEventUser from "./SingleEventUser";
+import useFetchSingleParticipant from "./eventhooks/useFetchSingleParticipant";
 
 const AddUser = () => {
-  const {id}  = useParams()
+  const { id } = useParams();
   const open = useSelector((state) => state.crtAddUser.open);
 
   const dispatch = useDispatch();
 
-  
   const [openDel, setOpenDel] = useState(false);
   const [delOption, setDelOption] = useState(false);
 
   const [userDetail, setUserDetail] = useState({
-    full_name:"",
-    email:""
-  })
-  const {mutate, isLoading,isSuccess, success, isError, error} =useAddUser(id);
+    full_name: "",
+    email: "",
+  });
+  const { mutate, isLoading, isSuccess, success, isError, error } =
+    useAddUser(id);
 
-  const handleChange = (e)=>{
+    const {data} = useFetchSingleParticipant(id);
+
+    console.log(data)
+
+  const handleChange = (e) => {
     e.preventDefault();
     const name = e.target.name;
     const value = e.target.value;
-    setUserDetail({...userDetail, [name]:value});
+    setUserDetail({ ...userDetail, [name]: value });
+  };
 
-  }
-
-  const handleSubmit =(e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-   
-    const user = {...userDetail};
+
+    const user = { ...userDetail };
     mutate(user);
-
-  }
-
-  const showDelButton = () => {
-    setOpenDel(true);
   };
 
   const showDelOption = () => {
@@ -52,25 +53,8 @@ const AddUser = () => {
   };
 
   const cancelDelOption = () => {
-    setDelOption(false)
-    setOpenDel(false)
-  }
-
-  const DelButton = () => {
-    return (
-      <div 
-        // onClick={() => setOpenDel(false)}
-        className="absolute">
-      <button
-        onClick={showDelOption}
-        className="text-[16px] font-normal text-[#000000] py-[14px] px-[22.5px] mt-[8px] ml-[-20px] bg-[#FFFFFF]"
-        style={{ boxShadow: "0px 0px 10px 0px rgba(132, 132, 132, 0.15)" }}
-      >
-        Delete
-      </button>
-
-      </div>
-    );
+    setDelOption(false);
+    setOpenDel(false);
   };
 
   const DelOption = () => {
@@ -115,19 +99,19 @@ const AddUser = () => {
   };
 
   useEffect(() => {
-   if(isError){
-    toast.error(error.response.data.message)
-   }
+    if (isError) {
+      toast.error(error.response.data.message);
+    }
 
-   if(isSuccess){
-    toast.success("User Added Succesfully")
-    setUserDetail({
-      full_name:"",
-      email:""
-    })
-   }
-  }, [isError, isSuccess])
-  
+    if (isSuccess) {
+      toast.success("User Added Succesfully");
+      setUserDetail({
+        full_name: "",
+        email: "",
+      });
+    }
+  }, [isError, isSuccess]);
+
   if (open) return null;
 
   return (
@@ -170,7 +154,8 @@ const AddUser = () => {
                   value={userDetail.full_name}
                   onChange={handleChange}
                   placeholder="Enter the name of the user"
-                  className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9] h-[50px] pl-[20px] w-[100%]"   style={{ border: "1px solid #E5E5E5" }}
+                  className="text-[14px] leading-4 font-light text-[#999999] outline-none rounded-lg bg-[#F9F9F9] h-[50px] pl-[20px] w-[100%]"
+                  style={{ border: "1px solid #E5E5E5" }}
                 />
               </div>
               <div className="w-[50%]">
@@ -194,13 +179,16 @@ const AddUser = () => {
             </div>
 
             {/* button */}
-            <button onClick={handleSubmit} className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[80px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5">
-            {isLoading ? <ClipLoader color="#FFFFFF" /> :
-             " Add User"}
+            <button
+              onClick={handleSubmit}
+              className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[80px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5"
+            >
+              {isLoading ? <ClipLoader color="#FFFFFF" /> : " Add User"}
             </button>
           </form>
           {/* if there is user */}
-          <section className="mt-[80px]">
+
+          <section className={`${data?.data?.length == 0 && "hidden"} mt-[80px] block`}>
             <h3 className="font-bold text-[24px] leading-[28.8px] text-[#14181F]">
               Users
             </h3>
@@ -219,33 +207,16 @@ const AddUser = () => {
                 </tr>
               </thead>
               <tbody className="mt-[20px]">
-                <tr className="border-b-[1px] border-[#EDEDED] text-[#6A6A6A]">
-                  <td className="w-[20%] text-[14px] leading-[16.8px] font-[300] pt-[20px] py-auto pl-[15px] pb-[8px]">
-                    1
-                  </td>
-                  <td className="pt-[20px] pb-[8px]">
-                    <p className="text-[14px] leading-[16.8px] font-[300]">
-                      Tejiri Tabor
-                    </p>
-                  </td>
+                {data?.data?.map((data) =>(
 
-                  <td className="w-[20%] text-[14px] leading-[16.8px] font-[300] py-auto pt-[20px] pb-[8px]">
-                    Example@mail.com
-                  </td>
-                  {!openDel ? (
-                    <td
-                      onClick={showDelButton}
-                      className="w-[20%] text-[20px] leading-[16.8px] font-[300]  py-auto pt-[20px] pb-[8px] cursor-pointer"
-                    >
-                      ...
-                    </td>
-                  ) : (
-                    <DelButton />
-                  )}
-                </tr>
+                  <SingleEventUser delOpt={showDelOption} idm={data?.id} id={data?.id} fname={data?.full_name} email={data?.email}  />
+                ))
+
+                }
               </tbody>
             </table>
           </section>
+          
         </div>
       </div>
       {delOption && <DelOption />}

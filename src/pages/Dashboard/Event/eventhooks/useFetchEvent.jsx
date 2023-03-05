@@ -9,7 +9,7 @@ const useFetchEvent = (id) => {
   const API_URL = `${baseURL}/user/event/list`;
 
   const SINGLE_URL =`${baseURL}/event/view/${id}`;
-// const {id} = useParams();
+
   const { token } = useSelector((state) => state.user);
 
   const config = {

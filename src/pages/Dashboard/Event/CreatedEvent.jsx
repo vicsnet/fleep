@@ -43,6 +43,10 @@ const CreatedEvent = () => {
       alert(`You have copied "${text}"`);
     };
     
+    const handleChange = (e) =>{
+      const {name, checked} = e.target;
+      // setSelectImage(e.target.value)
+    }
    
  
 
@@ -178,7 +182,7 @@ const CreatedEvent = () => {
 
             {/* if there is photos */}
 
-            <div className="flex">
+            <div className={`${images?.data?.length == 0 && "hidden"} flex`}>
               <div className="flex items-center bg-[#FFFFFF] h-[49px] px-6">
                 <IoLayers size={16} className="text-[#1A1941]" />
                 <select
@@ -187,9 +191,8 @@ const CreatedEvent = () => {
                   className="outline-none bg-transparent border-none text-[#1A1941] flex text-[16] font-bold items-center"
                 >
                   <option value="volvo">Bulk Action</option>
-                  <option value="saab">Saab</option>
-                  <option value="mercedes">Mercedes</option>
-                  <option value="audi">Audi</option>
+                  <option value="saab">Delete</option>
+                  
                 </select>
               </div>
               <div className="">

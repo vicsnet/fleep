@@ -21,7 +21,7 @@ const Users = () => {
  
 
   const {data, isLoading} = useFetchParticipant();
-  console.log(data)
+  console.log(data?.data)
   // const dispatch = useDispatch();
 
   useEffect(() => {
@@ -94,9 +94,8 @@ const Users = () => {
           <tbody>
             {/* {displayUsers} */}
 
-            {data?.data?.slice(pagesVisited, pagesVisited + usersPerPage)
-              .map(( data, id ) => (
-                <User key={id} id={id+1} fname={data?.full_name} tphoto={data?.eventsimagescount} eventAttended={data?.eventscount} im={data?.data?.profile_photo}/>
+            {data?.data.slice(pagesVisited, pagesVisited + usersPerPage)?.map(( data, id ) => (
+                <User key={id} id={id+1} fname={data?.full_name} tphoto={data?.eventsimagescount} eventAttended={data?.eventscount} im={data?.profile_photo}/>
               ))}
           </tbody>
         </table>
