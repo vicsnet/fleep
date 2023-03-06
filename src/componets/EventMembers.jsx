@@ -7,8 +7,9 @@ import useFetchEvent from "../pages/Dashboard/Event/eventhooks/useFetchEvent";
 
 const EventMembers = () => {
   const { data, isLoading } = useFetchParticipant();
-
+console.log(data);
   const { data: detail, isLoading: detailLoading } = useFetchEvent();
+  console.log(detail);
   
 
   return (
@@ -20,7 +21,7 @@ const EventMembers = () => {
         <h2 className="text-[#1A1941] text-[20px] font-semibold leading-[24px] pt-[19px]">
           Latest Members
         </h2>
-        {data?.data === 0 ? (
+        {data?.data === null ? (
           <div className="flex flex-col justify-center">
             <p className="text-[20px] font-bold leading-[24px] text-[#8B8B8B] py-[97px] px-[169px] lgDesktop:px-[140px] smDesktop:px-[80px] smDesk:px-[220px] tablet:px-[150px] tabletAir:px-[0px]">
               No new members
@@ -39,10 +40,10 @@ const EventMembers = () => {
               {data?.data?.slice(0, 5)?.map((data, id) => (
                 <PersonalUser
                   key={id}
-                  fname={data.full_name}
-                  tphoto={data.eventsimagescount}
+                  fname={data?.full_name}
+                  tphoto={data?.eventsimagescount}
                   eventAttended={data?.eventscount}
-                  im={data.profile_photo}
+                  im={data?.profile_photo}
                 />
               ))}
             </tbody>
@@ -90,36 +91,11 @@ const EventMembers = () => {
                     {data?.imagescount}
                   </td>
                   <td className="w-[30%] text-[14px leading-[16.8px] font-[300] mt-[11px] py-auto">
-                    {data?.participants?.length}
+                    {/* {data?.participants.length} */}
                   </td>
                 </tr>
               ))}
-              {/* <tr className="border-b-[1px] border-[#EDEDED] text-[#6A6A6A]">
-              <td className="flex gap-[14px] pl-[8px] mt-[11px] mb-[11px] items-center w-[100%]">
-                <p className="text-[14px leading-[16.8px] font-[300]">
-                  Henry’s Wedding
-                </p>
-              </td>
-              <td className="w-[20%] text-[14px leading-[16.8px] font-[300] mt-[11px] py-auto">
-                56
-              </td>
-              <td className="w-[30%] text-[14px leading-[16.8px] font-[300] mt-[11px] py-auto">
-                1961
-              </td>
-            </tr>
-            <tr className="border-b-[1px] border-[#EDEDED] text-[#6A6A6A]">
-              <td className="flex gap-[14px] pl-[8px] mt-[11px] mb-[11px] items-center w-[100%]">
-                <p className="text-[14px leading-[16.8px] font-[300]">
-                  Henry’s Wedding
-                </p>
-              </td>
-              <td className="w-[20%] text-[14px leading-[16.8px] font-[300] mt-[11px] py-auto">
-                56
-              </td>
-              <td className="w-[30%] text-[14px leading-[16.8px] font-[300] mt-[11px] py-auto">
-                1961
-              </td>
-            </tr> */}
+           
             </tbody>
           </table>
         )}
