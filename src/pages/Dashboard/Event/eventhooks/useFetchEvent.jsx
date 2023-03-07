@@ -27,7 +27,7 @@ const useFetchEvent = (id) => {
     return axios.get(SINGLE_URL, config).then((res)=> res.data);
   }
 
-  const { data, isLoading, isError } = useQuery(["Event"], getData);
+  const { data, isLoading, isFetching, isError } = useQuery(["Event"], getData);
 
   const {SingleData, Loading, Error} = useQuery(["SINGLE_EVENT"], getSingleEvent)
 

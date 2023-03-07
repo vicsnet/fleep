@@ -4,8 +4,7 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { TbUsers } from "react-icons/tb";
 import { CiImageOn } from "react-icons/ci";
-// import Skeleton from 'react-loading-skeleton'
-// import 'react-loading-skeleton/dist/skeleton.css'
+
 import { Skeleton } from "antd";
 
 const SingleEvent = ({
@@ -20,6 +19,13 @@ const SingleEvent = ({
   const { id } = useParams();
 
   return (
+    <>
+    
+    {
+      isLoading ? 
+      "moading..."
+      :
+    
     <Link key={index} to={`/event/created-event/${singleId}`}>
       <div
         className="w-[100%] rounded-[16px] mb-[4px]"
@@ -63,6 +69,8 @@ const SingleEvent = ({
         </div>
       </div>
     </Link>
+    }
+    </>
   );
 };
 

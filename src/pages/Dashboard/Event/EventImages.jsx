@@ -16,17 +16,20 @@ const EventImages = () => {
       setShow((prevValue) => prevValue + data?.data?.length);
     };
 
+
+
      const handleChange = (e,index ) =>{
       const {name, checked} = e.target;
-     
+     const selectedData = selectImage.length ===0 ? data?.data : selectImage
 
-      const checkedValue = data?.data?.map((data) => data?.thumbnail_url
-      === name && { ...data, isChecked:checked }
+
+      const checkedValue = selectedData.map((data) => data?.thumbnail_url
+      === name ? { ...data, isChecked:checked } : data
       )
       setSelectImage(checkedValue)
-      console.log(checkedValue)
+      // console.log(checkedValue)
     }
-    // console.log(selectImage);
+    console.log(selectImage);
 
   return (
     <section className="mt-[80px] pb-[100px] flex flex-wrap gap-4 relative">

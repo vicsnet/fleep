@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import SideNav from "../../componets/SideNav";
 import { MdOutlineEvent } from "react-icons/md";
 import { BiSearch } from "react-icons/bi";
@@ -13,26 +13,20 @@ import { useDispatch } from "react-redux";
 import { openEvent } from "../../Redux/features/createEventSlice";
 import useFetchEvent from "./Event/eventhooks/useFetchEvent";
 import SingleEvent from "./Event/SingleEvent";
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
+import FadeLoader from "react-spinners/FadeLoader";
 
 const Event = () => {
   const dispatch = useDispatch();
 
-  const { data, isLoading, isError } = useFetchEvent();
+  const { data, isLoading, isFetching, isError } = useFetchEvent();
+console.log(data)
+ 
 
-  const Hello = () => {
-    return <p>hello</p>;
-  };
 
-  // console.log(data[0]);
-  console.log(data);
 
-  // if(isLoading){
-  //   <p className="">
-  //     <Skeleton/>
-  //   </p>
-  // }
+  
+
+ 
 
   return (
     <main className="max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full pb-[180px]">
@@ -43,14 +37,17 @@ const Event = () => {
       </section>
 
       {/* No Event */}
-      
+      {
+         isLoading || isFetching ?
+         <div className="flex justify-center mt-3">
+          <FadeLoader color="#19192E" />
+         </div>
+         :
+       
+      <div>
       {
         data == 0 ?
       <section className="mt-[100px]">
-        {/* <MdOutlineEvent
-          size={100}
-          className="text-[#EE2339] mx-auto mb-[42px]"
-        /> */}
         <img
           src={EVeCal}
           alt=""
@@ -97,7 +94,6 @@ const Event = () => {
               >
                 <option value="filter">Filter</option>
                 <option value="recent">Recent</option>
-                {/* <option value="mercedes">Mercedes</option> */}
                 <option value="older">Older</option>
                 <option value="all">All</option>
               </select>
@@ -108,12 +104,12 @@ const Event = () => {
               const { id, title, coverphoto, date, imagescount } = data;
               return(
                 <div className="">
-                  { isLoading &&
-                  
-                  <Skeleton/>
-                  }
-                 <SingleEvent isLoading={isLoading} index={id} singleId={id} title={title} coverphoto={coverphoto} date={date} images={imagescount} />
                  
+                 <div className="">
+                   <SingleEvent isLoading={isLoading} index={id} singleId={id} title={title} coverphoto={coverphoto} date={date} images={imagescount} />
+
+                 </div>
+                
                 </div>
                )
 
@@ -130,7 +126,8 @@ const Event = () => {
       </section>
       }
 
-
+</div>
+      }
     </main>
   );
 };

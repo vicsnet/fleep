@@ -20,8 +20,8 @@ const useFetchParticipant = () => {
     const getParticipant= ()=>{
         return axios.get(API_URL, config).then((res) =>res.data)
     }
-    const {data} = useQuery(["participant"], getParticipant);
-    return {data};
+    const {data, isLoading, isError} = useQuery(["participant"], getParticipant);
+    return {data, isLoading, isError} ;
 }
 
 export default useFetchParticipant

@@ -37,7 +37,7 @@ function App() {
     
     
     <div className="App">
-      <SkeletonTheme baseColor="" highlightColor="#191D23">
+      <SkeletonTheme baseColor="" highlightColor="grey.700">
       <QueryClientProvider client={client}>
 
       <Routes>

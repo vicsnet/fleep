@@ -1,21 +1,18 @@
 /** @format */
 
-import React, { useEffect } from "react";
-import bum from "../assets/HBD to bunmi 20190716_003414.jpg";
+import React, { useEffect, useState } from "react";
 import { GoPrimitiveDot } from "react-icons/go";
 import { Link, useNavigate } from "react-router-dom";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { useSelector } from "react-redux";
 import ProfileUseFetch from "../pages/profile/hooks/profileUseFetch";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
-
-// import { Skeleton } from 'antd';
+import { Skeleton, Space } from 'antd';
 
 const SideNav = ({ title, display, padd }) => {
   const back = useNavigate();
 
-  const { data, isLoading, isFetching } = ProfileUseFetch();
+  const { data, isLoading, isFetching, isError } = ProfileUseFetch();
+
 
 
 
@@ -35,19 +32,31 @@ const SideNav = ({ title, display, padd }) => {
           </p>
         </div>
       </div>
+     
+     
 
+           {
+            isLoading === true ?
+            <div className="mr-[42px]">
+
+              <Space direction="horizontal" >
+  
+              <Skeleton  active  paragraph={false}title={{width:200}}/> 
+              <Skeleton.Avatar active/>
+              </Space>
+            </div>
+              :
       <Link to="/profile">
         <div className="flex items-center gap-[16px] pr-[42px]">
           <div className="">
-            {
-              isLoading &&
-                 <Skeleton /> 
-            }
                <h2 className="text-[16px] font-bold leading-[19.2px]">
                 {data?.data?.full_name}
               </h2>
-
           </div>
+           
+           
+            
+
 
           <div className="relative">
             <img
@@ -62,6 +71,7 @@ const SideNav = ({ title, display, padd }) => {
           </div>
         </div>
       </Link>
+           }
     </section>
   );
 };
