@@ -99,6 +99,12 @@ console.log(data)
               </select>
             </div>
           </div>
+          {
+         isFetching ?
+         <div className="flex justify-center mt-3">
+          <FadeLoader color="#19192E" />
+         </div>
+         :
           <div className="mt-[14px]">
             {data?.data?.map((data) => {
               const { id, title, coverphoto, date, imagescount } = data;
@@ -117,6 +123,7 @@ console.log(data)
 
 
           </div>
+}
 
           {/* Event card */}
         </section>

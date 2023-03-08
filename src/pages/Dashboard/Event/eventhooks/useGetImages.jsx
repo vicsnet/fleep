@@ -25,11 +25,11 @@ const useGetImages = (id) => {
   
   //  console.log(API_URL);
   
-    const { data, isLoading, isError } = useQuery(["Im"], getData);
+    const { data, isLoading, isError,isFetching } = useQuery(["Im"], getData);
   
    
   
-    return { data, isLoading, isError, Error };
+    return { data, isLoading, isError, Error, isFetching };
   };
   export default useGetImages;
   

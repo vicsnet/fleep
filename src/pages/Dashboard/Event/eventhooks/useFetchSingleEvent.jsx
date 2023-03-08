@@ -26,8 +26,8 @@ const useFetchSingleEvent = (id) => {
   }
 
 
-  const {data, isLoading, isError} = useQuery(["SINGLE_EVENT"], getSingleEvent)
+  const {data, isLoading,isFetching, isError} = useQuery(["SINGLE_EVENT"], getSingleEvent)
 
-  return {  isLoading, isError, data,  };
+  return {  isLoading, isError, isFetching, data,  };
 };
 export default useFetchSingleEvent;
