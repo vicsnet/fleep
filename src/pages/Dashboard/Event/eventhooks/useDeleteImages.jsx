@@ -14,7 +14,7 @@ const useDeleteImages = ({id}) => {
   
     const config = {
       headers: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
         Authorization: "Bearer " + token,
       },
     };
@@ -29,10 +29,6 @@ const useDeleteImages = ({id}) => {
   
   }
   
-  // const {isLoading} = useMutation();
-  
-  // let Loading = isLoading;
-  // let Error;
   return useMutation( EditEvent);
 
 }

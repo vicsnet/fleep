@@ -56,7 +56,7 @@ const NewEvent = () => {
 
   // To open the click Event
   
-  const {ref,isComponentVisible:openEvent, setIsComponentVisible:setOpenEvent} = useComponentVisible(false);
+ const {ref,isComponentVisible:openEvent, setIsComponentVisible:setOpenEvent} = useComponentVisible(false); 
 
   const {setRef, componentCategory:openCategory, setComponentCategory:setOpenCategory} = useComponentCat(false);
 

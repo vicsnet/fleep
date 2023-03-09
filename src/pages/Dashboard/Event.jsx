@@ -107,12 +107,12 @@ console.log(data)
          :
           <div className="mt-[14px]">
             {data?.data?.map((data) => {
-              const { id, title, coverphoto, date, imagescount } = data;
+              const { id, title, coverphoto, date, imagescount,no_of_all_participants } = data;
               return(
                 <div className="">
                  
                  <div className="">
-                   <SingleEvent isLoading={isLoading} index={id} singleId={id} title={title} coverphoto={coverphoto} date={date} images={imagescount} />
+                   <SingleEvent isLoading={isLoading} index={id} singleId={id} title={title} coverphoto={coverphoto} date={date} images={imagescount} participant={no_of_all_participants}/>
 
                  </div>
                 

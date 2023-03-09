@@ -1,13 +1,13 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import SideNav from "../../../componets/SideNav";
 import { HiOutlineCake } from "react-icons/hi";
 import { FaGlobeAfrica } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
 import { AiOutlinePlus } from "react-icons/ai";
 import { IoLayers } from "react-icons/io5";
-import { BiUpload } from "react-icons/bi";
+import { BiChevronDown, BiUpload } from "react-icons/bi";
 import { BsImages } from "react-icons/bs";
 import bum from "../../../assets/HBD to bunmi 20190716_003414.jpg";
 import { FiCopy, FiArrowRightCircle } from "react-icons/fi";
@@ -26,55 +26,63 @@ import { Skeleton, Space } from "antd";
 import EventImages from "./EventImages";
 import useGetImages from "./eventhooks/useGetImages";
 import useDeleteImages from "./eventhooks/useDeleteImages";
-
+import useComponentVisible from "../../../hooks/useComponentVisible";
+import { toast } from "react-toastify";
 
 const CreatedEvent = () => {
   const { id } = useParams();
+
+  const {
+    ref,
+    isComponentVisible: openBulk,
+    setIsComponentVisible: setOpenBulk,
+  } = useComponentVisible(false);
+
   const { data, isLoading, isError, isFetching } = useFetchSingleEvent(id);
+  // console.log(data)
 
   const { data: images } = useGetImages(id);
 
   const dispatch = useDispatch();
   const [selectedImage, setSelectedImage] = useState([]);
-  
 
   // console.log("selected Image",selectedImage);
 
   const text = data?.data?.copy;
 
   const copyToClipboard = () => {
-    copy(text);
-    alert(`You have copied "${text}"`);
+    copy(String(data?.data?.copy));
+    alert(`You have copied "${data?.data?.copy}"`);
   };
 
-  const {mutate, isLoading:DeleteLoading, isError:DeleteError} = useDeleteImages(id)
+  const {
+    mutate,
+    isLoading: DeleteLoading,
+    isError: DeleteError,
+    isSuccess: DeleteSuccess,
+    error,
+    success,
+  } = useDeleteImages({ id });
 
-  const handleDelete = () =>{
-
-    const checkedinputvalue=[];
-    for(let i=0; i<selectedImage.length; i++)
-    {
-      // if(selectedImage[i].isChecked  === true)
-      // {
-          checkedinputvalue.push(selectedImage[i].thumbnail_url);
-          
-    //   }
-    //  else{
-    //   console.log("error")
-    //  }
+  const handleDelete = () => {
+    const checkedinputvalue = [];
+    for (let i = 0; i < selectedImage.length; i++) {
+      if (selectedImage[i].isChecked === true) {
+        checkedinputvalue.push(String(selectedImage[i].thumbnail_url));
+      }
     }
 
-    console.log(checkedinputvalue)
-    const deleteData = {
-      image_url: checkedinputvalue
+    mutate({ images_url: checkedinputvalue });
+  };
+  
+  useEffect(() => {
+    if (DeleteError) {
+      toast.error(error?.response?.data?.message);
     }
-    mutate(deleteData)
-    
-    // //  const responce= await axios.post(`http://localhost/devopsdeveloper/userdata/deletecheckboxuser`, JSON.stringify(checkedinputvalue)); 
-    //  setDelmessage(responce.data.msg);
-    
-   
-  }
+    if (DeleteSuccess) {
+      toast.success("Event image(s) deleted successfully");
+    }
+  }, [DeleteError, DeleteSuccess]);
 
   return (
     <main className="w-[100%] h-screen max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
@@ -103,7 +111,7 @@ const CreatedEvent = () => {
                   />
                 ) : (
                   <div>
-                    <h3 className="text-[30px] font-semibold leading-9 text-[#1A1941] smDesk:text-[24px] ">
+                    <h3 className="text-[30px] font-semibold leading-9 text-[#1A1941] smDesk:text-[24px] capitalize">
                       {data?.data?.title}
                     </h3>
 
@@ -114,30 +122,30 @@ const CreatedEvent = () => {
                 )}
 
                 {isLoading ? (
-                   <Space direction="horizontal" className="mt-2">
-                  <Skeleton
-                    active
-                    title={false}
-                    paragraph={{ row: 1, width: [130, 130] }}
-                  />
+                  <Space direction="horizontal" className="mt-2">
+                    <Skeleton
+                      active
+                      title={false}
+                      paragraph={{ row: 1, width: [130, 130] }}
+                    />
                   </Space>
                 ) : (
                   <div>
-                  <div className="flex items-center mt-[27.5px]">
-                    <img src={union} alt="" className="w-[20px] h-[20px]" />
-                    <p className="text-[16px] leading-5 font-normal ml-[10px] smDesk:text-[14px]">
-                      Wedding Party
-                    </p>
+                    <div className="flex items-center mt-[27.5px]">
+                      <img src={union} alt="" className="w-[20px] h-[20px]" />
+                      <p className="text-[16px] leading-5 font-normal ml-[10px] smDesk:text-[14px] capitalize">
+                        {data?.data?.category}
+                      </p>
+                    </div>
+
+                    <div className="flex items-center mt-[17px]">
+                      <img src={union2} alt="" className="w-[20px] h-[20px]" />
+                      <p className="text-[16px] leading-5 font-normal ml-[10px] smDesk:text-[14px] capitalize ">
+                        {data?.data?.venue}
+                      </p>
+                    </div>
                   </div>
-               
-                <div className="flex items-center mt-[17px]">
-                  <img src={union2} alt="" className="w-[20px] h-[20px]" />
-                  <p className="text-[16px] leading-5 font-normal ml-[10px] smDesk:text-[14px]">
-                    {data?.data?.venue}
-                  </p>
-                </div>
-                </div>
-              )}
+                )}
               </div>
             </div>
           </div>
@@ -145,54 +153,47 @@ const CreatedEvent = () => {
           {/* event Code and edit */}
           <div className="">
             {/* edit button */}
-            {isLoading  ? (
-                   <Space className="flex items-center mb-3 justify-end">
-
-                     <Skeleton
-                       active
-                       paragraph={false}
-                       title={{width:60}}
-                     />
-                   </Space>
-                
-                ) : (
-            <div
-              className="flex items-center mb-3 justify-end"
-              onClick={() => dispatch(openEvent())}
-            >
-              <CiEdit size={20} className="text-[#7C7B7B] cursor-pointer" />
-              <p className="text-[16px] ml-[10px] cursor-pointer smDesk:text-[14px]">
-                Edit
-              </p>
-            </div>
-                )}
+            {isLoading ? (
+              <Space className="flex items-center mb-3 justify-end">
+                <Skeleton active paragraph={false} title={{ width: 60 }} />
+              </Space>
+            ) : (
+              <div
+                className="flex items-center mb-3 justify-end"
+                onClick={() => dispatch(openEvent())}
+              >
+                <CiEdit size={20} className="text-[#7C7B7B] cursor-pointer" />
+                <p className="text-[16px] ml-[10px] cursor-pointer smDesk:text-[14px]">
+                  Edit
+                </p>
+              </div>
+            )}
 
             {/*  */}
             <div className="flex">
               {isLoading ? (
-                
-                  <Skeleton.Image></Skeleton.Image>
-                
+                <Skeleton.Image></Skeleton.Image>
               ) : (
-
-              <img
-                src={data?.data?.qr}
-                alt=""
-                className="w-[75px] h-[75px] smDesk:w-[60px] smDesk:h-[60px]"
-              />
+                <img
+                  src={data?.data?.qr}
+                  alt=""
+                  className="w-[75px] h-[75px] smDesk:w-[60px] smDesk:h-[60px]"
+                />
               )}
 
-
-                {isLoading || isFetching ? (
-                  <Space className="ml-[20px]">
-
-                    <Skeleton active title={false} paragraph={{row:2, width:[90, 90]}}/>
-                  </Space>
-                ) : (
-              <div className="flex flex-col ml-[20px]">
-                <h2 className="text-[16px] font-bold leading-5 text-[#8B8B8B] smDesk:text-[14px]">
-                  Event Code:
-                </h2>
+              {isLoading || isFetching ? (
+                <Space className="ml-[20px]">
+                  <Skeleton
+                    active
+                    title={false}
+                    paragraph={{ row: 2, width: [90, 90] }}
+                  />
+                </Space>
+              ) : (
+                <div className="flex flex-col ml-[20px]">
+                  <h2 className="text-[16px] font-bold leading-5 text-[#8B8B8B] smDesk:text-[14px]">
+                    Event Code:
+                  </h2>
                   <div className="flex items-center">
                     <p className="text-[16px] leading-5 font-normal text-[#19192E] smDesk:text-[14px] ">
                       {data?.data?.code}
@@ -203,25 +204,23 @@ const CreatedEvent = () => {
                       onClick={copyToClipboard}
                     />
                   </div>
-              </div>
-                )}
+                </div>
+              )}
             </div>
 
             <div className="">
-              {isLoading ? 
-              <Space className="mt-[14px] flex justify-center">
-
-                <Skeleton.Button style={{width:150}}> </Skeleton.Button> 
-              </Space>
-              :
-
-              <button
-                onClick={() => dispatch(openAddUser())}
-                className="text-[16px] flex items-center font-bold leading-5 border-[1px] border-[#1A1941] text-[#1A1941] h-12 px-8 rounded-lg ml-auto mt-[14px] smDesk:text-[14px]"
-              >
-                <AiOutlinePlus size={20} className="mr-2" /> Add Users
-              </button>
-            }
+              {isLoading ? (
+                <Space className="mt-[14px] flex justify-center">
+                  <Skeleton.Button style={{ width: 150 }}> </Skeleton.Button>
+                </Space>
+              ) : (
+                <button
+                  onClick={() => dispatch(openAddUser())}
+                  className="text-[16px] flex items-center font-bold leading-5 border-[1px] border-[#1A1941] text-[#1A1941] h-12 px-8 rounded-lg ml-auto mt-[14px] smDesk:text-[14px]"
+                >
+                  <AiOutlinePlus size={20} className="mr-2" /> Add Users
+                </button>
+              )}
             </div>
           </div>
         </section>
@@ -238,21 +237,36 @@ const CreatedEvent = () => {
             {/* if there is photos */}
 
             <div className={`${images?.data?.length == 0 && "hidden"} flex`}>
-           
-              <div className="flex items-center bg-[#FFFFFF] h-[49px] px-6">
-                <IoLayers size={16} className="text-[#1A1941]" />
-                <select
-                  name="cars"
-                  id="cars"
-                  className="outline-none bg-transparent border-none text-[#1A1941] flex text-[16] font-bold items-center"
+              <div ref={ref} className="flex flex-col relative">
+                <div
+                  onClick={() => {
+                    setOpenBulk(!openBulk);
+                  }}
+                  className="flex justify-between items-center bg-[#FFFFFF] h-[49px] px-6 w-[170px] relative cursor-pointer"
                 >
-                  <option value="volvo">Bulk Action</option>
-                  <option value="saab">Delete</option>
-                </select>
+                  <IoLayers size={16} className="text-[#1A1941]" />
+                  <p className="text-[#1A1941] flex text-[16] font-bold items-center">
+                    Bulk Action
+                  </p>
+                  <BiChevronDown className="text-[grey] text-[16px]" />
+                </div>
+                <div
+                  className={`bg-[#FFFFFF] mt-[55px] w-[220px] h-[120px] rounded-[4px] absolute z-[1] ${
+                    openBulk === false && "h-0 hidden"
+                  }`}
+                  style={{
+                    boxShadow: "0px 0px 10px 0px rgba(132, 132, 132, 0.15)",
+                  }}
+                >
+                  <p
+                    onClick={handleDelete}
+                    className="font-[400] text-[16px] leading-[20px] mt-[8px]  h-[48px] text-[#181818] pl-[34.5px] with py-[10px] hover:text-[black] border-t-[1px] border-b-[1px]"
+                  >
+                    {DeleteLoading ? "Deleting..." : "Delete"}
+                  </p>
+                </div>
               </div>
-              {/* <button onClick={handleDelete}>
-            Delete
-          </button> */}
+
               <div className="">
                 <button
                   onClick={() => dispatch(uploadOpenImage())}
@@ -268,7 +282,7 @@ const CreatedEvent = () => {
 
         {images?.data?.length == 0 ? (
           // no upload yet
-          
+
           <section className="mt-[100px] pb-[200px]">
             <img src={EVeimage} alt="" className="h-[70px] w-[70px] mx-auto" />
             <p className="text-[24px] font-normal leading-7 mt-5 text-[#6A6A6A] text-center">
@@ -286,12 +300,12 @@ const CreatedEvent = () => {
         ) : (
           // uploads
 
-          <EventImages selectImage={selectedImage} setSelectImage={setSelectedImage}
+          <EventImages
+            selectImage={selectedImage}
+            setSelectImage={setSelectedImage}
           />
         )}
-        <div className="">
-       
-        </div>
+        <div className=""></div>
       </section>
     </main>
   );

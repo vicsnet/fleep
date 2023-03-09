@@ -8,11 +8,11 @@ import EventSingleImages from "./EventSingleImages";
 import { Skeleton, Space } from "antd";
 import { FadeLoader } from "react-spinners";
 
-const EventImages = ({selectImage, setSelectImage}) => {
+const EventImages = ({selectImage, setSelectImage, onSucces}) => {
   const { id } = useParams();
   const { data, isLoading, isFetching } = useGetImages(id);
 
-  console.log(data);
+  // console.log(data);
 
   const [show, setShow] = useState(8);
   // const [selectImage, setSelectImage] = useState([]);

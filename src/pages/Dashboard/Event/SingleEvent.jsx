@@ -15,6 +15,7 @@ const SingleEvent = ({
   images,
   singleId,
   isLoading,
+  participant,
 }) => {
   const { id } = useParams();
 
@@ -59,7 +60,7 @@ const SingleEvent = ({
           <div className="flex gap-8 pr-[66px]">
             <div className="flex gap-3">
               <TbUsers size={14} className="text-[#1A1941]" />
-              <p className="text-[14px] leading-4 text-[#14181F] ">500</p>
+              <p className="text-[14px] leading-4 text-[#14181F] ">{participant}</p>
             </div>
             <div className="flex gap-3 ">
               <CiImageOn size={14} className="text-[#1A1941]" />
