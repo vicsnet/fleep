@@ -35,6 +35,7 @@ import {useDispatch, useSelector} from "react-redux"
 import { logout } from "../Redux/features/authentication/registrationSlice";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import AddBankAcct from "./wallet/AddBankAcct";
 
 const Sidebar = ({ children }) => {
   const dispatch = useDispatch();
@@ -237,9 +238,15 @@ const Sidebar = ({ children }) => {
       {/* <UsersDeleteOption /> */}
 
       {/* withdraw to bank */}
-      <WithDrawToBank />
+      {/* <WithDrawToBank /> */}
+
+    
       
       {/* <WithDrawSuccesfull/> */}
+
+
+      {/* Add Bank Acct */}
+      <AddBankAcct/>
     </main>
   );
 };

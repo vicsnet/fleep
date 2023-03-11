@@ -82,14 +82,6 @@ const Settings = () => {
                 Notification
               </p>
             </div>
-            {/* <label
-              htmlFor="check"
-              className="bg-gray-100 w-[50px] cursor-pointer relative h-[24px] peer-checked:bg-[#FFFFFF] rounded-full "
-            >
-              <input type="checkbox" id="check" className="sr-only peer" />
-
-              <span className="w-[16px] h-[16px] bg-rose-300 absolute rounded-full left-1 top-1 peer-checked:bg-[#FFFFFF] peer-checked:left-8 transition-all duration-500"></span>
-            </label> */}
 
             <label
               for="default-toggle"
@@ -115,54 +107,6 @@ const Settings = () => {
           }
           style={{ background: "rgba(255, 255, 255, 1)" }}
         >
-          {/* <form className="w-[80%] mx-auto">
-            <label
-              htmlFor=""
-              className="text-[16px] leading-[19.2px] font-normal text-[#333333] mb-[4px]"
-            >
-              Enter Old Password
-            </label>
-            <br />
-            <input
-              type="password"
-              placeholder="Enter old password"
-              className="w-[100%] h-[40px] rounded-[8px] pl-[20px] outline-none border-[1px] border-[#E5E5E5] bg-[#F9F9F9] text-[14px] leading-[16.8px] font-light text-[#999999]"
-            />{" "}
-            <br />
-            <br />
-            <label
-              htmlFor=""
-              className="text-[16px] leading-[19.2px] font-normal text-[#333333] mb-[4px]"
-            >
-              Enter New Password
-            </label>
-            <br />
-            <input
-              type="password"
-              placeholder="Enter New Password"
-              className="w-[100%] h-[40px] rounded-[8px] pl-[20px] outline-none border-[1px] border-[#E5E5E5] bg-[#F9F9F9] text-[14px] leading-[16.8px] font-light text-[#999999]"
-            />
-            <br />
-            <br />
-            <label
-              htmlFor=""
-              className="text-[16px] leading-[19.2px] font-normal text-[#333333] mb-[4px]"
-            >
-              Verify New Password
-            </label>
-            <br />
-            <input
-              type="password"
-              placeholder="Re-type new password"
-              className="w-[100%] h-[40px] rounded-[8px] pl-[20px] outline-none border-[1px] border-[#E5E5E5] bg-[#F9F9F9] text-[14px] leading-[16.8px] font-light text-[#999999]"
-            />
-            <br />
-            <br />
-            <br />
-            <button className="text-[16px] leading-[19.2px] tracking-[10%] font-bold w-[40%] text-center py-[17px] bg-[#1A1941] text-[#FFFFFF] rounded-[8px]">
-              Save Changes
-            </button>
-          </form> */}
           <SavedAcc />
         </section>
 

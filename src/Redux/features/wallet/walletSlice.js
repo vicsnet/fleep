@@ -14,9 +14,15 @@ const walletSlice = createSlice({
     closeWithdrawToBank: (state, action) => {
       state.open = !action.payload;
     },
+    openAddAcct: (state, action) => {
+      state.open = action.payload;
+    },
+    closeAddAcct: (state, action) => {
+      state.open = !action.payload;
+    },
   },
 });
 
-export const { openWithdrawToBank, closeWithdrawToBank } = walletSlice.actions;
+export const { openWithdrawToBank, closeWithdrawToBank, openAddAcct, closeAddAcct } = walletSlice.actions;
 
 export default walletSlice.reducer;

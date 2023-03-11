@@ -6,6 +6,7 @@ import uploadDPReducer from "../features/uploadDPSlice";
 import usersReducer from "../features/usersSlice";
 import walletReducer from "../features/wallet/walletSlice";
 import registrationReducer from "../features/authentication/registrationSlice";
+import AddAcctReducer from "../features/wallet/AddAcctSlice";
 
 export const store = configureStore({
   reducer: {
@@ -16,5 +17,6 @@ export const store = configureStore({
     uploadDp: uploadDPReducer,
     users: usersReducer,
     wallet: walletReducer,
+    AddAcc : AddAcctReducer
   },
 });

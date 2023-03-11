@@ -20,6 +20,7 @@ const useDeleteImages = ({id}) => {
     };
   
     
+    
   const EditEvent =  (data) =>{
     const formdata = new FormData();
     formdata.append("images_url", data.images_url);

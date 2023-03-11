@@ -160,9 +160,10 @@ const NewEvent = () => {
         type == "" ||
         date == ""
       ) {
-        setMessage("All Field Required");
+        toast.error("All Field Required")
+       
       } else if (showMonetize == 1 && price == 0) {
-        setMessage("Price can not be empty");
+        toast.error("Price can not be empty")
       } else {
         const person = {
           status: 1,
