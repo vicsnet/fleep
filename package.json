@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mobiscroll/react-lite": "^4.10.9",
     "@reduxjs/toolkit": "^1.9.0",
     "@tanstack/react-query": "^4.24.4",
     "@testing-library/jest-dom": "^5.16.5",
@@ -14,6 +15,7 @@
     "flowbite-react": "^0.3.5",
     "html5-file-selector": "^2.1.0",
     "react": "^18.2.0",
+    "react-calendar": "^4.0.0",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",

@@ -26,7 +26,7 @@ import useComponentMonetize from "../../../hooks/useComponentMonetize";
 import { useParams } from "react-router-dom";
 import useEditEvent from "./eventhooks/useEditEvent";
 import useFetchSingleEvent from "./eventhooks/useFetchSingleEvent";
-
+// import { setQueryData } from "@tanstack/react-query"
 
 const NewEvent = () => {
 
@@ -142,7 +142,7 @@ const NewEvent = () => {
 
 
   //
-  const { mutate:registerNewEvent, isLoading, isError, error, message:messageDe, isSuccess } = useFetchCreatePost();
+  const { mutate:registerNewEvent, isLoading, isError, error, message:messageDe, isSuccess, success:regSuccess } = useFetchCreatePost();
 
   const{mutate:EditEvent, isError:errordet, isLoading:loading, isSuccess:success} = useEditEvent(id);
 
@@ -177,7 +177,21 @@ const NewEvent = () => {
           cover_photo: selectedImage[0],
           watermark: files[0],
         };
-        registerNewEvent(person);
+        registerNewEvent(person
+          
+        //   {
+
+        //   isSuccess:(data) =>{
+        //     setQueryData((oldQuerData) =>{
+        //       console.log({...oldQuerData});
+        //       return{
+        //         ...oldQueryData, data:[...oldQueryData.data, data.data],
+        //       }
+        //     })
+        //   }
+        // } 
+        )
+        console.log("sus", regSuccess);
         // EditEvent(person);
       }
     }
@@ -217,6 +231,7 @@ const NewEvent = () => {
       setType(0);
       setSelectedImage([]);
       setFiles([]);
+      
     }
 
   }, [isSuccess, isError]);

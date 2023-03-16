@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { openUsersEvent } from "../../../Redux/features/usersEventSlice";
+import { openUsersEvent, userEmailEvent  } from "../../../Redux/features/usersEventSlice";
 import bum from "../../../assets/HBD to bunmi 20190716_003414.jpg";
 import UsersDelete from "./UsersDelete";
 import { IoIosCloseCircleOutline } from "react-icons/io";
+import { Link } from "react-router-dom";
 
-const User = ({ id, fname, tphoto, eventAttended,im }) => {
+const User = ({ id, fname, tphoto, eventAttended,im, email }) => {
   const dispatch = useDispatch();
   const [openDel, setOpenDel] = useState(false);
   // const [delOption, setDelOption] = useState(false);
@@ -29,8 +30,12 @@ const User = ({ id, fname, tphoto, eventAttended,im }) => {
           <td className="pl-[45px] smDesk:pl-[30px] tabletAir:pl-[20px] text-[14px leading-[16.8px] font-[300] mt-[11px] py-auto">
             {id}
           </td>
+         
           <td
-            onClick={() => dispatch(openUsersEvent())}
+
+            onClick={() => {dispatch(openUsersEvent());
+            dispatch(userEmailEvent(email))
+            }}
             className="flex gap-[14px] mt-[11px] items-center cursor-pointer "
           >
             <img

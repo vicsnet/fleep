@@ -238,7 +238,7 @@ const Sidebar = ({ children }) => {
       {/* <UsersDeleteOption /> */}
 
       {/* withdraw to bank */}
-      {/* <WithDrawToBank /> */}
+      <WithDrawToBank />
 
     
       

@@ -6,14 +6,17 @@ import { baseURL } from '../../../Redux/Api/api'
 
 const useCreateAcct = () => {
 const API_URL = `${baseURL}/user/bank/create`
+// const API_URL =`${baseURL}/user/bank/list`;
 const {token} = useSelector((state)=>state.user);
 
-
 const config ={
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${token}`
+    headers:{
+
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+    }
 }
-// console.log(API_URL)
+
 
 const AddAcct = (data) =>{
     const formdata = new FormData()

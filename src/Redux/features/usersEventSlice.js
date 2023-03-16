@@ -4,6 +4,7 @@ export const usersEventSlice = createSlice({
   name: "usersEventSlice",
   initialState: {
     open: true,
+    email:"",
     error: "",
     loading: false,
   },
@@ -16,9 +17,13 @@ export const usersEventSlice = createSlice({
     closeUsersEvent: (state, action) => {
       state.open = !action.payload;
     },
+
+    userEmailEvent:(state, action)=>{
+      state.email = action.payload
+    }
   },
 });
 
-export const { openUsersEvent, closeUsersEvent } = usersEventSlice.actions;
+export const { openUsersEvent, closeUsersEvent, userEmailEvent } = usersEventSlice.actions;
 
 export default usersEventSlice.reducer;

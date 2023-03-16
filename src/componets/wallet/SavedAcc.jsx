@@ -1,7 +1,7 @@
 import React from 'react'
 import { FiPlus } from "react-icons/fi";
 import { BiTrash } from "react-icons/bi";
-import { openAddAcct } from '../../Redux/features/wallet/walletSlice';
+import { openAddAcct } from '../../Redux/features/wallet/AddAcctSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import useFetchAcct from './hooks/useFetchAcct';
 import useDeleteAcct from './hooks/useDeleteAcct';
@@ -58,7 +58,7 @@ id
         </div>
       </div>
 
-      {data.data.length === 0 ?(
+      {data?.data?.length === 0 ?(
 
 <div className=" mt-[60px]">
       <h2 className='font-[500] text-[24px] leading-5 text-[#000000] text-center'>No Account Added</h2>

@@ -1,18 +1,26 @@
 /** @format */
 
+import axios from "axios";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import { baseURL } from "../../../Redux/Api/api";
 const SingleEventUser = ({ delOpt, id, idm, fname, email }) => {
   const [openDel, setOpenDel] = useState(false);
+
+ 
 
   const showDelButton = () => {
     setOpenDel(true);
   };
 
   const DelButton = () => {
+
     return (
       <div className="absolute">
         <button
-          onClick={delOpt}
+          onClick={()=>delOpt(email)}
           className="text-[16px] font-normal text-[#000000] py-[14px] px-[22.5px] mt-[8px] ml-[-20px] bg-[#FFFFFF]"
           style={{ boxShadow: "0px 0px 10px 0px rgba(132, 132, 132, 0.15)" }}
         >
@@ -44,7 +52,7 @@ const SingleEventUser = ({ delOpt, id, idm, fname, email }) => {
             ...
           </td>
         ) : (
-          <DelButton />
+          <DelButton email={email} />
         )}
       </tr>
     </>

@@ -13,15 +13,28 @@ import {
 import useAddUser from "../User/userhooks/useAddUser";
 import SingleEventUser from "./SingleEventUser";
 import useFetchSingleParticipant from "./eventhooks/useFetchSingleParticipant";
+import { baseURL } from "../../../Redux/Api/api";
+import axios from "axios";
 
 const AddUser = () => {
   const { id } = useParams();
   const open = useSelector((state) => state.crtAddUser.open);
 
+  const { token } = useSelector((state) => state.user);
+  
+  // const {id:eventId} = useParams() 
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+  };
+
   const dispatch = useDispatch();
 
   const [openDel, setOpenDel] = useState(false);
   const [delOption, setDelOption] = useState(false);
+  const [isEmail, setIsEmail] = useState("");
 
   const [userDetail, setUserDetail] = useState({
     full_name: "",
@@ -32,7 +45,7 @@ const AddUser = () => {
 
     const {data} = useFetchSingleParticipant(id);
 
-    console.log(data)
+    console.log("em",data?.data)
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -48,8 +61,9 @@ const AddUser = () => {
     mutate(user);
   };
 
-  const showDelOption = () => {
+  const showDelOption = (email) => {
     setDelOption(true);
+    setIsEmail(email)
   };
 
   const cancelDelOption = () => {
@@ -57,9 +71,40 @@ const AddUser = () => {
     setOpenDel(false);
   };
 
-  const DelOption = () => {
+  const DelOption = ({isEmail}) => {
+    const DeleteUser = () =>{
+      const Delete_URL= `${baseURL}/event/delete/user/from/${id}`
+    //  console.log(isEmail); 
+    
+    
+    
+      axios.post(Delete_URL, {email:isEmail}, config).then((res)=>{
+        const data = res.data.status;
+        if(data){
+          toast.success("succesful")
+          setDelOption(false)
+        }
+     
+        else {
+          const error = (data && data.message) || res.status;
+          return Promise.reject(error);
+      }
+      
+      //   toast.success(res.message)
+      //   setDelOption(false)
+      // }).catch((err)=>{
+      //   toast.error(err)
+      // DelOption(false)
+      // }).catch((err)=>{
+      //   toast.error(err)
+      
+      })
+    
+    }
+    
+
     return (
-      <div
+      <div key={id}
         className="fixed top-0 w-[100%] h-[100%] max-h-[100%]"
         style={{ background: "rgba(20, 24, 31, 0.25)" }}
       >
@@ -83,7 +128,7 @@ const AddUser = () => {
             </p>
           </div>
           <div className="w-[80%] mx-auto flex justify-between">
-            <button className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[45px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5 font-extrabold">
+            <button onClick={DeleteUser} className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[45px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5 font-extrabold">
               Delete
             </button>
             <button
@@ -207,9 +252,9 @@ const AddUser = () => {
                 </tr>
               </thead>
               <tbody className="mt-[20px]">
-                {data?.data?.map((data) =>(
+                {data?.data?.map((data, index) =>(
 
-                  <SingleEventUser delOpt={showDelOption} idm={data?.id} id={data?.id} fname={data?.full_name} email={data?.email}  />
+                  <SingleEventUser delOpt={showDelOption} idm={index} id={data?.id} fname={data?.full_name} email={data?.email} imd={index}  />
                 ))
 
                 }
@@ -219,7 +264,7 @@ const AddUser = () => {
           
         </div>
       </div>
-      {delOption && <DelOption />}
+      {delOption && <DelOption isEmail={isEmail} />}
     </main>
   );
 };

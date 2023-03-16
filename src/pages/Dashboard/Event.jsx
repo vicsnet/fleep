@@ -14,6 +14,7 @@ import { openEvent } from "../../Redux/features/createEventSlice";
 import useFetchEvent from "./Event/eventhooks/useFetchEvent";
 import SingleEvent from "./Event/SingleEvent";
 import FadeLoader from "react-spinners/FadeLoader";
+import Cal from "../../componets/Cal";
 
 const Event = () => {
   const dispatch = useDispatch();
@@ -33,7 +34,8 @@ console.log(data)
       <SideNav title="Event" display={"flex"} />
       {/* calendar */}
       <section>
-        <Calender />
+        {/* <Calender /> */}
+        {/* <Cal/> */}
       </section>
 
       {/* No Event */}

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const AddAcctSlice = createSlice({
-  name: "walletSlice",
+  name: "AddSlice",
   initialState: {
     open: true,
     error: "",

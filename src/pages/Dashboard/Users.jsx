@@ -95,7 +95,7 @@ const Users = () => {
             {/* {displayUsers} */}
 
             {data?.data.slice(pagesVisited, pagesVisited + usersPerPage)?.map(( data, id ) => (
-                <User key={id} id={id+1} fname={data?.full_name} tphoto={data?.eventsimagescount} eventAttended={data?.eventscount} im={data?.profile_photo}/>
+                <User key={id} id={id+1} fname={data?.full_name} tphoto={data?.eventsimagescount} eventAttended={data?.eventscount} im={data?.profile_photo} email={data?.email}/>
               ))}
           </tbody>
         </table>

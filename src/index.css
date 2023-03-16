@@ -144,3 +144,7 @@ opacity: initial !important;
    margin-left: auto;
   margin-right: auto;
 }
+/* .react-calendar__month-view__days{
+  overflow: scroll !important; 
+  flex-wrap: nowrap !important
+  } */

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { IoIosCloseCircleOutline } from 'react-icons/io'
-import { closeAddAcct } from '../../Redux/features/wallet/walletSlice'
+import { closeAddAcct } from '../../Redux/features/wallet/AddAcctSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import useCreateAcct from './hooks/useCreateAcct'
 import { toast } from 'react-toastify'
@@ -8,7 +8,7 @@ import { ClipLoader } from 'react-spinners'
 
 const AddBankAcct = () => {
     const dispatch = useDispatch();
-    const {open} = useSelector((state) => state.wallet);
+    const {open} = useSelector((state) => state.AddAcc);
 const [bankName, setBankName] = useState("")
 const [acctNumber, setAcctNumber] = useState("")
 const [acctName, setAcctName] = useState("")

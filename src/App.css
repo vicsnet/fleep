@@ -6,6 +6,10 @@
   height: 40vmin;
   pointer-events: none;
 }
+/* .react-calendar__month-view__days{
+overflow: scroll !important; 
+flex-wrap: nowrap !important
+} */
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
