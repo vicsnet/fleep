@@ -36,7 +36,7 @@ const Calender = () => {
               <Calendar
                 onChange={onDateSelect}
                 value={value}
-                className="absolute"
+                className="absolute bg-white"
               />
             ) : (
               ""
