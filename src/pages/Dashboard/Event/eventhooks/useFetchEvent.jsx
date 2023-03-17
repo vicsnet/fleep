@@ -19,6 +19,7 @@ const useFetchEvent = (id) => {
     },
   };
 const queryClient = useQueryClient();
+
   const getData = () => {
     return axios.get(API_URL, config).then((res) => res.data);
   };

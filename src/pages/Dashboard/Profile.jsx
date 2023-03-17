@@ -8,20 +8,9 @@ import { useDispatch } from "react-redux";
 import ProfileUseFetch from "../profile/hooks/profileUseFetch";
 
 const Profile = () => {
-  const { data, isLoading } = ProfileUseFetch();
-  console.log(data);
-  // const { me } = GetProfile();
-  // console.log(me);
-  // const [file, setFile] = useState("");
-
-  // const handleChange = (e) => {
-  //   console.log(e.target.files);
-  //   setFile(URL.createObjectURL(e.target.files[0]));
-  // };
-
-  // const uploadFile = () => {
-  //   document.getElementById("selectFile").click();
-  // };
+  const { data, isLoading, isError } = ProfileUseFetch();
+  console.log("profile",data);
+ 
   const dispatch = useDispatch();
    
 
