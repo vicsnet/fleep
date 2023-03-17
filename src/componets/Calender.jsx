@@ -46,8 +46,7 @@ const Calender = () => {
               className="text-[16px] leading-[19.2px] text-[#fff] font-[500px] pt-[26px] pb-[8px] cursor-pointer"
               onClick={() => setShowCalender(true)}
             >
-              {moment(value, "M").format("MMMM")} 
-              {/* {moment(value).year()} */}
+              {moment(value, "M").format("MMMM")} {moment(value).year()}
             </h3>
           </div>
 
