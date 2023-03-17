@@ -26,6 +26,7 @@ import useComponentMonetize from "../../../hooks/useComponentMonetize";
 import { useParams } from "react-router-dom";
 import useEditEvent from "./eventhooks/useEditEvent";
 import useFetchSingleEvent from "./eventhooks/useFetchSingleEvent";
+import { useQueryClient } from "@tanstack/react-query";
 // import { setQueryData } from "@tanstack/react-query"
 
 const NewEvent = () => {
@@ -71,6 +72,8 @@ const NewEvent = () => {
 
   // Error message
   const [message, setMessage] = useState("");
+
+  const queryClient = useQueryClient()
 
   const handleMonetizeChange = (e) => {
     const getValue = e.target.value;
@@ -177,22 +180,7 @@ const NewEvent = () => {
           cover_photo: selectedImage[0],
           watermark: files[0],
         };
-        registerNewEvent(person
-          
-        //   {
-
-        //   isSuccess:(data) =>{
-        //     setQueryData((oldQuerData) =>{
-        //       console.log({...oldQuerData});
-        //       return{
-        //         ...oldQueryData, data:[...oldQueryData.data, data.data],
-        //       }
-        //     })
-        //   }
-        // } 
-        )
-        console.log("sus", regSuccess);
-        // EditEvent(person);
+        registerNewEvent(person )
       }
     }
     else{
