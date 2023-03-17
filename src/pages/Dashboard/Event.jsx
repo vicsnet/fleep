@@ -34,7 +34,7 @@ console.log(data)
       <SideNav title="Event" display={"flex"} />
       {/* calendar */}
       <section>
-        {/* <Calender /> */}
+        <Calender />
         {/* <Cal/> */}
       </section>
 
