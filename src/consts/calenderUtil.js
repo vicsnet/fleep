@@ -30,7 +30,6 @@ export class CalenderUtil {
     this.inComingMonth = incomingdate.getMonth() + 1;
     const convertedDays =
       CalenderUtil.#convertNumberOfDaysList(numberOfDaysList);
-    // console.log(convertedDays);
     return convertedDays;
   }
 }
