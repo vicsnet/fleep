@@ -1,9 +1,7 @@
 var moment = require("moment");
 
 export class CalenderUtil {
-  // Accept incoming date in a constructor
-  inComingYear;
-  inComingMonth;
+
 
   static #convertNumberOfDaysList(numberOfDaysList) {
     return numberOfDaysList.map((day) => {
@@ -28,8 +26,7 @@ export class CalenderUtil {
       { length: numberOfDays },
       (val, i) => 1 + i
     );
-    this.inComingYear = incomingdate.getFullYear();
-    this.inComingMonth = incomingdate.getMonth() + 1;
+
     const convertedDays =
       CalenderUtil.#convertNumberOfDaysList(numberOfDaysList);
     return convertedDays;
