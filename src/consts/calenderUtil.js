@@ -1,8 +1,8 @@
 var moment = require("moment");
 
 export class CalenderUtil {
-
-
+  inComingYear;
+  inComingMonth;
   static #convertNumberOfDaysList(numberOfDaysList) {
     return numberOfDaysList.map((day) => {
       const getDayInWord = moment(
@@ -26,9 +26,11 @@ export class CalenderUtil {
       { length: numberOfDays },
       (val, i) => 1 + i
     );
-
+    this.inComingYear = incomingdate.getFullYear();
+    this.inComingMonth = incomingdate.getMonth() + 1;
     const convertedDays =
       CalenderUtil.#convertNumberOfDaysList(numberOfDaysList);
+    // console.log(convertedDays);
     return convertedDays;
   }
 }
