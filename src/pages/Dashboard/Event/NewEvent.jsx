@@ -180,20 +180,7 @@ const NewEvent = () => {
           cover_photo: selectedImage[0],
           watermark: files[0],
         };
-        registerNewEvent(person,
-          {
-
-          onSuccess:(data) =>{
-            queryClient.setQueryData((oldQueryData) =>{
-              console.log({...oldQueryData});
-              return{
-                ...oldQueryData, data:[...oldQueryData.data, data.data],
-              }
-            })
-          }
-        } )
-        console.log("sus", regSuccess);
-        // EditEvent(person);
+        registerNewEvent(person )
       }
     }
     else{

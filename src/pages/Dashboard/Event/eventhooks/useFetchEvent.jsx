@@ -1,5 +1,5 @@
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { baseURL } from "../../../../Redux/Api/api";
 import { useSelector } from "react-redux";
@@ -18,7 +18,7 @@ const useFetchEvent = (id) => {
       Authorization: `Bearer ${token}`,
     },
   };
-
+const queryClient = useQueryClient();
   const getData = () => {
     return axios.get(API_URL, config).then((res) => res.data);
   };
@@ -29,15 +29,16 @@ const useFetchEvent = (id) => {
 
   const { data, isLoading, isFetching, isError } = useQuery(["Event"], getData,
   {
-    // cacheTime:5000,
+    cacheTime:5000,
     staleTime:30000,
-    refetchOnMount:false,
+    refetchOnMount:true,
     refetchOnWindowFocus:true,
     // refetchInterval:2000,
   },
-  {
-    // onError:
-  }
+  // {
+  //   // onError:
+    
+  // }
   
   );
 
