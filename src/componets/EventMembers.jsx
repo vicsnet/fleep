@@ -120,7 +120,7 @@ active
 
 <div className="">
 
-  {data?.data?.length == 0 ? (
+  {detail?.data?.length == 0 ? (
     <div className="flex flex-col justify-center">
       <p className="text-[20px] font-bold leading-[24px] text-[#8B8B8B] py-[97px] px-[169px]">
         No new event
@@ -138,7 +138,7 @@ active
         </tr>
       </thead>
       <tbody>
-        {detail?.slice(0, 5).map((data) => (
+        {detail?.data.slice(0, 5).map((data) => (
           <tr
             key={data?.id}
             className="border-b-[1px] border-[#EDEDED] text-[#6A6A6A]"
