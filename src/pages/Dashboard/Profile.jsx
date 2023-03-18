@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import SideNav from "../../componets/SideNav";
-import bum from "../../assets/HBD to bunmi 20190716_003414.jpg";
 import { GoPrimitiveDot } from "react-icons/go";
 import { BiUpload } from "react-icons/bi";
 import { openImage } from "../../Redux/features/uploadDPSlice";
@@ -11,7 +10,7 @@ import { Skeleton } from "antd";
 
 const Profile = () => {
   const { data, isLoading, error, refetch, isError } = ProfileUseFetch();
-  console.log("profile",data);
+  
  
   const dispatch = useDispatch();
    

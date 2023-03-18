@@ -17,17 +17,22 @@ const SingleEvent = ({
   isLoading,
   participant,
 }) => {
-  const { id } = useParams();
+  
 
   return (
-    <>
+    <div>
     
-    {
-      isLoading ? 
-      "moading..."
-      :
+  
     
     <Link key={index} to={`/event/created-event/${singleId}`}>
+    {
+      isLoading &&
+      <div className="">
+
+        "loading..."
+      </div>
+    }
+    load
       <div
         className="w-[100%] rounded-[16px] mb-[4px]"
         style={{
@@ -41,6 +46,7 @@ const SingleEvent = ({
         </p>
         {/* </Link> */}
         <div className="flex justify-between items-center">
+  
           <div className="flex gap-[18px]">
             <img
               src={coverphoto}
@@ -70,8 +76,8 @@ const SingleEvent = ({
         </div>
       </div>
     </Link>
-    }
-    </>
+    
+    </div>
   );
 };
 

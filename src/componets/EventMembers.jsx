@@ -138,7 +138,7 @@ active
         </tr>
       </thead>
       <tbody>
-        {detail?.data?.slice(0, 5).map((data) => (
+        {detail?.slice(0, 5).map((data) => (
           <tr
             key={data?.id}
             className="border-b-[1px] border-[#EDEDED] text-[#6A6A6A]"
