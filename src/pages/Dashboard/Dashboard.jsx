@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import SideNav from "../../componets/SideNav";
 import { MdOutlinePermMedia } from "react-icons/md";
@@ -18,17 +20,14 @@ import Vector1 from "../../assets/SVG/Vector1.svg";
 import Vector2 from "../../assets/SVG/Group.svg";
 import Vector3 from "../../assets/SVG/Group1.svg";
 import ProfileUseFetch from "../profile/hooks/profileUseFetch";
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
-
-
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import DashboardError from "./Error/DashboardError";
 
 const Dashboard = () => {
-  const {data, isLoading, isFetching, isError} = ProfileUseFetch();
-  
+  const { data, isLoading, isFetching, error, refetch } = ProfileUseFetch();
 
   const dispatch = useDispatch();
-
 
   return (
     <main className="max-h-screen h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full pb-[180px]">
@@ -39,6 +38,11 @@ const Dashboard = () => {
       />
       <div className=" ">
         <section className="px-[42px] mt-[48px]">
+          { error !== null ?
+            <div className="mt-[100px] h-[200px]">
+              <DashboardError error={error} refetch={refetch} />
+            </div>
+            :
           <div className="flex justify-between smDesk:flex-col ">
             <div className=" flex flex-col gap-[30px] w-[70%]  smDesktop:w-[78%] smDesk:w-[100%]">
               {/* total photos */}
@@ -52,16 +56,16 @@ const Dashboard = () => {
                     />
                   </div>
                   <div className="text-[white]">
-                    {isLoading ? <p className="">
-                          <Skeleton/> 
-                          </p>
-                          : (
-                    <h3 className="text-[30px] font-bold leading-[36px] tracking-[2.14px] text-white ">
-                      {/* 150  */}
-                      {data?.data?.eventsimagescount}
-                    </h3>
-                          )
-}
+                    {isLoading ? (
+                      <p className="">
+                        <Skeleton />
+                      </p>
+                    ) : (
+                      <h3 className="text-[30px] font-bold leading-[36px] tracking-[2.14px] text-white ">
+                        {/* 150  */}
+                        {data?.data?.eventsimagescount}
+                      </h3>
+                    )}
                     <p className="text-[#EEEEEE] opacity-[70%] text-[14px] font-[500] leading-[16.8px] pt-[4px]">
                       Total Photo
                     </p>
@@ -81,18 +85,15 @@ const Dashboard = () => {
                     />
                   </div>
                   <div className="smDesk:w-[45%] tabletAir:w-[60px]  smDesktop:w-[38%]">
-                  {
-                       isLoading ? <p className="">
-                          <Skeleton/> 
-                          </p>
-                          :
-                        
-                    <h3 className="text-[30px]  font-bold leading-[36px] tracking-[2.14px] text-[#191D23] ">
-                      
-                      {data?.data?.free_space}
-                      
-                    </h3>
-                        }
+                    {isLoading ? (
+                      <p className="">
+                        <Skeleton />
+                      </p>
+                    ) : (
+                      <h3 className="text-[30px]  font-bold leading-[36px] tracking-[2.14px] text-[#191D23] ">
+                        {data?.data?.free_space}
+                      </h3>
+                    )}
                     <p className="text-[#8E99AB] opacity-[70%] tabletAir:text-[12px] text-[14px] font-[500] leading-[16.8px] pt-[4px] ">
                       Photo spaces left
                     </p>
@@ -117,16 +118,16 @@ const Dashboard = () => {
                     />
                   </div>
                   <div className="">
-                  {
-                        isLoading ? <p className="">
-                          <Skeleton/> 
-                          </p>
-                          :
-                    <h3 className="text-[30px] font-bold leading-[36px] tracking-[2.14px] text-[#191D23] ">
-                      {/* 45 */}
-                      {data?.data?.eventscount}
-                    </h3>
-                    }
+                    {isLoading ? (
+                      <p className="">
+                        <Skeleton />
+                      </p>
+                    ) : (
+                      <h3 className="text-[30px] font-bold leading-[36px] tracking-[2.14px] text-[#191D23] ">
+                        {/* 45 */}
+                        {data?.data?.eventscount}
+                      </h3>
+                    )}
                     <p className="text-[#8E99AB] opacity-[70%] text-[14px] font-[500] leading-[16.8px] pt-[4px] ">
                       Total Events
                     </p>
@@ -139,7 +140,6 @@ const Dashboard = () => {
                   style={{ background: "rgba(255, 255, 255, 1)" }}
                 >
                   <div className="bg-[#19192E] rounded-[13px] h-[60px] w-[55px] flex items-center">
-                    
                     <img
                       src={Vector3}
                       alt=""
@@ -147,15 +147,15 @@ const Dashboard = () => {
                     />
                   </div>
                   <div className="">
-                  {
-                       isLoading ? <p className="">
-                          <Skeleton/> 
-                          </p>
-                          :
-                    <h3 className="text-[30px] font-bold leading-[36px] tracking-[2.14px] text-[#191D23] ">
-                      {data?.data?.all_participants}
-                    </h3>
-}
+                    {isLoading ? (
+                      <p className="">
+                        <Skeleton />
+                      </p>
+                    ) : (
+                      <h3 className="text-[30px] font-bold leading-[36px] tracking-[2.14px] text-[#191D23] ">
+                        {data?.data?.all_participants}
+                      </h3>
+                    )}
                     <p className="text-[#8E99AB] opacity-[70%] text-[14px] font-[500] leading-[16.8px] pt-[4px]">
                       Total Users
                     </p>
@@ -192,6 +192,7 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
+          }
 
           {/* event & Members */}
           <EventMembers />

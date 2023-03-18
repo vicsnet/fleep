@@ -13,15 +13,17 @@ const useFetchParticipant = () => {
     const config ={
         headers:{
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token} `
         }
     }
 
     const getParticipant= ()=>{
         return axios.get(API_URL, config).then((res) =>res.data)
     }
-    const {data, isLoading, isError} = useQuery(["participant"], getParticipant);
-    return {data, isLoading, isError} ;
+    const {data, isLoading, isError, error, refetch} = useQuery(["participant"], getParticipant, {
+        cacheTime:5000,
+    });
+    return {data, isLoading, isError, error, refetch} ;
 }
 
 export default useFetchParticipant

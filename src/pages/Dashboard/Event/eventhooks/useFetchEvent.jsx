@@ -28,7 +28,7 @@ const queryClient = useQueryClient();
     return axios.get(SINGLE_URL, config).then((res)=> res.data);
   }
 
-  const { data, isLoading, isFetching, isError } = useQuery(["Event"], getData,
+  const { data, isLoading, isFetching, isError, error, refetch } = useQuery(["Event"], getData,
   {
     cacheTime:5000,
     staleTime:30000,
@@ -43,8 +43,8 @@ const queryClient = useQueryClient();
   
   );
 
-  const {SingleData, Loading, Error} = useQuery(["SINGLE_EVENT"], getSingleEvent)
+  // const {SingleData, isLoading, error} = useQuery(["SINGLE_EVENT"], getSingleEvent)
 
-  return { data, isLoading, isError, SingleData, Loading, Error };
+  return { data, isLoading, isError,  error, refetch };
 };
 export default useFetchEvent;
