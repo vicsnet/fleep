@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React,{useEffect, useState} from "react";
 import SideNav from "../../componets/SideNav";
 import { MdOutlineEvent } from "react-icons/md";
 import { BiSearch } from "react-icons/bi";
@@ -19,11 +19,36 @@ import Cal from "../../componets/Cal";
 const Event = () => {
   const dispatch = useDispatch();
 
+  const [search, setSearch] = useState("")
+  const [dataSort, setDataSort] = useState([])
+  const [value, setValue]= useState();
   const { data, isLoading, isFetching, isError } = useFetchEvent();
 console.log(data)
  
 
+// console.log("dataSort",dataSort);
 
+const sortData =(value = "all")=>{
+  setValue(value);
+if(value === "all"){
+  setDataSort(data?.data);
+}
+else if(value === "recent"){
+  let recentData = data?.data?.sort((a,b)=>{
+    return b.date - a.date;
+  })
+  setDataSort(recentData);
+}
+else {
+  let olderData = data?.data?.sort((a,b)=>{
+    return a.date - b.date;
+  })
+  setDataSort(olderData)
+}
+}
+useEffect(()=>{
+  sortData();
+}, [])
 
   
 
@@ -39,12 +64,12 @@ console.log(data)
       </section>
 
       {/* No Event */}
-      {
+      {/* {
          isLoading || isFetching ?
          <div className="flex justify-center mt-3">
           <FadeLoader color="#19192E" />
          </div>
-         :
+         : */}
        
       <div>
       {
@@ -83,6 +108,8 @@ console.log(data)
               <input
                 type="text"
                 placeholder="Search"
+                value={search}
+                onChange={(e)=>setSearch(e.target.value)}
                 className="w-[90%] h-[100%] text-[14px] pl-[8px] font-normal text-[#8A8A8A] outline-none bg-[#EFEFEF] rounded-[8px]"
               />
             </div>
@@ -90,25 +117,33 @@ console.log(data)
             {/* filter */}
             <div className="">
               <select
-                name="cars"
-                id="cars"
+             
+                value={value}
+                onChange={(e) => sortData(e.target.value)}
                 className="outline-none bg-transparent text-[#333333]"
               >
-                <option value="filter">Filter</option>
+                {/* <option value="filter">Filter</option> */}
+                <option value="all">All</option>
                 <option value="recent">Recent</option>
                 <option value="older">Older</option>
-                <option value="all">All</option>
               </select>
             </div>
           </div>
-          {
+          {/* {
          isFetching ?
          <div className="flex justify-center mt-3">
           <FadeLoader color="#19192E" />
          </div>
-         :
+         : */}
           <div className="mt-[14px]">
-            {data?.data?.map((data) => {
+            {dataSort?.filter((value) =>{
+              if(search === ""){
+                return value
+              }
+              else if(value.title.toLowerCase().includes(search.toLowerCase())){
+                return value
+              }
+            }).map((data) => {
               const { id, title, coverphoto, date, imagescount,no_of_all_participants } = data;
               return(
                 <div className="">
@@ -125,7 +160,7 @@ console.log(data)
 
 
           </div>
-}
+{/* } */}
 
           {/* Event card */}
         </section>
@@ -136,7 +171,7 @@ console.log(data)
       }
 
 </div>
-      }
+      {/* // } */}
     </main>
   );
 };
