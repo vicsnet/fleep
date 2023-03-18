@@ -41,7 +41,7 @@ const SideNav = ({ title, display, padd }) => {
 
               <Space direction="horizontal" >
   
-              <Skeleton  active  paragraph={false}title={{width:200}}/> 
+              <Skeleton  active  paragraph={false} title={{width:150}}/> 
               <Skeleton.Avatar active/>
               </Space>
             </div>

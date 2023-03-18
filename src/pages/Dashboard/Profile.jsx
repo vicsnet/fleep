@@ -6,9 +6,11 @@ import { BiUpload } from "react-icons/bi";
 import { openImage } from "../../Redux/features/uploadDPSlice";
 import { useDispatch } from "react-redux";
 import ProfileUseFetch from "../profile/hooks/profileUseFetch";
+import DashboardError from "./Error/DashboardError";
+import { Skeleton } from "antd";
 
 const Profile = () => {
-  const { data, isLoading, isError } = ProfileUseFetch();
+  const { data, isLoading, error, refetch, isError } = ProfileUseFetch();
   console.log("profile",data);
  
   const dispatch = useDispatch();
@@ -22,6 +24,18 @@ const Profile = () => {
         className="mx-[42px] mt-[38px] pt-[46px] rounded-[8px]"
         style={{ background: "rgba(255, 255, 255, 1)" }}
       >
+{
+  isError ?
+  <div className="h-[400px] pt-28">
+
+    <DashboardError error={error} refetch={refetch}/> 
+  </div>
+  :
+        <div className="">
+{ isLoading ?
+  <div className=" flex justify-center">
+<Skeleton.Avatar active size={150}/>
+  </div>:
         <div className="">
           <div className="relative w-[150px] mx-auto">
             <img
@@ -35,14 +49,7 @@ const Profile = () => {
             />
           </div>
           <div className="">
-            {/* <input
-              type="file"
-              id="selectFile"
-              name="image"
-              accept="image/*"
-              style={{ display: "none" }}
-              onChange={handleChange}
-            /> */}
+          
 
             <button
               onClick={() => dispatch(openImage())}
@@ -62,6 +69,7 @@ const Profile = () => {
             </p>
           </div>
         </div>
+}
 
         {/* personal Information */}
         <div className="mt-[40px] ml-[62px] pb-[90px]">
@@ -122,6 +130,9 @@ const Profile = () => {
             </div>
           </form>
         </div>
+        </div>
+}
+
       </section>
     </main>
   );
