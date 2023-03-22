@@ -39,10 +39,7 @@ const EditEvent =  (data) =>{
 
 }
 
-// const {isLoading} = useMutation();
 
-// let Loading = isLoading;
-// let Error;
 return useMutation( EditEvent);
 };
 export default useEditEvent;
