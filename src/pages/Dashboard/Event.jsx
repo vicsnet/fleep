@@ -22,36 +22,15 @@ const Event = () => {
 
   const [search, setSearch] = useState("");
 
-  const [dataSort, setDataSort] = useState([]);
-  const [value, setValue] = useState();
+  const [value, setValue] = useState("all");
 
   const { data, isLoading } = useFetchEvent();
 
   const eventData = data?.data;
+
   const changeEventDateFormart = eventData?.map((obj) => {
     return { ...obj, date: new Date(obj.date) };
   });
-
-  console.log(changeEventDateFormart);
-
-  const selectHandler = (value = "all") => {
-    setValue(value);
-    if (value === "all") {
-      setDataSort(changeEventDateFormart);
-    } else if (value === "recent") {
-      let recentData = changeEventDateFormart.sort((a, b) => {
-        return Number(b.date) - Number(a.date);
-      });
-      setDataSort(recentData);
-    } else {
-      let olderData = changeEventDateFormart.sort((a, b) => {
-        return Number(a.date) - Number(b.date);
-      });
-      setDataSort(olderData);
-    }
-  };
-
-  console.log(data?.data);
 
   return (
     <main className="max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full pb-[180px]">
@@ -118,7 +97,7 @@ const Event = () => {
                 <div className="">
                   <select
                     value={value}
-                    onChange={(e) => selectHandler(e.target.value)}
+                    onChange={(e) => setValue(e.target.value)}
                     className="outline-none bg-transparent text-[#333333]"
                   >
                     {/* <option value="filter">Filter</option> */}
@@ -135,7 +114,12 @@ const Event = () => {
          </div>
          : */}
               <div className="mt-[14px]">
-                <EventList data={data} isLoading={isLoading} search={search} />
+                <EventList
+                  data={changeEventDateFormart}
+                  isLoading={isLoading}
+                  search={search}
+                  selectedOrder={value}
+                />
               </div>
               {/* } */}
 
