@@ -72,8 +72,8 @@ id
   
           {data?.data?.map((data)=>(
     
-          <div className="flex justify-between mt-[40px] items-center border-b-[1px] pb-[30px]">
-            <div className="" key={data?.id}>
+          <div key={data?.id} className="flex justify-between mt-[40px] items-center border-b-[1px] pb-[30px]">
+            <div className="" >
               <h2 className="font-bold text-[16px] leading-5 text-[#000000]">
               {data?.bank_name}
               </h2>

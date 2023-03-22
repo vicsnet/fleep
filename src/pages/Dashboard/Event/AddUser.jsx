@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import ClipLoader from "react-spinners/ClipLoader";
 import {
-  openAddUser,
+  // openAddUser,
   closeAddUser,
 } from "../../../Redux/features/addUserSlice";
 import useAddUser from "../User/userhooks/useAddUser";
@@ -15,14 +15,16 @@ import SingleEventUser from "./SingleEventUser";
 import useFetchSingleParticipant from "./eventhooks/useFetchSingleParticipant";
 import { baseURL } from "../../../Redux/Api/api";
 import axios from "axios";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+// import useDeleteUser from "../User/userhooks/useDeleteUser";
 
 const AddUser = () => {
   const { id } = useParams();
   const open = useSelector((state) => state.crtAddUser.open);
 
   const { token } = useSelector((state) => state.user);
-  
-  // const {id:eventId} = useParams() 
+
+  // const {id:eventId} = useParams()
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -40,12 +42,12 @@ const AddUser = () => {
     full_name: "",
     email: "",
   });
-  const { mutate, isLoading, isSuccess, success, isError, error } =
+  const { mutate, isLoading, isSuccess, isError, error } =
     useAddUser(id);
 
-    const {data} = useFetchSingleParticipant(id);
+  const { data, isLoading:singleLoading } = useFetchSingleParticipant(id);
 
-    console.log("em",data?.data)
+  console.log("em", data?.data);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -63,7 +65,7 @@ const AddUser = () => {
 
   const showDelOption = (email) => {
     setDelOption(true);
-    setIsEmail(email)
+    setIsEmail(email);
   };
 
   const cancelDelOption = () => {
@@ -71,40 +73,38 @@ const AddUser = () => {
     setOpenDel(false);
   };
 
-  const DelOption = ({isEmail}) => {
-    const DeleteUser = () =>{
-      const Delete_URL= `${baseURL}/event/delete/user/from/${id}`
-    //  console.log(isEmail); 
+  const DelOption = ({ isEmail }) => {
+    const queryClient = useQueryClient();
+    const Delete_URL = `${baseURL}/event/delete/user/from/${id}`;
+
+    const { mutate: deleteUser, isSuccess:deleteSuccess, isError:deleteisError, error:deleteError, isLoading:deleteLoading} = useMutation({
+      mutationFn: () => {
+        return axios.post(Delete_URL, { email: isEmail }, config);
+      },
+      onSuccess: () => {
+        queryClient.invalidateQueries("Singleparticipant");
+      },
+    });
+
+    const handleDelete = () => {
     
-    
-    
-      axios.post(Delete_URL, {email:isEmail}, config).then((res)=>{
-        const data = res.data.status;
-        if(data){
-          toast.success("succesful")
-          setDelOption(false)
-        }
-     
-        else {
-          const error = (data && data.message) || res.status;
-          return Promise.reject(error);
-      }
-      
-      //   toast.success(res.message)
-      //   setDelOption(false)
-      // }).catch((err)=>{
-      //   toast.error(err)
-      // DelOption(false)
-      // }).catch((err)=>{
-      //   toast.error(err)
-      
-      })
-    
-    }
-    
+      deleteUser();
+    };
+
+ useEffect(()=>{
+  if(deleteSuccess){
+    toast.success("User Succesfully deleted");
+    cancelDelOption()
+
+  }
+  if(deleteisError){
+    toast.error(deleteError.response.data.message)
+  }
+ }, [deleteisError, deleteSuccess, deleteError])
 
     return (
-      <div key={id}
+      <div
+        key={id}
         className="fixed top-0 w-[100%] h-[100%] max-h-[100%]"
         style={{ background: "rgba(20, 24, 31, 0.25)" }}
       >
@@ -128,8 +128,12 @@ const AddUser = () => {
             </p>
           </div>
           <div className="w-[80%] mx-auto flex justify-between">
-            <button onClick={DeleteUser} className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[45px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5 font-extrabold">
-              Delete
+            <button
+              onClick={handleDelete}
+              className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[45px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5 font-extrabold"
+            >
+              {deleteLoading ? <ClipLoader color="#FFFFFF" /> : "Delete"}
+              
             </button>
             <button
               onClick={cancelDelOption}
@@ -155,7 +159,7 @@ const AddUser = () => {
         email: "",
       });
     }
-  }, [isError, isSuccess]);
+  }, [isError, isSuccess, error]);
 
   if (open) return null;
 
@@ -233,10 +237,16 @@ const AddUser = () => {
           </form>
           {/* if there is user */}
 
-          <section className={`${data?.data?.length == 0 && "hidden"} mt-[80px] block`}>
+          <section
+            className={`${
+              data?.data?.length === 0 && "hidden"
+            } mt-[80px] block`}
+          >
             <h3 className="font-bold text-[24px] leading-[28.8px] text-[#14181F]">
               Users
             </h3>
+            {
+              singleLoading ? "loading..." :
             <table className="w-[100%]  mt-[20px]  table-fixed">
               <thead className="text-left text-[16px] font-[500] leading-[19.2px] bg-[#EEEEEE] h-[70px] ">
                 <tr className=" pl-[57px] ">
@@ -252,16 +262,21 @@ const AddUser = () => {
                 </tr>
               </thead>
               <tbody className="mt-[20px]">
-                {data?.data?.map((data, index) =>(
-
-                  <SingleEventUser delOpt={showDelOption} idm={index} id={data?.id} fname={data?.full_name} email={data?.email} imd={index}  />
-                ))
-
-                }
+                {data?.data?.map((data, index) => (
+                  <SingleEventUser
+                  singleLoading={singleLoading}
+                    delOpt={showDelOption}
+                    idm={data?.id}
+                    id={data?.id}
+                    fname={data?.full_name}
+                    email={data?.email}
+                    imd={data?.id}
+                  />
+                ))}
               </tbody>
             </table>
+            }
           </section>
-          
         </div>
       </div>
       {delOption && <DelOption isEmail={isEmail} />}

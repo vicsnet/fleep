@@ -1,13 +1,9 @@
 /** @format */
+import React from "react";
+import useComponentVisible from "../../../hooks/useComponentVisible";
 
-import axios from "axios";
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import { baseURL } from "../../../Redux/Api/api";
-const SingleEventUser = ({ delOpt, id, idm, fname, email }) => {
-  const [openDel, setOpenDel] = useState(false);
+const SingleEventUser = ({ delOpt, id, idm, fname, email, singleLoading }) => {
+  const {ref, isComponentVisible:openDel, setIsComponentVisible:setOpenDel} = useComponentVisible(false);
 
  
 
@@ -32,16 +28,18 @@ const SingleEventUser = ({ delOpt, id, idm, fname, email }) => {
 
   return (
     <>
-      <tr key={idm}
+    {
+      singleLoading ? "loading" :
+      <tr ref={ref} key={idm}
       className="border-b-[1px] border-[#EDEDED] text-[#6A6A6A]">
-        <td className="w-[20%] text-[14px] leading-[16.8px] font-[300] pt-[20px] py-auto pl-[15px] pb-[8px]">
+        <td key={idm} className="w-[20%] text-[14px] leading-[16.8px] font-[300] pt-[20px] py-auto pl-[15px] pb-[8px]">
           {id}
         </td>
         <td className="pt-[20px] pb-[8px]">
           <p className="text-[14px] leading-[16.8px] font-[300]">{fname}</p>
         </td>
 
-        <td className="w-[20%] text-[14px] leading-[16.8px] font-[300] py-auto pt-[20px] pb-[8px]">
+        <td ref={ref} className="w-[20%] text-[14px] leading-[16.8px] font-[300] py-auto pt-[20px] pb-[8px]">
           {email}
         </td>
         {!openDel ? (
@@ -55,6 +53,7 @@ const SingleEventUser = ({ delOpt, id, idm, fname, email }) => {
           <DelButton email={email} />
         )}
       </tr>
+    }
     </>
   );
 };

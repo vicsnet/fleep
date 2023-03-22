@@ -13,5 +13,5 @@
 
 // export const baseURL = "http://fleep.webhostingfree.io/public/api";
 
-export const baseURL = "https://fleep.sanchy.com.ng/public/api";
+export const baseURL = "http://fleep.sanchytech.com/public/api";
 

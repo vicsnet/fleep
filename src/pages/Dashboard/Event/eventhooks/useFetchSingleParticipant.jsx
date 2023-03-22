@@ -19,8 +19,12 @@ console.log(API_URL);
     const getParticipant= ()=>{
         return axios.get(API_URL, config).then((res) =>res.data)
     }
-    const {data} = useQuery(["participant"], getParticipant);
-    return {data};
+    const {data, isLoading, isError, error, refetch, } = useQuery(["Singleparticipant"], getParticipant, {
+        refetchOnMount: true,
+        enabled: true
+       
+    });
+    return {data, isLoading, isError, error, refetch,};
 }
 
 export default useFetchSingleParticipant
