@@ -34,8 +34,6 @@ const AddBankAcct = () => {
     }
     mutate(Acct);
 
-    console.log(error?.response);
-    // console.log(data?.response);
   };
 
   useEffect(() => {
@@ -43,10 +41,11 @@ const AddBankAcct = () => {
       toast.error(error?.response?.data?.message);
     }
     if (isSuccess) {
-      setAcctName("");
-      setAcctName("");
-      setBankName("");
       toast.success("bank created successfull");
+      dispatch(closeAddAcct())
+      setAcctName("");
+      setAcctNumber("");
+      setBankName("");
     }
   }, [isError, isSuccess]);
 
@@ -120,10 +119,11 @@ const AddBankAcct = () => {
               </div>
 
               <div
-                onClick={() => dispatch(closeAddAcct())}
+                
                 className="mt-[40px] flex justify-between w-[90%]"
               >
-                <button className="font-bold text-[16px] leading-[19.2px tracking-[10%] border-[1px] border-[#1A1941] text-[#1A1941] h-[49px] w-[45%] rounded-lg">
+                <button onClick={() => dispatch(closeAddAcct())}
+                className="font-bold text-[16px] leading-[19.2px tracking-[10%] border-[1px] border-[#1A1941] text-[#1A1941] h-[49px] w-[45%] rounded-lg">
                   Cancel
                 </button>
                 <button

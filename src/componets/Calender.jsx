@@ -8,10 +8,14 @@ import Calendar from "react-calendar";
 import { useState, useRef } from "react";
 import { CalenderUtil } from "../consts/calenderUtil";
 import moment from "moment";
+import formatDate from "../consts/helper";
 
-const Calender = () => {
+
+const Calender = ({setDataD}) => {
   const [value, onChange] = useState(new Date());
   const [showCalender, setShowCalender] = useState(false);
+  // const [dataD, setDataD] = useState(""); 
+
   const [dateArr, setDateArr] = useState(
     CalenderUtil.updateIncomingDate(value)
   );
@@ -24,17 +28,24 @@ const Calender = () => {
     onChange(e);
     setDateArr(CalenderUtil.updateIncomingDate(e));
     setShowCalender(false);
+    setDataD(formatDate(e))
+    // refetchA
+    // onClick(refetch)
+  
   };
+
+
 
   return (
     <section>
       {/* <Calendar /> */}
-      <div className="bg-[#19192E] w-[93%] mx-auto mt-[32px] rounded-lg tabletAir:hidden">
-        <div className="w-[1010px] mx-auto relative smDesktop:w-[94%]">
+      <div className="bg-[#19192E] max-w-[1230px] lgDesktop:w-[1000px] smDesktop:w-[735px] smDesk:w-[630px] tablet:hidden tabletAir:w-[200px] mx-auto mt-[32px] rounded-lg   " >
+        <div className=" mx-auto w-[90%] relative smDesktop:w-[94%] justify-between">
           <div className="relative">
             {showCalender ? (
               <Calendar
-                onChange={onDateSelect}
+                onChange={
+                  onDateSelect}
                 value={value}
                 className="absolute bg-white"
               />
@@ -58,7 +69,7 @@ const Calender = () => {
 
           <div
             ref={ref}
-            className="flex pb-[33px] overflow-x-scroll scrollbar-hide scroll-smooth"
+            className="flex pb-[33px] overflow-x-scroll scrollbar-hide scroll-smooth w-[94%] mx-auto"
           >
             {dateArr.map((date, i) => {
               return (
@@ -92,7 +103,7 @@ const Calender = () => {
           <IoIosArrowDroprightCircle
             onClick={() => scroll(600)}
             size={24}
-            className=" text-[#FFFFFF] absolute bottom-[50px] right-[63px] lgDesktop:right-[0px] smDesktop:right-[0px]"
+            className=" text-[#FFFFFF] absolute bottom-[50px] right-[0px] lgDesktop:right-[0px] smDesktop:right-[0px]"
           />
         </div>
       </div>

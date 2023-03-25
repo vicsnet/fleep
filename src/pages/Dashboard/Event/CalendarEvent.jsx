@@ -1,28 +1,20 @@
-/** @format */
-
-import React from "react";
+import React from 'react'
 import { Link} from "react-router-dom";
 import { TbUsers } from "react-icons/tb";
 import { CiImageOn } from "react-icons/ci";
 
-
-
-const SingleEvent = ({
-  index,
-  title,
-  coverphoto,
-  date,
-  images,
-  singleId,
-  participant,
-}) => {
-  
-
+const CalendarEvent = ({
+    index,
+    title,
+    coverphoto,
+    date,
+    images,
+    singleId,
+    participant,
+    
+  }) => {
   return (
     <div key={index}>
-    
-  
-    
     <Link  to={`/event/created-event/${singleId}`}>
     
       <div
@@ -34,7 +26,7 @@ const SingleEvent = ({
       >
         {/* <Link to="event/created-event"> */}
         <p className="flex justify-end text-[14px] leading-[16.8px] pt-[10px] pr-[16px] text-[#C6C6C6]">
-          View
+          View hello
         </p>
         {/* </Link> */}
         <div className="flex justify-between items-center">
@@ -70,7 +62,7 @@ const SingleEvent = ({
     </Link>
     
     </div>
-  );
-};
+  )
+}
 
-export default SingleEvent;
+export default CalendarEvent

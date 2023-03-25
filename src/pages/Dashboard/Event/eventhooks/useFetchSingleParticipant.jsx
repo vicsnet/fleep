@@ -6,7 +6,7 @@ import { baseURL } from '../../../../Redux/Api/api'
 
 const useFetchSingleParticipant = (id) => {
     const API_URL =`${baseURL}/event/${id}/participants`;
-console.log(API_URL);
+
     const {token} = useSelector((state) =>state.user)
 
     const config ={

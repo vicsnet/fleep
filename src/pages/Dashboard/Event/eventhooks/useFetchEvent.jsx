@@ -1,4 +1,3 @@
-import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { baseURL } from "../../../../Redux/Api/api";
@@ -7,7 +6,6 @@ import { useSelector } from "react-redux";
 const useFetchEvent = (id) => {
   const API_URL = `${baseURL}/user/event/list`;
 
-  // const SINGLE_URL = `${baseURL}/event/view/${id}`;
 
   const { token } = useSelector((state) => state.user);
 

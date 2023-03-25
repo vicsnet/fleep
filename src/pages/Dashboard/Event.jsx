@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from "react";
+/** @format */
+
+import React, { useState } from "react";
 import SideNav from "../../componets/SideNav";
-import { MdOutlineEvent } from "react-icons/md";
 import { BiSearch } from "react-icons/bi";
-import { TbUsers } from "react-icons/tb";
-import { CiImageOn } from "react-icons/ci";
-import eve from "../../assets/IMG-20190708-WA0002.jpg";
 import CreateEvent from "../../componets/CreateEvent";
-import { Link } from "react-router-dom";
 import Calender from "../../componets/Calender";
 import EVeCal from "../../assets/SVG/Group (1).svg";
 import { useDispatch } from "react-redux";
 import { openEvent } from "../../Redux/features/createEventSlice";
 import useFetchEvent from "./Event/eventhooks/useFetchEvent";
-import SingleEvent from "./Event/SingleEvent";
-import FadeLoader from "react-spinners/FadeLoader";
-import Cal from "../../componets/Cal";
 import EventList from "./EventList";
+import useFetchEventByDate from "./Event/eventhooks/useFetchEventByDate";
+import CalendarEvent from "./Event/CalendarEvent";
+import FadeLoader from "react-spinners/FadeLoader";
+import DashboardError from "./Error/DashboardError";
 
 const Event = () => {
   const dispatch = useDispatch();
@@ -23,34 +21,36 @@ const Event = () => {
   const [search, setSearch] = useState("");
 
   const [value, setValue] = useState("all");
-
-  const { data, isLoading } = useFetchEvent();
-
+  const [dataD, setDataD] = useState("");
+  const { data, isLoading, refetch, isError, error } = useFetchEvent();
   const eventData = data?.data;
 
   const changeEventDateFormart = eventData?.map((obj) => {
     return { ...obj, date: new Date(obj.date) };
   });
+  const {
+    data: calendarData,
+    calendarLoading,
+    refetch: calRefetch,
+    isError: calIsError,
+    error: calError,
+  } = useFetchEventByDate(dataD);
+  console.log("dateddddd", calendarData);
+
+
 
   return (
     <main className="max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full pb-[180px]">
       <SideNav title="Event" display={"flex"} />
       {/* calendar */}
       <section>
-        <Calender />
-        {/* <Cal/> */}
+        <Calender setDataD={setDataD} />
       </section>
 
       {/* No Event */}
-      {/* {
-         isLoading || isFetching ?
-         <div className="flex justify-center mt-3">
-          <FadeLoader color="#19192E" />
-         </div>
-         : */}
 
       <div>
-        {data == 0 ? (
+        {data === 0 ? (
           <section className="mt-[100px]">
             <img
               src={EVeCal}
@@ -97,7 +97,10 @@ const Event = () => {
                 <div className="">
                   <select
                     value={value}
-                    onChange={(e) => setValue(e.target.value)}
+                    onChange={(e) => {
+                      setValue(e.target.value);
+                      setDataD(null);
+                    }}
                     className="outline-none bg-transparent text-[#333333]"
                   >
                     {/* <option value="filter">Filter</option> */}
@@ -107,19 +110,54 @@ const Event = () => {
                   </select>
                 </div>
               </div>
-              {/* {
-         isFetching ?
-         <div className="flex justify-center mt-3">
-          <FadeLoader color="#19192E" />
-         </div>
-         : */}
+
               <div className="mt-[14px]">
-                <EventList
-                  data={changeEventDateFormart}
-                  isLoading={isLoading}
-                  search={search}
-                  selectedOrder={value}
-                />
+                {!calendarData ? (
+                  <EventList
+                    data={changeEventDateFormart}
+                    isLoading={isLoading}
+                    search={search}
+                    selectedOrder={value}
+                    isError={isError}
+                    error={error}
+                    refetch={refetch}
+                  />
+                ) : (
+                  <>
+                    {calIsError ? (
+                      <DashboardError refetch={calRefetch} error={calError} />
+                    )
+                    :
+                    <>
+                    {calendarData.data.length === 0 && (
+                      <p className="text-[24px] text-[#1A1941] mt-[24px]">
+                        Event Not Found on this Date
+                      </p>
+                    )}
+                    {calendarData?.data?.map((data) => (
+                      <>
+                        {calendarLoading && (
+                          <div className="flex justify-center mt-3">
+                            <FadeLoader color="#19192E" />
+                          </div>
+                        )}
+
+                        <CalendarEvent
+                          index={data.id}
+                          singleId={data.id}
+                          title={data.title}
+                          coverphoto={data.coverphoto}
+                          // date={formatDate(data.date)}
+                          date={data.date}
+                          images={data.imagescount}
+                          participant={data.no_of_all_participants}
+                        />
+                      </>
+                    ))}
+                    </>
+                  }
+                  </>
+                )}
               </div>
               {/* } */}
 
