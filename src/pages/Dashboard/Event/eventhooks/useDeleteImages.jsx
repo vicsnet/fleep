@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { baseURL } from "../../../../Redux/Api/api";
 import { useSelector } from "react-redux";
@@ -19,7 +19,7 @@ const useDeleteImages = ({id}) => {
       },
     };
   
-    
+    const queryClient = useQueryClient()
     
   const EditEvent =  (data) =>{
     const formdata = new FormData();
@@ -30,7 +30,11 @@ const useDeleteImages = ({id}) => {
   
   }
   
-  return useMutation( EditEvent);
+  return useMutation( EditEvent, {
+    onSuccess:()=>{
+      queryClient.invalidateQueries("Im")
+    }
+  });
 
 }
 

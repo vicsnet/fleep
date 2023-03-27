@@ -1,7 +1,6 @@
 /** @format */
 
-import React from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { baseURL } from "../../../../Redux/Api/api";
 import { useSelector } from "react-redux";
@@ -10,6 +9,7 @@ const useUploadEventImages = (id) => {
   const API_URL = `${baseURL}/event/images/upload/${id}`;
 
   const { token } = useSelector((state) => state.user);
+  const queryClient = useQueryClient()
 
   const config = {
     headers: {
@@ -27,7 +27,11 @@ const useUploadEventImages = (id) => {
     return axios.post(API_URL, formdata, config);
   };
 
-  return useMutation(uploadImages);
+  return useMutation(uploadImages, {
+    onSuccess:()=>{
+      queryClient.invalidateQueries("Im")
+    }
+  });
 };
 
 export default useUploadEventImages;

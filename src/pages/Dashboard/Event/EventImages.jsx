@@ -10,7 +10,7 @@ import { FadeLoader } from "react-spinners";
 
 const EventImages = ({selectImage, setSelectImage, onSucces}) => {
   const { id } = useParams();
-  const { data, isLoading, isFetching } = useGetImages(id);
+  const { data, isLoading } = useGetImages(id);
 
   // console.log(data);
 
@@ -34,17 +34,14 @@ const EventImages = ({selectImage, setSelectImage, onSucces}) => {
 
   return (
     <div>
-    {
-      
-      isLoading ?
-         <div className="flex justify-center mt-4">
-          <FadeLoader color="#19192E" />
-         </div>
-      :
+   
 <section className="mt-[80px] pb-[100px] flex flex-wrap gap-4 relative">
   {data?.data?.slice(0, show)?.map((images, index) => (
-    <div key={index} className="relative">
+
+    
+    <div key={index} className="relative"> 
       <EventSingleImages
+        loading={isLoading}
         id={index}
         imag={images?.thumbnail_url}
         i={index}
@@ -54,6 +51,9 @@ const EventImages = ({selectImage, setSelectImage, onSucces}) => {
         change={handleChange}
       />
     </div>
+  
+    
+
   ))}
 
   {data?.data?.length >= show && (
@@ -70,7 +70,7 @@ const EventImages = ({selectImage, setSelectImage, onSucces}) => {
     </div>
   )}
 </section>
-}
+
 </div>
   );
 };

@@ -2,19 +2,15 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import SideNav from "../../../componets/SideNav";
-import { HiOutlineCake } from "react-icons/hi";
-import { FaGlobeAfrica } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
 import { AiOutlinePlus } from "react-icons/ai";
 import { IoLayers } from "react-icons/io5";
 import { BiChevronDown, BiUpload } from "react-icons/bi";
-import { BsImages } from "react-icons/bs";
-import bum from "../../../assets/HBD to bunmi 20190716_003414.jpg";
 import { FiCopy, FiArrowRightCircle } from "react-icons/fi";
 import copy from "copy-to-clipboard";
 import union from "../../../assets/SVG/Union (1).svg";
 import union2 from "../../../assets/SVG/Union (2).svg";
-import AddUser from "./AddUser";
+// import AddUser from "./AddUser";
 import { useDispatch } from "react-redux";
 import { openEvent } from "../../../Redux/features/createEventSlice";
 import { openAddUser } from "../../../Redux/features/addUserSlice";
@@ -28,6 +24,8 @@ import useGetImages from "./eventhooks/useGetImages";
 import useDeleteImages from "./eventhooks/useDeleteImages";
 import useComponentVisible from "../../../hooks/useComponentVisible";
 import { toast } from "react-toastify";
+import { FadeLoader } from "react-spinners";
+import DashboardError from "../Error/DashboardError";
 
 const CreatedEvent = () => {
   const { id } = useParams();
@@ -38,21 +36,21 @@ const CreatedEvent = () => {
     setIsComponentVisible: setOpenBulk,
   } = useComponentVisible(false);
 
-  const { data, isLoading, isError, isFetching } = useFetchSingleEvent(id);
+  const { data, isLoading, isError, error:singleError, refetch} = useFetchSingleEvent(id);
   // console.log(data)
 
-  const { data: images } = useGetImages(id);
+  const { data: images, isLoading:imageLoading, isError: imageIsError, error:imageError , refetch:imageRefetch } = useGetImages(id);
 
   const dispatch = useDispatch();
   const [selectedImage, setSelectedImage] = useState([]);
 
-  // console.log("selected Image",selectedImage);
+ 
 
-  const text = data?.data?.copy;
+  const text = data?.data?.code;
 
   const copyToClipboard = () => {
-    copy(String(data?.data?.copy));
-    alert(`You have copied "${data?.data?.copy}"`);
+    copy(String(data?.data?.code));
+    toast.success(`You have copied "${text}"`);
   };
 
   const {
@@ -61,7 +59,6 @@ const CreatedEvent = () => {
     isError: DeleteError,
     isSuccess: DeleteSuccess,
     error,
-    success,
   } = useDeleteImages({ id });
 
   const handleDelete = () => {
@@ -89,6 +86,11 @@ const CreatedEvent = () => {
       <SideNav title="Event" display="flex" />
       <section className="mt-[32px] px-[42px]">
         {/*  */}
+        { isError ?
+           <div className="mt-[100px]">
+
+             <DashboardError error={singleError} refetch={refetch}/>
+           </div> :
         <section className="flex justify-between">
           {/* event details */}
           <div className="flex">
@@ -181,7 +183,7 @@ const CreatedEvent = () => {
                 />
               )}
 
-              {isLoading || isFetching ? (
+              {isLoading ? (
                 <Space className="ml-[20px]">
                   <Skeleton
                     active
@@ -224,6 +226,7 @@ const CreatedEvent = () => {
             </div>
           </div>
         </section>
+         }
 
         {/*  */}
 
@@ -299,11 +302,23 @@ const CreatedEvent = () => {
           </section>
         ) : (
           // uploads
+          <>
+           { imageIsError &&
+           <div className="mt-[100px]">
 
+             <DashboardError error={imageError} refetch={imageRefetch}/>
+           </div>
+         }
+          { imageLoading && <div className="flex justify-center mt-4">
+          <FadeLoader color="#19192E" />
+         </div>}
+        
           <EventImages
             selectImage={selectedImage}
             setSelectImage={setSelectedImage}
           />
+          </>
+
         )}
         <div className=""></div>
       </section>

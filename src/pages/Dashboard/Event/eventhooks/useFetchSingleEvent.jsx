@@ -1,15 +1,14 @@
-import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { baseURL } from "../../../../Redux/Api/api";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+
 
 const useFetchSingleEvent = (id) => {
   
 
   const SINGLE_URL =`${baseURL}/event/view/${id}`;
-// const {id} = useParams();
+
   const { token } = useSelector((state) => state.user);
 
   const config = {
@@ -26,8 +25,11 @@ const useFetchSingleEvent = (id) => {
   }
 
 
-  const {data, isLoading,isFetching, isError} = useQuery(["SINGLE_EVENT"], getSingleEvent)
+  const {data, isLoading,error, refetch, isError} = useQuery(["SINGLE_EVENT", id], getSingleEvent,{
+    enabled: !!id,
+    refetchOnWindowFocus: true,
+  })
 
-  return {  isLoading, isError, isFetching, data,  };
+  return {  isLoading, isError, data, error, refetch };
 };
 export default useFetchSingleEvent;

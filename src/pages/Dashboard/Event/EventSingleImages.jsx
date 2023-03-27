@@ -1,10 +1,12 @@
 import { Field } from 'rc-field-form'
 import React, {useState} from 'react'
 
-const EventSingleImages = ({imag, i, change, checkm, ima, val, id, }) => {
+const EventSingleImages = ({imag, i, change, checkm, ima, val, id, loading}) => {
 
 
   return (
+ 
+    
     <>
 
           <img key={i}
@@ -26,6 +28,7 @@ const EventSingleImages = ({imag, i, change, checkm, ima, val, id, }) => {
               />
     
     </>
+ 
   )
 }
 

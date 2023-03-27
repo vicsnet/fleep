@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { AiOutlineCalendar } from "react-icons/ai";
-import { FiUpload, FiPlus } from "react-icons/fi";
+import { FiUpload,} from "react-icons/fi";
 import { BiChevronDown } from "react-icons/bi";
 import { useDropzone } from "react-dropzone";
 import info from "../../../assets/Union (1).png";
@@ -12,7 +12,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import useFetchCreatePost from "./eventhooks/useFetchCreatePost";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  openEvent,
+
   closeEvent,
 } from "../../../Redux/features/createEventSlice";
 import Arrow from "../../../assets/SVG/Arrow.svg";
@@ -26,7 +26,7 @@ import useComponentMonetize from "../../../hooks/useComponentMonetize";
 import { useParams } from "react-router-dom";
 import useEditEvent from "./eventhooks/useEditEvent";
 import useFetchSingleEvent from "./eventhooks/useFetchSingleEvent";
-import { useQueryClient } from "@tanstack/react-query";
+// import { useQueryClient } from "@tanstack/react-query";
 // import { setQueryData } from "@tanstack/react-query"
 
 const NewEvent = () => {
@@ -61,7 +61,7 @@ const NewEvent = () => {
 
   const {setRef, componentCategory:openCategory, setComponentCategory:setOpenCategory} = useComponentCat(false);
 
-  const {setRefme,openMonetize:openMonetize, setOpenMonetize:setOpenMonetize} = useComponentMonetize(false);
+  const {setRefme, openMonetize:openMonetize,  setOpenMonetize:setOpenMonetize} = useComponentMonetize(false);
 
  
   // To show the hover
@@ -71,14 +71,13 @@ const NewEvent = () => {
   const [type, setType] = useState(0);
 
   // Error message
-  const [message, setMessage] = useState("");
+  // const [message, setMessage] = useState("");
 
-  const queryClient = useQueryClient()
 
-  const handleMonetizeChange = (e) => {
-    const getValue = e.target.value;
-    setShowMonetize(getValue);
-  };
+  // const handleMonetizeChange = (e) => {
+  //   const getValue = e.target.value;
+  //   setShowMonetize(getValue);
+  // };
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
@@ -106,13 +105,13 @@ const NewEvent = () => {
   ));
 
   // fetching Event Types
-  const {typesData, typesLoading, typesError} = useFetchListTypes();
+  const {typesData, typesError} = useFetchListTypes();
 
 
 
   // Event Category
 
-    const {categoryData, categoryLoading, categoryError} = useFetchListCategorieType();
+    const {categoryData, categoryError} = useFetchListCategorieType();
   
 
   const fileInputRef = useRef(null);
@@ -145,27 +144,29 @@ const NewEvent = () => {
 
 
   //
-  const { mutate:registerNewEvent, isLoading, isError, error, message:messageDe, isSuccess, success:regSuccess } = useFetchCreatePost();
+  const { mutate:registerNewEvent, isLoading, isError, error,isSuccess } = useFetchCreatePost();
+ 
 
   const{mutate:EditEvent, isError:errordet, isLoading:loading, isSuccess:success} = useEditEvent(id);
 
   const {data} = useFetchSingleEvent(id);
+
   // To submit the form
   const formSubmit = (e) => {
     e.preventDefault();
     if(!id){
       if (
-        eventTitle == "" ||
-        eCategory == 0 ||
-        venue == "" ||
-        files == [] ||
+        eventTitle === "" ||
+        eCategory === 0 ||
+        venue === "" ||
+        files === [] ||
         selectedImage == [] ||
-        type == "" ||
-        date == ""
+        type === "" ||
+        date === ""
       ) {
         toast.error("All Field Required")
        
-      } else if (showMonetize == 1 && price == 0) {
+      } else if (showMonetize === 1 && price === 0) {
         toast.error("Price can not be empty")
       } else {
         const person = {
@@ -222,7 +223,7 @@ const NewEvent = () => {
       
     }
 
-  }, [isSuccess, isError]);
+  }, [isSuccess, isError, error]);
 
 useEffect(()=>{
   if(id){
@@ -247,7 +248,7 @@ if(success){
   setShowMonetize(0);
   setType(0);
 }
-}, [data?.data?.title, data?.data?.monetize, data?.data?.date,data?.data?.amount,data?.data?.venue,data?.data?.type_id, dispatch, id , errordet, success ]);
+}, [dispatch, id , errordet, success, error, data ]);
 
     
 
@@ -336,7 +337,7 @@ if(success){
                   <ul
                     onClick={() => setOpenCategory(false)}
                     className={`w-[306px] smDesk:w-[180px] flex flex-col justify-center  rounded-[4px] mt-[-4px] z-[1] cursor-pointer bg-[#FFFFFF] ${
-                      openCategory ? "max-h-[166px] absolute" : "max-h-0 hidden"
+                      openCategory ? "max-h-[166px] absolute pt-10 overflow-y-scroll scrollbar-thin pb-6 scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full" : "max-h-0 hidden"
                     }`}
                     style={{
                       boxShadow: "0px 0px 10px 0px rgba(132, 132, 132, 0.15)",
@@ -396,7 +397,7 @@ if(success){
                   <ul
                     onClick={() => setOpenEvent(false)}
                     className={`w-[306px] smDesk:w-[180px] flex flex-col justify-center  rounded-[4px] mt-[-4px] z-[1] cursor-pointer bg-[#FFFFFF] ${
-                      openEvent ? "max-h-[166px] absolute" : "max-h-0 hidden"
+                      openEvent ? "max-h-[166px] overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full absolute" : "max-h-0 hidden"
                     }`}
                     style={{
                       boxShadow: "0px 0px 10px 0px rgba(132, 132, 132, 0.15)",
@@ -431,7 +432,7 @@ if(success){
                             alt=""
                             className="ml-[35.5px] mb-[-1px]"
                           />
-                          <div className="w-[100px] bg-white shadow-lg rounded-sm ml-[34.5px] ">
+                          <div className="w-[200px] bg-white shadow-lg rounded-sm ml-[34.5px] ">
                             <p className="w-[90%] mx-auto py-[6px] text-[10px] font-normal leading-4">
                               {event?.comment}
                             </p>
@@ -609,7 +610,7 @@ if(success){
             {/*  input file*/}
             <div 
             // ref={ref}
-             className="flex gap-[24px] mt-6">
+             className={` ${id && "hidden"} flex gap-[24px] mt-6`}>
               <div className="w-[50%]">
                 <label
                   htmlFor=""
@@ -627,6 +628,7 @@ if(success){
                   <input {...getInputProps()}  />
                 }
                   {imagesf.length === 0 ? (
+                    
                     <div className="cursor-pointer">
                       <FiUpload size={20} className="text-[#EE2339] mx-auto" />
                       <p className="text-[16px] font-normal leading-5 text-center text-[#8B8B8B] mt-[12px]">
@@ -637,7 +639,7 @@ if(success){
                       </p>
                     </div>
                   ) : (
-
+                    
                       <>{imagesf}</>
                     
                   

@@ -2,17 +2,17 @@
 
 import React from "react";
 import SideNav from "../../componets/SideNav";
-import { MdOutlinePermMedia } from "react-icons/md";
-import { HiOutlineUserGroup } from "react-icons/hi";
-import { IoMdCalendar } from "react-icons/io";
+// import { MdOutlinePermMedia } from "react-icons/md";
+// import { HiOutlineUserGroup } from "react-icons/hi";
+// import { IoMdCalendar } from "react-icons/io";
 
-import { IoImagesOutline } from "react-icons/io5";
+// import { IoImagesOutline } from "react-icons/io5";
 
 import EventMembers from "../../componets/EventMembers";
 import CreateEvent from "../../componets/CreateEvent";
 import vector from "../../assets/Group 201.png";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
-import NewEvent from "./Event/NewEvent";
+// import NewEvent from "./Event/NewEvent";
 import { useDispatch, useSelector } from "react-redux";
 import { openEvent } from "../../Redux/features/createEventSlice";
 import Vector from "../../assets/SVG/Vector.svg";
@@ -23,6 +23,7 @@ import ProfileUseFetch from "../profile/hooks/profileUseFetch";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import DashboardError from "./Error/DashboardError";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const { data, isLoading, isFetching, error, refetch } = ProfileUseFetch();
@@ -73,6 +74,7 @@ const Dashboard = () => {
                 </div>
 
                 {/* photo spaces left */}
+                
                 <div
                   className=" flex py-[37.24px] pl-[25.8px] gap-[23px] rounded-[10px] w-[50%]  smDesktop:pr-[8px]"
                   style={{ background: "rgba(255, 255, 255, 1)" }}
@@ -98,18 +100,17 @@ const Dashboard = () => {
                       Photo spaces left
                     </p>
                   </div>
-                  <button className="text-[11px] font-semibold px-[10px] h-[20px] rounded border border-[#1A1941] text-[#1A1941] cursor-pointer mt-2">
+                  <Link to="/upgrade" className="text-[11px] font-semibold px-[10px] h-[20px] rounded border border-[#1A1941] text-[#1A1941] cursor-pointer mt-2">
                     Upgrade
-                  </button>
+                  </Link>
                 </div>
               </div>
 
               <div className="flex  gap-[30px]  smDesktop:gap-[12px]">
                 {/* total Events */}
-                <div
-                  className=" flex py-[37.24px] pl-[25.8px] gap-[23px] rounded-[10px] w-[50%] "
-                  style={{ background: "rgba(255, 255, 255, 1)" }}
-                >
+
+                <Link to="/event" className="flex py-[37.24px] pl-[25.8px] gap-[23px] rounded-[10px] w-[50%]" style={{ background: "rgba(255, 255, 255, 1)" }}>
+               
                   <div className="bg-[#19192E] rounded-[13px] h-[60px] w-[55px] flex items-center">
                     <img
                       src={Vector2}
@@ -132,13 +133,12 @@ const Dashboard = () => {
                       Total Events
                     </p>
                   </div>
-                </div>
+              
+                </Link>
 
                 {/* total users */}
-                <div
-                  className=" flex py-[37.24px] pl-[25.8px] gap-[23px] rounded-[10px] w-[50%]"
-                  style={{ background: "rgba(255, 255, 255, 1)" }}
-                >
+                <Link to="/users"  className=" flex py-[37.24px] pl-[25.8px] gap-[23px] rounded-[10px] w-[50%]"    style={{ background: "rgba(255, 255, 255, 1)" }}>
+              
                   <div className="bg-[#19192E] rounded-[13px] h-[60px] w-[55px] flex items-center">
                     <img
                       src={Vector3}
@@ -160,7 +160,8 @@ const Dashboard = () => {
                       Total Users
                     </p>
                   </div>
-                </div>
+               
+                </Link>
               </div>
             </div>
 

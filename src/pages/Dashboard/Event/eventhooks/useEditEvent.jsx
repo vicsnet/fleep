@@ -1,7 +1,5 @@
 /** @format */
-
-import React from "react";
-import { isError, useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { baseURL } from "../../../../Redux/Api/api";
 import { useSelector } from "react-redux";
@@ -11,7 +9,7 @@ const useEditEvent = (id) => {
 
   
   
-
+  const queryClient = useQueryClient();
   const { token } = useSelector((state) => state.user);
 
   const config = {
@@ -40,6 +38,11 @@ const EditEvent =  (data) =>{
 }
 
 
-return useMutation( EditEvent);
+return useMutation( EditEvent, {
+  onSuccess:()=>{
+    queryClient.invalidateQueries("Event")
+
+  }
+});
 };
 export default useEditEvent;
