@@ -17,7 +17,7 @@ const ProfileUseFetch = () => {
   };
 
   const getData = () => {
-    return Axios.get(`${baseURL}/user/profile1`, config).then((res) => res.data);
+    return Axios.get(`${baseURL}/user/profile`, config).then((res) => res.data);
   };
 
   const {data, isLoading, isFetching, error, isError, refetch } = useQuery(["profile"], getData, {
