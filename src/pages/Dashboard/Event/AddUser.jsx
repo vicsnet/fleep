@@ -264,6 +264,7 @@ const AddUser = () => {
               <tbody className="mt-[20px]">
                 {data?.data?.map((data, index) => (
                   <SingleEventUser
+                  key={data.id}
                   singleLoading={singleLoading}
                     delOpt={showDelOption}
                     idm={data?.id}

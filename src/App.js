@@ -20,7 +20,6 @@ import Users from "./pages/Dashboard/Users";
 import Profile from "./pages/Dashboard/Profile";
 import CreatedEvent from "./pages/Dashboard/Event/CreatedEvent";
 import ModalProvider from "./store/ModalProvider";
-import Upgrade from "./componets/Upgrade";
 import Images from "./componets/Images";
 import WalletPage from "./pages/wallet/WalletPage";
 import { ToastContainer } from "react-toastify";
@@ -28,6 +27,7 @@ import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from "./utils/PrivateRoute";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import { SkeletonTheme } from 'react-loading-skeleton'
+import Upgrade from "./pages/Upgrade";
 
 function App() {
   const client = new QueryClient();

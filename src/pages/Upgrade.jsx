@@ -1,11 +1,13 @@
 
 import React from 'react'
-import Footer from './Footer';
 import { useNavigate, Link } from 'react-router-dom';
 import bum from "../assets/HBD to bunmi 20190716_003414.jpg";
 import { GoPrimitiveDot } from "react-icons/go";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import LOGO from "../assets/LOGO.png";
+import Footer from '../componets/Footer';
+
+import UpgradeDetail from '../componets/upgrades/UpgradeDetail';
 
 const Upgrade = () => {
   const back = useNavigate()
@@ -59,8 +61,8 @@ const Upgrade = () => {
         <p className="capitalize text-[20px] text-center text-[#8B8B8B] font-normal">
           Buy more photospaces
         </p>
-        <section className="w-[90%] mx-auto border-[1px] border-[#D9D9D9] flex mb-[84px] mt-[38px] rounded-[8px] ">
-          <div className="border-r-[1px] border-[#C6C6C6] pt-[47px] pb-[53px]">
+        {/* <section className="w-[90%] mx-auto border-[1px] border-[#D9D9D9] flex mb-[84px] mt-[38px] rounded-[8px] "> */}
+          {/* <div className="border-r-[1px] border-[#C6C6C6] pt-[47px] pb-[53px]">
             <div className="pb-[30.52px] w-[90%] mx-auto border-b-[1px] border-[#EAEAEA]">
               <p className="text-[20px] leading-[24px] font-normal text-[#8B8B8B] smDesk:text-[18px]">
                 More Space
@@ -131,8 +133,10 @@ const Upgrade = () => {
                 Buy
               </button>
             </div>
-          </div>
-        </section>
+          </div> */}
+
+        <UpgradeDetail/>
+        {/* </section> */}
       </section>
       <Footer />
     </main>
