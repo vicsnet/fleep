@@ -7,11 +7,12 @@ import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { useSelector } from "react-redux";
 import ProfileUseFetch from "../pages/profile/hooks/profileUseFetch";
 import { Skeleton, Space } from 'antd';
+import DashboardError from "../pages/Dashboard/Error/DashboardError";
 
 const SideNav = ({ title, display, padd }) => {
   const back = useNavigate();
 
-  const { data, isLoading, isFetching, isError } = ProfileUseFetch();
+  const { data, isLoading, refetch, isError } = ProfileUseFetch();
 
 
 
@@ -33,8 +34,14 @@ const SideNav = ({ title, display, padd }) => {
         </div>
       </div>
      
-     
+      {
+          isError ?
+          <div className='pr-[42px]'>
 
+            <DashboardError refetch={refetch}/>
+          </div>
+          :
+<>
            {
             isLoading === true ?
             <div className="mr-[42px]">
@@ -72,6 +79,8 @@ const SideNav = ({ title, display, padd }) => {
         </div>
       </Link>
            }
+</>
+}
     </section>
   );
 };
