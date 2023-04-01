@@ -15,6 +15,7 @@ const SingleEvent = ({
   images,
   singleId,
   participant,
+  // datem
 }) => {
   
 
@@ -53,6 +54,9 @@ const SingleEvent = ({
               <p className="text-[#8A8A8A] text-[13px] font-normal leading-4">
                 {date}
               </p>
+              {/* <p className="text-[#8A8A8A] text-[13px] font-normal leading-4">
+                {datem}
+              </p> */}
             </div>
           </div>
           <div className="flex gap-8 pr-[66px]">

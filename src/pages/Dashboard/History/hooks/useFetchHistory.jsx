@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { baseURL } from '../../../../Redux/Api/api'
 
 const useFetchHistory = () => {
- const API_URL = `${baseURL}/purchase/history`
+ const API_URL = `${baseURL}/upgrade/history/successful`
 
  const {token} = useSelector((state) =>state.user)
 

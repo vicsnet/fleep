@@ -1,9 +1,10 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { openWithdrawToBank } from '../../Redux/features/wallet/walletSlice';
+import ProfileUseFetch from '../../pages/profile/hooks/profileUseFetch';
 
 const WalletToken = () => {
-
+  const {data, isError, isLoading, error, refetch} = ProfileUseFetch();
   const dispatch = useDispatch()
   return (
     <main>
@@ -19,7 +20,7 @@ const WalletToken = () => {
 
           {/* total fund */}
           <h1 className="font-bold text-[46px] leading-[55.2px] text-[#1A1941] mt-[16px]">
-            ₦20,000
+            ₦{data?.data?.wallet_balance}
           </h1>
         </div>
         {/*Total Transaction Card  */}
@@ -35,7 +36,7 @@ const WalletToken = () => {
 
           {/* total fund */}
           <h1 className="font-bold text-[46px] leading-[55.2px] text-[#1A1941] mt-[16px]">
-            ₦8,000
+            ₦{data?.data?.total_withdrawal}
           </h1>
 
           <div className="mt-[24px]">

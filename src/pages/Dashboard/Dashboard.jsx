@@ -2,11 +2,6 @@
 
 import React from "react";
 import SideNav from "../../componets/SideNav";
-// import { MdOutlinePermMedia } from "react-icons/md";
-// import { HiOutlineUserGroup } from "react-icons/hi";
-// import { IoMdCalendar } from "react-icons/io";
-
-// import { IoImagesOutline } from "react-icons/io5";
 
 import EventMembers from "../../componets/EventMembers";
 import CreateEvent from "../../componets/CreateEvent";

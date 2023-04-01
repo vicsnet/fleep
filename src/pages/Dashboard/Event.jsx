@@ -24,9 +24,10 @@ const Event = () => {
   const [dataD, setDataD] = useState("");
   const { data, isLoading, refetch, isError, error } = useFetchEvent();
   const eventData = data?.data;
+  console.log(eventData);
 
   const changeEventDateFormart = eventData?.map((obj) => {
-    return { ...obj, date: new Date(obj.date) };
+    return { ...obj, date: new Date(obj.normal_date) };
   });
   const {
     data: calendarData,
