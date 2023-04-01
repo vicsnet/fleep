@@ -12,8 +12,12 @@ import Vector1 from "../../assets/SVG/Group2.svg";
 import Vector2 from "../../assets/SVG/Group3.svg";
 import Vector3 from "../../assets/SVG/Group4.svg";
 import Transaction from "./History/Transaction";
+import ProfileUseFetch from "../profile/hooks/profileUseFetch";
+import { Link } from "react-router-dom";
 
 const History = () => {
+  const {data, isError, isLoading, error, refetch} = ProfileUseFetch();
+  
   return (
     <main className="max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full pb-[180px]">
       <SideNav title="History" display={"flex"} />
@@ -34,7 +38,7 @@ const History = () => {
 
             <div className="text-[white]">
               <h3 className="text-[30px] font-bold leading-[36px] tracking-[2.14px] text-white ">
-                150
+                {data?.data?.storage_space}
               </h3>
               <p className="text-[#EEEEEE] opacity-[70%] text-[14px] font-[500] leading-[16.8px] pt-[4px] ">
                 Total Photo spaces bought
@@ -54,7 +58,7 @@ const History = () => {
             </div>
             <div className="">
               <h3 className="text-[30px] font-bold leading-[36px] tracking-[2.14px] text-[#191D23] ">
-                150
+                {data.data.eventsimagescount}
               </h3>
               <p className="text-[#8E99AB] opacity-[70%] text-[14px] font-[500] leading-[16.8px] pt-[4px] ">
                 Photo spaces used
@@ -73,29 +77,30 @@ const History = () => {
             </div>
             <div className="">
               <h3 className="text-[30px] font-bold leading-[36px] tracking-[2.14px] text-[#191D23] ">
-                14
+                {data?.data?.free_space}
               </h3>
               <p className="text-[#8E99AB] opacity-[70%] text-[14px] font-[500] leading-[16.8px] pt-[4px] ">
                 Photo spaces left
               </p>
             </div>
-            <button className="text-[11px] font-semibold px-[10px] h-[20px] rounded border border-[#1A1941] text-[#1A1941] cursor-pointer mt-2">
+            <Link to="/upgrade" className="text-[11px] font-semibold px-[10px] h-[20px] rounded border border-[#1A1941] text-[#1A1941] cursor-pointer mt-2">
               Upgrade
-            </button>
+            </Link>
           </div>
         </div>
       </div>
 
       {/* transaction */}
       <section className="flex justify-between px-[45px]  smDesk:flex-col smDesk:justify-center">
-        <section className="w-[52%]  smDesk:w-[90%]">
+        {/* 52% */}
+        <section className="w-[100%]  smDesk:w-[90%]">
           <Transaction/>
         </section>
 
-        <section className="w-[45%] smDesk:w-[90%]">
-          {/* search bar & filter */}
+        {/* <section className="w-[45%] smDesk:w-[90%]">
+          search bar & filter
           <div className="flex items-center justify-between mt-[29px]">
-            {/* search bar  */}
+            search bar 
             <div className="bg-[#EFEFEF] flex items-center h-[49px] w-[50%] rounded-[8px]">
               <BiSearch size={16} className="text-[#8A8A8A] w-[10%] pl-[8px]" />
               <input
@@ -105,7 +110,7 @@ const History = () => {
               />
             </div>
 
-            {/* filter */}
+            filter
             <div className="flex items-center gap-[17px]">
               <BsFilter size={16} className="text-[#201E1E]" />
               <select
@@ -213,7 +218,7 @@ const History = () => {
               </tbody>
             </table>
           </section>
-        </section>
+        </section> */}
       </section>
     </main>
   );
