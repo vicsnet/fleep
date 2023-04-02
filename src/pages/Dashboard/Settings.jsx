@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import SideNav from "../../componets/SideNav";
-import { FaLock } from "react-icons/fa";
 import { FiLock } from "react-icons/fi";
 import {
   IoIosNotificationsOutline,
@@ -9,6 +8,7 @@ import {
 import SavedAcc from "../../componets/wallet/SavedAcc";
 import acc1 from "../../assets/Building_04.png";
 import acc from "../../assets/Building_05.png";
+import ChangePassword from "../../componets/settings/ChangePassword";
 
 const Settings = () => {
   const [show, setShow] = useState(false);
@@ -124,54 +124,7 @@ const Settings = () => {
             className="ml-auto mr-[42px] mb-[20px]"
           />
 
-          <form className="w-[80%] mx-auto">
-            <label
-              htmlFor=""
-              className="text-[16px] leading-[19.2px] font-normal text-[#333333] mb-[4px]"
-            >
-              Enter Old Password
-            </label>
-            <br />
-            <input
-              type="password"
-              placeholder="Enter old password"
-              className="w-[100%] h-[40px] rounded-[8px] pl-[20px] outline-none border-[1px] border-[#E5E5E5] bg-[#F9F9F9] text-[14px] leading-[16.8px] font-light text-[#999999]"
-            />{" "}
-            <br />
-            <br />
-            <label
-              htmlFor=""
-              className="text-[16px] leading-[19.2px] font-normal text-[#333333] mb-[4px]"
-            >
-              Enter New Password
-            </label>
-            <br />
-            <input
-              type="password"
-              placeholder="Enter New Password"
-              className="w-[100%] h-[40px] rounded-[8px] pl-[20px] outline-none border-[1px] border-[#E5E5E5] bg-[#F9F9F9] text-[14px] leading-[16.8px] font-light text-[#999999]"
-            />
-            <br />
-            <br />
-            <label
-              htmlFor=""
-              className="text-[16px] leading-[19.2px] font-normal text-[#333333] mb-[4px]"
-            >
-              Verify New Password
-            </label>
-            <br />
-            <input
-              type="password"
-              placeholder="Re-type new password"
-              className="w-[100%] h-[40px] rounded-[8px] pl-[20px] outline-none border-[1px] border-[#E5E5E5] bg-[#F9F9F9] text-[14px] leading-[16.8px] font-light text-[#999999]"
-            />
-            <br />
-            <br />
-            <br />
-            <button className="text-[16px] leading-[19.2px] tracking-[10%] font-bold w-[40%] text-center py-[17px] bg-[#1A1941] text-[#FFFFFF] rounded-[8px]">
-              Save Changes
-            </button>
-          </form>
+         <ChangePassword/>
         </section>
       </section>
     </main>
