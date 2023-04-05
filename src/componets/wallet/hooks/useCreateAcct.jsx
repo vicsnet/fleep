@@ -24,7 +24,7 @@ const AddAcct = (data) =>{
     formdata.append("account_number", data.account_number);
     formdata.append("account_name", data.account_name)
 
-    console.log(data);
+   
     return axios.post(API_URL,  data,  config);
 
 }

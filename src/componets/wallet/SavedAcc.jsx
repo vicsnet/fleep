@@ -27,37 +27,43 @@ const SavedAcc = () => {
       Authorization: "Bearer " + token,
     },
   };
-  const deleteBank = (id) => {
+  // const Delete_URL = `${baseURL}/user/bank/delete/${id}`
+
+  const mutation = useMutation({
+    mutationFn:(id)=>{
+      return axios.post(`${baseURL}/user/bank/delete/${id}`,{id}, config)
+    },
+    //  onSuccess:() =>{
+    //   // queryClient.invalidateQueries("")
+    // }
+  })
+
+  const deleteBank = () => {
     // e.preventDefault()
     console.log("clicked");
-    const Delete_URL = `${baseURL}/user/bank/delete/${id}`;
-    axios
-      .post(
-        Delete_URL,
-        {
-          id:id,
-        },
-        config
-      )
-      .then((res) => {
-        const data = res.json();
-        if (!res.ok) {
-          const error = (data && data.message) || res.status;
-          return Promise.reject(error);
-        }
-        toast.success(res.message);
-      })
-      .catch((err) => {
-        toast.error(err);
-      });
+    // const Delete_URL = `${baseURL}/user/bank/delete/${id}`;
+// deleteAcct(id)
+    // axios
+    //   .post(
+    //     Delete_URL,
+    //     {
+    //       id:id,
+    //     },
+    //     config
+    //   )
+    //   .then((res) => {
+    //     const data = res.json();
+    //     if (!res.ok) {
+    //       const error = (data && data.message) || res.status;
+    //       return Promise.reject(error);
+    //     }
+    //     toast.success(res.message);
+    //   })
+    //   .catch((err) => {
+    //     toast.error(err);
+    //   });
 
-    // const {mutate:deleteAcct,isLoading:deleteLoading, isSuccess:deleteSuccess } = useMutation({
-    //   mutationFn:()=>{
-    //     return axios.post(Delete_URL,{id}, config)
-    //   }, onSuccess:() =>{
-    //     queryClient.invalidateQueries("")
-    //   }
-    // })
+   
   };
 
   return (
@@ -103,7 +109,7 @@ const SavedAcc = () => {
                 <BiTrash
                   size={20}
                   className="text-[#8B8B8B]"
-                  onClick={deleteBank(data?.id)}
+                  onClick={()=>mutation.mutate(data?.id)}
                 />
               </div>
             </div>

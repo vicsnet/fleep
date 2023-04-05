@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import success from "../../assets/Vector (20).png";
-// import { useDispatch, useSelector } from "react-redux";
-// import { closeWithdrawToBank } from "../../Redux/features/wallet/walletSlice";
 
-const WithDrawSuccesfull = () => {
-//   const open = useSelector((state) => state.wallet.open);
-//   const dispatch = useDispatch();
 
-  const [openAcct, setOpenAcct] = useState(false);
-//   if (open) return null;
+const WithDrawSuccesfull = ({close}) => {
+
+
+
+if(!close) return null
+
   return (
     <main
       className="fixed top-0 max-h-screen h-screen w-[100%] overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
@@ -22,7 +21,7 @@ const WithDrawSuccesfull = () => {
         <section className="w-[90%] mx-auto pb-[78px]">
           <div className="flex justify-end pt-[32px]">
             <IoIosCloseCircleOutline
-              //   onClick={() => dispatch(closeWithdrawToBank())}
+                onClick={close}
               size={24}
               className="text-[#7C7B7B] cursor-pointer"
             />
@@ -43,7 +42,7 @@ const WithDrawSuccesfull = () => {
           </div>
 
           <div className="mt-[40px] flex justify-center  ">
-            <button className="font-bold text-[16px] leading-[19.2px tracking-[10%] border-[1px] bg-[#1A1941] text-[#FFFFFF] h-[49px] w-[60%]   rounded-lg">
+            <button onClick={close} className="font-bold text-[16px] leading-[19.2px tracking-[10%] border-[1px] bg-[#1A1941] text-[#FFFFFF] h-[49px] w-[60%]   rounded-lg">
               Close
             </button>
           </div>
