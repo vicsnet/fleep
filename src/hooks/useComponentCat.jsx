@@ -2,10 +2,10 @@ import { useState, useEffect, useRef } from "react";
 
 export default function useComponentCat(initialIsVisible){
     const [componentCategory, setComponentCategory] = useState(initialIsVisible);
-    const setRef = useRef(null);
+    const setref = useRef(null);
   
     const handleClickOutside = (event)=>{
-  if(setRef.current && !setRef.current.contains(event.target)){
+  if(setref.current && !setref.current.contains(event.target)){
     setComponentCategory(false)
   }
     };
@@ -16,5 +16,5 @@ export default function useComponentCat(initialIsVisible){
         document.removeEventListener("click", handleClickOutside, true);
       };
     }, []);
-    return {setRef, componentCategory, setComponentCategory};
+    return {setref, componentCategory, setComponentCategory};
   }

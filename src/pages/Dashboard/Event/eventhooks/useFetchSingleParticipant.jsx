@@ -1,4 +1,3 @@
-import React from 'react'
 import { useSelector } from 'react-redux'
 import {useQuery} from "@tanstack/react-query"
 import axios from "axios"
@@ -19,12 +18,12 @@ const useFetchSingleParticipant = (id) => {
     const getParticipant= ()=>{
         return axios.get(API_URL, config).then((res) =>res.data)
     }
-    const {data, isLoading, isError, error, refetch, } = useQuery(["Singleparticipant"], getParticipant, {
+    const {data, isLoading, isError, error, refetch, isFetching} = useQuery(["Singleparticipant", id], getParticipant, {
         refetchOnMount: true,
-        enabled: true
+        enabled: !!id
        
     });
-    return {data, isLoading, isError, error, refetch,};
+    return {data, isLoading, isError, error, refetch, isFetching};
 }
 
 export default useFetchSingleParticipant

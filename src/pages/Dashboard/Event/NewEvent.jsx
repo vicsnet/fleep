@@ -59,7 +59,7 @@ const NewEvent = () => {
   
  const {ref,isComponentVisible:openEvent, setIsComponentVisible:setOpenEvent} = useComponentVisible(false); 
 
-  const {setRef, componentCategory:openCategory, setComponentCategory:setOpenCategory} = useComponentCat(false);
+  const {setref, componentCategory:openCategory, setComponentCategory:setOpenCategory} = useComponentCat(false);
 
   const {setRefme, openMonetize:openMonetize,  setOpenMonetize:setOpenMonetize} = useComponentMonetize(false);
 
@@ -288,7 +288,7 @@ if(success){
           
            className="mt-[40px]">
           <div 
-          setRef={setRef}
+          setref={setref}
           // ref={ref} 
           className="">
             <div 
@@ -315,7 +315,7 @@ if(success){
               </div>
 
               <div 
-              ref={setRef}
+              ref={setref}
               className="w-[50%]">
                 <label
                   htmlFor=""

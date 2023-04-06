@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import ClipLoader from "react-spinners/ClipLoader";
 import {
-  // openAddUser,
+  
   closeAddUser,
 } from "../../../Redux/features/addUserSlice";
 import useAddUser from "../User/userhooks/useAddUser";
@@ -16,7 +16,9 @@ import useFetchSingleParticipant from "./eventhooks/useFetchSingleParticipant";
 import { baseURL } from "../../../Redux/Api/api";
 import axios from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-// import useDeleteUser from "../User/userhooks/useDeleteUser";
+import { FadeLoader } from "react-spinners";
+import DashboardError from "../Error/DashboardError";
+
 
 const AddUser = () => {
   const { id } = useParams();
@@ -34,7 +36,7 @@ const AddUser = () => {
 
   const dispatch = useDispatch();
 
-  const [openDel, setOpenDel] = useState(false);
+  // const [openDel, setOpenDel] = useState(false);
   const [delOption, setDelOption] = useState(false);
   const [isEmail, setIsEmail] = useState("");
 
@@ -42,10 +44,15 @@ const AddUser = () => {
     full_name: "",
     email: "",
   });
-  const { mutate, isLoading, isSuccess, isError, error } =
-    useAddUser(id);
+  const { mutate, isLoading, isSuccess, isError, error } = useAddUser(id);
 
-  const { data, isLoading:singleLoading } = useFetchSingleParticipant(id);
+  const {
+    data,
+    isLoading: singleLoading,
+    isError:singleIsError,
+    error:singleError, refetch
+   
+  } = useFetchSingleParticipant(id);
 
   console.log("em", data?.data);
 
@@ -70,14 +77,20 @@ const AddUser = () => {
 
   const cancelDelOption = () => {
     setDelOption(false);
-    setOpenDel(false);
+    // setOpenDel(false);
   };
 
   const DelOption = ({ isEmail }) => {
     const queryClient = useQueryClient();
     const Delete_URL = `${baseURL}/event/delete/user/from/${id}`;
 
-    const { mutate: deleteUser, isSuccess:deleteSuccess, isError:deleteisError, error:deleteError, isLoading:deleteLoading} = useMutation({
+    const {
+      mutate: deleteUser,
+      isSuccess: deleteSuccess,
+      isError: deleteisError,
+      error: deleteError,
+      isLoading: deleteLoading,
+    } = useMutation({
       mutationFn: () => {
         return axios.post(Delete_URL, { email: isEmail }, config);
       },
@@ -87,20 +100,18 @@ const AddUser = () => {
     });
 
     const handleDelete = () => {
-    
       deleteUser();
     };
 
- useEffect(()=>{
-  if(deleteSuccess){
-    toast.success("User Succesfully deleted");
-    cancelDelOption()
-
-  }
-  if(deleteisError){
-    toast.error(deleteError.response.data.message)
-  }
- }, [deleteisError, deleteSuccess, deleteError])
+    useEffect(() => {
+      if (deleteSuccess) {
+        toast.success("User Succesfully deleted");
+        cancelDelOption();
+      }
+      if (deleteisError) {
+        toast.error(deleteError.response.data.message);
+      }
+    }, [deleteisError, deleteSuccess, deleteError]);
 
     return (
       <div
@@ -133,7 +144,6 @@ const AddUser = () => {
               className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[45px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5 font-extrabold"
             >
               {deleteLoading ? <ClipLoader color="#FFFFFF" /> : "Delete"}
-              
             </button>
             <button
               onClick={cancelDelOption}
@@ -245,8 +255,14 @@ const AddUser = () => {
             <h3 className="font-bold text-[24px] leading-[28.8px] text-[#14181F]">
               Users
             </h3>
-            {
-              singleLoading ? "loading..." :
+            {singleIsError ? <DashboardError error={singleError} refetch={refetch}/>
+            :
+            <>
+          {singleLoading  ? (
+            <div className="flex justify-center mt-3">
+              <FadeLoader color="#19192E" />
+            </div>
+          ) : (
             <table className="w-[100%]  mt-[20px]  table-fixed">
               <thead className="text-left text-[16px] font-[500] leading-[19.2px] bg-[#EEEEEE] h-[70px] ">
                 <tr className=" pl-[57px] ">
@@ -264,11 +280,11 @@ const AddUser = () => {
               <tbody className="mt-[20px]">
                 {data?.data?.map((data, index) => (
                   <SingleEventUser
-                  key={data.id}
-                  singleLoading={singleLoading}
+                    key={data?.id}
+                    singleLoading={singleLoading}
                     delOpt={showDelOption}
                     idm={data?.id}
-                    id={data?.id}
+                    id={index + 1}
                     fname={data?.full_name}
                     email={data?.email}
                     imd={data?.id}
@@ -276,11 +292,14 @@ const AddUser = () => {
                 ))}
               </tbody>
             </table>
-            }
-          </section>
-        </div>
+          )}
+            </>
+          }
+        </section>
       </div>
-      {delOption && <DelOption isEmail={isEmail} />}
+    </div>
+    {delOption && <DelOption isEmail={isEmail} />}
+
     </main>
   );
 };

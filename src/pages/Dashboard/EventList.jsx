@@ -11,9 +11,9 @@ export default function EventList({ data, isLoading, search, selectedOrder, isEr
     if (selectedOrder === "all") {
       return data;
     } else if (selectedOrder === "recent") {
-      return Number(b.normal_date) - Number(a.normal_date);
+      return Number(b.date) - Number(a.date);
     } else {
-      return Number(a.normal_date) - Number(b.normal_date);
+      return Number(a.date) - Number(b.date);
     }
   }
 

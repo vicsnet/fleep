@@ -22,13 +22,13 @@ const useWalletTransaction = () => {
     }
   
   
-    const {data, isLoading, isError, isFetching, error} = useQuery(["walletTransaction"], getAcct);
+    const {data, isLoading, isError, refetch, error} = useQuery(["walletTransaction"], getAcct);
     
 
   
   
   
-    return { data, isLoading, isError, isFetching, error };
+    return { data, isLoading, isError, refetch, error };
 }
 
 export default useWalletTransaction
