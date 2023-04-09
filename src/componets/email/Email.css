@@ -1,0 +1,138 @@
+/** @format */
+
+body {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
+  margin-top: 34px;
+}
+.logo {
+  width: 121px;
+  height: 40.27px;
+}
+.icons {
+  display: flex;
+  gap: 16px;
+}
+.icons li {
+  display: flex;
+}
+li {
+  list-style: none;
+  /* display: flex; */
+}
+.title {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 140%;
+  color: #121a26;
+}
+.name {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.2px;
+  color: #384860;
+}
+.detail {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.2px;
+  color: #384860;
+}
+.thanks {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.2px;
+  color: #384860;
+}
+.fleep {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.2px;
+  color: #384860;
+  margin-top: -8px;
+}
+.emailbtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 60px;
+  gap: 10px;
+  /* width: 256px; */
+  height: 64px;
+  background: #1a1941;
+  border-radius: 8px;
+  letter-spacing: 0.1em;
+  text-transform: capitalize;
+margin-top: 44px;
+  color: #ffffff;
+}
+
+.download {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  /* identical to box height, or 24px */
+
+  letter-spacing: 0.2px;
+
+  /* Greyscale / 800 */
+
+  color: #202b3c;
+
+  margin-top: 44px;
+}
+.emailDe{
+    font-family: Lato;
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+letter-spacing: 0.20000000298023224px;
+text-align: left;
+
+/* //styleName: Body / Large / Regular; */
+font-family: SF Pro Display;
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+letter-spacing: 0.20000000298023224px;
+text-align: left;
+
+}
+.copy{
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.20000000298023224px;
+    text-align: left;
+    
+    /* //styleName: Body / Large / Regular; */
+    font-family: SF Pro Display;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.20000000298023224px;
+    text-align: left;
+    margin-top: 24px;
+}
