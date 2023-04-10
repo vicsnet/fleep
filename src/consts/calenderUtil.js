@@ -3,14 +3,25 @@ var moment = require("moment");
 export class CalenderUtil {
   inComingYear;
   inComingMonth;
+
   static #convertNumberOfDaysList(numberOfDaysList) {
+
     return numberOfDaysList.map((day) => {
       const getDayInWord = moment(
         new Date(`${this.inComingYear}-${this.inComingMonth}-${day}`)
       ).format("dddd");
+   
+const formatedDay = `${day}`.padStart(2, '0');
+const formatedMonth = `${this.inComingMonth}`.padStart(2, '0');
       return {
         num: day,
         day: getDayInWord,
+        month: this.inComingMonth,
+        year: this.inComingYear,
+
+    formatedDate: `${this.inComingYear}-${formatedMonth}-${formatedDay}`
+
+
       };
     });
   }

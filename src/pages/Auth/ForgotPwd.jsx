@@ -1,30 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "../../assets/Frame 427319276.png";
 import mainLogo from "../../assets/LOGO.png";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
-import { AiOutlineEye } from "react-icons/ai";
-
 import { Link } from "react-router-dom";
 import ResetVerification from "./ResetVerification";
+import useForgotPassword from "./hooks/useForgotPassword";
+import { toast } from "react-toastify";
+import Spinner from "../../componets/Spinner";
 
 const ForgotPwd = () => {
-  const [pwdText, setPwdText] = useState("password");
 
-  const [eye, setEye] = useState(false);
 
-  const onEye = () => {
-    setEye(!eye);
-  };
+  const [email, setEmail] = useState("");
+  const [success, setSuccess] = useState(false);
 
-  const changeText = () => {
-    setPwdText("text");
-  };
-  const changeText2 = () => {
-    setPwdText("password");
-  };
+  const {mutate, isLoading, isSuccess, isError, error} = useForgotPassword();
+
+  const handleSubmit = (e) =>{
+    e.preventDefault()
+  mutate({email:email})
+  }
+  useEffect(()=>{
+    if(isSuccess){
+setSuccess(true)
+    }
+    if(isError){
+      toast.error(error?.response?.data?.message)
+    }
+  }, [isSuccess, isError, error])
+
+
 
   return (
     <main className="h-full ">
+       {isLoading && <Spinner />}
       <section className="flex h-full">
         <div className="bg-[#19192E] h-screen w-[50%] flex items-center justify-center ">
           <img
@@ -72,6 +81,8 @@ const ForgotPwd = () => {
                 <input
                   type="email"
                   placeholder="Enter email"
+                  value={email}
+                  onChange={(e)=>setEmail(e.target.value)}
                   className="h-[40px] w-[90%] outline-none rounded-[8px] pl-[20px] text-[14px] leading-[16.8px] font-light text-[#999999]"
                   style={{
                     border: "1px solid rgba(229, 229, 229, 1)",
@@ -80,14 +91,18 @@ const ForgotPwd = () => {
                 />
               </div>
 
-              <button className="font-bold text-[16px] text-ceneter w-[90%] leading-[19.2px]  py-[17.5px] bg-[#19192E] rounded-[8px] text-[#FFFFFF] mt-[40px]">
+              <button onClick={handleSubmit} className="font-bold text-[16px] text-ceneter w-[90%] leading-[19.2px]  py-[17.5px] bg-[#19192E] rounded-[8px] text-[#FFFFFF] mt-[40px]">
                 Continue
               </button>
             </form>
           </div>
         </div>
       </section>
-      {/* <ResetVerification /> */}
+
+{
+  success &&
+      <ResetVerification mutate={mutate} email={email} />
+}
     </main>
   );
 };

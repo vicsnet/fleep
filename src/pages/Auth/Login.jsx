@@ -3,7 +3,7 @@ import Logo from "../../assets/Frame 427319276.png";
 import mainLogo from "../../assets/LOGO.png";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { AiOutlineEye } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
@@ -14,6 +14,16 @@ import { toast } from "react-toastify";
 import Spinner from "../../componets/Spinner";
 
 const Login = () => {
+  // const { email: emailParam, otp } = useParams();
+  // // console.log(id, emailParam);
+
+  // let modalVisible = false;
+
+  // if (emailParam !== undefined && otp !== undefined) {
+  //   modalVisible = true;
+  // }
+
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",

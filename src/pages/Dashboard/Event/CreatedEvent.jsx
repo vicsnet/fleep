@@ -37,7 +37,6 @@ const CreatedEvent = () => {
   } = useComponentVisible(false);
 
   const { data, isLoading, isError, error:singleError, refetch} = useFetchSingleEvent(id);
-  // console.log(data)
 
   const { data: images, isLoading:imageLoading, isError: imageIsError, error:imageError , refetch:imageRefetch } = useGetImages(id);
 

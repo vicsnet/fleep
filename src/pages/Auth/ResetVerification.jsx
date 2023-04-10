@@ -1,6 +1,6 @@
 import mail from "../../assets/undraw_Opened_re_i38e 1.png";
 
-const ResetVerification = () => {
+const ResetVerification = ({email, mutate}) => {
   return (
     <main
       className="fixed top-0 w-[100%] h-[100%]"
@@ -25,14 +25,13 @@ const ResetVerification = () => {
                 Did not get an email ?
               </p>
 
-              <a href="*">
+              <div onClick={()=>mutate({email:email})}>
                 <p
-                  className="text-[14px] leading-[16.8px] font-semibold text-[#000000
-  ]"
+                  className="text-[14px] leading-[16.8px] font-semibold text-[#000000]"
                 >
                   Resend
                 </p>
-              </a>
+              </div>
             </div>
           </div>
         </section>

@@ -2,25 +2,21 @@ import React, { useState } from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { FiCopy } from "react-icons/fi";
 import copy from "copy-to-clipboard";
-import QR from "../../../assets/Vector (17).png";
+import { toast } from "react-toastify";
+import { Skeleton } from "antd";
 
 
 
-const EventQR = ({ onClose, showQr }) => {
+
+const EventQR = ({ onClose, showQr, qrImage, qr,loading }) => {
 
 
-  const [copyText, setCopyText] = useState("");
-  const text = "123456GT";
 
-  const handleCopyText = (e) => {
-    setCopyText(e.target.value);
-  };
 
   const copyToClipboard = () => {
-    copy(copyText);
-    copy(text);
-    alert(`You have copied "${text}"`);
-    alert(`You have copied "${copyText}"`);
+    copy(qr);
+    toast.success(`You have copied "${qr}"`);
+   
   };
   if (!showQr) return null;
   return (
@@ -43,17 +39,21 @@ const EventQR = ({ onClose, showQr }) => {
               className="text-[#7C7B7B]"
             />
           </div>
+          {
           <img
-            src={QR}
+            src={qrImage}
             alt=""
             className="mt-[57.5px] w-[225px] h-[225px] mx-auto"
           />
+          ??
+          <Skeleton.Image></Skeleton.Image> 
+          }
           <div className="mt-[70px] flex items-center justify-center">
             <h2 className="text-[16px] font-bold leading-5 text-[#8B8B8B]">
               Event Code:
             </h2>
             <p className="text-[16px] leading-5 font-normal text-[#19192E] ml-[8px] ">
-              {text}
+              { qr}
             </p>
 
             <FiCopy
@@ -70,9 +70,6 @@ const EventQR = ({ onClose, showQr }) => {
               Close
             </button>
           </div>
-          {/* <input type="text" value={copyText} onChange={handleCopyText} />
-
-          <button onClick={copyToClipboard}>Copy to Clipboard</button> */}
         </div>
       </div>
     </section>

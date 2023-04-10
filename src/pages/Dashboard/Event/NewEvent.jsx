@@ -53,6 +53,8 @@ const NewEvent = () => {
   const [selected, setSelected] = useState(null);
   const [selectedCat, setSelectedCat] = useState(null);
   const [selectedMonetize, setSelectedMonetize] = useState("No")
+  const[qr, setQr]=useState("");
+  const[qrImage, setQrImage] = useState("");
   
 
   // To open the click Event
@@ -144,7 +146,7 @@ const NewEvent = () => {
 
 
   //
-  const { mutate:registerNewEvent, isLoading, isError, error,isSuccess } = useFetchCreatePost();
+  const { mutate:registerNewEvent, isLoading, isError, error,isSuccess, success:comp, data:regData } = useFetchCreatePost();
  
 
   const{mutate:EditEvent, isError:errordet, isLoading:loading, isSuccess:success} = useEditEvent(id);
@@ -160,7 +162,7 @@ const NewEvent = () => {
         eCategory === 0 ||
         venue === "" ||
         files === [] ||
-        selectedImage == [] ||
+        selectedImage === [] ||
         type === "" ||
         date === ""
       ) {
@@ -209,6 +211,9 @@ const NewEvent = () => {
     }
     
     if (isSuccess) {
+      setQr(regData?.data?.data?.code);
+      setQrImage(regData?.data?.data?.qr);
+   
       setShowEventQR(true);
       // toast.success(messageDe);
       setEventTitle("");
@@ -223,7 +228,7 @@ const NewEvent = () => {
       
     }
 
-  }, [isSuccess, isError, error]);
+  }, [isSuccess, isError, error, comp]);
 
 useEffect(()=>{
   if(id){
@@ -304,7 +309,6 @@ if(success){
                 <br />
                 <input
                   type="text"
-                  // value={eventTitle}
                     value={eventTitle}
                   
                   onChange={(e) => setEventTitle(e.target.value)}
@@ -728,7 +732,11 @@ if(success){
           </form>
         </div>
       </div>
+    
       <EventQR
+      loading={isLoading}
+      qrImage={qrImage}
+      qr={qr}
         showQr={showEventQR}
         onClose={() => {
           setShowEventQR(false);

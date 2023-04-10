@@ -220,7 +220,7 @@ const Sidebar = ({ children }) => {
           </div>
         </div>
       </section>
-      <section className="w-[100%] rounded-l-[30px]  pt-[42px] bg-[#FAFAFA] ">
+      <section className="w-[100%] rounded-l-[30px]  pt-[42px] bg-[#FAFAFA] h-[100%]">
         <Outlet />
       </section>
 

@@ -40,33 +40,8 @@ const useFetchCreatePost = (id) => {
   return useMutation(registerNewEvent, {
     onSuccess:()=>{
       queryClient.invalidateQueries("Event")
-      // queryClient.setQueryData("Event", (oldQueryData)=>{
-      //   return{
-      //     ...oldQueryData, data:[...oldQueryData.data, data.data]
-      //   }
-      // })
-
+      
     }
-    // onMutate: async (newData) => {
-    //   await queryClient.cancelQueries("Event");
-    //   const prevEventData = queryClient.getQueryData("Event");
-    //   queryClient.setQueryData("Event", (oldQueryData) => {
-    //     return {
-    //       ...oldQueryData,
-    //       data: [
-    //         ...oldQueryData.data,
-    //         { id: oldQueryData?.data?.length + 1, ...newData },
-    //       ],
-    //     };
-    //   });
-    //   return prevEventData;
-    // },
-    // onError: (_error, _data, context) => {
-    //   queryClient.setQueryData("Event", context.prevEventData)
-    // },
-    // onSettled: () => {
-    //   queryClient.invalidateQueries("Event")
-    // },
   });
 
 };

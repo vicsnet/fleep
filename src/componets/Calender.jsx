@@ -5,7 +5,7 @@ import {
   IoIosArrowDroprightCircle,
 } from "react-icons/io";
 import Calendar from "react-calendar";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { CalenderUtil } from "../consts/calenderUtil";
 import moment from "moment";
 import formatDate from "../consts/helper";
@@ -24,17 +24,25 @@ const Calender = ({setDataD}) => {
   const scroll = (scrollOffset) => {
     ref.current.scrollLeft += scrollOffset;
   };
+
+
   const onDateSelect = (e) => {
     onChange(e);
     setDateArr(CalenderUtil.updateIncomingDate(e));
     setShowCalender(false);
     setDataD(formatDate(e))
-    // refetchA
-    // onClick(refetch)
+    console.log("eve",e);
+
   
   };
 
+useEffect(()=>{
+  const elementa = document.getElementById("conten");
+elementa.scrollIntoView();
 
+setDataD(formatDate(value));
+
+},[value])
 
   return (
     <section>
@@ -44,8 +52,7 @@ const Calender = ({setDataD}) => {
           <div className="relative">
             {showCalender ? (
               <Calendar
-                onChange={
-                  onDateSelect}
+                onChange={onDateSelect}
                 value={value}
                 className="absolute bg-white"
               />
@@ -74,10 +81,19 @@ const Calender = ({setDataD}) => {
             {dateArr.map((date, i) => {
               return (
                 <div
+                
                   key={i}
                   className="border-r-[1px] border-[#6A6A6A] pr-[10px] smDesktop:pr-[4px] pl-[74px] smDesktop:pl-[59px]"
                 >
                   <h4
+                  onClick={()=>{
+                    
+                    
+                    onChange(
+                      new Date(date.year, date.month, date.num)
+                    );
+                  }}
+                  id={date.num === value.getDate() &&"conten" }
                     className={`text-[30px] ${
                       date.num === value.getDate()
                         ? "text-[#fff]"

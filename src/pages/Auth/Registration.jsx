@@ -20,7 +20,8 @@ import Spinner from "../../componets/Spinner";
 
 const Registration = () => {
   const { email: emailParam, id } = useParams();
-  // console.log(id, emailParam);
+  // console.log(emailParam, id);
+  console.log(id, emailParam);
 
   let modalVisible = false;
 
