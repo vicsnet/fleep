@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 // import { FaTh } from "react-icons/fa";
 // import { MdSpaceDashboard } from "react-icons/md";
 // import { AiOutlineCalendar, AiOutlineSetting } from "react-icons/ai";
@@ -28,19 +28,19 @@ import icon11 from "../assets/SVG/GroupNc1.svg";
 import icon12 from "../assets/SVG/GroupNc.svg";
 import wallet from "../assets/wallet.png";
 import wallet2 from "../assets/wallet2.png";
-import UsersDeleteOption from "../pages/Dashboard/User/UsersDeleteOption";
+// import UsersDeleteOption from "../pages/Dashboard/User/UsersDeleteOption";
 import WithDrawToBank from "./wallet/WithDrawToBank";
-import WithDrawSuccesfull from "./wallet/WithdrawSuccesfull";
+// import WithDrawSuccesfull from "./wallet/WithdrawSuccesfull";
 import {useDispatch, useSelector} from "react-redux"
 import { logout } from "../Redux/features/authentication/registrationSlice";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import AddBankAcct from "./wallet/AddBankAcct";
 import { toast } from "react-toastify";
 
 const Sidebar = ({ children }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const {success} = useSelector((state) =>state.user);
   const menuItem = [
     {
@@ -91,7 +91,7 @@ const Sidebar = ({ children }) => {
     },
   ];
 
-  const [openAddUser, setOpenAddUser] = useState(false);
+  // const [openAddUser, setOpenAddUser] = useState(false);
 
   const iconNotActive = "text-[#8B8B8B]";
   const iconActive =
