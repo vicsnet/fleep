@@ -24,7 +24,7 @@ const Event = () => {
   const [dataD, setDataD] = useState("");
   const { data, isLoading, refetch, isError, error } = useFetchEvent();
   const eventData = data?.data;
-  console.log(eventData);
+  
 
   const changeEventDateFormart = eventData?.map((obj) => {
     return { ...obj, date: new Date(obj.normal_date) };
@@ -36,12 +36,12 @@ const Event = () => {
     isError: calIsError,
     error: calError,
   } = useFetchEventByDate(dataD);
-  console.log("dateddddd", calendarData);
+  
 
 
 
   return (
-    <main className="max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full pb-[180px]">
+    <main className=" h-screen max-h-screen min-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full pb-[180px] ">
       <SideNav title="Event" display={"flex"} />
       {/* calendar */}
       <section>
@@ -51,8 +51,8 @@ const Event = () => {
       {/* No Event */}
 
       <div>
-        {data === 0 ? (
-          <section className="mt-[100px]">
+        {data?.data?.length === 0 ? (
+          <section className="pt-[100px]">
             <img
               src={EVeCal}
               alt=""

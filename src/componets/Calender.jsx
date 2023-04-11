@@ -38,9 +38,12 @@ const Calender = ({setDataD}) => {
 
 useEffect(()=>{
   const elementa = document.getElementById("conten");
-elementa.scrollIntoView();
+elementa.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+if(value){
 
-setDataD(formatDate(value));
+  // setDataD(formatDate(value));
+}
+
 
 },[value])
 
@@ -71,7 +74,7 @@ setDataD(formatDate(value));
           <IoIosArrowDropleftCircle
             onClick={() => scroll(-600)}
             size={24}
-            className=" text-[#FFFFFF] absolute top-[74px]"
+            className=" text-[#FFFFFF] absolute top-[74px] cursor-pointer"
           />
 
           <div
@@ -83,15 +86,15 @@ setDataD(formatDate(value));
                 <div
                 
                   key={i}
-                  className="border-r-[1px] border-[#6A6A6A] pr-[10px] smDesktop:pr-[4px] pl-[74px] smDesktop:pl-[59px]"
+                  className="border-r-[1px] border-[#6A6A6A] pr-[10px] smDesktop:pr-[4px] pl-[74px] smDesktop:pl-[59px] cursor-pointer"
                 >
                   <h4
                   onClick={()=>{
-                    
-                    
-                    onChange(
-                      new Date(date.year, date.month, date.num)
+                    setDataD(formatDate(
+                      new Date(date.year, date.month, date.num))
                     );
+
+                    onChange(new Date(date.year, date.month, date.num))
                   }}
                   id={date.num === value.getDate() &&"conten" }
                     className={`text-[30px] ${
@@ -119,7 +122,7 @@ setDataD(formatDate(value));
           <IoIosArrowDroprightCircle
             onClick={() => scroll(600)}
             size={24}
-            className=" text-[#FFFFFF] absolute bottom-[50px] right-[0px] lgDesktop:right-[0px] smDesktop:right-[0px]"
+            className=" text-[#FFFFFF] absolute bottom-[50px] right-[0px] lgDesktop:right-[0px] smDesktop:right-[0px] cursor-pointer"
           />
         </div>
       </div>

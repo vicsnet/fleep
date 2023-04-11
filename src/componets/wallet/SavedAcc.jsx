@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useEffect } from "react";
 import { FiPlus } from "react-icons/fi";
 import { BiTrash } from "react-icons/bi";
 import { openAddAcct } from "../../Redux/features/wallet/AddAcctSlice";
@@ -38,9 +38,9 @@ const SavedAcc = () => {
     // }
   })
 
-  const deleteBank = () => {
+  // const deleteBank = () => {
     // e.preventDefault()
-    console.log("clicked");
+    // console.log("clicked");
     // const Delete_URL = `${baseURL}/user/bank/delete/${id}`;
 // deleteAcct(id)
     // axios
@@ -64,7 +64,20 @@ const SavedAcc = () => {
     //   });
 
    
-  };
+  // };
+  useEffect(()=>{
+if(mutation.isSuccess){
+  toast.success("Account details succesfully deleted")
+}
+if(mutation.isError){
+  toast.error(mutation.error?.response?.data?.message)
+}
+if(mutation.isLoading){
+  toast.warning("deleting",{
+    autoClose: 1000
+  })
+}
+  },[mutation.isSuccess,mutation.isError, mutation.isLoading])
 
   return (
     <div className="w-[90%] mx-auto">
@@ -92,25 +105,29 @@ const SavedAcc = () => {
         </div>
       ) : (
         <div className="">
-          {data?.data?.map((data) => (
+          {data?.data?.map((data, index) => (
             <div
-              key={data?.id}
+              key={data.id}
               className="flex justify-between mt-[40px] items-center border-b-[1px] pb-[30px]"
             >
               <div className="">
                 <h2 className="font-bold text-[16px] leading-5 text-[#000000]">
-                  {data?.bank_name}
+                  {data.bank_name}
                 </h2>
                 <p className="text-[16px] font-[400] leading-5 text-[#8B8B8B] mt-[8px]">
                   {data?.account_number}
                 </p>
+              
               </div>
               <div className="">
+               
+
                 <BiTrash
                   size={20}
                   className="text-[#8B8B8B]"
                   onClick={()=>mutation.mutate(data?.id)}
                 />
+                
               </div>
             </div>
           ))}

@@ -1,19 +1,21 @@
 import React from "react";
 import SideNav from "../../componets/SideNav";
-import { BiSearch } from "react-icons/bi";
-import { BsFilter } from "react-icons/bs";
+// import { BiSearch } from "react-icons/bi";
+// import { BsFilter } from "react-icons/bs";
 
-import { MdOutlinePermMedia } from "react-icons/md";
+// import { MdOutlinePermMedia } from "react-icons/md";
 
-import { IoMdImages } from "react-icons/io";
+// import { IoMdImages } from "react-icons/io";
 
-import { IoImagesOutline } from "react-icons/io5";
+// import { IoImagesOutline } from "react-icons/io5";
 import Vector1 from "../../assets/SVG/Group2.svg";
 import Vector2 from "../../assets/SVG/Group3.svg";
 import Vector3 from "../../assets/SVG/Group4.svg";
 import Transaction from "./History/Transaction";
 import ProfileUseFetch from "../profile/hooks/profileUseFetch";
 import { Link } from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
+import DashboardError from "./Error/DashboardError";
 
 const History = () => {
   const {data, isError, isLoading, error, refetch} = ProfileUseFetch();
@@ -25,21 +27,30 @@ const History = () => {
       {/*  */}
 
       <div className=" mt-[50px] px-[42px] mb-[70px]">
-        {/* total photos */}
+      { isError ?
+            <div className="mt-[100px] h-[200px]">
+              <DashboardError error={error} refetch={refetch} />
+            </div>
+            :
+        // {/* total photos */}
         <div className="flex  gap-[30px] smDesktop:flex-wrap smDesktop:justify-center">
           <div className="bg-[#19192E] flex py-[37.24px] pl-[25.8px] gap-[23px] rounded-[10px] w-[30%] smDesktop:w-[40%] smDesk:w-[45%] tabletAir:w-[60%]">
             <div className="bg-[#FFFFFF] rounded-[13px] px-[12px] py-[14px]">
-              {/* <MdOutlinePermMedia
-                size={24}
-                className="text-[#1A1941] bg-[#FFFFFF]"
-              /> */}
+             
               <img src={Vector1} alt="" className="w-[24px] h-[24px] mx-auto" />
             </div>
 
             <div className="text-[white]">
+            {isLoading ? (
+                      <p className="">
+                        <Skeleton />
+                      </p>
+                    ) : (
               <h3 className="text-[30px] font-bold leading-[36px] tracking-[2.14px] text-white ">
                 {data?.data?.storage_space}
               </h3>
+                    )
+                    }
               <p className="text-[#EEEEEE] opacity-[70%] text-[14px] font-[500] leading-[16.8px] pt-[4px] ">
                 Total Photo spaces bought
               </p>
@@ -53,13 +64,19 @@ const History = () => {
             style={{ background: "rgba(255, 255, 255, 1)" }}
           >
             <div className="bg-[#19192E] rounded-[13px] px-[12px] py-[14px]">
-              {/* <IoMdImages size={24} className=" text-[#FFFFFF]" /> */}
+            
               <img src={Vector2} alt="" className="w-[24px] h-[24px] mx-auto" />
             </div>
             <div className="">
+            {isLoading ? (
+                      <p className="">
+                        <Skeleton />
+                      </p>
+                    ) : (
               <h3 className="text-[30px] font-bold leading-[36px] tracking-[2.14px] text-[#191D23] ">
-                {data.data.eventsimagescount}
+                {data?.data?.eventsimagescount}
               </h3>
+              )}
               <p className="text-[#8E99AB] opacity-[70%] text-[14px] font-[500] leading-[16.8px] pt-[4px] ">
                 Photo spaces used
               </p>
@@ -72,13 +89,19 @@ const History = () => {
             style={{ background: "rgba(255, 255, 255, 1)" }}
           >
             <div className="bg-[#19192E] rounded-[13px] px-[12px] py-[14px]">
-              {/* <IoImagesOutline size={24} className=" text-[#FFFFFF]" /> */}
+            
               <img src={Vector3} alt="" className="w-[24px] h-[24px] mx-auto" />
             </div>
             <div className="">
+            {isLoading ? (
+                      <p className="">
+                        <Skeleton />
+                      </p>
+                    ) : (
               <h3 className="text-[30px] font-bold leading-[36px] tracking-[2.14px] text-[#191D23] ">
                 {data?.data?.free_space}
               </h3>
+                    )}
               <p className="text-[#8E99AB] opacity-[70%] text-[14px] font-[500] leading-[16.8px] pt-[4px] ">
                 Photo spaces left
               </p>
@@ -88,6 +111,7 @@ const History = () => {
             </Link>
           </div>
         </div>
+}
       </div>
 
       {/* transaction */}

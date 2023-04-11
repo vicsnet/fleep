@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { FaTh } from "react-icons/fa";
-import { MdSpaceDashboard } from "react-icons/md";
-import { AiOutlineCalendar, AiOutlineSetting } from "react-icons/ai";
-import { FiUsers, FiArrowRightCircle, FiLogOut } from "react-icons/fi";
-import { BiTimeFive } from "react-icons/bi";
-import { IoIosNotificationsOutline } from "react-icons/io";
+// import { FaTh } from "react-icons/fa";
+// import { MdSpaceDashboard } from "react-icons/md";
+// import { AiOutlineCalendar, AiOutlineSetting } from "react-icons/ai";
+import {  FiArrowRightCircle, FiLogOut } from "react-icons/fi";
+// import { BiTimeFive } from "react-icons/bi";
+// import { IoIosNotificationsOutline } from "react-icons/io";
 
 import { NavLink, Link, Outlet, Navigate } from "react-router-dom";
 import Logo from "../assets/LOGO (2).png";
@@ -36,6 +36,7 @@ import { logout } from "../Redux/features/authentication/registrationSlice";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AddBankAcct from "./wallet/AddBankAcct";
+import { toast } from "react-toastify";
 
 const Sidebar = ({ children }) => {
   const dispatch = useDispatch();
@@ -98,14 +99,24 @@ const Sidebar = ({ children }) => {
   const nameNotActive = "text-[14px] leading-[18px] text-[#8B8B8B] font-[500]";
   const nameActive = "text-[14px] leading-[18px] text-[#FFFFFF] font-bold";
 
+ 
+ 
+  
   useEffect(()=>{
+    if(window.screen.width < 767){
+      document.location.replace("/")
+      toast.info("Download the app")
+    }
+
     if(success){
       Navigate("/login")
     }
+    
+  
   })
   return (
-    <main className="flex max-h-screen overflow-y-hidden  bg-[#19192E] ">
-      <section className="bg-[#19192E] w-[265px] max-h-screen overflow-y-scroll whitespace-nowrap hide scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
+    <main className="flex max-h-full  min-h-screen h-screen  overflow-y-hidden  bg-[#19192E] extraTab:hidden mobile:hidden w-[100%]">
+      <section className="bg-[#19192E] w-[265px] max-h-[100%] min-h-screen h-screen overflow-y-scroll whitespace-nowrap hide scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
         <div className="w-[90%] mx-auto">
           <div className="border-b-[1px] border-[#464646]">
             <Link to="/dashboard">
@@ -220,7 +231,7 @@ const Sidebar = ({ children }) => {
           </div>
         </div>
       </section>
-      <section className="w-[100%] rounded-l-[30px]  pt-[42px] bg-[#FAFAFA] h-[100%]">
+      <section className="w-[100%] rounded-l-[30px]  pt-[42px] bg-[#FAFAFA] max-h-screen h-screen min-h-screen ">
         <Outlet />
       </section>
 

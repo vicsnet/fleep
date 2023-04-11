@@ -55,13 +55,13 @@ const User = ({ id, fname, tphoto, eventAttended,im, email }) => {
             {eventAttended}
           </td>
 
-          <td
+          {/* <td
             onClick={showDelButton}
             className=" text-[24px] leading-[16.8px] font-[700] mt-[11px] py-auto text-[#7C7B7B] cursor-pointer"
           >
             ...
         {openDel && <UsersDelete />}
-          </td>
+          </td> */}
         </tr>
 
       </>

@@ -5,7 +5,7 @@ import PricingPlan from "./pages/PricingPlan";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import UseCases from "./pages/UseCases";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import Registration from "./pages/Auth/Registration";
 import Login from "./pages/Auth/Login";
 import ForgotPwd from "./pages/Auth/ForgotPwd";
@@ -31,6 +31,8 @@ import Upgrade from "./pages/Upgrade";
 
 function App() {
   const client = new QueryClient();
+
+  
   return (
     
     

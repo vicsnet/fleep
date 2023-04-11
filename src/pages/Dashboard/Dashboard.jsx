@@ -1,13 +1,12 @@
 /** @format */
 
-import React from "react";
+import React, { useEffect } from "react";
 import SideNav from "../../componets/SideNav";
 
 import EventMembers from "../../componets/EventMembers";
-import CreateEvent from "../../componets/CreateEvent";
+// import CreateEvent from "../../componets/CreateEvent";
 import vector from "../../assets/Group 201.png";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
-// import NewEvent from "./Event/NewEvent";
 import { useDispatch, useSelector } from "react-redux";
 import { openEvent } from "../../Redux/features/createEventSlice";
 import Vector from "../../assets/SVG/Vector.svg";
@@ -18,12 +17,15 @@ import ProfileUseFetch from "../profile/hooks/profileUseFetch";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import DashboardError from "./Error/DashboardError";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 const Dashboard = () => {
-  const { data, isLoading, isFetching, error, refetch } = ProfileUseFetch();
+  const { data, isLoading,  error, refetch } = ProfileUseFetch();
 
   const dispatch = useDispatch();
+  
+  
+ 
 
   return (
     <main className="max-h-screen h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full pb-[180px]">

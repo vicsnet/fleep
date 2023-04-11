@@ -97,21 +97,21 @@ const Users = () => {
                 <table className="w-[100%]  mt-[21px] table-fixed  bg-white rounded-t-[20px]">
                   <thead className="text-left text-[16px] font-[500] leading-[19.2px] bg-[#EEEEEE] rounded-t-[20px] h-[70px]">
                     <tr className=" pl-[57px] rounded-t-[20px]">
-                      <th className="pt-[12px] pb-[12px] w-[10%] pl-[45px] smDesk:pl-[30px] tabletAir:pl-[20px] rounded-tl-[14px]">
+                      <th className="pt-[12px] pb-[12px] w-[10%] pl-[45px] smDesk:pl-[30px] tabletAir:pl-[20px] rounded-tl-[14px] ">
                         S/N
                       </th>
-                      <th className="pt-[12px] pb-[12px] w-[35%]">
+                      <th className="pt-[12px] pb-[12px] w-[45%]">
                         User's Name
                       </th>
-                      <th className="pt-[12px] pb-[12px] w-[15%]">
+                      <th className="pt-[12px] pb-[12px] w-[25%]">
                         Total Photos
                       </th>
-                      <th className="pt-[12px] pb-[12px]">
+                      <th className="pt-[12px] pb-[12px] rounded-tr-[14px]">
                         Total Events Attended
                       </th>
-                      <th className="pt-[12px] pb-[12px] pr-[27px] w-[15%] rounded-tr-[14px]">
+                      {/* <th className="pt-[12px] pb-[12px] pr-[27px] w-[15%] rounded-tr-[14px]">
                         Action
-                      </th>
+                      </th> */}
                     </tr>
                   </thead>
 

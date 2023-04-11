@@ -17,6 +17,7 @@ module.exports = {
         smDesk: { max: "917px" }, // small desktop
         tabletAir: { max: "820px" }, // small desktop
         tablet: { max: "768px" },
+        extraTab:{max:"767px"},
         mobile: { max: "480px" },
         smMobile: { max: "320px" },
       },
