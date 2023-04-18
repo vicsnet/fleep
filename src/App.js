@@ -53,7 +53,10 @@ function App() {
         {/* <Route path="user/confirm_otp/:email/:id" element={<Registration />} /> */}
         <Route path="login" element={<Login />} />
         <Route path="forgotpassword" element={<ForgotPwd />} />
+        <Route path="forgotpassword/:userId" element={<ForgotPwd />} />
         <Route path="resetpassword" element={<ResetPwd />} />
+        <Route path="resetpassword/:email&success" element={<ResetPwd />} />
+
         <Route path="upgrade" element={<Upgrade />} />
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/" element={<Sidebar />}>

@@ -12,6 +12,7 @@ import {
 } from "../../Redux/features/authentication/registrationSlice";
 import { toast } from "react-toastify";
 import Spinner from "../../componets/Spinner";
+import Loading from "../../componets/Loading";
 
 const Login = () => {
   // const { email: emailParam, otp } = useParams();
@@ -79,7 +80,10 @@ const Login = () => {
 
   return (
     <main className="">
-      {loading && <Spinner />}
+      {loading && <div className="mx-auto absolute flex justify-center left-[40%] top-[30%] smDesk:left-[30%] mobile:left-[8%]">
+
+<Loading />
+ </div>}
       <section className="flex max-h-screen h-screen">
         <div className="bg-[#19192E] max-h-screen w-[50%] flex items-center justify-center ">
           <img

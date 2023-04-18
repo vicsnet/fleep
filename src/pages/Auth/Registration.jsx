@@ -4,7 +4,7 @@ import mainLogo from "../../assets/LOGO.png";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { AiOutlineEye } from "react-icons/ai";
 
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -16,12 +16,15 @@ import {
 
 import SuccessModal from "./SuccessModal";
 
-import Spinner from "../../componets/Spinner";
+import { baseURL } from "../../Redux/Api/api";
+import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
+import Loading from "../../componets/Loading";
 
 const Registration = () => {
   const { email: emailParam, id } = useParams();
   // console.log(emailParam, id);
-  console.log(id, emailParam);
+  // console.log(id, emailParam);
 
   let modalVisible = false;
 
@@ -50,6 +53,19 @@ const Registration = () => {
 
   const [eye, setEye] = useState(false);
   const [eyeVerify, setEyeVerify] = useState(false);
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+  
+    },
+  };
+
+  const {mutate: resend,  isSuccess: resendSuccess, isError:resendIsError, error: resendError, isLoading:resendLoading} = useMutation({
+    mutationFn:(data)=>{
+      return axios.post(`${baseURL}/user/resend_otp/register`,data, config)
+    }
+  })
 
   const onEye = () => {
     setEye(!eye);
@@ -107,13 +123,22 @@ const Registration = () => {
     if (modalVisible) {
       navigate("/login");
     }
+    if(resendSuccess){
+      toast.success("Verification Link has been resent")
+    }
+    if(resendIsError){
+      toast.error(resendError?.response?.data?.message)
+    }
 
     dispatch(reset());
-  }, [user, error, success, message, dispatch, status]);
+  }, [user, error, success, message, dispatch, status, modalVisible, navigate, resendIsError,resendSuccess, resendError]);
 
   return (
     <main className="">
-      {loading && <Spinner />}
+      {loading  &&  <div className="mx-auto absolute flex justify-center left-[40%] top-[30%] smDesk:left-[30%] mobile:left-[8%]">
+
+<Loading />
+ </div>}
       <section className="flex ">
         <div className="bg-[#19192E] max-h-screen w-[50%] flex items-center justify-center ">
           <img
@@ -298,7 +323,7 @@ const Registration = () => {
           </div>
         </div>
       </section>
-      {status === true && <SuccessModal />}
+      {status === true && <SuccessModal mutate={resend} email={person.email} loading={resendLoading} />}
     </main>
   );
 };

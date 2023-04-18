@@ -1,12 +1,18 @@
 import mail from "../../assets/undraw_Opened_re_i38e 1.png";
+import Loading from "../../componets/Loading";
 
-const SuccessModal = () => {
+
+const SuccessModal = ({mutate, email, loading}) => {
   return (
     <main
       className="fixed top-0 w-[100%] h-[100%]"
       style={{ background: " rgba(0, 0, 0, 0.25)" }}
     >
-      <div className="fixed top-[20%] left-[25%] ">
+      <div className="fixed top-[20%] left-[25%] smDesk:left-[12%] tabletAir:left-[10%]">
+       {loading && <div className="mx-auto absolute flex justify-center left-[155px] top-14">
+
+       <Loading />
+        </div>}
         <section className=" ">
           <div
             className="px-[80px] pt-[52px] pb-[100px] rounded-[8px]"
@@ -25,14 +31,14 @@ const SuccessModal = () => {
                 Did not get an email ?
               </p>
 
-              <a href="*">
+              <div className="cursor-pointer" onClick={() =>mutate({email:email})}>
                 <p
                   className="text-[14px] leading-[16.8px] font-semibold text-[#000000
   ]"
                 >
                   Resend
                 </p>
-              </a>
+              </div>
             </div>
           </div>
         </section>

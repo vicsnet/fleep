@@ -2,19 +2,43 @@ import React, { useEffect, useState } from "react";
 import Logo from "../../assets/Frame 427319276.png";
 import mainLogo from "../../assets/LOGO.png";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import ResetVerification from "./ResetVerification";
 import useForgotPassword from "./hooks/useForgotPassword";
 import { toast } from "react-toastify";
-import Spinner from "../../componets/Spinner";
+import { baseURL } from "../../Redux/Api/api";
+import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
+import Loading from "../../componets/Loading";
 
 const ForgotPwd = () => {
   const back = useNavigate()
 
+  const {search} = useLocation();
+  const params = new URLSearchParams(search)
+  const Semail = params.get('email');
+
+  const error = params.get("error")
+
+
   const [email, setEmail] = useState("");
   const [success, setSuccess] = useState(false);
 
-  const {mutate, isLoading, isSuccess, isError, error} = useForgotPassword();
+  const {mutate, isLoading, isSuccess, isError, error:fgError} = useForgotPassword();
+  
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+  
+    },
+  };
+
+  const {mutate: resend,  isSuccess: resendSuccess, isError:resendIsError, error: resendError, isLoading:resendLoading} = useMutation({
+    mutationFn:(data)=>{
+      return axios.post(`${baseURL}/user/resend_otp/forget_pw`,data, config)
+    }
+  })
+
 
   const handleSubmit = (e) =>{
     e.preventDefault()
@@ -25,15 +49,27 @@ const ForgotPwd = () => {
 setSuccess(true)
     }
     if(isError){
-      toast.error(error?.response?.data?.message)
+      toast.error(fgError?.response?.data?.message)
     }
-  }, [isSuccess, isError, error])
+    if(error){
+      setSuccess(true)
+    }
+    if(resendSuccess){
+      toast.success("Verification Link has been resent")
+    }
+    if(resendIsError){
+      toast.error(resendError?.response?.data?.message)
+    }
+  }, [isSuccess, isError, fgError, resendIsError, resendError, error, resendSuccess])
 
 
 
   return (
     <main className="h-full ">
-       {isLoading && <Spinner />}
+       {isLoading && <div className="mx-auto absolute flex justify-center left-[40%] top-[30%] smDesk:left-[30%] mobile:left-[8%]">
+
+<Loading />
+ </div>}
       <section className="flex h-full w-[100%] overflow-y-hidden">
         <div className="bg-[#19192E] h-screen w-[50%] flex items-center justify-center ">
           <img
@@ -101,7 +137,7 @@ setSuccess(true)
 
 {
   success &&
-      <ResetVerification mutate={mutate} email={email} />
+      <ResetVerification mutate={resend} email={Semail} loading={resendLoading} />
 }
     </main>
   );
