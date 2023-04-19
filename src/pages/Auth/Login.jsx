@@ -3,7 +3,7 @@ import Logo from "../../assets/Frame 427319276.png";
 import mainLogo from "../../assets/LOGO.png";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { AiOutlineEye } from "react-icons/ai";
-import { Link, useParams } from "react-router-dom";
+import { Link, } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
@@ -11,7 +11,6 @@ import {
   reset,
 } from "../../Redux/features/authentication/registrationSlice";
 import { toast } from "react-toastify";
-import Spinner from "../../componets/Spinner";
 import Loading from "../../componets/Loading";
 
 const Login = () => {
@@ -76,7 +75,7 @@ const Login = () => {
     }
 
     dispatch(reset());
-  }, [user, error, success, message, dispatch, status]);
+  }, [user, error, success, message, dispatch, status, navigate]);
 
   return (
     <main className="">

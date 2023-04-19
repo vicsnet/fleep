@@ -8,7 +8,6 @@ import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useResetPassword from "./hooks/uesResetPassword";
 import { toast } from "react-toastify";
-import { ClipLoader } from "react-spinners";
 import Loading from "../../componets/Loading";
 
 const ResetPwd = () => {

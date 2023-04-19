@@ -1,6 +1,5 @@
 import React from 'react'
 import useFetchUpgrades from './hooks/useFetchUpgrades'
-import usePurchasePlan from './hooks/usePurchasePlan';
 import SingleDetail from './SingleDetail';
 import { FadeLoader } from 'react-spinners';
 import DashboardError from '../../pages/Dashboard/Error/DashboardError';

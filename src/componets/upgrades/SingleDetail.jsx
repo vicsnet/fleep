@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 import usePurchasePlan from "./hooks/usePurchasePlan";
 
 const SingleDetail = ({ id, title, description, amount, space }) => {
-  const { data: purchaseData, refetch, isSuccess } = usePurchasePlan(id);
+  const { data: purchaseData, refetch, 
+    // isSuccess
+   } = usePurchasePlan(id);
 
 
 
