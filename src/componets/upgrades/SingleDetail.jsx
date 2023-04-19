@@ -18,7 +18,7 @@ const SingleDetail = ({ id, title, description, amount, space }) => {
   };
 
   return (
-    <div className="border-r-[1px] border-[#C6C6C6] pt-[47px] pb-[53px] w-[30%]">
+    <div className="border-r-[1px] border-[#C6C6C6] pt-[47px] pb-[53px] w-[25%] smDesktop:w-[46.9%] smDesk:w-[45.9%] mobile:w-[100%] mobile:border-l-[1px]">
       <div className="pb-[30.52px] w-[90%] mx-auto border-b-[1px] border-[#EAEAEA]">
         <p className="text-[20px] leading-[24px] font-normal text-[#8B8B8B] smDesk:text-[18px]">
           {title}
