@@ -5,7 +5,7 @@ import PricingPlan from "./pages/PricingPlan";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import UseCases from "./pages/UseCases";
-import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Registration from "./pages/Auth/Registration";
 import Login from "./pages/Auth/Login";
 import ForgotPwd from "./pages/Auth/ForgotPwd";
@@ -19,8 +19,8 @@ import Settings from "./pages/Dashboard/Settings";
 import Users from "./pages/Dashboard/Users";
 import Profile from "./pages/Dashboard/Profile";
 import CreatedEvent from "./pages/Dashboard/Event/CreatedEvent";
-import ModalProvider from "./store/ModalProvider";
-import Images from "./componets/Images";
+// import ModalProvider from "./store/ModalProvider";
+// import Images from "./componets/Images";
 import WalletPage from "./pages/wallet/WalletPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -55,7 +55,7 @@ function App() {
         <Route path="forgotpassword" element={<ForgotPwd />} />
         <Route path="forgotpassword/:userId" element={<ForgotPwd />} />
         <Route path="resetpassword" element={<ResetPwd />} />
-        <Route path="resetpassword/:email&success" element={<ResetPwd />} />
+        {/* <Route path="resetpassword/:email&success" element={<ResetPwd />} /> */}
 
         <Route path="upgrade" element={<Upgrade />} />
         <Route path="/" element={<PrivateRoute />}>
