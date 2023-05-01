@@ -155,6 +155,7 @@ const NewEvent = () => {
   const{mutate:EditEvent, isError:errordet, isLoading:loading, isSuccess:success} = useEditEvent(id);
 
   const {data} = useFetchSingleEvent(id);
+
  
   // To submit the form
   const formSubmit = (e) => {
@@ -211,7 +212,7 @@ const NewEvent = () => {
   
   useEffect(() => {
     if (isError) {
-        toast.error(error.response.data.message);
+        toast.error(error?.response?.data.message);
       
     }
     
@@ -227,9 +228,13 @@ const NewEvent = () => {
       setDate("");
       setVenue("");
       setShowMonetize(0);
+      setSelectedMonetize("No")
       setType(0);
+      setSelected("select");
       setSelectedImage([]);
       setFiles([]);
+      setSelectedCat("select");
+      setECategory(null);
       
     }
 
@@ -243,6 +248,10 @@ useEffect(()=>{
     setPrice(data?.data?.amount);
     setVenue(data?.data?.venue);
     setType(data?.data?.type_id );
+    setSelectedCat(data?.data?.category);
+    setSelected(data?.data?.type)
+    
+    // setECategory(data?.data?.id);
   }
 if(errordet){
   toast.error(error.response.data.message);
@@ -564,7 +573,7 @@ if(success){
                     setShowMonetize(1)
                     setSelectedMonetize("Yes")
                     // setSelectedCat();
-                    setECategory();
+                    // setECategory();
                     setOpenCategory(false);
                   }}
                 >
@@ -685,9 +694,9 @@ if(success){
                   {selectedImage.length === 0 ? (
                     <div
                       className=" mt-[15px] h-[280px] border-[1px] border-dashed border-[#E0E0E0] rounded-lg w-[100%] mx-auto pt-[105px] pb-[105px] "
-                      onDragOver={id ? null : handleDragOver}
-                      onDrop={id ? null : handleDrop}
-                      onClick={id ? null : uploadImage}
+                      onDragOver={ handleDragOver}
+                      onDrop={handleDrop}
+                      onClick={ uploadImage}
                     >
                       <div className="cursor-pointer">
                         <FiUpload
