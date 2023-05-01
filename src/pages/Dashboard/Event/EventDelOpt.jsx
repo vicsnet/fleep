@@ -1,15 +1,17 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React, { useEffect } from 'react'
 import { IoIosCloseCircleOutline } from 'react-icons/io';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { baseURL } from '../../../Redux/Api/api';
 import axios from 'axios';
 import { ClipLoader } from 'react-spinners';
 import { toast } from 'react-toastify';
-import { Navigate, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
+import { closeEvent } from '../../../Redux/features/createEventSlice';
 
 const EventDelOpt = (props) => {
   const { token } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const config = {
     headers: {
@@ -30,12 +32,15 @@ const EventDelOpt = (props) => {
 if(isSuccess){
   toast.success("Event Deleted");
   navigate("/event");
-}
+  dispatch(closeEvent());
+  props.closeDelete()
+  
+  }
 if(isError){
   toast.error("Event failed delete try again")
-  navigate("/event");
+  
 }
-  },[isSuccess, isError, navigate])
+  },[isSuccess, isError, navigate, dispatch, props])
   // api/user/event/delete/152
   return (
     <div>

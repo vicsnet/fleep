@@ -1,12 +1,12 @@
 /** @format */
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import SideNav from "../../../componets/SideNav";
 import { CiEdit } from "react-icons/ci";
 import { AiOutlinePlus } from "react-icons/ai";
 import { IoLayers } from "react-icons/io5";
 import { BiChevronDown, BiUpload } from "react-icons/bi";
-import { FiCopy, FiArrowRightCircle } from "react-icons/fi";
+import { FiCopy } from "react-icons/fi";
 import copy from "copy-to-clipboard";
 import union from "../../../assets/SVG/Union (1).svg";
 import union2 from "../../../assets/SVG/Union (2).svg";
@@ -37,6 +37,7 @@ const CreatedEvent = () => {
   } = useComponentVisible(false);
 
   const { data, isLoading, isError, error:singleError, refetch} = useFetchSingleEvent(id);
+  
 
   const { data: images, isLoading:imageLoading, isError: imageIsError, error:imageError , refetch:imageRefetch } = useGetImages(id);
 
@@ -78,7 +79,7 @@ const CreatedEvent = () => {
     if (DeleteSuccess) {
       toast.success("Event image(s) deleted successfully");
     }
-  }, [DeleteError, DeleteSuccess]);
+  }, [DeleteError, DeleteSuccess, error]);
 
   return (
     <main className="w-[100%] h-screen max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
@@ -117,7 +118,7 @@ const CreatedEvent = () => {
                     </h3>
 
                     <p className="text-[#8A8A8A] text-[16px] font-normal leading-5 mt-2 smDesk:text-[14px]">
-                      {data?.data?.date}
+                      {data?.data?.human_date}
                     </p>
                   </div>
                 )}
@@ -238,7 +239,7 @@ const CreatedEvent = () => {
 
             {/* if there is photos */}
 
-            <div className={`${images?.data?.length == 0 && "hidden"} flex`}>
+            <div className={`${images?.data?.length === 0 && "hidden"} flex`}>
               <div ref={ref} className="flex flex-col relative">
                 <div
                   onClick={() => {
@@ -282,7 +283,7 @@ const CreatedEvent = () => {
           {/*  */}
         </section>
 
-        {images?.data?.length == 0 ? (
+        {images?.data?.length === 0 ? (
           // no upload yet
 
           <section className="mt-[100px] pb-[200px]">
