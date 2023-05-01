@@ -2,10 +2,10 @@ import { useState, useEffect, useRef } from "react";
 
 export default function useComponentMonetize(initialIsVisible){
     const [openMonetize, setOpenMonetize] = useState(initialIsVisible);
-    const setRefme = useRef(null);
+    const setrefme = useRef(null);
   
     const handleClickOutside = (event)=>{
-  if(setRefme.current && !setRefme.current.contains(event.target)){
+  if(setrefme.current && !setrefme.current.contains(event.target)){
     setOpenMonetize(false)
   }
     };
@@ -16,5 +16,5 @@ export default function useComponentMonetize(initialIsVisible){
         document.removeEventListener("click", handleClickOutside, true);
       };
     }, []);
-    return {setRefme, openMonetize, setOpenMonetize};
+    return {setrefme, openMonetize, setOpenMonetize};
   }

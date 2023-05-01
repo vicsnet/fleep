@@ -26,6 +26,7 @@ import useComponentMonetize from "../../../hooks/useComponentMonetize";
 import { useParams } from "react-router-dom";
 import useEditEvent from "./eventhooks/useEditEvent";
 import useFetchSingleEvent from "./eventhooks/useFetchSingleEvent";
+import EventDelOpt from "./EventDelOpt";
 // import { useQueryClient } from "@tanstack/react-query";
 // import { setQueryData } from "@tanstack/react-query"
 
@@ -55,6 +56,8 @@ const NewEvent = () => {
   const [selectedMonetize, setSelectedMonetize] = useState("No")
   const[qr, setQr]=useState("");
   const[qrImage, setQrImage] = useState("");
+  const [closeDel, setCloseDel] = useState(false);
+  
   
 
   // To open the click Event
@@ -63,7 +66,7 @@ const NewEvent = () => {
 
   const {setref, componentCategory:openCategory, setComponentCategory:setOpenCategory} = useComponentCat(false);
 
-  const {setRefme, openMonetize:openMonetize,  setOpenMonetize:setOpenMonetize} = useComponentMonetize(false);
+  const {setrefme, openMonetize,  setOpenMonetize} = useComponentMonetize(false);
 
  
   // To show the hover
@@ -107,13 +110,13 @@ const NewEvent = () => {
   ));
 
   // fetching Event Types
-  const {typesData, typesError} = useFetchListTypes();
+  const {typesData} = useFetchListTypes();
 
 
 
   // Event Category
 
-    const {categoryData, categoryError} = useFetchListCategorieType();
+    const {categoryData} = useFetchListCategorieType();
   
 
   const fileInputRef = useRef(null);
@@ -152,7 +155,7 @@ const NewEvent = () => {
   const{mutate:EditEvent, isError:errordet, isLoading:loading, isSuccess:success} = useEditEvent(id);
 
   const {data} = useFetchSingleEvent(id);
-
+ 
   // To submit the form
   const formSubmit = (e) => {
     e.preventDefault();
@@ -196,6 +199,8 @@ const NewEvent = () => {
         venue: venue,
         category_id: eCategory,
         type_id: type,
+        cover_photo: selectedImage[0],
+        watermark: files[0],
       
       };
       EditEvent(person);
@@ -228,7 +233,7 @@ const NewEvent = () => {
       
     }
 
-  }, [isSuccess, isError, error, comp]);
+  }, [isSuccess, isError, error, comp, regData]);
 
 useEffect(()=>{
   if(id){
@@ -393,7 +398,13 @@ if(success){
                   className="flex items-center justify-between w-[100%] border-[1px] border-[#E5E5E5] pl-[20px] h-[50px] rounded-lg bg-[#F9F9F9] "
                 >
                   <p className="text-[14px] leading-[20.58px] ">
+                    {/* {id ?data?.data?.type 
+                    : */}
+                    <>
                     {selected == null ? " select" : selected}
+                    </>
+                    {/* } */}
+                    
                   </p>
                   <BiChevronDown className="text-[grey] text-[20px]" />
                 </div>
@@ -508,7 +519,7 @@ if(success){
                 {/* <br /> */}
                 <div 
                 onClick={() => setOpenMonetize(!openMonetize)}
-              ref={setRefme}
+              ref={setrefme}
               >
                
                 <div
@@ -516,7 +527,7 @@ if(success){
                   className="flex items-center justify-between w-[100%] border-[1px] border-[#E5E5E5] pl-[20px] h-[50px] rounded-lg bg-[#F9F9F9] cursor-pointer"
                 >
                   <p className="text-[14px] leading-[20.58px] ">
-                    {selectedMonetize == "No" ? "No" : selectedMonetize}
+                    {selectedMonetize === "No" ? "No" : selectedMonetize}
                   </p>
                   <BiChevronDown className="text-[grey] text-[20px]" />
                 </div>
@@ -552,7 +563,7 @@ if(success){
                   onClick={() => {
                     setShowMonetize(1)
                     setSelectedMonetize("Yes")
-                    setSelectedCat();
+                    // setSelectedCat();
                     setECategory();
                     setOpenCategory(false);
                   }}
@@ -571,7 +582,7 @@ if(success){
                 </div>
               </div>
               </div>
-              {showMonetize == 1 && (
+              {showMonetize === 1 && (
                 <div className="w-[49%] smDesktop:w-[47.7%] tablet:w-[47%]">
                   <label
                     htmlFor=""
@@ -614,7 +625,7 @@ if(success){
             {/*  input file*/}
             <div 
             // ref={ref}
-             className={` ${id && "hidden"} flex gap-[24px] mt-6`}>
+             className={`  flex gap-[24px] mt-6`}>
               <div className="w-[50%]">
                 <label
                   htmlFor=""
@@ -627,10 +638,9 @@ if(success){
                 ref={ref}
                   className={`mt-[15px] h-[280px] rounded-lg border-dashed border-[1px] flex justify-center items-center`}
                   {...getRootProps()}
-                >{
-                  id ? null :
+                >
                   <input {...getInputProps()}  />
-                }
+                
                   {imagesf.length === 0 ? (
                     
                     <div className="cursor-pointer">
@@ -691,15 +701,15 @@ if(success){
                     </div>
                   ) : (
                     <div 
-                    onDragOver={id ? null : handleDragOver}
-                    onDrop={id ? null : handleDrop}
-                    onClick={id ? null : uploadImage}
+                    onDragOver={ handleDragOver}
+                    onDrop={ handleDrop}
+                    onClick={ uploadImage}
                     // ref={ref}
                      className="w-[100%] h-[280px] mx-auto rounded-lg border-[1px] border-dashed border-[#E0E0E0] py-[12px]">
                       <img
-                        src={!id ? URL.createObjectURL(
+                        src={URL.createObjectURL(
                           selectedImage[selectedImage.length - 1]
-                        ) : data.data.cover_photo}
+                        ) }
                         alt=""
                         className="w-[250px] h-[250px] cover mx-auto"
                       />
@@ -712,13 +722,24 @@ if(success){
 
             {
               id ?
+              <div className="gap-4 flex">
+
+              <button
+              onClick={(e)=>{e.preventDefault(); setCloseDel(true)}}
+              className="bg-[#EE2339] rounded-lg h-[50px] mt-[50px] px-[40px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5"
+            >
+              
+           Delete Event
+            </button> 
               <button
               onClick={formSubmit}
               className="bg-[#1A1941] rounded-lg h-[50px] mt-[50px] px-[40px] text-[#FFFFFF] tracking-[10%] text-[16px] leading-5"
             >
               
               {loading ? <ClipLoader color="#FFFFFF" /> : "Save Changes"}
-            </button> :
+            </button> 
+              </div>
+            :
 
             <button
               onClick={formSubmit}
@@ -732,6 +753,10 @@ if(success){
           </form>
         </div>
       </div>
+      {
+closeDel &&
+      <EventDelOpt id={data?.data?.id} closeDelete={()=>{setCloseDel(false)}}/>
+      }
     
       <EventQR
       loading={isLoading}
