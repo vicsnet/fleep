@@ -212,7 +212,7 @@ const NewEvent = () => {
   
   useEffect(() => {
     if (isError) {
-        toast.error(error?.response?.data.message);
+        toast.error(error?.response?.data?.message);
       
     }
     
@@ -254,7 +254,7 @@ useEffect(()=>{
     // setECategory(data?.data?.id);
   }
 if(errordet){
-  toast.error(error.response.data.message);
+  toast.error(error?.response?.data?.message);
 }
 if(success){
   toast.success("Event Updated")
@@ -511,7 +511,7 @@ if(success){
                   />
                 </div>
               )}
-              <div className="w-[48%] smDesktop:w-[48%] smDesk:w-[47.7%] tabletAir:w-[47%] tablet:w-[47.4%]">
+              <div className="w-[48%] lgDesktop:w-[] smDesktop:w-[48%] smDesk:w-[47.7%] tabletAir:w-[47%] tablet:w-[47.4%]">
                 <label
                   htmlFor=""
                   className="text-[14px] leading-5 text-[#333333] font-normal flex justify-between items-center mb-[4px]"
@@ -592,7 +592,7 @@ if(success){
               </div>
               </div>
               {showMonetize === 1 && (
-                <div className="w-[49%] smDesktop:w-[47.7%] tablet:w-[47%]">
+                <div className="w-[49%] lgDesktop:w-[48.45%] smDesktop:w-[47.7%] tablet:w-[47%]">
                   <label
                     htmlFor=""
                     className="text-[14px] leading-5 text-[#333333] font-normal"
@@ -612,7 +612,7 @@ if(success){
                   </div>
                 </div>
               )}
-              <div className="w-[49%] smDesktop:w-[47.7%] tablet:w-[47%]">
+              <div className="w-[49%] lgDesktop:w-[48.45%] smDesktop:w-[47.7%] tablet:w-[47%]">
                 <label
                   htmlFor=""
                   className="text-[14px] leading-5 text-[#333333] font-normal"

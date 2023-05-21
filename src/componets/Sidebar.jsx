@@ -1,8 +1,10 @@
+/** @format */
+
 import React from "react";
 // import { FaTh } from "react-icons/fa";
 // import { MdSpaceDashboard } from "react-icons/md";
 // import { AiOutlineCalendar, AiOutlineSetting } from "react-icons/ai";
-import {  FiArrowRightCircle, FiLogOut } from "react-icons/fi";
+import { FiArrowRightCircle, FiLogOut } from "react-icons/fi";
 // import { BiTimeFive } from "react-icons/bi";
 // import { IoIosNotificationsOutline } from "react-icons/io";
 
@@ -31,7 +33,7 @@ import wallet2 from "../assets/wallet2.png";
 // import UsersDeleteOption from "../pages/Dashboard/User/UsersDeleteOption";
 import WithDrawToBank from "./wallet/WithDrawToBank";
 // import WithDrawSuccesfull from "./wallet/WithdrawSuccesfull";
-import {useDispatch, useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../Redux/features/authentication/registrationSlice";
 import { useEffect } from "react";
 // import { useNavigate } from "react-router-dom";
@@ -41,7 +43,7 @@ import { toast } from "react-toastify";
 const Sidebar = ({ children }) => {
   const dispatch = useDispatch();
   // const navigate = useNavigate();
-  const {success} = useSelector((state) =>state.user);
+  const { success } = useSelector((state) => state.user);
   const menuItem = [
     {
       path: "/dashboard",
@@ -83,14 +85,10 @@ const Sidebar = ({ children }) => {
       icon: <img src={icon10} alt="" className="w-[13px] h-[13px]" />,
       image: <img src={icon9} alt="" className="w-[13px] h-[13px]" />,
     },
-    {
-      path: "/notification",
-      name: "Notification",
-      icon: <img src={icon12} alt="" className="w-[13px] h-[13px]" />,
-      image: <img src={icon11} alt="" className="w-[13px] h-[13px]" />,
-    },
+
   ];
 
+  
   // const [openAddUser, setOpenAddUser] = useState(false);
 
   const iconNotActive = "text-[#8B8B8B]";
@@ -99,21 +97,16 @@ const Sidebar = ({ children }) => {
   const nameNotActive = "text-[14px] leading-[18px] text-[#8B8B8B] font-[500]";
   const nameActive = "text-[14px] leading-[18px] text-[#FFFFFF] font-bold";
 
- 
- 
-  
-  useEffect(()=>{
-    if(window.screen.width < 767){
-      document.location.replace("/")
-      toast.info("Download the app")
+  useEffect(() => {
+    if (window.screen.width < 767) {
+      document.location.replace("/");
+      toast.info("Download the app");
     }
 
-    if(success){
-      Navigate("/login")
+    if (success) {
+      Navigate("/login");
     }
-    
-  
-  })
+  });
   return (
     <main className="flex max-h-full  min-h-screen h-screen  overflow-y-hidden  bg-[#19192E] extraTab:hidden mobile:hidden w-[100%]">
       <section className="bg-[#19192E] w-[265px] max-h-[100%] min-h-screen h-screen overflow-y-scroll whitespace-nowrap hide scrollbar-thin scrollbar-thumb-[#19192E] scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
@@ -191,6 +184,46 @@ const Sidebar = ({ children }) => {
               </NavLink>
             ))}
           </div>
+          <div className=" flex items-center gap-[22px] pl-[10px] pb-[51px]">
+            <NavLink
+              to="/notification"
+              className={({ isActive }) =>
+                isActive ? iconActive : iconNotActive
+              }
+            >
+              {({ isActive }) =>
+                isActive ? (
+                  <div className="relative">
+                    <div className="bg-[#EE2339] w-[15px] h-[15px] flex items-center justify-center rounded-full absolute ml-[8px] top-[-8px] ">
+                      <span className="text-[8px] font-bold text-white">1</span>
+                    </div>
+                    <div className="">
+                      <img src={icon12} alt="" className="w-[13px] h-[13px]" />
+                    </div>
+                  </div>
+                ) : (
+                  <div className="relative">
+                    <div className="bg-[#EEEEEE] w-[15px] h-[15px] flex items-center justify-center rounded-full absolute ml-[8px] top-[-8px]">
+                      <span className="text-[8px] font-bold">1</span>
+                    </div>
+                    <div className="">
+                      
+                    <img src={icon11} alt="" className="w-[13px] h-[13px]" />
+                    </div>
+                  </div>
+                )
+              }
+            </NavLink>
+            <NavLink
+              to="/notification"
+              // onClick={()=>dispatch(logout())}
+              className={({ isActive }) =>
+                isActive ? nameActive : nameNotActive
+              }
+            >
+              Notification
+            </NavLink>
+          </div>
 
           {/* upgrade plan */}
           <div className="bg-white mt-[160px] pl-[20px] rounded mb-[82px] pb-[17px]">
@@ -220,8 +253,8 @@ const Sidebar = ({ children }) => {
               <FiLogOut size={12} />
             </NavLink>
             <NavLink
-            to="/login"
-              onClick={()=>dispatch(logout())}
+              to="/login"
+              onClick={() => dispatch(logout())}
               className={({ isActive }) =>
                 isActive ? nameActive : nameNotActive
               }
@@ -251,13 +284,10 @@ const Sidebar = ({ children }) => {
       {/* withdraw to bank */}
       <WithDrawToBank />
 
-    
-      
       {/* <WithDrawSuccesfull/> */}
 
-
       {/* Add Bank Acct */}
-      <AddBankAcct/>
+      <AddBankAcct />
     </main>
   );
 };

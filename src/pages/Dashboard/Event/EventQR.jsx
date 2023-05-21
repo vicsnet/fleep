@@ -25,7 +25,7 @@ const EventQR = ({ onClose, showQr, qrImage, qr,loading }) => {
       style={{ background: "rgba(20, 24, 31, 0.25)" }}
     >
       <div
-        className="w-[70%]  rounded-lg mt-[196px] ml-[10%] pb-[73px]"
+        className="w-[70%]  rounded-lg mt-[70px] ml-[10%] pb-[73px]"
         style={{ background: "rgba(255, 255, 255, 1)" }}
       >
         <div className="w-[90%] mx-auto">

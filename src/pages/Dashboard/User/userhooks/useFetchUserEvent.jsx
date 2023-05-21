@@ -21,7 +21,7 @@ const useFetchUserEvent = (email) => {
   const getParticipant = async () => {
     return await axios.get(API_URL, config).then((res) => res.data);
   };
-  const { data, isLoading, isFetching, isError, error } = useQuery(
+  const { data, isLoading, isError, error } = useQuery(
     ["eventUsersFetch", email],
     getParticipant,
     {
