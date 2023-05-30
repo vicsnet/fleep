@@ -39,10 +39,13 @@ import { useEffect } from "react";
 // import { useNavigate } from "react-router-dom";
 import AddBankAcct from "./wallet/AddBankAcct";
 import { toast } from "react-toastify";
+import useNotCounter from "./notification/hooks/useNotCounter";
+
 
 const Sidebar = ({ children }) => {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+
+
   const { success } = useSelector((state) => state.user);
   const menuItem = [
     {
@@ -88,7 +91,9 @@ const Sidebar = ({ children }) => {
 
   ];
 
+  const {data} = useNotCounter();
   
+
   // const [openAddUser, setOpenAddUser] = useState(false);
 
   const iconNotActive = "text-[#8B8B8B]";
@@ -195,7 +200,7 @@ const Sidebar = ({ children }) => {
                 isActive ? (
                   <div className="relative">
                     <div className="bg-[#EE2339] w-[15px] h-[15px] flex items-center justify-center rounded-full absolute ml-[8px] top-[-8px] ">
-                      <span className="text-[8px] font-bold text-white">1</span>
+                      <span className="text-[8px] font-bold text-white">{data?.data}</span>
                     </div>
                     <div className="">
                       <img src={icon12} alt="" className="w-[13px] h-[13px]" />
@@ -204,7 +209,7 @@ const Sidebar = ({ children }) => {
                 ) : (
                   <div className="relative">
                     <div className="bg-[#EEEEEE] w-[15px] h-[15px] flex items-center justify-center rounded-full absolute ml-[8px] top-[-8px]">
-                      <span className="text-[8px] font-bold">1</span>
+                      <span className="text-[8px] font-bold">{data?.data}</span>
                     </div>
                     <div className="">
                       

@@ -1,12 +1,12 @@
 import React from 'react'
-import { BsCalendarFill, BsImage } from "react-icons/bs";
+import { BsImage } from "react-icons/bs";
 import useFetchNotification from './hooks/useFetchNotification';
 import DashboardError from '../../pages/Dashboard/Error/DashboardError';
 import FadeLoader from 'react-spinners/FadeLoader';
 
 const NotificationsComp = () => {
     const {data, isError, error, refetch, isLoading} = useFetchNotification();
-    console.log(data);
+    console.log("not",data);
   
   return (
   <div className="pt-[20px]">
